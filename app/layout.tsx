@@ -1,29 +1,50 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Cormorant_Garamond, Manrope, Space_Grotesk } from 'next/font/google';
+import localFont from 'next/font/local';
 import { Navbar } from '@/components/layout/navbar';
 import { Footer } from '@/components/layout/footer';
 import { ScrollProgress } from '@/components/layout/scroll-progress';
 import { WishlistProvider } from '@/components/providers/wishlist-provider';
 
-const cormorant = Cormorant_Garamond({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  style: ['normal', 'italic'],
+// Fonts served from public/fonts/ to avoid build-time Google Fonts network
+// requests that caused ETIMEDOUT failures on Netlify (fonts.gstatic.com).
+const cormorant = localFont({
+  src: [
+    { path: '../public/fonts/cormorant-garamond-latin-300-normal.woff2', weight: '300', style: 'normal' },
+    { path: '../public/fonts/cormorant-garamond-latin-400-normal.woff2', weight: '400', style: 'normal' },
+    { path: '../public/fonts/cormorant-garamond-latin-500-normal.woff2', weight: '500', style: 'normal' },
+    { path: '../public/fonts/cormorant-garamond-latin-600-normal.woff2', weight: '600', style: 'normal' },
+    { path: '../public/fonts/cormorant-garamond-latin-700-normal.woff2', weight: '700', style: 'normal' },
+    { path: '../public/fonts/cormorant-garamond-latin-300-italic.woff2', weight: '300', style: 'italic' },
+    { path: '../public/fonts/cormorant-garamond-latin-400-italic.woff2', weight: '400', style: 'italic' },
+    { path: '../public/fonts/cormorant-garamond-latin-500-italic.woff2', weight: '500', style: 'italic' },
+    { path: '../public/fonts/cormorant-garamond-latin-600-italic.woff2', weight: '600', style: 'italic' },
+    { path: '../public/fonts/cormorant-garamond-latin-700-italic.woff2', weight: '700', style: 'italic' },
+  ],
   variable: '--font-display',
   display: 'swap',
 });
 
-const manrope = Manrope({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800'],
+const manrope = localFont({
+  src: [
+    { path: '../public/fonts/manrope-latin-300-normal.woff2', weight: '300', style: 'normal' },
+    { path: '../public/fonts/manrope-latin-400-normal.woff2', weight: '400', style: 'normal' },
+    { path: '../public/fonts/manrope-latin-500-normal.woff2', weight: '500', style: 'normal' },
+    { path: '../public/fonts/manrope-latin-600-normal.woff2', weight: '600', style: 'normal' },
+    { path: '../public/fonts/manrope-latin-700-normal.woff2', weight: '700', style: 'normal' },
+    { path: '../public/fonts/manrope-latin-800-normal.woff2', weight: '800', style: 'normal' },
+  ],
   variable: '--font-sans',
   display: 'swap',
 });
 
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+const spaceGrotesk = localFont({
+  src: [
+    { path: '../public/fonts/space-grotesk-latin-400-normal.woff2', weight: '400', style: 'normal' },
+    { path: '../public/fonts/space-grotesk-latin-500-normal.woff2', weight: '500', style: 'normal' },
+    { path: '../public/fonts/space-grotesk-latin-600-normal.woff2', weight: '600', style: 'normal' },
+    { path: '../public/fonts/space-grotesk-latin-700-normal.woff2', weight: '700', style: 'normal' },
+  ],
   variable: '--font-label',
   display: 'swap',
 });
@@ -94,4 +115,3 @@ export default function RootLayout({
     </html>
   );
 }
-
