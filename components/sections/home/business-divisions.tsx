@@ -4,7 +4,9 @@ import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Reveal } from '@/components/motion/reveal';
-import { businessDivisions } from '@/lib/data';
+import { getBusinessDivisions } from '@/lib/data-access';
+
+const businessDivisions = getBusinessDivisions();
 
 export function BusinessDivisions() {
   return (
@@ -14,7 +16,7 @@ export function BusinessDivisions() {
           <p className="mb-4 text-xs font-medium uppercase tracking-ultra text-gold-deep">
             Two Divisions, One Standard
           </p>
-          <h2 className="font-display text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
+          <h2 className="font-display text-4xl font-medium leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
             A house of craft, divided into two.
           </h2>
         </Reveal>
@@ -40,17 +42,17 @@ export function BusinessDivisions() {
                   <p className="mb-3 text-xs font-medium uppercase tracking-ultra text-gold">
                     {div.subtitle}
                   </p>
-                  <h3 className="font-display text-3xl font-semibold text-white sm:text-4xl">
+                  <h3 className="font-display text-3xl font-medium text-white sm:text-4xl">
                     {div.title}
                   </h3>
-                  <p className="mt-4 max-w-md text-sm leading-relaxed text-foreground/70">
+                  <p className="mt-4 max-w-md text-sm leading-relaxed text-white/80">
                     {div.description}
                   </p>
                   <ul className="mt-5 space-y-1.5">
                     {div.points.map((point) => (
                       <li
                         key={point}
-                        className="flex items-center gap-2 text-xs text-foreground/60"
+                        className="flex items-center gap-2 text-xs text-white/70"
                       >
                         <span className="h-1 w-1 rounded-full bg-gold" />
                         {point}

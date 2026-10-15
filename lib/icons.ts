@@ -1,0 +1,65 @@
+import {
+  Flower2,
+  Lamp,
+  Frame,
+  Gift,
+  Sofa,
+  Utensils,
+  Sparkles,
+  Layers,
+  Shield,
+  Brush,
+  Building2,
+  Wrench,
+  Boxes,
+  Wine,
+  Clock,
+  Flame,
+  CheckCircle,
+  LucideIcon,
+} from 'lucide-react';
+
+const ICON_MAP: Record<string, LucideIcon> = {
+  'flower-2': Flower2,
+  Flower2,
+  lamp: Lamp,
+  Lamp,
+  frame: Frame,
+  Frame,
+  gift: Gift,
+  Gift,
+  sofa: Sofa,
+  Sofa,
+  utensils: Utensils,
+  Utensils,
+  sparkles: Sparkles,
+  Sparkles,
+  layers: Layers,
+  Layers,
+  shield: Shield,
+  Shield,
+  brush: Brush,
+  Brush,
+  'building-2': Building2,
+  Building2,
+  wrench: Wrench,
+  Wrench,
+  boxes: Boxes,
+  Boxes,
+  wine: Wine,
+  Wine,
+  clock: Clock,
+  Clock,
+  flame: Flame,
+  Flame,
+  'check-circle': CheckCircle,
+  CheckCircle,
+};
+
+export function resolveIcon(
+  iconName?: string | null,
+  fallback: LucideIcon = Sparkles
+): LucideIcon {
+  if (!iconName) return fallback;
+  return ICON_MAP[iconName] || fallback;
+}

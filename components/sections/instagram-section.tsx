@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { INSTAGRAM_URL } from '@/lib/site';
 import { Reveal } from '@/components/motion/reveal';
 import { SectionHeading } from '@/components/sections/section-heading';
-import type { InstagramPost } from '@/lib/data';
+import type { InstagramPost } from '@/lib/types';
 
 export function InstagramSection({
   posts,

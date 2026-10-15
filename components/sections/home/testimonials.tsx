@@ -4,16 +4,27 @@ import { motion } from 'framer-motion';
 import { Star, Quote } from 'lucide-react';
 import { Reveal } from '@/components/motion/reveal';
 import { SectionHeading } from '@/components/sections/section-heading';
-import { testimonials } from '@/lib/data';
+import type { Testimonial } from '@/lib/types';
+import { getTestimonials } from '@/lib/data-access';
 
-export function Testimonials() {
+interface TestimonialsProps {
+  testimonials?: Testimonial[];
+}
+
+export function Testimonials({ testimonials: testimonialsProp }: TestimonialsProps) {
+  const testimonials = testimonialsProp ?? getTestimonials();
+
+  if (testimonials.length === 0) {
+    return null;
+  }
+
   return (
     <section id="testimonials" className="bg-muted/40 py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-5 lg:px-10">
         <SectionHeading
           eyebrow="Trusted By"
           title="What our clients say."
-          description="Architects, designers and commercial buyers who trust AURUM & CO. with their projects."
+          description="Architects, designers and commercial buyers who trust RT PU COATING WORKS with their projects."
         />
 
         <div className="mt-14 grid gap-6 lg:grid-cols-3">

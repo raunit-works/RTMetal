@@ -2,10 +2,13 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Wrench } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Reveal } from '@/components/motion/reveal';
-import { services } from '@/lib/data';
+import { getServices } from '@/lib/data-access';
+import { resolveIcon } from '@/lib/icons';
+
+const services = getServices();
 
 export function MetalCoatingShowcase() {
   const ref = useRef<HTMLDivElement>(null);
@@ -40,10 +43,10 @@ export function MetalCoatingShowcase() {
               <p className="mb-4 text-xs font-medium uppercase tracking-ultra text-gold">
                 Division 02 · Metal Coating
               </p>
-              <h2 className="font-display text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
+              <h2 className="font-display text-4xl font-medium leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
                 Finishes that <span className="gold-text">elevate</span> metal.
               </h2>
-              <p className="mt-6 max-w-md text-base leading-relaxed text-foreground/70">
+              <p className="mt-6 max-w-md text-base leading-relaxed text-white/80">
                 From brass and MS coating to architectural finishes, our
                 workshop delivers premium surface treatments for trade and
                 private clients — engineered to perform and crafted to
@@ -73,19 +76,22 @@ export function MetalCoatingShowcase() {
           </div>
 
           <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:col-span-7 lg:grid-cols-3">
-            {services.slice(0, 6).map((svc, i) => (
-              <Reveal key={svc.slug} delay={i * 0.07}>
-                <div className="group h-full rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm transition-all duration-500 hover:border-gold/40 hover:bg-white/10">
-                  <svc.icon className="h-6 w-6 text-gold" />
-                  <h3 className="mt-4 text-sm font-semibold text-white">
-                    {svc.shortName}
-                  </h3>
-                  <p className="mt-2 text-xs leading-relaxed text-foreground/60">
-                    {svc.description}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
+            {services.slice(0, 6).map((svc, i) => {
+              const SvcIcon = resolveIcon(svc.icon, Wrench);
+              return (
+                <Reveal key={svc.slug} delay={i * 0.07}>
+                  <div className="group h-full rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm transition-all duration-500 hover:border-gold/40 hover:bg-white/10">
+                    <SvcIcon className="h-6 w-6 text-gold" />
+                    <h3 className="mt-4 text-sm font-semibold text-white">
+                      {svc.shortName}
+                    </h3>
+                    <p className="mt-2 text-xs leading-relaxed text-white/70">
+                      {svc.description}
+                    </p>
+                  </div>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </div>

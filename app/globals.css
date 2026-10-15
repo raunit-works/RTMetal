@@ -73,11 +73,47 @@
 }
 
 @layer components {
+  /* Systematic Dark Section Color Token Context */
+  .bg-ink,
+  .dark-section,
+  [data-theme="dark"] {
+    --background: 0 0% 6%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 98%;
+    --muted: 0 0% 16%;
+    --muted-foreground: 38 15% 78%;
+    --border: 0 0% 100% / 0.15;
+    --input: 0 0% 100% / 0.15;
+    color: hsl(var(--foreground));
+  }
+
+  /* Reset Light Section Context for nested elements */
+  .bg-background,
+  .light-section {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 6%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 6%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 6%;
+    --muted: 0 0% 94%;
+    --muted-foreground: 0 0% 40%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    color: hsl(var(--foreground));
+  }
+
   .font-display {
     font-family: var(--font-display), 'Cormorant Garamond', Georgia, serif;
   }
   .font-sans {
-    font-family: var(--font-sans), 'Inter', system-ui, sans-serif;
+    font-family: var(--font-sans), 'Manrope', system-ui, sans-serif;
+  }
+  .font-label {
+    font-family: var(--font-label), 'Space Grotesk', system-ui, sans-serif;
   }
   .gold-text {
     background: linear-gradient(120deg, hsl(40 70% 62%), hsl(38 55% 45%), hsl(42 75% 70%));

@@ -49,7 +49,7 @@ export function CtaBanner({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="mx-auto max-w-3xl font-display text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl"
+            className="mx-auto max-w-3xl font-display text-4xl font-medium leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl"
           >
             {title}
           </motion.h2>
@@ -61,7 +61,7 @@ export function CtaBanner({
               transition={{ duration: 0.7, delay: 0.1 }}
               className={cn(
                 'mx-auto mt-6 max-w-xl text-base leading-relaxed sm:text-lg',
-                dark ? 'text-foreground/70' : 'text-muted-foreground'
+                dark ? 'text-white/80' : 'text-muted-foreground'
               )}
             >
               {description}

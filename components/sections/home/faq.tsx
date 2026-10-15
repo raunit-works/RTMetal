@@ -5,10 +5,20 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus } from 'lucide-react';
 import { Reveal } from '@/components/motion/reveal';
 import { SectionHeading } from '@/components/sections/section-heading';
-import { faqs } from '@/lib/data';
+import type { FAQItem } from '@/lib/types';
+import { getFAQs } from '@/lib/data-access';
 
-export function FAQ() {
+interface FAQProps {
+  faqs?: FAQItem[];
+}
+
+export function FAQ({ faqs: faqsProp }: FAQProps) {
+  const faqs = faqsProp ?? getFAQs();
   const [open, setOpen] = useState<number | null>(0);
+
+  if (faqs.length === 0) {
+    return null;
+  }
 
   return (
     <section id="faq" className="py-20 sm:py-28">

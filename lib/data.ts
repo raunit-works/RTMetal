@@ -13,7 +13,7 @@ import {
   Wrench,
 } from 'lucide-react';
 
-export type IconType = typeof Flower2;
+export type IconType = string;
 
 export type Category = {
   slug: string;
@@ -27,6 +27,7 @@ export type Category = {
 
 export type Product = {
   id: string;
+  slug: string;
   name: string;
   category: string;
   price: number;
@@ -87,7 +88,7 @@ export const categories: Category[] = [
       'Statement objects, vases and sculptural accents crafted to anchor a room with quiet confidence.',
     image:
       'https://images.pexels.com/photos/6585608/pexels-photo-6585608.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    icon: Flower2,
+    icon: 'flower-2',
     productCount: 48,
   },
   {
@@ -98,7 +99,7 @@ export const categories: Category[] = [
       'Trays, candleholders and curated objects that bring warmth and texture to every surface.',
     image:
       'https://images.pexels.com/photos/6585598/pexels-photo-6585598.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    icon: Frame,
+    icon: 'frame',
     productCount: 36,
   },
   {
@@ -109,7 +110,7 @@ export const categories: Category[] = [
       'Thoughtfully designed gifts for milestones, celebrations and the people who matter most.',
     image:
       'https://images.pexels.com/photos/6585755/pexels-photo-6585755.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    icon: Gift,
+    icon: 'gift',
     productCount: 24,
   },
   {
@@ -120,7 +121,7 @@ export const categories: Category[] = [
       'Lighting, textiles and everyday objects designed to make daily rituals feel considered.',
     image:
       'https://images.pexels.com/photos/6585758/pexels-photo-6585758.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    icon: Lamp,
+    icon: 'lamp',
     productCount: 32,
   },
   {
@@ -131,7 +132,7 @@ export const categories: Category[] = [
       'Functional essentials refined for the modern home — beautiful, durable and made to last.',
     image:
       'https://images.pexels.com/photos/6585607/pexels-photo-6585607.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    icon: Sofa,
+    icon: 'sofa',
     productCount: 28,
   },
   {
@@ -142,7 +143,7 @@ export const categories: Category[] = [
       'Cutlery, organisers and daily essentials elevated through material and craft.',
     image:
       'https://images.pexels.com/photos/6585591/pexels-photo-6585591.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    icon: Utensils,
+    icon: 'utensils',
     productCount: 20,
   },
 ];
@@ -150,6 +151,7 @@ export const categories: Category[] = [
 export const products: Product[] = [
   {
     id: 'p1',
+    slug: 'onyx-sculptural-vase',
     name: 'Onyx Sculptural Vase',
     category: 'home-decor',
     price: 189,
@@ -162,6 +164,7 @@ export const products: Product[] = [
   },
   {
     id: 'p2',
+    slug: 'brass-pendant-lamp',
     name: 'Brass Pendant Lamp',
     category: 'lifestyle-products',
     price: 320,
@@ -173,6 +176,7 @@ export const products: Product[] = [
   },
   {
     id: 'p3',
+    slug: 'marble-catch-all-tray',
     name: 'Marble Catch-All Tray',
     category: 'decorative-accessories',
     price: 95,
@@ -183,6 +187,7 @@ export const products: Product[] = [
   },
   {
     id: 'p4',
+    slug: 'heritage-gift-set',
     name: 'Heritage Gift Set',
     category: 'gift-articles',
     price: 145,
@@ -194,6 +199,7 @@ export const products: Product[] = [
   },
   {
     id: 'p5',
+    slug: 'linen-lumbar-cushion',
     name: 'Linen Lumbar Cushion',
     category: 'household-products',
     price: 78,
@@ -204,6 +210,7 @@ export const products: Product[] = [
   },
   {
     id: 'p6',
+    slug: 'gold-cutlery-set',
     name: 'Gold Cutlery Set',
     category: 'daily-utility',
     price: 210,
@@ -216,6 +223,7 @@ export const products: Product[] = [
   },
   {
     id: 'p7',
+    slug: 'smoked-glass-hurricane',
     name: 'Smoked Glass Hurricane',
     category: 'home-decor',
     price: 128,
@@ -226,6 +234,7 @@ export const products: Product[] = [
   },
   {
     id: 'p8',
+    slug: 'walnut-desk-organiser',
     name: 'Walnut Desk Organiser',
     category: 'daily-utility',
     price: 64,
@@ -245,7 +254,7 @@ export const services: Service[] = [
     description: 'Premium mild steel coating for durability and finish.',
     longDescription:
       'Our MS coating process applies a refined, protective finish to mild steel components — combining corrosion resistance with a premium surface that elevates any fabrication.',
-    icon: Layers,
+    icon: 'layers',
     image:
       'https://images.pexels.com/photos/8486/soldering-iron-electronics-technology-soldering.jpg?auto=compress&cs=tinysrgb&w=1200',
     features: [
@@ -262,7 +271,7 @@ export const services: Service[] = [
     description: 'Authentic brass finishes on any substrate.',
     longDescription:
       'Transform steel, aluminium or wood with a lustrous brass coating. Achieve the warmth and prestige of solid brass at a fraction of the weight and cost.',
-    icon: Sparkles,
+    icon: 'sparkles',
     image:
       'https://images.pexels.com/photos/8216549/pexels-photo-8216549.jpeg?auto=compress&cs=tinysrgb&w=1200',
     features: [
@@ -279,7 +288,7 @@ export const services: Service[] = [
     description: 'Artisan finishes for statement pieces.',
     longDescription:
       'Hand-applied patinas, brushing and polishing techniques that turn metal surfaces into works of art — for furniture, sculpture and architectural detail.',
-    icon: Brush,
+    icon: 'brush',
     image:
       'https://images.pexels.com/photos/8216554/pexels-photo-8216554.jpeg?auto=compress&cs=tinysrgb&w=1200',
     features: [
@@ -296,7 +305,7 @@ export const services: Service[] = [
     description: 'Flawless finishes for high-end applications.',
     longDescription:
       'A meticulous multi-stage process delivering mirror-grade and micro-textured surfaces for luxury products, automotive trim and architectural metalwork.',
-    icon: Shield,
+    icon: 'shield',
     image:
       'https://images.pexels.com/photos/8216570/pexels-photo-8216570.jpeg?auto=compress&cs=tinysrgb&w=1200',
     features: [
@@ -313,7 +322,7 @@ export const services: Service[] = [
     description: 'Bespoke coatings engineered to spec.',
     longDescription:
       'From concept to production, we develop custom coating formulations matched to your exact colour, texture and performance requirements.',
-    icon: Wrench,
+    icon: 'wrench',
     image:
       'https://images.pexels.com/photos/8216580/pexels-photo-8216580.jpeg?auto=compress&cs=tinysrgb&w=1200',
     features: [
@@ -330,7 +339,7 @@ export const services: Service[] = [
     description: 'Large-format finishes for buildings.',
     longDescription:
       'Premium coatings for facades, cladding, railings and architectural metalwork — engineered to perform in exterior environments while retaining their finish for decades.',
-    icon: Building2,
+    icon: 'building-2',
     image:
       'https://images.pexels.com/photos/8216588/pexels-photo-8216588.jpeg?auto=compress&cs=tinysrgb&w=1200',
     features: [
@@ -412,35 +421,35 @@ export const processSteps: ProcessStep[] = [
     title: 'Consultation',
     description:
       'We begin with a conversation to understand your vision, materials, timeline and performance requirements.',
-    icon: Sparkles,
+    icon: 'sparkles',
   },
   {
     step: '02',
     title: 'Specification',
     description:
       'Our team develops a precise coating specification — finish, colour, texture and durability targets.',
-    icon: Layers,
+    icon: 'layers',
   },
   {
     step: '03',
     title: 'Surface Preparation',
     description:
       'Meticulous cleaning, stripping and pre-treatment to ensure a flawless, long-lasting bond.',
-    icon: Brush,
+    icon: 'brush',
   },
   {
     step: '04',
     title: 'Application',
     description:
       'Coatings applied in a controlled environment using calibrated equipment for uniform coverage.',
-    icon: Shield,
+    icon: 'shield',
   },
   {
     step: '05',
     title: 'Quality Inspection',
     description:
       'Every piece is inspected against our quality standards before it leaves the workshop.',
-    icon: Wrench,
+    icon: 'wrench',
   },
 ];
 
@@ -482,7 +491,7 @@ export const instagramPosts: InstagramPost[] = [
     type: 'reel',
     category: 'Recent Work',
     image:
-      'https://images.pexels.com/photos/8216580/pexels-photo-8216580.jpeg?auto=compress&cs=tinysrgb&w=800',
+      'https://images.pexels.com/photos/8216800/pexels-photo-8216580.jpeg?auto=compress&cs=tinysrgb&w=800',
     caption: 'Architectural finish — facade panel reveal.',
   },
   {
@@ -541,25 +550,25 @@ export const businessDivisions = [
 
 export const whyChooseUs = [
   {
-    icon: Sparkles,
+    icon: 'sparkles',
     title: 'Craftsmanship First',
     description:
       'Every product and finish is the result of obsessive attention to material, detail and craft.',
   },
   {
-    icon: Shield,
+    icon: 'shield',
     title: 'Built to Last',
     description:
       'Coatings engineered for decades of performance. Products made to be lived with, not replaced.',
   },
   {
-    icon: Building2,
+    icon: 'building-2',
     title: 'Trade & Commercial Ready',
     description:
       'Trusted by architects, designers and builders for projects of any scale.',
   },
   {
-    icon: Wrench,
+    icon: 'wrench',
     title: 'Bespoke Capability',
     description:
       'From a single statement piece to full production runs, we tailor every detail to your brief.',

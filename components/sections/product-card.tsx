@@ -1,15 +1,35 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Heart, ShoppingBag, Eye, Star, X } from 'lucide-react';
+import { Heart, Eye, Star, X, MessageCircle, ArrowRight, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import type { Product } from '@/lib/data';
+import type { Product } from '@/lib/types';
+import { getHomeDecorWhatsAppLink } from '@/lib/site';
+import { useWishlist } from '@/components/providers/wishlist-provider';
 
 export function ProductCard({ product }: { product: Product }) {
-  const [liked, setLiked] = useState(false);
   const [quickView, setQuickView] = useState(false);
+  const [isPending, setIsPending] = useState(false);
+  const { isInWishlist, toggleItem } = useWishlist();
+
+  const productSlug = product.slug || product.id;
+  const isSaved = isInWishlist(product.id) || (product.slug ? isInWishlist(product.slug) : false);
+
+  const handleWishlistToggle = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    if (isPending) return;
+
+    setIsPending(true);
+    try {
+      await toggleItem(product.id);
+    } finally {
+      setIsPending(false);
+    }
+  };
 
   return (
     <>
@@ -36,32 +56,40 @@ export function ProductCard({ product }: { product: Product }) {
           )}
 
           <button
-            onClick={() => setLiked((v) => !v)}
-            aria-label="Add to wishlist"
-            className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/80 text-ink backdrop-blur-md transition-all hover:bg-white"
+            onClick={handleWishlistToggle}
+            disabled={isPending}
+            aria-label={isSaved ? 'Remove from wishlist' : 'Add to wishlist'}
+            className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/80 text-ink backdrop-blur-md transition-all hover:bg-white disabled:opacity-50"
           >
-            <Heart
-              className={cn(
-                'h-4 w-4 transition-colors',
-                liked && 'fill-destructive text-destructive'
-              )}
-            />
+            {isPending ? (
+              <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
+            ) : (
+              <Heart
+                className={cn(
+                  'h-4 w-4 transition-colors',
+                  isSaved && 'fill-destructive text-destructive'
+                )}
+              />
+            )}
           </button>
+
 
           <div className="absolute inset-x-3 bottom-3 flex translate-y-3 gap-2 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
             <Button
+              asChild
               size="sm"
               className="flex-1 rounded-full bg-ink/90 text-white backdrop-blur-md hover:bg-ink"
-              onClick={() => setQuickView(true)}
             >
-              <ShoppingBag className="mr-1.5 h-3.5 w-3.5" />
-              Add to Cart
+              <Link href={`/home-decor/${productSlug}`}>
+                View Details
+              </Link>
             </Button>
             <Button
               size="sm"
               variant="outline"
               className="rounded-full bg-white/80 px-3 text-ink backdrop-blur-md hover:bg-white"
               onClick={() => setQuickView(true)}
+              aria-label="Quick view"
             >
               <Eye className="h-4 w-4" />
             </Button>
@@ -70,7 +98,11 @@ export function ProductCard({ product }: { product: Product }) {
 
         <div className="mt-4 flex items-start justify-between gap-2">
           <div>
-            <h3 className="text-sm font-semibold leading-snug">{product.name}</h3>
+            <Link href={`/home-decor/${productSlug}`}>
+              <h3 className="text-sm font-semibold leading-snug transition-colors hover:text-gold-deep">
+                {product.name}
+              </h3>
+            </Link>
             <div className="mt-1 flex items-center gap-1">
               <Star className="h-3 w-3 fill-gold text-gold" />
               <span className="text-xs text-muted-foreground">
@@ -105,6 +137,9 @@ function QuickViewModal({
   product: Product;
   onClose: () => void;
 }) {
+  const productSlug = product.slug || product.id;
+  const whatsappMsg = `Hello RT PU COATING WORKS, I am interested in ${product.name}. Please share more details.`;
+
   return (
     <>
       <motion.div
@@ -143,7 +178,7 @@ function QuickViewModal({
                 {product.badge}
               </span>
             )}
-            <h3 className="font-display text-2xl font-semibold">
+            <h3 className="font-display text-2xl font-medium sm:text-3xl">
               {product.name}
             </h3>
             <div className="mt-2 flex items-center gap-1">
@@ -173,13 +208,22 @@ function QuickViewModal({
                 </span>
               )}
             </div>
-            <div className="mt-6 flex gap-3">
-              <Button className="flex-1 rounded-full">
-                <ShoppingBag className="mr-2 h-4 w-4" />
-                Add to Cart
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <Button asChild className="flex-1 rounded-full bg-[#25D366] text-white hover:bg-[#25D366]/90">
+                <a
+                  href={getHomeDecorWhatsAppLink(whatsappMsg)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <MessageCircle className="mr-2 h-4 w-4" />
+                  Enquire via WhatsApp
+                </a>
               </Button>
-              <Button variant="outline" size="icon" className="rounded-full">
-                <Heart className="h-4 w-4" />
+              <Button asChild variant="outline" className="rounded-full">
+                <Link href={`/home-decor/${productSlug}`} onClick={onClose}>
+                  View Details
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
               </Button>
             </div>
           </div>

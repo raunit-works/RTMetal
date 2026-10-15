@@ -22,7 +22,7 @@ const footerLinks = {
     { label: 'Architectural Finishes', href: '/metal-coating#architectural-metal-finishes' },
   ],
   Company: [
-    { label: 'About', href: '/#about' },
+    { label: 'About', href: '/about' },
     { label: 'Our Process', href: '/#process' },
     { label: 'Testimonials', href: '/#testimonials' },
     { label: 'Contact', href: '/#contact' },
@@ -31,7 +31,7 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-ink text-foreground/70">
+    <footer className="relative overflow-hidden bg-ink text-white/80">
       <div className="pointer-events-none absolute -left-32 top-0 h-96 w-96 rounded-full bg-gold/10 blur-[120px]" />
       <div className="pointer-events-none absolute -right-32 bottom-0 h-96 w-96 rounded-full bg-gold/5 blur-[120px]" />
 
@@ -39,14 +39,14 @@ export function Footer() {
         <div className="grid gap-12 border-b border-white/10 py-16 lg:grid-cols-12 lg:gap-8 lg:py-20">
           <div className="lg:col-span-4">
             <Link href="/" className="group flex items-center gap-2.5">
-              <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/30 text-sm font-semibold">
-                A
+              <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/30 text-sm font-semibold text-white">
+                R
               </span>
-              <span className="font-display text-2xl font-semibold text-white">
-                AURUM <span className="gold-text">&</span> CO.
+              <span className="font-display text-2xl font-medium text-white">
+                RT PU <span className="gold-text">COATING</span> WORKS
               </span>
             </Link>
-            <p className="mt-6 max-w-sm text-sm leading-relaxed text-foreground/60">
+            <p className="mt-6 max-w-sm text-sm leading-relaxed text-white/70">
               A luxury house of home decor, lifestyle products and premium metal
               coating services. Crafted for architects, designers and
               discerning homeowners.
@@ -57,23 +57,23 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-foreground/70 transition-all hover:border-gold hover:text-gold"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white/80 transition-all hover:border-gold hover:text-gold"
               >
                 <Instagram className="h-5 w-5" />
               </a>
               <a
-                href={whatsappLink('Hello AURUM & CO.')}
+                href={whatsappLink('Hello RT PU COATING WORKS.')}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-foreground/70 transition-all hover:border-gold hover:text-gold"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white/80 transition-all hover:border-gold hover:text-gold"
               >
                 <MessageCircle className="h-5 w-5" />
               </a>
               <a
                 href={`mailto:${EMAIL}`}
                 aria-label="Email"
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-foreground/70 transition-all hover:border-gold hover:text-gold"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white/80 transition-all hover:border-gold hover:text-gold"
               >
                 <Mail className="h-5 w-5" />
               </a>
@@ -83,7 +83,7 @@ export function Footer() {
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-5">
             {Object.entries(footerLinks).map(([title, links]) => (
               <div key={title}>
-                <p className="text-xs font-medium uppercase tracking-ultra text-foreground/40">
+                <p className="text-xs font-medium uppercase tracking-ultra text-gold/90">
                   {title}
                 </p>
                 <ul className="mt-4 space-y-3">
@@ -91,10 +91,10 @@ export function Footer() {
                     <li key={link.label}>
                       <Link
                         href={link.href}
-                        className="group inline-flex items-center text-sm text-foreground/70 transition-colors hover:text-white"
+                        className="group inline-flex items-center text-sm text-white/70 transition-colors hover:text-gold"
                       >
                         {link.label}
-                        <ArrowUpRight className="ml-1 h-3 w-3 opacity-0 transition-opacity group-hover:opacity-100" />
+                        <ArrowUpRight className="ml-1 h-3 w-3 opacity-0 transition-opacity group-hover:opacity-100 text-gold" />
                       </Link>
                     </li>
                   ))}
@@ -104,32 +104,32 @@ export function Footer() {
           </div>
 
           <div className="lg:col-span-3">
-            <p className="text-xs font-medium uppercase tracking-ultra text-foreground/40">
+            <p className="text-xs font-medium uppercase tracking-ultra text-gold/90">
               Get in touch
             </p>
             <ul className="mt-4 space-y-4 text-sm">
               <li className="flex items-start gap-3">
-                <MapPin className="mt-0.5 h-4 w-4 text-gold" />
-                <span className="text-foreground/70">
+                <MapPin className="mt-0.5 h-4 w-4 text-gold shrink-0" />
+                <span className="text-white/80">
                   Studio 12, Design District
                   <br />
                   Mumbai, India
                 </span>
               </li>
               <li className="flex items-center gap-3">
-                <Phone className="h-4 w-4 text-gold" />
+                <Phone className="h-4 w-4 text-gold shrink-0" />
                 <a
                   href={`tel:${PHONE_DISPLAY.replace(/\s/g, '')}`}
-                  className="text-foreground/70 transition-colors hover:text-white"
+                  className="text-white/80 transition-colors hover:text-gold"
                 >
                   {PHONE_DISPLAY}
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <Mail className="h-4 w-4 text-gold" />
+                <Mail className="h-4 w-4 text-gold shrink-0" />
                 <a
                   href={`mailto:${EMAIL}`}
-                  className="text-foreground/70 transition-colors hover:text-white"
+                  className="text-white/80 transition-colors hover:text-gold"
                 >
                   {EMAIL}
                 </a>
@@ -138,17 +138,17 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col items-center justify-between gap-4 py-8 text-xs text-foreground/40 sm:flex-row">
-          <p>© {new Date().getFullYear()} AURUM & CO. — All rights reserved.</p>
+        <div className="flex flex-col items-center justify-between gap-4 py-8 text-xs text-white/50 sm:flex-row">
+          <p>© {new Date().getFullYear()} RT PU COATING WORKS — All rights reserved.</p>
           <p className="flex items-center gap-4">
-            <Link href="/" className="transition-colors hover:text-foreground/70">
+            <Link href="/" className="transition-colors hover:text-white">
               Privacy
             </Link>
-            <span className="h-3 w-px bg-white/10" />
-            <Link href="/" className="transition-colors hover:text-foreground/70">
+            <span className="h-3 w-px bg-white/20" />
+            <Link href="/" className="transition-colors hover:text-white">
               Terms
             </Link>
-            <span className="h-3 w-px bg-white/10" />
+            <span className="h-3 w-px bg-white/20" />
             <span>Designed as a premium concept</span>
           </p>
         </div>
