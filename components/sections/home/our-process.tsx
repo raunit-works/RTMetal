@@ -11,7 +11,7 @@ const processSteps = getProcessSteps();
 
 export function OurProcess() {
   return (
-    <section id="process" className="bg-ink py-20 text-white sm:py-28">
+    <section id="process" className="bg-ink py-16 text-white sm:py-20">
       <div className="mx-auto max-w-7xl px-5 lg:px-10">
         <SectionHeading
           eyebrow="How We Work"

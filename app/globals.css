@@ -158,7 +158,27 @@
   .preserve-3d {
     transform-style: preserve-3d;
   }
+  /* Warm ivory background used by new hero / before-after sections */
+  .bg-ivory {
+    background-color: #f8f5f0;
+  }
+  .bg-ivory-soft {
+    background-color: #faf8f4;
+  }
 }
+
+/* Reduced motion: disable transforms and crossfades but keep layout */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {

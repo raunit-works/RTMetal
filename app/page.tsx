@@ -1,7 +1,7 @@
 import { Hero } from '@/components/sections/home/hero';
 import { BusinessDivisions } from '@/components/sections/home/business-divisions';
-import { FeaturedCategories } from '@/components/sections/home/featured-categories';
-import { WhyChooseUs } from '@/components/sections/home/why-choose-us';
+import { MaterialsShowcase } from '@/components/sections/home/materials-showcase';
+import { BeforeAfterSection } from '@/components/sections/home/before-after';
 import { OurProcess } from '@/components/sections/home/our-process';
 import { FeaturedProducts } from '@/components/sections/home/featured-products';
 import { MetalCoatingShowcase } from '@/components/sections/home/metal-coating-showcase';
@@ -11,7 +11,6 @@ import { ContactSection } from '@/components/sections/home/contact';
 import { InstagramSection } from '@/components/sections/instagram-section';
 import { CtaBanner } from '@/components/sections/cta-banner';
 import {
-  getCategoriesAsync,
   getProductsAsync,
   getTestimonialsAsync,
   getFAQsAsync,
@@ -21,8 +20,7 @@ import {
 export const revalidate = 0;
 
 export default async function Home() {
-  const [categories, products, testimonials, faqs] = await Promise.all([
-    getCategoriesAsync(),
+  const [products, testimonials, faqs] = await Promise.all([
     getProductsAsync(),
     getTestimonialsAsync(),
     getFAQsAsync(),
@@ -31,10 +29,13 @@ export default async function Home() {
 
   return (
     <>
+      {/* ── NEW TOP SECTIONS ─────────────────────────────────── */}
       <Hero />
       <BusinessDivisions />
-      <FeaturedCategories categories={categories} />
-      <WhyChooseUs />
+      <MaterialsShowcase />
+      <BeforeAfterSection />
+
+      {/* ── EXISTING LOWER SECTIONS (unchanged) ──────────────── */}
       <OurProcess />
       <FeaturedProducts products={products} />
       <MetalCoatingShowcase />
