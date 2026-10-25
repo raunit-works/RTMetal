@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     canonical: siteUrl ? `${siteUrl}/home-decor` : '/home-decor',
   },
   openGraph: {
-    title: 'Home Decor & Lifestyle Collection | RT PU COATING WORKS',
+    title: 'Home Decor & Lifestyle Collection | RT METALS',
     description:
       'Explore our curated collection of luxury home decor, architectural hardware, and hand-finished lifestyle products.',
     url: siteUrl ? `${siteUrl}/home-decor` : '/home-decor',

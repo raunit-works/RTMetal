@@ -1,4 +1,4 @@
--- Migration: Create initial public database foundation for RT PU COATING WORKS
+-- Migration: Create initial public database foundation for RT METALS
 -- Date: 2026-08-24
 -- Tables: categories, products, services, testimonials, faqs, site_settings
 

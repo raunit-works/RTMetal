@@ -11,6 +11,7 @@ import { ProductImageGallery } from '@/components/sections/product-image-gallery
 import { getProductBySlugAsync, getProductsAsync, getCategoryBySlugAsync } from '@/lib/data-access';
 import { getHomeDecorWhatsAppLink } from '@/lib/site';
 
+
 export const revalidate = 0;
 
 interface ProductDetailPageProps {
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
 
   if (!product || product.isPublished === false) {
     return {
-      title: 'Product Not Found | RT PU COATING WORKS',
+      title: 'Product Not Found | RT METALS',
       robots: { index: false, follow: false },
     };
   }
@@ -39,7 +40,7 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
       canonical: canonicalUrl,
     },
     openGraph: {
-      title: `${product.name} — Home Decor | RT PU COATING WORKS`,
+      title: `${product.name} — Home Decor | RT METALS`,
       description: product.description.substring(0, 160),
       url: canonicalUrl,
       images: product.image ? [{ url: product.image, alt: product.name }] : [],
@@ -72,7 +73,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
       ? relatedProducts
       : allProducts.filter((p) => p.id !== product.id).slice(0, 4);
 
-  const whatsappMessage = `Hello RT PU COATING WORKS, I am interested in ${product.name}. Please share more details regarding availability, custom options, and pricing.`;
+  const whatsappMessage = `Hello RT METALS, I am interested in ${product.name}. Please share more details regarding availability, custom options, and pricing.`;
 
   const hasExtendedSpecs =
     product.sku ||
@@ -153,11 +154,10 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
                     {Array.from({ length: 5 }).map((_, i) => (
                       <Star
                         key={i}
-                        className={`h-4 w-4 ${
-                          i < Math.round(product.rating)
+                        className={`h-4 w-4 ${i < Math.round(product.rating)
                             ? 'fill-gold text-gold'
                             : 'text-muted'
-                        }`}
+                          }`}
                       />
                     ))}
                   </div>
@@ -167,17 +167,11 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
                 </div>
 
                 <div className="mt-6 flex items-baseline gap-4">
-                  <span className="text-3xl font-bold tracking-tight text-foreground">
-                    ${product.price}
-                  </span>
-                  {product.originalPrice && (
-                    <span className="text-lg text-muted-foreground line-through">
-                      ${product.originalPrice}
-                    </span>
-                  )}
-                  <span className="text-xs text-muted-foreground">
-                    (Price reference / Quote upon request)
-                  </span>
+                  <Button asChild className="rounded-full bg-[#25D366] text-white hover:bg-[#25D366]/90">
+                    <a href={getHomeDecorWhatsAppLink(`Hello RT METALS, I am interested in ${product.name}. Please share more details.`)} target="_blank" rel="noopener noreferrer">
+                      Enquire About Product
+                    </a>
+                  </Button>
                 </div>
 
                 <p className="mt-6 text-base leading-relaxed text-muted-foreground">

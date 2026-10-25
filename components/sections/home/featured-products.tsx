@@ -24,7 +24,7 @@ export function FeaturedProducts({ products: productsProp }: FeaturedProductsPro
             align="left"
             eyebrow="The Collection"
             title="Featured products"
-            description="A selection of pieces that define the RT PU COATING WORKS aesthetic — material-led, quietly confident and built to last."
+            description="A selection of pieces that define the RT METALS aesthetic — material-led, quietly confident and built to last."
           />
           <Button
             asChild

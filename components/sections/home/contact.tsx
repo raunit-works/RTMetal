@@ -139,7 +139,7 @@ export function ContactSection() {
               >
                 <a
                   href={whatsappLink(
-                    "Hello RT PU COATING WORKS, I'd like to discuss a project."
+                    "Hello RT METALS, I'd like to discuss a project."
                   )}
                   target="_blank"
                   rel="noopener noreferrer"

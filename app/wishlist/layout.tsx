@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'My Wishlist | RT PU COATING WORKS',
+  title: 'My Wishlist | RT METALS',
   description: 'Saved customer wishlist collection.',
   robots: {
     index: false,

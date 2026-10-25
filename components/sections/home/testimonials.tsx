@@ -24,7 +24,7 @@ export function Testimonials({ testimonials: testimonialsProp }: TestimonialsPro
         <SectionHeading
           eyebrow="Trusted By"
           title="What our clients say."
-          description="Architects, designers and commercial buyers who trust RT PU COATING WORKS with their projects."
+          description="Architects, designers and commercial buyers who trust RT METALS with their projects."
         />
 
         <div className="mt-14 grid gap-6 lg:grid-cols-3">

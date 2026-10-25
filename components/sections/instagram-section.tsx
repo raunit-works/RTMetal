@@ -20,7 +20,7 @@ export function InstagramSection({
   description?: string;
 }) {
   return (
-    <section className="py-20 sm:py-28">
+    <section className="py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-5 lg:px-10">
         <SectionHeading eyebrow={eyebrow} title={title} description={description} />
 

@@ -16,7 +16,7 @@ export function WhyChooseUs() {
     <section className="py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-5 lg:px-10">
         <SectionHeading
-          eyebrow="Why RT PU COATING WORKS"
+          eyebrow="Why RT METALS"
           title="Considered in every detail."
           description="We hold ourselves to a single standard across both divisions — whether it is a vase on a shelf or a coating on a facade."
         />

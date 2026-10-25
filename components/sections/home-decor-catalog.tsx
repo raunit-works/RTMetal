@@ -12,8 +12,6 @@ import type { Category, Product, InstagramPost } from '@/lib/types';
 
 const sortOptions = [
   { value: 'featured', label: 'Featured' },
-  { value: 'price-asc', label: 'Price: Low to High' },
-  { value: 'price-desc', label: 'Price: High to Low' },
   { value: 'rating', label: 'Top Rated' },
 ];
 
@@ -38,8 +36,6 @@ export function HomeDecorCatalog({
         : products.filter((p) => p.category === activeCategory);
 
     const sorted = [...list];
-    if (sortBy === 'price-asc') sorted.sort((a, b) => a.price - b.price);
-    if (sortBy === 'price-desc') sorted.sort((a, b) => b.price - a.price);
     if (sortBy === 'rating') sorted.sort((a, b) => b.rating - a.rating);
     return sorted;
   }, [activeCategory, sortBy, products]);

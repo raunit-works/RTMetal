@@ -99,8 +99,7 @@ export function AdminWorkspace() {
   const [prodSku, setProdSku] = React.useState('');
   const [prodCatId, setProdCatId] = React.useState('');
   const [prodSubCat, setProdSubCat] = React.useState('');
-  const [prodPrice, setProdPrice] = React.useState('');
-  const [prodOrigPrice, setProdOrigPrice] = React.useState('');
+
   const [prodImage, setProdImage] = React.useState('');
   const [prodBadge, setProdBadge] = React.useState('');
   const [prodShortDesc, setProdShortDesc] = React.useState('');
@@ -112,7 +111,7 @@ export function AdminWorkspace() {
   const [prodStockStatus, setProdStockStatus] = React.useState('in_stock');
   const [prodFeatures, setProdFeatures] = React.useState('');
   const [prodCareInstructions, setProdCareInstructions] = React.useState('');
-  const [prodIsPublished, setProdIsPublished] = React.useState(true);
+  const [prodIsPublished, setProdIsPublished] = React.useState(false);
   const [prodIsFeatured, setProdIsFeatured] = React.useState(false);
   const [prodOrder, setProdOrder] = React.useState('0');
 
@@ -229,7 +228,7 @@ export function AdminWorkspace() {
   const resetForms = () => {
     setEditingId(null);
     setCatName(''); setCatSlug(''); setCatTagline(''); setCatDesc(''); setCatImage(''); setCatIsFeatured(false); setCatOrder('0');
-    setProdName(''); setProdSlug(''); setProdSku(''); setProdSubCat(''); setProdPrice(''); setProdOrigPrice(''); setProdImage(''); setProdBadge(''); setProdShortDesc(''); setProdFullDesc(''); setProdMaterial(''); setProdColorFinish(''); setProdDimensions(''); setProdWeight(''); setProdStockStatus('in_stock'); setProdFeatures(''); setProdCareInstructions(''); setProdIsPublished(true); setProdIsFeatured(false); setProdOrder('0');
+    setProdName(''); setProdSlug(''); setProdSku(''); setProdSubCat(''); setProdImage(''); setProdBadge(''); setProdShortDesc(''); setProdFullDesc(''); setProdMaterial(''); setProdColorFinish(''); setProdDimensions(''); setProdWeight(''); setProdStockStatus('in_stock'); setProdFeatures(''); setProdCareInstructions(''); setProdIsPublished(false); setProdIsFeatured(false); setProdOrder('0');
     setSvcName(''); setSvcSlug(''); setSvcShortName(''); setSvcDesc(''); setSvcLongDesc(''); setSvcImage(''); setSvcFeatures(''); setSvcApplications(''); setSvcOrder('0'); setSvcIsPublished(true);
     setTestName(''); setTestCompany(''); setTestRole(''); setTestContent(''); setTestRating('5'); setTestAvatar(''); setTestOrder('0'); setTestIsPublished(true);
     setFaqQ(''); setFaqA(''); setFaqCategory('General'); setFaqOrder('0'); setFaqIsPublished(true);
@@ -269,31 +268,19 @@ export function AdminWorkspace() {
   // PRODUCTS SUBMIT (All 19 Fields Handled)
   const handleProductSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!prodName || !prodSlug || !prodCatId || !prodPrice) return;
-    
-    // Validation
-    const regPrice = parseFloat(prodPrice);
-    const salePrice = prodOrigPrice ? parseFloat(prodOrigPrice) : undefined;
-    if (regPrice < 0) {
-      setMessage({ type: 'error', text: 'Regular price cannot be negative.' });
-      return;
-    }
-    if (salePrice !== undefined && salePrice < 0) {
-      setMessage({ type: 'error', text: 'Sale price cannot be negative.' });
-      return;
-    }
+    if (!prodName || !prodSlug || !prodCatId) return;
 
     setLoading(true);
     try {
-      const featArr = prodFeatures ? prodFeatures.split('\n').filter(Boolean) : [];
+      const featArr = prodFeatures ? prodFeatures.split('\\n').filter(Boolean) : [];
       const payload = {
         category_id: prodCatId,
         name: prodName,
         slug: prodSlug,
         sku: prodSku,
         sub_category: prodSubCat,
-        price: regPrice,
-        original_price: salePrice,
+        price: null,
+        // original_price omitted for enquiry-only catalogue
         image: prodImage || 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=800',
         badge: prodBadge || undefined,
         short_description: prodShortDesc,
@@ -321,6 +308,7 @@ export function AdminWorkspace() {
       await loadAllData();
     } catch (err: any) {
       setMessage({ type: 'error', text: err.message || 'Product action failed.' });
+    } finally {
       setLoading(false);
     }
   };
@@ -365,7 +353,7 @@ export function AdminWorkspace() {
   const handleTestimonialSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!testName || !testContent) return;
-    
+
     const rVal = parseInt(testRating) || 5;
     if (rVal < 1 || rVal > 5) {
       setMessage({ type: 'error', text: 'Rating must be between 1 and 5 stars.' });
@@ -455,11 +443,10 @@ export function AdminWorkspace() {
     <div className="mt-8 space-y-6">
       {message && (
         <div
-          className={`flex items-center gap-3 rounded-xl border p-4 text-sm ${
-            message.type === 'success'
+          className={`flex items-center gap-3 rounded-xl border p-4 text-sm ${message.type === 'success'
               ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-400'
               : 'border-destructive/30 bg-destructive/10 text-destructive'
-          }`}
+            }`}
         >
           {message.type === 'success' ? <CheckCircle2 className="h-5 w-5 shrink-0" /> : <AlertCircle className="h-5 w-5 shrink-0" />}
           <span>{message.text}</span>
@@ -483,11 +470,10 @@ export function AdminWorkspace() {
               setActiveTab(tab.id as any);
               resetForms();
             }}
-            className={`flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-semibold transition-colors ${
-              activeTab === tab.id
+            className={`flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-semibold transition-colors ${activeTab === tab.id
                 ? 'bg-gold-deep text-black font-bold shadow-lg'
                 : 'bg-card/60 text-muted-foreground hover:text-foreground hover:bg-card'
-            }`}
+              }`}
           >
             <tab.icon className="h-4 w-4" />
             <span>{tab.label}</span>
@@ -740,16 +726,7 @@ export function AdminWorkspace() {
 
               <div className="space-y-3 pt-2">
                 <p className="text-xs font-bold uppercase tracking-wider text-gold-deep border-b border-border pb-1">3. Pricing & Inventory</p>
-                <div className="grid grid-cols-2 gap-2">
-                  <div>
-                    <Label>Price (INR) *</Label>
-                    <Input type="number" required value={prodPrice} onChange={(e) => setProdPrice(e.target.value)} placeholder="4999" />
-                  </div>
-                  <div>
-                    <Label>Sale Price (INR)</Label>
-                    <Input type="number" value={prodOrigPrice} onChange={(e) => setProdOrigPrice(e.target.value)} placeholder="3999" />
-                  </div>
-                </div>
+
                 <div>
                   <Label>Stock Availability</Label>
                   <select
@@ -880,7 +857,7 @@ export function AdminWorkspace() {
                           {p.is_featured && <span className="text-[10px] bg-gold/20 text-gold-deep px-2 py-0.5 rounded-full font-bold">Featured</span>}
                         </div>
                         <p className="text-xs text-muted-foreground mt-0.5">
-                          slug: {p.slug} • Price: ₹{p.price} {p.original_price ? `(Sale: ₹${p.original_price})` : ''} {p.sku ? `• SKU: ${p.sku}` : ''}
+                          slug: {p.slug}{p.sku ? ` • SKU: ${p.sku}` : ''}
                         </p>
                         <p className="text-[11px] text-muted-foreground/80 mt-0.5">
                           Stock: {p.stock_status || 'in_stock'} • Material: {p.material || 'N/A'} • Order: {p.display_order || 0}
@@ -907,8 +884,6 @@ export function AdminWorkspace() {
                           setProdSku(p.sku || '');
                           setProdCatId(p.category_id);
                           setProdSubCat(p.sub_category || '');
-                          setProdPrice(p.price?.toString() || '');
-                          setProdOrigPrice(p.original_price?.toString() || '');
                           setProdImage(p.image || '');
                           setProdBadge(p.badge || '');
                           setProdShortDesc(p.short_description || '');
@@ -1324,7 +1299,7 @@ export function AdminWorkspace() {
               </div>
               <div>
                 <Label>Setting Value (JSON or Text) *</Label>
-                <Textarea required value={setValue} onChange={(e) => setSetValue(e.target.value)} placeholder='"RT PU COATING WORKS"' className="min-h-[100px]" />
+                <Textarea required value={setValue} onChange={(e) => setSetValue(e.target.value)} placeholder='"RT METALS"' className="min-h-[100px]" />
               </div>
               <Button type="submit" disabled={loading} className="w-full gold-button font-medium">
                 {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Save Setting'}
@@ -1435,17 +1410,16 @@ export function AdminWorkspace() {
                           <div className="flex items-center gap-2 flex-wrap">
                             <h4 className="text-base font-semibold">{inq.name}</h4>
                             <span
-                              className={`text-[10px] px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider ${
-                                inq.status === 'new'
+                              className={`text-[10px] px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider ${inq.status === 'new'
                                   ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
                                   : inq.status === 'contacted'
-                                  ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
-                                  : inq.status === 'in_progress'
-                                  ? 'bg-purple-500/20 text-purple-400 border border-purple-500/30'
-                                  : inq.status === 'converted'
-                                  ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                                  : 'bg-zinc-500/20 text-zinc-400 border border-zinc-500/30'
-                              }`}
+                                    ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
+                                    : inq.status === 'in_progress'
+                                      ? 'bg-purple-500/20 text-purple-400 border border-purple-500/30'
+                                      : inq.status === 'converted'
+                                        ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                                        : 'bg-zinc-500/20 text-zinc-400 border border-zinc-500/30'
+                                }`}
                             >
                               {inq.status.replace('_', ' ')}
                             </span>

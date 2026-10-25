@@ -108,7 +108,7 @@ export async function createProductAdmin(product: {
   slug: string;
   sku?: string;
   sub_category?: string;
-  price: number;
+  price: number | null;
   original_price?: number;
   image: string;
   badge?: string;
@@ -143,7 +143,7 @@ export async function updateProductAdmin(
     slug?: string;
     sku?: string;
     sub_category?: string;
-    price?: number;
+    price?: number | null;
     original_price?: number;
     image?: string;
     badge?: string;

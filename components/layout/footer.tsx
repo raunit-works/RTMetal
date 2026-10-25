@@ -62,7 +62,7 @@ export function Footer() {
                 <Instagram className="h-5 w-5" />
               </a>
               <a
-                href={whatsappLink('Hello RT PU COATING WORKS.')}
+                href={whatsappLink('Hello RT METALS.')}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
@@ -139,7 +139,7 @@ export function Footer() {
         </div>
 
         <div className="flex flex-col items-center justify-between gap-4 py-8 text-xs text-white/50 sm:flex-row">
-          <p>© {new Date().getFullYear()} RT PU COATING WORKS — All rights reserved.</p>
+          <p>© {new Date().getFullYear()} RT METALS — All rights reserved.</p>
           <p className="flex items-center gap-4">
             <Link href="/" className="transition-colors hover:text-white">
               Privacy

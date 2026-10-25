@@ -104,42 +104,37 @@ export function MetalCoatingClient({
         <div className="relative mx-auto max-w-7xl px-5 pb-20 lg:px-10">
           <Reveal>
             <p className="mb-4 text-xs font-medium uppercase tracking-ultra text-gold">
-              Division 02 · Premium Metal Coating
+              Division 02 · Surface Finishing
             </p>
             <h1 className="font-display text-5xl font-medium leading-[0.98] tracking-tight sm:text-7xl lg:text-8xl">
-              Finishes that <span className="gold-text">endure.</span>
+              Surface Finishing, <span className="gold-text">Done with Precision.</span>
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">
-              Specialist coating and finishing services for metal — from brass
-              and MS coating to architectural finishes, delivered to an exacting
-              standard for trade and private clients.
+              From metal restoration and electroplating to decorative and
+              specialty surface finishes, we work across a range of materials
+              and applications, with attention to detail at every stage.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4">
+              {/* Button 1 — Primary: warm-white bg, dark ink text, always visible */}
               <Button
                 asChild
                 size="lg"
-                className="rounded-full bg-white text-ink hover:bg-white/90"
+                className="rounded-full bg-white text-ink hover:bg-white/90 font-medium"
               >
-                <a href="#quote">
-                  Get a Quote
+                <a href="#services">
+                  Explore Services
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </a>
               </Button>
+              {/* Button 2 — Secondary: transparent, explicit white text, gold border */}
               <Button
                 asChild
                 size="lg"
-                variant="outline"
-                className="rounded-full border-white/20 text-white hover:bg-white/10"
+                className="rounded-full border border-white/30 bg-transparent text-white hover:bg-white/10 hover:border-white/50 font-medium"
               >
-                <a
-                  href={getMetalCoatingWhatsAppLink(
-                    "Hello RT PU COATING WORKS, I'd like to discuss a metal coating project."
-                  )}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <MessageCircle className="mr-2 h-4 w-4" />
-                  Chat on WhatsApp
+                <a href="#quote">
+                  Discuss Your Project
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </a>
               </Button>
             </div>
@@ -147,12 +142,12 @@ export function MetalCoatingClient({
         </div>
       </section>
 
-      <section className="py-20 sm:py-28">
+      <section id="services" className="py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-5 lg:px-10">
           <SectionHeading
             eyebrow="Our Services"
-            title="Coating & finishing, refined."
-            description="Specialist services covering everything from decorative brass to large-format architectural finishes."
+            title="Nine services, one standard."
+            description="Surface finishing, restoration and specialist treatments across metal, marble, wood and more — each carried out with care and consistency."
           />
 
           {services.length === 0 ? (
@@ -207,7 +202,7 @@ export function MetalCoatingClient({
                           >
                             <a
                               href={getMetalCoatingWhatsAppLink(
-                                `Hello RT PU COATING WORKS, I am interested in ${svc.name}. I would like to discuss my coating requirement.`
+                                `Hello RT METALS, I am interested in ${svc.name}. I would like to discuss my coating requirement.`
                               )}
                               target="_blank"
                               rel="noopener noreferrer"
@@ -464,7 +459,7 @@ export function MetalCoatingClient({
                 >
                   <a
                     href={getMetalCoatingWhatsAppLink(
-                      "Hello RT PU COATING WORKS, I'd like a quote for metal coating services."
+                      "Hello RT METALS, I'd like a quote for metal coating services."
                     )}
                     target="_blank"
                     rel="noopener noreferrer"

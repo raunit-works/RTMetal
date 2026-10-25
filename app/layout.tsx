@@ -54,13 +54,13 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'RT PU COATING WORKS — Home Decor & Premium Metal Coating',
-    template: '%s | RT PU COATING WORKS',
+    default: 'RT METALS — Home Decor & Premium Metal Coating',
+    template: '%s | RT METALS',
   },
   description:
     'A luxury house of home decor, lifestyle products, and premium metal coating services. Crafted for architects, interior designers, and discerning homeowners.',
   keywords: [
-    'RT PU COATING WORKS',
+    'RT METALS',
     'PU Coating Services',
     'Metal Coating',
     'Home Decor',
@@ -68,9 +68,9 @@ export const metadata: Metadata = {
     'Luxury Furniture Coating',
     'Custom Metal Finishes',
   ],
-  authors: [{ name: 'RT PU COATING WORKS' }],
-  creator: 'RT PU COATING WORKS',
-  publisher: 'RT PU COATING WORKS',
+  authors: [{ name: 'RT METALS' }],
+  creator: 'RT METALS',
+  publisher: 'RT METALS',
   formatDetection: {
     email: false,
     address: false,
@@ -83,14 +83,14 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: siteUrl || '/',
-    siteName: 'RT PU COATING WORKS',
-    title: 'RT PU COATING WORKS — Home Decor & Premium Metal Coating',
+    siteName: 'RT METALS',
+    title: 'RT METALS — Home Decor & Premium Metal Coating',
     description:
       'A luxury house of home decor, lifestyle products, and premium metal coating services.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'RT PU COATING WORKS — Home Decor & Premium Metal Coating',
+    title: 'RT METALS — Home Decor & Premium Metal Coating',
     description:
       'A luxury house of home decor, lifestyle products, and premium metal coating services.',
   },

@@ -36,26 +36,28 @@ const navLinks = [
 
 /* ─── Dark header palette (scoped constants) ─── */
 const HDR = {
-  bg:        'rgba(25, 24, 22, 0.97)',
-  bgScroll:  'rgba(20, 19, 17, 0.88)',
-  border:    'rgba(255,255,255,0.07)',
+  bg: 'rgba(25, 24, 22, 0.97)',
+  bgScroll: 'rgba(20, 19, 17, 0.88)',
+  border: 'rgba(255,255,255,0.07)',
   borderScr: 'rgba(255,255,255,0.08)',
-  shadow:    '0 6px 24px rgba(0,0,0,0.08)',
-  text:      '#EEEAE3',
+  shadow: '0 6px 24px rgba(0,0,0,0.08)',
+  text: '#EEEAE3',
   textMuted: '#EEEAE3',   /* opacity applied via CSS */
-  brass:     '#C99B4C',
+  brass: '#C99B4C',
   logoLight: '#F3EFE8',
-  ivory:     '#F4F0E8',
-  ddBg:      '#211F1C',
-  ddBorder:  'rgba(255,255,255,0.08)',
-  ddShadow:  '0 12px 32px rgba(0,0,0,0.16)',
-  ddHover:   'rgba(255,255,255,0.06)',
-  mobileBg:  '#191816',
-  mobileText:'#F1EEE8',
-  signInBg:  '#E8D3A9',
+  ivory: '#F4F0E8',
+  ddBg: '#211F1C',
+  ddBorder: 'rgba(255,255,255,0.08)',
+  ddShadow: '0 12px 32px rgba(0,0,0,0.16)',
+  ddHover: 'rgba(255,255,255,0.06)',
+  mobileBg: '#191816',
+  mobileText: '#F1EEE8',
+  signInBg: '#E8D3A9',
   signInBgH: '#D7B875',
-  signInText:'#1C1A17',
+  signInText: '#1C1A17',
 } as const;
+
+type OpenMenu = 'products' | 'services' | null;
 
 export function Navbar() {
   const router = useRouter();
@@ -63,12 +65,92 @@ export function Navbar() {
   const { wishlistCount } = useWishlist();
   const [scrolled, setScrolled] = React.useState(false);
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [megaOpen, setMegaOpen] = React.useState(false);
-  const [servicesOpen, setServicesOpen] = React.useState(false);
+  const [openMenu, setOpenMenu] = React.useState<OpenMenu>(null);
   const [user, setUser] = React.useState<SupabaseUser | null>(null);
   const [isAdmin, setIsAdmin] = React.useState(false);
   const [userMenuOpen, setUserMenuOpen] = React.useState(false);
   const [headerMounted, setHeaderMounted] = React.useState(false);
+
+  // Refs for outside-click detection
+  const productsRef = React.useRef<HTMLLIElement>(null);
+  const servicesRef = React.useRef<HTMLLIElement>(null);
+
+  // Close timer ref — debounce mouseleave to bridge hover dead zone
+  const closeTimerRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Reduced motion preference
+  const prefersReducedMotion = React.useRef(false);
+  React.useEffect(() => {
+    prefersReducedMotion.current = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }, []);
+
+  // Close menu on route change
+  React.useEffect(() => {
+    setOpenMenu(null);
+    setUserMenuOpen(false);
+    setMobileOpen(false);
+  }, [pathname]);
+
+  // Close menu on Escape key
+  React.useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setOpenMenu(null);
+        setUserMenuOpen(false);
+      }
+    };
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, []);
+
+  // Close menu on outside click
+  React.useEffect(() => {
+    if (!openMenu) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as Node;
+      if (
+        productsRef.current && !productsRef.current.contains(target) &&
+        servicesRef.current && !servicesRef.current.contains(target)
+      ) {
+        setOpenMenu(null);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [openMenu]);
+
+  // Close menu on meaningful scroll (> 50px from header)
+  React.useEffect(() => {
+    if (!openMenu) return;
+    const handleScroll = () => {
+      if (window.scrollY > 120) {
+        setOpenMenu(null);
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [openMenu]);
+
+  // Helpers for debounced hover open/close
+  const handleMenuEnter = React.useCallback((menu: OpenMenu) => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+    setOpenMenu(menu);
+  }, []);
+
+  const handleMenuLeave = React.useCallback(() => {
+    closeTimerRef.current = setTimeout(() => {
+      setOpenMenu(null);
+      closeTimerRef.current = null;
+    }, 80); // 80ms debounce bridges the hover gap
+  }, []);
+
+  // Animation variants
+  const dropdownMotion = prefersReducedMotion.current
+    ? { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 }, transition: { duration: 0.01 } }
+    : { initial: { opacity: 0, y: 6 }, animate: { opacity: 1, y: 0 }, exit: { opacity: 0, y: 6 }, transition: { duration: 0.18, ease: [0.22, 1, 0.36, 1] } };
 
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -199,67 +281,233 @@ export function Navbar() {
               className="font-display text-xl font-medium tracking-tight sm:text-2xl"
               style={{ color: HDR.logoLight }}
             >
-              RT PU <span className="gold-text">COATING</span> WORKS
+              RT <span className="gold-text">METAL</span> WORKS
             </span>
           </Link>
 
           {/* ── DESKTOP NAV LINKS ── */}
           <ul className="hidden items-center lg:flex" style={{ gap: '6px' }}>
-            {navLinks.map((link) => (
-              <li
-                key={link.label}
-                className="relative"
-                onMouseEnter={() => {
-                  if (link.mega) setMegaOpen(true);
-                  if (link.dropdown) setServicesOpen(true);
-                }}
-                onMouseLeave={() => {
-                  if (link.mega) setMegaOpen(false);
-                  if (link.dropdown) setServicesOpen(false);
-                }}
-              >
-                <Link
-                  href={link.href}
-                  className="rt-nav-link group flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium"
-                  style={{
-                    color: isActive(link.href) ? HDR.ivory : HDR.textMuted,
-                    opacity: isActive(link.href) ? 1 : 0.85,
-                    transition: 'color 200ms ease, opacity 200ms ease',
+            {navLinks.map((link) => {
+              const isProducts = link.mega;
+              const isServices = link.dropdown;
+              const menuKey: OpenMenu = isProducts ? 'products' : isServices ? 'services' : null;
+
+              return (
+                <li
+                  key={link.label}
+                  ref={isProducts ? productsRef : isServices ? servicesRef : undefined}
+                  className="relative"
+                  onMouseEnter={() => {
+                    if (menuKey) handleMenuEnter(menuKey);
                   }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.color = HDR.brass;
-                    (e.currentTarget as HTMLElement).style.opacity = '1';
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.color = isActive(link.href) ? HDR.ivory : HDR.textMuted;
-                    (e.currentTarget as HTMLElement).style.opacity = isActive(link.href) ? '1' : '0.85';
+                  onMouseLeave={() => {
+                    if (menuKey) handleMenuLeave();
                   }}
                 >
-                  {link.label}
-                  {link.mega && (
-                    <ChevronDown className="h-3.5 w-3.5 opacity-60 transition-transform duration-300" />
+                  <Link
+                    href={link.href}
+                    className="rt-nav-link group flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium"
+                    style={{
+                      color: isActive(link.href) ? HDR.ivory : HDR.textMuted,
+                      opacity: isActive(link.href) ? 1 : 0.85,
+                      transition: 'color 200ms ease, opacity 200ms ease',
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLElement).style.color = HDR.brass;
+                      (e.currentTarget as HTMLElement).style.opacity = '1';
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLElement).style.color = isActive(link.href) ? HDR.ivory : HDR.textMuted;
+                      (e.currentTarget as HTMLElement).style.opacity = isActive(link.href) ? '1' : '0.85';
+                    }}
+                    aria-haspopup={menuKey ? 'true' : undefined}
+                    aria-expanded={menuKey ? (openMenu === menuKey) : undefined}
+                    onClick={() => {
+                      if (menuKey) setOpenMenu(null);
+                    }}
+                  >
+                    {link.label}
+                    {(isProducts || isServices) && (
+                      <ChevronDown
+                        className="h-3.5 w-3.5 opacity-60 transition-transform duration-300"
+                        style={{
+                          transform: openMenu === menuKey ? 'rotate(180deg)' : 'rotate(0deg)',
+                        }}
+                      />
+                    )}
+                  </Link>
+                  {/* Brass underline — animated on hover */}
+                  <span
+                    className="rt-nav-underline"
+                    style={{
+                      position: 'absolute',
+                      bottom: '2px',
+                      left: '16px',
+                      right: '16px',
+                      height: '1px',
+                      background: HDR.brass,
+                      transform: isActive(link.href) ? 'scaleX(1)' : 'scaleX(0)',
+                      transformOrigin: 'left',
+                      transition: 'transform 220ms ease',
+                    }}
+                  />
+
+                  {/* ── PRODUCTS MEGA DROPDOWN (inside <li>) ── */}
+                  {isProducts && (
+                    <div
+                      className="absolute top-full left-1/2 hidden pt-2 lg:block"
+                      style={{ transform: 'translateX(-50%)', width: 'max-content', maxWidth: '780px', pointerEvents: openMenu === 'products' ? 'auto' : 'none' }}
+                    >
+                      <AnimatePresence>
+                        {openMenu === 'products' && (
+                          <motion.div
+                            {...dropdownMotion}
+                            role="menu"
+                            onFocus={() => handleMenuEnter('products')}
+                            onBlur={(e) => {
+                              if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+                                setOpenMenu(null);
+                              }
+                            }}
+                          >
+                            <div
+                              className="p-6"
+                              style={{
+                                background: HDR.ddBg,
+                                border: `1px solid ${HDR.ddBorder}`,
+                                borderRadius: '12px',
+                                boxShadow: HDR.ddShadow,
+                                backdropFilter: 'blur(14px)',
+                                WebkitBackdropFilter: 'blur(14px)',
+                              }}
+                            >
+                              <div className="mb-4 flex items-center justify-between">
+                                <p className="text-xs font-medium uppercase tracking-ultra" style={{ color: 'rgba(238,234,227,0.5)' }}>
+                                  Shop by Category
+                                </p>
+                                <Link
+                                  href="/home-decor"
+                                  className="text-xs font-medium transition-colors"
+                                  style={{ color: HDR.brass }}
+                                  onClick={() => setOpenMenu(null)}
+                                  onMouseEnter={(e) => {
+                                    (e.currentTarget as HTMLElement).style.opacity = '0.8';
+                                  }}
+                                  onMouseLeave={(e) => {
+                                    (e.currentTarget as HTMLElement).style.opacity = '1';
+                                  }}
+                                >
+                                  View all collections →
+                                </Link>
+                              </div>
+                              <div className="grid grid-cols-3 gap-3">
+                                {categories.map((cat) => (
+                                  <Link
+                                    key={cat.slug}
+                                    href={`/home-decor?category=${cat.slug}`}
+                                    className="group flex gap-4 rounded-xl p-3 transition-colors"
+                                    style={{ color: '#ECE8E1' }}
+                                    role="menuitem"
+                                    onClick={() => setOpenMenu(null)}
+                                    onMouseEnter={(e) => {
+                                      (e.currentTarget as HTMLElement).style.background = HDR.ddHover;
+                                    }}
+                                    onMouseLeave={(e) => {
+                                      (e.currentTarget as HTMLElement).style.background = 'transparent';
+                                    }}
+                                  >
+                                    <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg">
+                                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                                      <img
+                                        src={cat.image}
+                                        alt={cat.name}
+                                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                      />
+                                    </div>
+                                    <div>
+                                      <p className="text-sm font-semibold" style={{ color: '#ECE8E1' }}>{cat.name}</p>
+                                      <p className="mt-0.5 text-xs" style={{ color: 'rgba(236,232,225,0.55)' }}>
+                                        {cat.tagline}
+                                      </p>
+                                      <p className="mt-1 text-xs font-medium" style={{ color: HDR.brass }}>
+                                        {cat.productCount} pieces
+                                      </p>
+                                    </div>
+                                  </Link>
+                                ))}
+                              </div>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
                   )}
-                  {link.dropdown && (
-                    <ChevronDown className="h-3.5 w-3.5 opacity-60 transition-transform duration-300" />
+
+                  {/* ── SERVICES DROPDOWN (inside <li>) ── */}
+                  {isServices && (
+                    <div
+                      className="absolute top-full left-1/2 hidden pt-2 lg:block"
+                      style={{ transform: 'translateX(-50%)', pointerEvents: openMenu === 'services' ? 'auto' : 'none' }}
+                    >
+                      <AnimatePresence>
+                        {openMenu === 'services' && (
+                          <motion.div
+                            {...dropdownMotion}
+                            role="menu"
+                            onFocus={() => handleMenuEnter('services')}
+                            onBlur={(e) => {
+                              if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+                                setOpenMenu(null);
+                              }
+                            }}
+                          >
+                            <div
+                              className="w-80 p-3"
+                              style={{
+                                background: HDR.ddBg,
+                                border: `1px solid ${HDR.ddBorder}`,
+                                borderRadius: '10px',
+                                boxShadow: HDR.ddShadow,
+                                backdropFilter: 'blur(14px)',
+                                WebkitBackdropFilter: 'blur(14px)',
+                              }}
+                            >
+                              {services.map((svc) => {
+                                const SvcIcon = resolveIcon(svc.icon, Wrench);
+                                return (
+                                  <Link
+                                    key={svc.slug}
+                                    href={`/metal-coating#${svc.slug}`}
+                                    className="group flex items-start gap-3 rounded-xl p-3 transition-colors"
+                                    style={{ color: '#ECE8E1' }}
+                                    role="menuitem"
+                                    onClick={() => setOpenMenu(null)}
+                                    onMouseEnter={(e) => {
+                                      (e.currentTarget as HTMLElement).style.background = HDR.ddHover;
+                                    }}
+                                    onMouseLeave={(e) => {
+                                      (e.currentTarget as HTMLElement).style.background = 'transparent';
+                                    }}
+                                  >
+                                    <SvcIcon className="mt-0.5 h-5 w-5" style={{ color: HDR.brass }} />
+                                    <div>
+                                      <p className="text-sm font-semibold" style={{ color: '#ECE8E1' }}>{svc.name}</p>
+                                      <p className="mt-0.5 text-xs" style={{ color: 'rgba(236,232,225,0.55)' }}>
+                                        {svc.description}
+                                      </p>
+                                    </div>
+                                  </Link>
+                                );
+                              })}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
                   )}
-                </Link>
-                {/* Brass underline — animated on hover */}
-                <span
-                  className="rt-nav-underline"
-                  style={{
-                    position: 'absolute',
-                    bottom: '2px',
-                    left: '16px',
-                    right: '16px',
-                    height: '1px',
-                    background: HDR.brass,
-                    transform: isActive(link.href) ? 'scaleX(1)' : 'scaleX(0)',
-                    transformOrigin: 'left',
-                    transition: 'transform 220ms ease',
-                  }}
-                />
-              </li>
-            ))}
+                </li>
+              );
+            })}
           </ul>
 
           {/* ── DESKTOP CTA BUTTONS ── */}
@@ -267,7 +515,7 @@ export function Navbar() {
             {/* WhatsApp */}
             <a
               href={whatsappLink(
-                "Hello RT PU COATING WORKS, I'd like to enquire about your services."
+                "Hello RT METALS, I'd like to enquire about your services."
               )}
               target="_blank"
               rel="noopener noreferrer"
@@ -470,146 +718,7 @@ export function Navbar() {
           </button>
         </nav>
 
-        {/* ══════════════════════════════════════════════
-            MEGA DROPDOWN — Products
-            ══════════════════════════════════════════════ */}
-        <AnimatePresence>
-          {megaOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 8 }}
-              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute inset-x-0 top-full hidden lg:block"
-              onMouseEnter={() => setMegaOpen(true)}
-              onMouseLeave={() => setMegaOpen(false)}
-            >
-              <div className="mx-auto px-10 pb-6" style={{ maxWidth: '1360px' }}>
-                <div
-                  className="p-6"
-                  style={{
-                    background: HDR.ddBg,
-                    border: `1px solid ${HDR.ddBorder}`,
-                    borderRadius: '12px',
-                    boxShadow: HDR.ddShadow,
-                    backdropFilter: 'blur(14px)',
-                    WebkitBackdropFilter: 'blur(14px)',
-                  }}
-                >
-                  <div className="mb-4 flex items-center justify-between">
-                    <p className="text-xs font-medium uppercase tracking-ultra" style={{ color: 'rgba(238,234,227,0.5)' }}>
-                      Shop by Category
-                    </p>
-                    <Link
-                      href="/home-decor"
-                      className="text-xs font-medium transition-colors"
-                      style={{ color: HDR.brass }}
-                      onMouseEnter={(e) => {
-                        (e.currentTarget as HTMLElement).style.opacity = '0.8';
-                      }}
-                      onMouseLeave={(e) => {
-                        (e.currentTarget as HTMLElement).style.opacity = '1';
-                      }}
-                    >
-                      View all collections →
-                    </Link>
-                  </div>
-                  <div className="grid grid-cols-3 gap-3">
-                    {categories.map((cat) => (
-                      <Link
-                        key={cat.slug}
-                        href={`/home-decor?category=${cat.slug}`}
-                        className="group flex gap-4 rounded-xl p-3 transition-colors"
-                        style={{ color: '#ECE8E1' }}
-                        onMouseEnter={(e) => {
-                          (e.currentTarget as HTMLElement).style.background = HDR.ddHover;
-                        }}
-                        onMouseLeave={(e) => {
-                          (e.currentTarget as HTMLElement).style.background = 'transparent';
-                        }}
-                      >
-                        <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={cat.image}
-                            alt={cat.name}
-                            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                          />
-                        </div>
-                        <div>
-                          <p className="text-sm font-semibold" style={{ color: '#ECE8E1' }}>{cat.name}</p>
-                          <p className="mt-0.5 text-xs" style={{ color: 'rgba(236,232,225,0.55)' }}>
-                            {cat.tagline}
-                          </p>
-                          <p className="mt-1 text-xs font-medium" style={{ color: HDR.brass }}>
-                            {cat.productCount} pieces
-                          </p>
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* ══════════════════════════════════════════════
-            DROPDOWN — Services
-            ══════════════════════════════════════════════ */}
-        <AnimatePresence>
-          {servicesOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 8 }}
-              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute inset-x-0 top-full hidden lg:block"
-              onMouseEnter={() => setServicesOpen(true)}
-              onMouseLeave={() => setServicesOpen(false)}
-            >
-              <div className="mx-auto px-10 pb-6" style={{ maxWidth: '1360px' }}>
-                <div
-                  className="w-80 p-3"
-                  style={{
-                    background: HDR.ddBg,
-                    border: `1px solid ${HDR.ddBorder}`,
-                    borderRadius: '10px',
-                    boxShadow: HDR.ddShadow,
-                    backdropFilter: 'blur(14px)',
-                    WebkitBackdropFilter: 'blur(14px)',
-                  }}
-                >
-                  {services.map((svc) => {
-                    const SvcIcon = resolveIcon(svc.icon, Wrench);
-                    return (
-                      <Link
-                        key={svc.slug}
-                        href={`/metal-coating#${svc.slug}`}
-                        className="group flex items-start gap-3 rounded-xl p-3 transition-colors"
-                        style={{ color: '#ECE8E1' }}
-                        onMouseEnter={(e) => {
-                          (e.currentTarget as HTMLElement).style.background = HDR.ddHover;
-                        }}
-                        onMouseLeave={(e) => {
-                          (e.currentTarget as HTMLElement).style.background = 'transparent';
-                        }}
-                      >
-                        <SvcIcon className="mt-0.5 h-5 w-5" style={{ color: HDR.brass }} />
-                        <div>
-                          <p className="text-sm font-semibold" style={{ color: '#ECE8E1' }}>{svc.name}</p>
-                          <p className="mt-0.5 text-xs" style={{ color: 'rgba(236,232,225,0.55)' }}>
-                            {svc.description}
-                          </p>
-                        </div>
-                      </Link>
-                    );
-                  })}
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* Dropdowns are now rendered inside their parent <li> elements above */}
       </header>
 
       {/* ══════════════════════════════════════════════
@@ -675,7 +784,7 @@ export function Navbar() {
                     <p className="text-xs truncate" style={{ color: 'rgba(241,238,232,0.5)' }}>
                       {user.email}
                     </p>
-                    
+
                     <div className="pt-2 flex flex-col gap-2" style={{ borderTop: `1px solid ${HDR.ddBorder}` }}>
                       <Link
                         href="/account"
@@ -816,7 +925,7 @@ export function Navbar() {
               <div className="p-6" style={{ borderTop: `1px solid ${HDR.ddBorder}` }}>
                 <a
                   href={whatsappLink(
-                    "Hello RT PU COATING WORKS, I'd like to enquire about your services."
+                    "Hello RT METALS, I'd like to enquire about your services."
                   )}
                   target="_blank"
                   rel="noopener noreferrer"

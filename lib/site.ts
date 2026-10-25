@@ -1,7 +1,7 @@
 import type { SiteSettings } from './types';
 
 export const siteSettings: SiteSettings = {
-  brandName: 'RT PU COATING WORKS',
+  brandName: 'RT METALS',
   tagline: 'Home Decor · Lifestyle · Premium Metal Coating',
   contact: {
     email: 'studio@aurumandco.com',

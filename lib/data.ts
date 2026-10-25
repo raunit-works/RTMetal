@@ -248,108 +248,160 @@ export const products: Product[] = [
 
 export const services: Service[] = [
   {
-    slug: 'ms-coating',
-    name: 'MS Coating',
-    shortName: 'MS Coating',
-    description: 'Premium mild steel coating for durability and finish.',
+    slug: 'metal-restoration',
+    name: 'Metal Restoration',
+    shortName: 'Restoration',
+    description: 'Restoration and refinishing for worn or aged metal surfaces.',
     longDescription:
-      'Our MS coating process applies a refined, protective finish to mild steel components — combining corrosion resistance with a premium surface that elevates any fabrication.',
-    icon: 'layers',
-    image:
-      'https://images.pexels.com/photos/8486/soldering-iron-electronics-technology-soldering.jpg?auto=compress&cs=tinysrgb&w=1200',
-    features: [
-      'Corrosion-resistant finish',
-      'Uniform matte or gloss options',
-      'Suitable for structural & decorative steel',
-      'Architectural-grade durability',
-    ],
-  },
-  {
-    slug: 'brass-coating',
-    name: 'Brass Coating',
-    shortName: 'Brass',
-    description: 'Authentic brass finishes on any substrate.',
-    longDescription:
-      'Transform steel, aluminium or wood with a lustrous brass coating. Achieve the warmth and prestige of solid brass at a fraction of the weight and cost.',
-    icon: 'sparkles',
+      'We assess, prepare and refinish worn or aged metal components — removing surface damage, corrosion and degraded coatings before applying a fresh, durable finish that restores the piece to a consistent and presentable standard.',
+    icon: 'wrench',
     image:
       'https://images.pexels.com/photos/8216549/pexels-photo-8216549.jpeg?auto=compress&cs=tinysrgb&w=1200',
     features: [
-      'Authentic brass appearance',
-      'PVD-grade wear resistance',
-      'Antique & polished variants',
-      'Ideal for fixtures & hardware',
+      'Surface assessment and preparation',
+      'Corrosion and damage removal',
+      'Refinishing to specified finish',
+      'Suitable for furniture and fittings',
     ],
   },
   {
-    slug: 'decorative-metal-finishing',
-    name: 'Decorative Metal Finishing',
-    shortName: 'Decorative',
-    description: 'Artisan finishes for statement pieces.',
+    slug: 'murti-finishing',
+    name: 'Murti Finishing',
+    shortName: 'Murti',
+    description: 'Surface finishing for decorative and devotional idols.',
     longDescription:
-      'Hand-applied patinas, brushing and polishing techniques that turn metal surfaces into works of art — for furniture, sculpture and architectural detail.',
-    icon: 'brush',
+      'Careful surface finishing for decorative and devotional idols, applied with attention to form and detail. We work with a range of materials and finishes suited to ornamental and religious figurines.',
+    icon: 'sparkles',
     image:
       'https://images.pexels.com/photos/8216554/pexels-photo-8216554.jpeg?auto=compress&cs=tinysrgb&w=1200',
     features: [
-      'Hand-applied patinas',
-      'Brushed, mirror & satin finishes',
-      'Custom colour development',
-      'One-of-a-kind results',
+      'Suitable for decorative and devotional pieces',
+      'Detail-preserving surface treatment',
+      'Range of finish options available',
+      'Handled with care throughout',
     ],
   },
   {
-    slug: 'premium-surface-finishing',
-    name: 'Premium Surface Finishing',
-    shortName: 'Surface',
-    description: 'Flawless finishes for high-end applications.',
+    slug: 'plastic-coating',
+    name: 'Plastic Coating',
+    shortName: 'Plastic',
+    description: 'Coating and finishing for suitable plastic components.',
     longDescription:
-      'A meticulous multi-stage process delivering mirror-grade and micro-textured surfaces for luxury products, automotive trim and architectural metalwork.',
-    icon: 'shield',
+      'We apply surface coatings to suitable plastic components, providing a refined finish that improves appearance and adds a degree of surface protection. Suitability is assessed per component and material type.',
+    icon: 'layers',
     image:
       'https://images.pexels.com/photos/8216570/pexels-photo-8216570.jpeg?auto=compress&cs=tinysrgb&w=1200',
     features: [
-      'Mirror-grade polishing',
-      'Micro-texture options',
-      'Automotive-grade clarity',
-      'UV-stable topcoats',
+      'Assessed per component and substrate',
+      'Decorative and protective finish options',
+      'Consistent surface coverage',
+      'Suitable for selected applications',
     ],
   },
   {
-    slug: 'custom-metal-coating',
-    name: 'Custom Metal Coating',
-    shortName: 'Custom',
-    description: 'Bespoke coatings engineered to spec.',
+    slug: 'electroplating',
+    name: 'Electroplating',
+    shortName: 'Electroplating',
+    description: 'Metal surface treatments for decorative and functional applications.',
     longDescription:
-      'From concept to production, we develop custom coating formulations matched to your exact colour, texture and performance requirements.',
-    icon: 'wrench',
+      'Electroplating services for decorative and functional metal components. We apply metal coatings to base materials to achieve specific surface characteristics — including appearance, corrosion resistance and finish quality.',
+    icon: 'shield',
     image:
       'https://images.pexels.com/photos/8216580/pexels-photo-8216580.jpeg?auto=compress&cs=tinysrgb&w=1200',
     features: [
-      'Custom colour matching',
-      'Tailored performance specs',
-      'Prototype to production',
-      'Technical consultation',
+      'Decorative and functional applications',
+      'Consistent finish across batch runs',
+      'Multiple plating options',
+      'Suitable for hardware and fittings',
     ],
   },
   {
-    slug: 'architectural-metal-finishes',
-    name: 'Architectural Metal Finishes',
-    shortName: 'Architectural',
-    description: 'Large-format finishes for buildings.',
+    slug: 'marble-coating',
+    name: 'Marble Coating',
+    shortName: 'Marble',
+    description: 'Surface finishes for marble and marble-based decorative pieces.',
     longDescription:
-      'Premium coatings for facades, cladding, railings and architectural metalwork — engineered to perform in exterior environments while retaining their finish for decades.',
+      'We apply specialist surface finishes to marble and marble-based decorative items, enhancing their appearance and providing a protective treatment suited to the material and intended use.',
+    icon: 'brush',
+    image:
+      'https://images.pexels.com/photos/6585598/pexels-photo-6585598.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    features: [
+      'Suited to marble and composite stone',
+      'Protective and decorative finish options',
+      'Applied to decorative and display pieces',
+      'Handled with appropriate care',
+    ],
+  },
+  {
+    slug: 'decorative-showpieces',
+    name: 'Decorative Showpieces',
+    shortName: 'Showpieces',
+    description: 'Finishing for ornamental pieces and decorative objects.',
+    longDescription:
+      'Surface finishing for ornamental pieces and decorative objects intended for display. We work across a range of materials and finish types, prioritising visual quality and consistency across each piece.',
+    icon: 'sparkles',
+    image:
+      'https://images.pexels.com/photos/6585608/pexels-photo-6585608.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    features: [
+      'Ornamental and display pieces',
+      'Range of decorative finish options',
+      'Consistent across individual and batch work',
+      'Careful handling throughout',
+    ],
+  },
+  {
+    slug: 'lipping-work',
+    name: 'Lipping Work',
+    shortName: 'Lipping',
+    description: 'Detail-focused edge and lipping finishes for selected applications.',
+    longDescription:
+      'We carry out lipping and edge finishing work for selected furniture and fabrication applications, applying clean and consistent surface treatment to exposed edges and border details.',
     icon: 'building-2',
     image:
       'https://images.pexels.com/photos/8216588/pexels-photo-8216588.jpeg?auto=compress&cs=tinysrgb&w=1200',
     features: [
-      'Exterior-grade durability',
-      'Large-format capability',
-      'Weather & UV resistance',
-      'Project-scale capacity',
+      'Edge and border finishing',
+      'Furniture and fabrication applications',
+      'Consistent finish quality',
+      'Available as part of broader projects',
+    ],
+  },
+  {
+    slug: 'wood-finishing',
+    name: 'Wood Finishing',
+    shortName: 'Wood',
+    description: 'Finishing solutions for wooden surfaces and decorative elements.',
+    longDescription:
+      'Surface finishing for wooden items including furniture components and decorative wooden elements. We apply finishes suited to the wood type and intended use, focusing on even coverage and a clean final appearance.',
+    icon: 'layers',
+    image:
+      'https://images.pexels.com/photos/6585755/pexels-photo-6585755.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    features: [
+      'Wooden furniture and decorative elements',
+      'Finish options suited to material and use',
+      'Even surface coverage',
+      'Handled appropriately per item',
+    ],
+  },
+  {
+    slug: 'sanitary-finishing',
+    name: 'Sanitary Finishing',
+    shortName: 'Sanitary',
+    description: 'Surface finishing for sanitary fittings and related components.',
+    longDescription:
+      'We provide surface finishing for sanitary fittings and related components, applying coatings that improve appearance and provide a consistent surface treatment suitable for bathroom and utility hardware.',
+    icon: 'shield',
+    image:
+      'https://images.pexels.com/photos/6585591/pexels-photo-6585591.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    features: [
+      'Sanitary fittings and bathroom hardware',
+      'Decorative surface finish options',
+      'Consistent finish across components',
+      'Suitable for trade and individual commissions',
     ],
   },
 ];
+
 
 export const testimonials: Testimonial[] = [
   {

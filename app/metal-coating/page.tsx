@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     canonical: siteUrl ? `${siteUrl}/metal-coating` : '/metal-coating',
   },
   openGraph: {
-    title: 'Premium Metal & PU Coating Services | RT PU COATING WORKS',
+    title: 'Premium Metal & PU Coating Services | RT METALS',
     description:
       'Industrial and architectural PU metal coating, electroplating, liquid metal finishing, and custom protective metal treatments.',
     url: siteUrl ? `${siteUrl}/metal-coating` : '/metal-coating',

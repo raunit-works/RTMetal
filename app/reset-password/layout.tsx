@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Reset Password | RT PU COATING WORKS',
+  title: 'Reset Password | RT METALS',
   description: 'Set a new password for your account.',
   robots: {
     index: false,
