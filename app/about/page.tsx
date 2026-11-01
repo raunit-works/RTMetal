@@ -11,12 +11,12 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 export const metadata: Metadata = {
   title: 'About — Our Story & Philosophy',
   description:
-    'Learn about RT METALS and our approach to considered home decor, premium surface finishing, craftsmanship and precision.',
+    'Learn about RTMETALCOATING and our approach to considered home decor, premium surface finishing, craftsmanship and precision.',
   alternates: {
     canonical: `${siteUrl}/about`,
   },
   openGraph: {
-    title: 'About RT METALS — Story & Philosophy',
+    title: 'About RTMETALCOATING — Story & Philosophy',
     description:
       'A design-led house bringing together considered home objects and premium surface finishing for spaces, products and projects.',
     url: `${siteUrl}/about`,
@@ -24,9 +24,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About RT METALS',
+    title: 'About RTMETALCOATING',
     description:
-      'Learn about RT METALS and our approach to considered home decor, premium surface finishing, craftsmanship and precision.',
+      'Learn about RTMETALCOATING and our approach to considered home decor, premium surface finishing, craftsmanship and precision.',
   },
 };
 
@@ -71,7 +71,7 @@ export default function AboutPage() {
         <div className="relative mx-auto max-w-7xl px-5 lg:px-10">
           <Reveal>
             <p className="mb-4 font-label text-xs font-medium uppercase tracking-ultra text-gold sm:text-sm">
-              ABOUT RT METALS
+              ABOUT RTMETALCOATING
             </p>
             <h1 className="font-display text-5xl font-medium leading-[0.98] tracking-tight sm:text-7xl lg:text-8xl">
               Made with intention.
@@ -100,7 +100,7 @@ export default function AboutPage() {
                 </h2>
                 <div className="mt-6 space-y-4 text-base leading-relaxed text-muted-foreground">
                   <p>
-                    RT METALS was built around a simple belief — the things
+                    RTMETALCOATING was built around a simple belief — the things
                     around us should be made with greater attention.
                   </p>
                   <p>

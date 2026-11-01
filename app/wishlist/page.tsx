@@ -5,8 +5,10 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { createSupabaseBrowserClient } from '@/lib/supabase/client';
 import { getWishlistProducts } from '@/lib/supabase/wishlist';
+import { getCategoriesAsync } from '@/lib/data-access';
+import { getCategorySection } from '@/lib/category-hierarchy';
 import { useWishlist } from '@/components/providers/wishlist-provider';
-import type { WishlistItem } from '@/lib/types';
+import type { Category, WishlistItem } from '@/lib/types';
 import { ProductCard } from '@/components/sections/product-card';
 import { SectionHeading } from '@/components/sections/section-heading';
 import { Button } from '@/components/ui/button';
@@ -18,6 +20,7 @@ export default function WishlistPage() {
 
   const [loading, setLoading] = React.useState(true);
   const [items, setItems] = React.useState<WishlistItem[]>([]);
+  const [categories, setCategories] = React.useState<Category[]>([]);
   const [removingId, setRemovingId] = React.useState<string | null>(null);
 
   const loadWishlistData = React.useCallback(async () => {
@@ -31,10 +34,15 @@ export default function WishlistPage() {
         return;
       }
 
-      const wishlistData = await getWishlistProducts();
+      const [wishlistData, categoryData] = await Promise.all([
+        getWishlistProducts(),
+        getCategoriesAsync({ allowStaticFallback: false }),
+      ]);
       setItems(wishlistData);
+      setCategories(categoryData);
     } catch {
       setItems([]);
+      setCategories([]);
     } finally {
       setLoading(false);
     }
@@ -94,7 +102,12 @@ export default function WishlistPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
             {items.map((item) => (
               <div key={item.id} className="relative group">
-                {item.product && <ProductCard product={item.product} />}
+                {item.product && (
+                  <ProductCard
+                    product={item.product}
+                    division={getCategorySection(categories, item.product.category)}
+                  />
+                )}
               </div>
             ))}
           </div>

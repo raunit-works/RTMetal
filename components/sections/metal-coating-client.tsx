@@ -1,45 +1,49 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { MessageCircle, ArrowRight, Check, Building2, Loader2, CheckCircle2, AlertCircle, Wrench, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Reveal, StaggerGroup, StaggerItem } from '@/components/motion/reveal';
 import { SectionHeading } from '@/components/sections/section-heading';
 import { InstagramSection } from '@/components/sections/instagram-section';
 import { CtaBanner } from '@/components/sections/cta-banner';
-import { getMetalCoatingWhatsAppLink } from '@/lib/site';
+import { getMetalCoatingWhatsAppLink, isMetalCoatingWhatsappVerified } from '@/lib/site';
 import { resolveIcon } from '@/lib/icons';
-import type { Service, ProcessStep, InstagramPost } from '@/lib/types';
+import type { Service, ProcessStep, InstagramPost, Category } from '@/lib/types';
 import { createInquiry } from '@/lib/supabase/inquiries';
+import { PrincipalServiceCards } from '@/components/sections/principal-service-cards';
+import { FinishCollection } from '@/components/sections/finish-collection';
+import { PRINCIPAL_SERVICE_GROUPS } from '@/lib/principal-service-groups';
+import { categoryHref, isCategoryInSection } from '@/lib/category-hierarchy';
 
 interface MetalCoatingClientProps {
   services: Service[];
   processSteps: ProcessStep[];
   instagramPosts: InstagramPost[];
   industriesServed: string[];
+  categories: Category[];
 }
 
+// Phase 2D note: Before/after image pairing and project identity are pending
+// client verification. Labels are illustrative only and must not assert
+// specific project names, customer identity, locations or confirmed coating
+// processes until client approves each pair for publication.
 const beforeAfter = [
   {
-    before:
-      'https://images.pexels.com/photos/8216549/pexels-photo-8216549.jpeg?auto=compress&cs=tinysrgb&w=900',
-    after:
-      'https://images.pexels.com/photos/8216554/pexels-photo-8216554.jpeg?auto=compress&cs=tinysrgb&w=900',
-    label: 'Brass Coating on Steel',
+    before: '/before-metal-worn.jpg',
+    after: '/after-metal-polished.jpg',
+    label: 'Surface restoration — worn to refinished',
   },
   {
-    before:
-      'https://images.pexels.com/photos/8216570/pexels-photo-8216570.jpeg?auto=compress&cs=tinysrgb&w=900',
-    after:
-      'https://images.pexels.com/photos/8216580/pexels-photo-8216580.jpeg?auto=compress&cs=tinysrgb&w=900',
-    label: 'Premium Surface Finish',
+    before: '/before-metal-worn.jpg',
+    after: '/hero-metal-art-decor.jpg',
+    label: 'Decorative metal finishing',
   },
   {
-    before:
-      'https://images.pexels.com/photos/8216588/pexels-photo-8216588.jpeg?auto=compress&cs=tinysrgb&w=900',
-    after:
-      'https://images.pexels.com/photos/8216549/pexels-photo-8216549.jpeg?auto=compress&cs=tinysrgb&w=900',
-    label: 'Architectural Facade Panel',
+    before: '/hero-coating-process.jpg',
+    after: '/hero-brass-interior.jpg',
+    label: 'Coating process — application to result',
   },
 ];
 
@@ -48,15 +52,41 @@ export function MetalCoatingClient({
   processSteps,
   instagramPosts,
   industriesServed,
+  categories,
 }: MetalCoatingClientProps) {
   const [quoteName, setQuoteName] = useState('');
   const [quoteEmail, setQuoteEmail] = useState('');
   const [quotePhone, setQuotePhone] = useState('');
   const [quoteMessage, setQuoteMessage] = useState('');
+  const [quoteFinishRef, setQuoteFinishRef] = useState('');
 
   const [quoteSubmitting, setQuoteSubmitting] = useState(false);
   const [quoteSubmitted, setQuoteSubmitted] = useState(false);
   const [quoteError, setQuoteError] = useState<string | null>(null);
+  const metalCoatingWhatsAppUrl = getMetalCoatingWhatsAppLink(
+    "Hello RTMETALCOATING, I'd like a quote for metal coating services."
+  );
+
+  const selectFinishForEnquiry = (finId: string, displayName: string) => {
+    setQuoteFinishRef(finId);
+    const quoteSection = document.getElementById('quote');
+    if (quoteSection) {
+      quoteSection.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      window.location.hash = '#quote';
+    }
+  };
+
+  // Derive principal vs specialist services from the published array
+  const principalServiceSlugs = new Set(
+    PRINCIPAL_SERVICE_GROUPS.map((g) => g.slug)
+  );
+  const principalServices = services.filter((svc) =>
+    principalServiceSlugs.has(svc.slug)
+  );
+  const specialistServices = services.filter(
+    (svc) => !principalServiceSlugs.has(svc.slug)
+  );
 
   const handleQuoteSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -69,7 +99,9 @@ export function MetalCoatingClient({
       name: quoteName,
       email: quoteEmail,
       phone: quotePhone || undefined,
-      message: quoteMessage,
+      message:
+        quoteMessage +
+        (quoteFinishRef ? `\nFinish reference (FIN ID): ${quoteFinishRef}` : ''),
       division: 'metal_coating',
       inquiry_type: 'service',
     });
@@ -82,6 +114,7 @@ export function MetalCoatingClient({
       setQuoteEmail('');
       setQuotePhone('');
       setQuoteMessage('');
+      setQuoteFinishRef('');
       setTimeout(() => setQuoteSubmitted(false), 5000);
     } else {
       setQuoteError(res.message);
@@ -94,7 +127,7 @@ export function MetalCoatingClient({
         <div className="pointer-events-none absolute inset-0 opacity-25">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://images.pexels.com/photos/8216549/pexels-photo-8216549.jpeg?auto=compress&cs=tinysrgb&w=1600"
+            src="/hero-coating-process.jpg"
             alt=""
             className="h-full w-full object-cover"
           />
@@ -104,15 +137,15 @@ export function MetalCoatingClient({
         <div className="relative mx-auto max-w-7xl px-5 pb-20 lg:px-10">
           <Reveal>
             <p className="mb-4 text-xs font-medium uppercase tracking-ultra text-gold">
-              Division 02 · Surface Finishing
+              METAL COATING & FINISHING
             </p>
             <h1 className="font-display text-5xl font-medium leading-[0.98] tracking-tight sm:text-7xl lg:text-8xl">
-              Surface Finishing, <span className="gold-text">Done with Precision.</span>
+              Metal Coating<span className="gold-text"> & Finishing</span>
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">
-              From metal restoration and electroplating to decorative and
-              specialty surface finishes, we work across a range of materials
-              and applications, with attention to detail at every stage.
+              Coating, refinishing and decorative surface finishes for metal components,
+              fabrication work and custom projects. Explore our services
+              and finish samples, or share your requirements for a quotation.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4">
               {/* Button 1 — Primary: warm-white bg, dark ink text, always visible */}
@@ -122,7 +155,7 @@ export function MetalCoatingClient({
                 className="rounded-full bg-white text-ink hover:bg-white/90 font-medium"
               >
                 <a href="#services">
-                  Explore Services
+                  Explore Our Services
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </a>
               </Button>
@@ -133,7 +166,7 @@ export function MetalCoatingClient({
                 className="rounded-full border border-white/30 bg-transparent text-white hover:bg-white/10 hover:border-white/50 font-medium"
               >
                 <a href="#quote">
-                  Discuss Your Project
+                  Enquire About a Project
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </a>
               </Button>
@@ -142,85 +175,189 @@ export function MetalCoatingClient({
         </div>
       </section>
 
-      <section id="services" className="py-20 sm:py-28">
+      {/* Metal Services — always visible; finishes section is unconditional */}
+      <section id="services" className="scroll-mt-24">
         <div className="mx-auto max-w-7xl px-5 lg:px-10">
-          <SectionHeading
-            eyebrow="Our Services"
-            title="Nine services, one standard."
-            description="Surface finishing, restoration and specialist treatments across metal, marble, wood and more — each carried out with care and consistency."
-          />
+          {/* Published principal services — only when Supabase has records */}
+          {principalServices.length > 0 && (
+            <PrincipalServiceCards publishedServices={services} />
+          )}
 
-          {services.length === 0 ? (
-            <div className="mt-14 py-16 text-center text-sm text-muted-foreground border border-dashed border-border rounded-2xl">
-              No services listed at the moment — check back soon.
-            </div>
-          ) : (
-            <StaggerGroup className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {services.map((svc) => {
-                const SvcIcon = resolveIcon(svc.icon, Wrench);
-                return (
-                  <StaggerItem key={svc.slug} id={svc.slug}>
-                    <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-background transition-all duration-500 hover:border-gold/40 hover:shadow-xl">
-                      <div className="relative aspect-[16/10] overflow-hidden">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={svc.image}
-                          alt={svc.name}
-                          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-ink/60 to-transparent" />
-                        <div className="absolute left-4 top-4 flex h-11 w-11 items-center justify-center rounded-full glass">
-                          <SvcIcon className="h-5 w-5 text-white" />
-                        </div>
-                      </div>
-                      <div className="flex flex-1 flex-col p-6">
-                        <h3 className="font-display text-xl font-medium sm:text-2xl">
-                          {svc.name}
-                        </h3>
-                        <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
-                          {svc.longDescription || svc.description}
-                        </p>
-                        {svc.features && svc.features.length > 0 && (
-                          <ul className="mt-5 space-y-2">
-                            {svc.features.map((f) => (
-                              <li
-                                key={f}
-                                className="flex items-center gap-2 text-xs text-foreground/70"
-                              >
-                                <Check className="h-3.5 w-3.5 text-gold" />
-                                {f}
-                              </li>
-                            ))}
-                          </ul>
-                        )}
+          {/* Metal Finishes & Colour Collection — always rendered */}
+          <FinishCollection onEnquireFinish={selectFinishForEnquiry} />
+
+          {/* Published specialist services — only when Supabase has records */}
+          {specialistServices.length > 0 && (
+            <>
+              <SectionHeading
+                eyebrow="Our Services"
+                title="Specialist Services"
+                description="Surface finishing, restoration and specialist treatments across metal, marble, wood and more — each carried out with care and consistency."
+              />
+              <StaggerGroup className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {specialistServices.map((svc) => {
+                  const SvcIcon = resolveIcon(svc.icon, Wrench);
+                  return (
+                    <StaggerItem key={svc.slug} id={svc.slug} className="scroll-mt-24">
+                      <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-background transition-all duration-500 hover:border-gold/40 hover:shadow-xl">
+                        <Link href={`/metal-coating/${svc.slug}`} className="flex-1 flex-col overflow-hidden" aria-label={`${svc.name} — view service`}>
+                          <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-[#2b2419] via-ink-soft to-ink">
+                            {svc.image && (
+                              <>
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
+                                  src={svc.image}
+                                  alt={svc.name}
+                                  loading="lazy"
+                                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                  onError={(event) => {
+                                    event.currentTarget.style.display = 'none';
+                                  }}
+                                />
+                              </>
+                            )}
+                            <div className="absolute inset-0 bg-gradient-to-t from-ink/60 to-transparent" />
+                            <div className="absolute left-4 top-4 flex h-11 w-11 items-center justify-center rounded-full glass">
+                              <SvcIcon className="h-5 w-5 text-white" />
+                            </div>
+                          </div>
+                          <div className="flex flex-1 flex-col p-6">
+                            <h3 className="font-display text-xl font-medium sm:text-2xl">
+                              {svc.name}
+                            </h3>
+                            <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
+                              {svc.longDescription || svc.description}
+                            </p>
+                            {svc.features && svc.features.length > 0 && (
+                              <ul className="mt-5 space-y-2">
+                                {svc.features.map((f) => (
+                                  <li
+                                    key={f}
+                                    className="flex items-center gap-2 text-xs text-foreground/70"
+                                  >
+                                    <Check className="h-3.5 w-3.5 text-gold" />
+                                    {f}
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+                          </div>
+                        </Link>
                         <div className="mt-6 border-t border-border/60 pt-4">
-                          <Button
-                            asChild
-                            size="sm"
-                            variant="outline"
-                            className="w-full rounded-full border-gold/30 hover:border-gold hover:bg-gold/10"
-                          >
-                            <a
-                              href={getMetalCoatingWhatsAppLink(
-                                `Hello RT METALS, I am interested in ${svc.name}. I would like to discuss my coating requirement.`
-                              )}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <MessageCircle className="mr-2 h-3.5 w-3.5 text-gold-deep" />
-                              Enquire About {svc.shortName || svc.name}
-                            </a>
-                          </Button>
+                          {(() => {
+                            const serviceWhatsAppUrl = getMetalCoatingWhatsAppLink(
+                              `Hello RTMETALCOATING, I am interested in ${svc.name}. I would like to discuss my coating requirement.`
+                            );
+                            return serviceWhatsAppUrl ? (
+                              <Button
+                                asChild
+                                size="sm"
+                                variant="outline"
+                                className="w-full rounded-full border-gold/30 hover:border-gold hover:bg-gold/10"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  window.open(serviceWhatsAppUrl, '_blank', 'noopener,noreferrer');
+                                }}
+                              >
+                                <button type="button" className="flex w-full items-center justify-between gap-2">
+                                  <MessageCircle className="mr-2 h-3.5 w-3.5 text-gold-deep" />
+                                  <span>Enquire About {svc.shortName || svc.name}</span>
+                                </button>
+                              </Button>
+                            ) : (
+                              <Button
+                                disabled
+                                size="sm"
+                                variant="outline"
+                                className="w-full rounded-full border-gold/10 text-white/40 cursor-not-allowed"
+                              >
+                                <MessageCircle className="mr-2 h-3.5 w-3.5 text-gold-deep" style={{ opacity: 0.5 }} />
+                                Enquire About {svc.shortName || svc.name}
+                              </Button>
+                            );
+                          })()}
                         </div>
                       </div>
-                    </div>
-                  </StaggerItem>
-                );
-              })}
-            </StaggerGroup>
+                    </StaggerItem>
+                  );
+                })}
+              </StaggerGroup>
+            </>
           )}
         </div>
       </section>
+
+      {/* Metal Product Collections */}
+      {(() => {
+        const metalCategories = categories.filter(
+          (category) =>
+            isCategoryInSection(category, 'metal_services') &&
+            category.isPublished !== false
+        );
+        if (metalCategories.length === 0) return null;
+        return (
+          <section id="collections" className="scroll-mt-24 py-20 sm:py-28">
+            <div className="mx-auto max-w-7xl px-5 lg:px-10">
+              <SectionHeading
+                eyebrow="Metal Product Collections"
+                title="Browse our metalwork categories"
+                description="Explore decorative art, architectural details and custom metal products. Open a collection to view available designs and enquire about your requirements."
+              />
+              <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {metalCategories.map((category, i) => (
+                  <Reveal key={category.slug} delay={i * 0.1}>
+                    <Link
+                      href={categoryHref(category)}
+                      className="group relative block overflow-hidden rounded-2xl border border-border bg-background transition-all duration-500 hover:border-gold/40 hover:shadow-xl"
+                    >
+                      <div className="relative aspect-[4/3] overflow-hidden">
+                        {category.image && (
+                          <>
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                              src={category.image}
+                              alt={category.name}
+                              loading="lazy"
+                              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                              onError={(event) => {
+                                event.currentTarget.style.display = 'none';
+                              }}
+                            />
+                          </>
+                        )}
+                        <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-ink/20 to-transparent" />
+                      </div>
+                      <div className="p-6">
+                        <h3 className="font-display text-xl font-medium sm:text-2xl">
+                          {category.name}
+                        </h3>
+                        {category.tagline && (
+                          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                            {category.tagline}
+                          </p>
+                        )}
+                        {category.description && (
+                          <p className="mt-3 text-sm leading-relaxed text-muted-foreground line-clamp-2">
+                            {category.description}
+                          </p>
+                        )}
+                        <div className="mt-4 flex items-center justify-between">
+                          <span className="text-xs font-medium text-gold">
+                            {category.productCount} piece{category.productCount !== 1 ? 's' : ''}
+                          </span>
+                          <span className="text-sm font-medium text-gold group-hover:underline">
+                            View Collection →
+                          </span>
+                        </div>
+                      </div>
+                    </Link>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </section>
+        );
+      })()}
 
       <section className="bg-ink py-20 text-white sm:py-28">
         <div className="mx-auto max-w-7xl px-5 lg:px-10">
@@ -367,7 +504,7 @@ export function MetalCoatingClient({
         description="Reels and posts from the coating floor — process, machinery and completed projects."
       />
 
-      <section id="quote" className="px-5 py-12 lg:px-10 lg:py-16">
+      <section id="quote" className="scroll-mt-24 px-5 py-12 lg:px-10 lg:py-16">
         <div className="relative mx-auto max-w-7xl overflow-hidden rounded-3xl bg-ink px-6 py-16 text-center text-white sm:px-12 sm:py-24">
           <div className="pointer-events-none absolute -left-20 -top-20 h-72 w-72 rounded-full bg-gold/15 blur-[100px]" />
           <div className="pointer-events-none absolute -bottom-20 -right-20 h-72 w-72 rounded-full bg-gold/10 blur-[100px]" />
@@ -422,6 +559,13 @@ export function MetalCoatingClient({
                   placeholder="Phone number (optional)"
                   className="h-12 rounded-full border border-white/15 bg-white/5 px-5 text-sm text-white placeholder:text-white/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold sm:col-span-2"
                 />
+                <input
+                  value={quoteFinishRef}
+                  onChange={(e) => setQuoteFinishRef(e.target.value)}
+                  disabled={quoteSubmitting}
+                  placeholder="Finish reference (FIN ID) — optional"
+                  className="h-12 rounded-full border border-white/15 bg-white/5 px-5 text-sm text-white placeholder:text-white/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold sm:col-span-2"
+                />
                 <textarea
                   required
                   rows={3}
@@ -455,18 +599,23 @@ export function MetalCoatingClient({
                   asChild
                   size="lg"
                   variant="outline"
-                  className="w-full rounded-full border-white/20 text-white hover:bg-white/10 sm:w-auto"
+                  className="w-full rounded-full border-white/20 text-white hover:bg-white/10 hover:text-white sm:w-auto"
                 >
-                  <a
-                    href={getMetalCoatingWhatsAppLink(
-                      "Hello RT METALS, I'd like a quote for metal coating services."
-                    )}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <MessageCircle className="mr-2 h-4 w-4" />
-                    Chat on WhatsApp
-                  </a>
+                  {metalCoatingWhatsAppUrl ? (
+                    <a
+                      href={metalCoatingWhatsAppUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <MessageCircle className="mr-2 h-4 w-4" />
+                      Chat on WhatsApp
+                    </a>
+                  ) : (
+                    <span>
+                      <MessageCircle className="mr-2 h-4 w-4" style={{ opacity: 0.5 }} />
+                      Chat on WhatsApp
+                    </span>
+                  )}
                 </Button>
               </div>
             </form>

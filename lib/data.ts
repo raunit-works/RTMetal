@@ -47,6 +47,7 @@ export type Service = {
   icon: IconType;
   image: string;
   features: string[];
+  isPublished?: boolean;
 };
 
 export type Testimonial = {
@@ -65,6 +66,7 @@ export type InstagramPost = {
   category: 'Recent Work' | 'Behind The Scenes' | 'Workshop' | 'Product';
   image: string;
   caption: string;
+  reelUrl?: string;
 };
 
 export type FAQItem = {
@@ -263,6 +265,7 @@ export const services: Service[] = [
       'Refinishing to specified finish',
       'Suitable for furniture and fittings',
     ],
+    isPublished: true,
   },
   {
     slug: 'murti-finishing',
@@ -280,6 +283,7 @@ export const services: Service[] = [
       'Range of finish options available',
       'Handled with care throughout',
     ],
+    isPublished: true,
   },
   {
     slug: 'plastic-coating',
@@ -297,6 +301,7 @@ export const services: Service[] = [
       'Consistent surface coverage',
       'Suitable for selected applications',
     ],
+    isPublished: true,
   },
   {
     slug: 'electroplating',
@@ -314,6 +319,7 @@ export const services: Service[] = [
       'Multiple plating options',
       'Suitable for hardware and fittings',
     ],
+    isPublished: true,
   },
   {
     slug: 'marble-coating',
@@ -331,6 +337,7 @@ export const services: Service[] = [
       'Applied to decorative and display pieces',
       'Handled with appropriate care',
     ],
+    isPublished: true,
   },
   {
     slug: 'decorative-showpieces',
@@ -348,6 +355,7 @@ export const services: Service[] = [
       'Consistent across individual and batch work',
       'Careful handling throughout',
     ],
+    isPublished: true,
   },
   {
     slug: 'lipping-work',
@@ -365,6 +373,7 @@ export const services: Service[] = [
       'Consistent finish quality',
       'Available as part of broader projects',
     ],
+    isPublished: true,
   },
   {
     slug: 'wood-finishing',
@@ -382,6 +391,7 @@ export const services: Service[] = [
       'Even surface coverage',
       'Handled appropriately per item',
     ],
+    isPublished: true,
   },
   {
     slug: 'sanitary-finishing',
@@ -399,6 +409,7 @@ export const services: Service[] = [
       'Consistent finish across components',
       'Suitable for trade and individual commissions',
     ],
+    isPublished: true,
   },
 ];
 
@@ -507,52 +518,60 @@ export const processSteps: ProcessStep[] = [
 
 export const instagramPosts: InstagramPost[] = [
   {
-    id: 'ig1',
+    id: 'reel-1',
     type: 'reel',
     category: 'Recent Work',
-    image:
-      'https://images.pexels.com/photos/8216549/pexels-photo-8216549.jpeg?auto=compress&cs=tinysrgb&w=800',
-    caption: 'Brass coating in progress — watch the transformation.',
+    image: '/hero-coating-process.jpg',
+    caption: 'Brass coating transformation in progress',
+    reelUrl: 'https://www.instagram.com/reel/DIJaKF0yOUB/',
   },
   {
-    id: 'ig2',
-    type: 'post',
-    category: 'Product',
-    image:
-      'https://images.pexels.com/photos/6585608/pexels-photo-6585608.jpeg?auto=compress&cs=tinysrgb&w=800',
-    caption: 'New arrival: the Onyx sculptural vase.',
+    id: 'reel-2',
+    type: 'reel',
+    category: 'Recent Work',
+    image: '/hero-metal-art-decor.jpg',
+    caption: 'Decorative metal art finishing process',
+    reelUrl: 'https://www.instagram.com/reel/DTmnpdaCpfR/',
   },
   {
-    id: 'ig3',
+    id: 'reel-3',
     type: 'reel',
     category: 'Workshop',
-    image:
-      'https://images.pexels.com/photos/8216570/pexels-photo-8216570.jpeg?auto=compress&cs=tinysrgb&w=800',
-    caption: 'Inside the workshop — surface finishing detail.',
+    image: '/hero-brass-interior.jpg',
+    caption: 'Workshop surface finishing detail',
+    reelUrl: 'https://www.instagram.com/reel/DMMgialztKn/',
   },
   {
-    id: 'ig4',
-    type: 'post',
-    category: 'Behind The Scenes',
-    image:
-      'https://images.pexels.com/photos/8216554/pexels-photo-8216554.jpeg?auto=compress&cs=tinysrgb&w=800',
-    caption: 'Hand-applied patina on a custom commission.',
-  },
-  {
-    id: 'ig5',
+    id: 'reel-4',
     type: 'reel',
     category: 'Recent Work',
-    image:
-      'https://images.pexels.com/photos/8216800/pexels-photo-8216580.jpeg?auto=compress&cs=tinysrgb&w=800',
-    caption: 'Architectural finish — facade panel reveal.',
+    image: '/after-metal-polished.jpg',
+    caption: 'Custom metal coating application',
+    reelUrl: 'https://www.instagram.com/reel/DKHrktoiYm9/',
   },
   {
-    id: 'ig6',
-    type: 'post',
-    category: 'Product',
-    image:
-      'https://images.pexels.com/photos/6585591/pexels-photo-6585591.jpeg?auto=compress&cs=tinysrgb&w=800',
-    caption: 'Gold cutlery set — PVD finish, built to last.',
+    id: 'reel-5',
+    type: 'reel',
+    category: 'Behind The Scenes',
+    image: '/before-metal-worn.jpg',
+    caption: 'Restoration and polishing workflow',
+    reelUrl: 'https://www.instagram.com/reel/DbfIhh7NpRs/',
+  },
+  {
+    id: 'reel-6',
+    type: 'reel',
+    category: 'Workshop',
+    image: '/hero-coating-process.jpg',
+    caption: 'Precision metal finishing techniques',
+    reelUrl: 'https://www.instagram.com/reel/DbfLq2WNaR4/',
+  },
+  {
+    id: 'reel-7',
+    type: 'reel',
+    category: 'Recent Work',
+    image: '/hero-brass-interior.jpg',
+    caption: 'Architectural facade panel reveal',
+    reelUrl: 'https://www.instagram.com/reel/DMhCL-Nzx_Y/',
   },
 ];
 

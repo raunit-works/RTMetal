@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import Link from 'next/link';
 import { Star, MessageCircle, ArrowLeft, Check, Info } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -8,9 +8,10 @@ import { Reveal, StaggerGroup, StaggerItem } from '@/components/motion/reveal';
 import { SectionHeading } from '@/components/sections/section-heading';
 import { CtaBanner } from '@/components/sections/cta-banner';
 import { ProductImageGallery } from '@/components/sections/product-image-gallery';
-import { getProductBySlugAsync, getProductsAsync, getCategoryBySlugAsync } from '@/lib/data-access';
-import { getHomeDecorWhatsAppLink } from '@/lib/site';
-
+import { getPublicProductBySlugAsync, getPublicCatalogAsync, getCategoriesAsync } from '@/lib/data-access';
+import { getHomeDecorWhatsAppLink, isHomeDecorWhatsappVerified } from '@/lib/site';
+import { isCategoryInSection } from '@/lib/category-hierarchy';
+import { MainSection } from '@/lib/types';
 
 export const revalidate = 0;
 
@@ -21,11 +22,11 @@ interface ProductDetailPageProps {
 }
 
 export async function generateMetadata({ params }: ProductDetailPageProps): Promise<Metadata> {
-  const product = await getProductBySlugAsync(params.slug);
+  const product = await getPublicProductBySlugAsync(params.slug);
 
-  if (!product || product.isPublished === false) {
+  if (!product) {
     return {
-      title: 'Product Not Found | RT METALS',
+      title: 'Product Not Found | RTMETALCOATING',
       robots: { index: false, follow: false },
     };
   }
@@ -40,7 +41,7 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
       canonical: canonicalUrl,
     },
     openGraph: {
-      title: `${product.name} — Home Decor | RT METALS`,
+      title: `${product.name} — Home Decor | RTMETALCOATING`,
       description: product.description.substring(0, 160),
       url: canonicalUrl,
       images: product.image ? [{ url: product.image, alt: product.name }] : [],
@@ -55,25 +56,37 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
 }
 
 export default async function ProductDetailPage({ params }: ProductDetailPageProps) {
-  const product = await getProductBySlugAsync(params.slug);
+  const product = await getPublicProductBySlugAsync(params.slug);
 
-  if (!product || product.isPublished === false) {
+  if (!product) {
     notFound();
   }
 
+  // Redirect Metal products to the Metal product route
+  const categories = await getCategoriesAsync({ allowStaticFallback: false, products: [] });
+  const category = categories.find((item) => item.slug === product.category);
 
-  const category = await getCategoryBySlugAsync(product.category);
-  const allProducts = await getProductsAsync();
-  const relatedProducts = allProducts
+  if (category && isCategoryInSection(category, 'metal_services')) {
+    redirect(`/metal-coating/product/${product.slug || product.id}`);
+  }
+
+  const { categories: publicCategories, products: publicProducts } = await getPublicCatalogAsync();
+  const relatedProducts = publicProducts
     .filter((p) => p.id !== product.id && p.category === product.category)
     .slice(0, 4);
+
+  const homeDecorProducts = publicProducts.filter((p) => {
+    const productCategory = publicCategories.find((item) => item.slug === p.category);
+    return productCategory ? isCategoryInSection(productCategory, 'home_decor') : false;
+  });
 
   const fallbackRelated =
     relatedProducts.length > 0
       ? relatedProducts
-      : allProducts.filter((p) => p.id !== product.id).slice(0, 4);
+      : homeDecorProducts.filter((p) => p.id !== product.id).slice(0, 4);
 
-  const whatsappMessage = `Hello RT METALS, I am interested in ${product.name}. Please share more details regarding availability, custom options, and pricing.`;
+  const whatsappMessage = `Hello RTMETALCOATING, I am interested in ${product.name}. Please share more details regarding availability, custom options, and pricing.`;
+  const whatsappUrl = getHomeDecorWhatsAppLink(whatsappMessage);
 
   const hasExtendedSpecs =
     product.sku ||
@@ -167,11 +180,24 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
                 </div>
 
                 <div className="mt-6 flex items-baseline gap-4">
-                  <Button asChild className="rounded-full bg-[#25D366] text-white hover:bg-[#25D366]/90">
-                    <a href={getHomeDecorWhatsAppLink(`Hello RT METALS, I am interested in ${product.name}. Please share more details.`)} target="_blank" rel="noopener noreferrer">
+                  {isHomeDecorWhatsappVerified() && whatsappUrl ? (
+                    <Button asChild className="rounded-full bg-[#25D366] text-white hover:bg-[#25D366]/90">
+                      <a
+                        href={whatsappUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Enquire About Product
+                      </a>
+                    </Button>
+                  ) : (
+                    <Button
+                      disabled
+                      className="rounded-full bg-[#25D366]/20 text-white/40 cursor-not-allowed"
+                    >
                       Enquire About Product
-                    </a>
-                  </Button>
+                    </Button>
+                  )}
                 </div>
 
                 <p className="mt-6 text-base leading-relaxed text-muted-foreground">
@@ -255,20 +281,31 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
 
                 {/* Direct WhatsApp Enquiry CTA */}
                 <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
-                  <Button
-                    asChild
-                    size="lg"
-                    className="flex-1 rounded-full bg-[#25D366] px-8 py-6 text-base font-semibold text-white shadow-lg transition-all hover:bg-[#25D366]/90"
-                  >
-                    <a
-                      href={getHomeDecorWhatsAppLink(whatsappMessage)}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                  {isHomeDecorWhatsappVerified() && whatsappUrl ? (
+                    <Button
+                      asChild
+                      size="lg"
+                      className="flex-1 rounded-full bg-[#25D366] px-8 py-6 text-base font-semibold text-white shadow-lg transition-all hover:bg-[#25D366]/90"
                     >
-                      <MessageCircle className="mr-2 h-5 w-5" />
+                      <a
+                        href={whatsappUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <MessageCircle className="mr-2 h-5 w-5" />
+                        Enquire About Product
+                      </a>
+                    </Button>
+                  ) : (
+                    <Button
+                      disabled
+                      size="lg"
+                      className="flex-1 rounded-full bg-[#25D366]/20 text-white/40 cursor-not-allowed px-8 py-6 text-base font-semibold"
+                    >
+                      <MessageCircle className="mr-2 h-5 w-5" style={{ opacity: 0.5 }} />
                       Enquire About Product
-                    </a>
-                  </Button>
+                    </Button>
+                  )}
 
                   <Button
                     asChild
@@ -323,4 +360,10 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
       />
     </>
   );
+}
+
+interface ProductDetailPageProps {
+  params: {
+    slug: string;
+  };
 }

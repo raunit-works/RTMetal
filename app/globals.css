@@ -184,6 +184,27 @@
 ::-webkit-scrollbar {
   width: 10px;
 }
+
+/* Instagram reels carousel: thin, draggable horizontal scrollbar */
+.instagram-reel-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #c9a96e #1f1a16;
+}
+.instagram-reel-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+.instagram-reel-scroll::-webkit-scrollbar-track {
+  background: #1f1a16;
+  border-radius: 999px;
+}
+.instagram-reel-scroll::-webkit-scrollbar-thumb {
+  background: #c9a96e;
+  border-radius: 999px;
+  border: 2px solid #1f1a16;
+}
+.instagram-reel-scroll::-webkit-scrollbar-thumb:hover {
+  background: #b5935c;
+}
 ::-webkit-scrollbar-track {
   background: hsl(var(--background));
 }

@@ -29,6 +29,8 @@ import {
   DollarSign,
   Tag,
   SlidersHorizontal,
+  ChevronUp,
+  ChevronDown,
 } from 'lucide-react';
 import {
   uploadCatalogImage,
@@ -41,6 +43,7 @@ import {
   updateProductAdmin,
   deleteProductAdmin,
   addProductGalleryImage,
+  updateProductGalleryImage,
   deleteProductGalleryImage,
   getServicesAdmin,
   createServiceAdmin,
@@ -63,7 +66,10 @@ import {
   updateInquiryStatusAdmin,
   deleteInquiryAdmin,
 } from '@/lib/supabase/inquiries';
-import type { InquiryStatus } from '@/lib/types';
+import type { InquiryStatus, MainSection, ProductImage } from '@/lib/types';
+import { getCategoryHierarchySupportAdmin } from '@/lib/supabase/admin-catalog';
+import { mapCategoryRow } from '@/lib/supabase/data-mapper';
+import { getCategoryPath, getDescendantSlugs, getValidCategories, SECTION_LABELS } from '@/lib/category-hierarchy';
 import { Inbox } from 'lucide-react';
 
 export function AdminWorkspace() {
@@ -89,6 +95,10 @@ export function AdminWorkspace() {
   const [catImage, setCatImage] = React.useState('');
   const [catIsFeatured, setCatIsFeatured] = React.useState(false);
   const [catOrder, setCatOrder] = React.useState('0');
+  const [hierarchySupported, setHierarchySupported] = React.useState<boolean | null>(null);
+  const [catSection, setCatSection] = React.useState<MainSection | ''>('');
+  const [catParentId, setCatParentId] = React.useState('');
+  const [catIsPublished, setCatIsPublished] = React.useState(false);
 
   // ==================================================
   // PRODUCTS STATE (19 Complete Fields)
@@ -98,6 +108,7 @@ export function AdminWorkspace() {
   const [prodSlug, setProdSlug] = React.useState('');
   const [prodSku, setProdSku] = React.useState('');
   const [prodCatId, setProdCatId] = React.useState('');
+  const [prodSection, setProdSection] = React.useState<MainSection | ''>('');
   const [prodSubCat, setProdSubCat] = React.useState('');
 
   const [prodImage, setProdImage] = React.useState('');
@@ -114,6 +125,7 @@ export function AdminWorkspace() {
   const [prodIsPublished, setProdIsPublished] = React.useState(false);
   const [prodIsFeatured, setProdIsFeatured] = React.useState(false);
   const [prodOrder, setProdOrder] = React.useState('0');
+  const [prodGalleryImages, setProdGalleryImages] = React.useState<ProductImage[]>([]);
 
   // ==================================================
   // SERVICES STATE
@@ -127,8 +139,9 @@ export function AdminWorkspace() {
   const [svcImage, setSvcImage] = React.useState('');
   const [svcFeatures, setSvcFeatures] = React.useState('');
   const [svcApplications, setSvcApplications] = React.useState('');
+  const [svcProcessSteps, setSvcProcessSteps] = React.useState('');
   const [svcOrder, setSvcOrder] = React.useState('0');
-  const [svcIsPublished, setSvcIsPublished] = React.useState(true);
+  const [svcIsPublished, setSvcIsPublished] = React.useState(false);
 
   // ==================================================
   // TESTIMONIALS STATE
@@ -169,21 +182,31 @@ export function AdminWorkspace() {
   const [editingNotesId, setEditingNotesId] = React.useState<string | null>(null);
   const [currentNotesText, setCurrentNotesText] = React.useState<string>('');
 
+  const mappedCategories = React.useMemo(() => categories.map((row) => mapCategoryRow(row)), [categories]);
+  const validCategories = getValidCategories(mappedCategories, false);
+  const productCategoryOptions = validCategories.filter((category) => (category.mainSection || '') === prodSection);
+  const editedCategory = mappedCategories.find((category) => category.id === editingId);
+  const excludedParents = editedCategory ? getDescendantSlugs(mappedCategories, editedCategory.slug) : new Set<string>();
+  const parentOptions = validCategories.filter((category) =>
+    (category.mainSection || '') === catSection && !excludedParents.has(category.slug));
+
   const loadAllData = React.useCallback(async () => {
     setLoading(true);
     setMessage(null);
     try {
-      const [catList, prodList, svcList, testList, faqList, setList, inqList] = await Promise.all([
-        getCategoriesAdmin().catch(() => []),
+      const [catList, prodList, svcList, testList, faqList, setList, inqList, supportsHierarchy] = await Promise.all([
+        getCategoriesAdmin(),
         getProductsAdmin().catch(() => []),
         getServicesAdmin().catch(() => []),
         getTestimonialsAdmin().catch(() => []),
         getFaqsAdmin().catch(() => []),
         getSiteSettingsAdmin().catch(() => []),
         getInquiriesAdmin().catch(() => []),
+        getCategoryHierarchySupportAdmin(),
       ]);
 
       setCategories(catList);
+      setHierarchySupported(supportsHierarchy);
       setProducts(prodList);
       setServices(svcList);
       setTestimonials(testList);
@@ -191,15 +214,12 @@ export function AdminWorkspace() {
       setSettings(setList);
       setInquiries(inqList);
 
-      if (catList.length > 0 && !prodCatId) {
-        setProdCatId(catList[0].id);
-      }
     } catch (err: any) {
       setMessage({ type: 'error', text: err.message || 'Failed to load catalog data' });
     } finally {
       setLoading(false);
     }
-  }, [prodCatId]);
+  }, []);
 
   React.useEffect(() => {
     loadAllData();
@@ -224,12 +244,65 @@ export function AdminWorkspace() {
     }
   };
 
+  const handleGalleryFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files) return;
+
+    setUploading(true);
+    try {
+      const uploadPromises = Array.from(files).map(async (file) => {
+        if (file.size > 5 * 1024 * 1024) {
+          throw new Error(`File ${file.name} exceeds 5MB limit.`);
+        }
+        const publicUrl = await uploadCatalogImage(file);
+        return {
+          id: '',
+          productId: '',
+          imageUrl: publicUrl,
+          altText: '',
+          sortOrder: 0,
+          isPrimary: false,
+        };
+      });
+
+      const newImages = await Promise.all(uploadPromises);
+      setProdGalleryImages(prev => {
+        const combined = [...prev, ...newImages];
+        // Re-assign sort orders
+        return combined.map((img, idx) => ({ ...img, sortOrder: idx }));
+      });
+      setMessage({ type: 'success', text: 'Gallery images uploaded!' });
+    } catch (err: any) {
+      setMessage({ type: 'error', text: err.message || 'Failed to upload gallery images.' });
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const removeGalleryImage = (index: number) => {
+    setProdGalleryImages(prev => prev.filter((_, i) => i !== index));
+  };
+
+  const moveGalleryImage = (index: number, direction: 'up' | 'down') => {
+    setProdGalleryImages(prev => {
+      const newArr = [...prev];
+      const targetIndex = direction === 'up' ? index - 1 : index + 1;
+      if (targetIndex < 0 || targetIndex >= newArr.length) return prev;
+      [newArr[index], newArr[targetIndex]] = [newArr[targetIndex], newArr[index]];
+      return newArr.map((img, idx) => ({ ...img, sortOrder: idx }));
+    });
+  };
+
   // Reset Forms
   const resetForms = () => {
     setEditingId(null);
+    setCatSection(''); setCatParentId(''); setCatIsPublished(false);
+    setProdSection(''); setProdCatId('');
     setCatName(''); setCatSlug(''); setCatTagline(''); setCatDesc(''); setCatImage(''); setCatIsFeatured(false); setCatOrder('0');
-    setProdName(''); setProdSlug(''); setProdSku(''); setProdSubCat(''); setProdImage(''); setProdBadge(''); setProdShortDesc(''); setProdFullDesc(''); setProdMaterial(''); setProdColorFinish(''); setProdDimensions(''); setProdWeight(''); setProdStockStatus('in_stock'); setProdFeatures(''); setProdCareInstructions(''); setProdIsPublished(false); setProdIsFeatured(false); setProdOrder('0');
-    setSvcName(''); setSvcSlug(''); setSvcShortName(''); setSvcDesc(''); setSvcLongDesc(''); setSvcImage(''); setSvcFeatures(''); setSvcApplications(''); setSvcOrder('0'); setSvcIsPublished(true);
+    setProdName(''); setProdSlug(''); setProdSku(''); setProdSubCat(''); setProdImage(''); setProdBadge(''); setProdShortDesc(''); setProdFullDesc(''); setProdMaterial(''); setProdColorFinish(''); setProdDimensions(''); setProdWeight(''); setProdStockStatus('in_stock'); setProdFeatures(''); setProdCareInstructions(''); setProdIsPublished(false); setProdIsFeatured(false);
+    setProdOrder('0');
+    setProdGalleryImages([]);
+    setSvcName(''); setSvcSlug(''); setSvcShortName(''); setSvcDesc(''); setSvcLongDesc(''); setSvcImage(''); setSvcFeatures(''); setSvcApplications(''); setSvcProcessSteps(''); setSvcOrder('0'); setSvcIsPublished(false);
     setTestName(''); setTestCompany(''); setTestRole(''); setTestContent(''); setTestRating('5'); setTestAvatar(''); setTestOrder('0'); setTestIsPublished(true);
     setFaqQ(''); setFaqA(''); setFaqCategory('General'); setFaqOrder('0'); setFaqIsPublished(true);
     setSetKey(''); setSetValue('');
@@ -239,6 +312,10 @@ export function AdminWorkspace() {
   const handleCategorySubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!catName || !catSlug) return;
+    if (hierarchySupported === null || (!editingId && (!hierarchySupported || !catSection))) {
+      setMessage({ type: 'error', text: 'Creating a category requires the hierarchy schema and an explicit main section.' });
+      return;
+    }
     setLoading(true);
     try {
       const payload = {
@@ -249,6 +326,11 @@ export function AdminWorkspace() {
         image: catImage || 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=800',
         is_featured: catIsFeatured,
         display_order: parseInt(catOrder) || 0,
+        ...(hierarchySupported ? {
+          main_section: catSection || null,
+          parent_id: catParentId || null,
+          is_published: catIsPublished,
+        } : {}),
       };
       if (editingId) {
         await updateCategoryAdmin(editingId, payload);
@@ -269,6 +351,10 @@ export function AdminWorkspace() {
   const handleProductSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!prodName || !prodSlug || !prodCatId) return;
+    if (!productCategoryOptions.some((category) => category.id === prodCatId)) {
+      setMessage({ type: 'error', text: 'Choose a valid category in the selected main section.' });
+      return;
+    }
 
     setLoading(true);
     try {
@@ -298,10 +384,55 @@ export function AdminWorkspace() {
       };
 
       if (editingId) {
-        await updateProductAdmin(editingId, payload);
+        await updateProductAdmin(editingId, payload, prodSection || null);
+
+        // Sync gallery
+        const currentProduct = products.find(p => p.id === editingId);
+        if (currentProduct) {
+          const originalImages = currentProduct.images || [];
+
+          // 1. Add new images
+          for (const img of prodGalleryImages) {
+            if (!img.id) {
+              // Avoid duplicates on retry
+              const alreadyExists = (originalImages as ProductImage[]).some(existing => existing.imageUrl === img.imageUrl);
+              if (!alreadyExists) {
+                await addProductGalleryImage(editingId, img.imageUrl, img.altText, img.isPrimary, img.sortOrder);
+              }
+            }
+          }
+
+          // 2. Delete removed images
+          for (const img of originalImages) {
+            if (!prodGalleryImages.some(pImg => pImg.id === img.id)) {
+              await deleteProductGalleryImage(img.id);
+            }
+          }
+
+          // 3. Update existing images (order/primary/alt)
+          for (const img of prodGalleryImages) {
+            if (img.id) {
+              await updateProductGalleryImage(img.id, {
+                alt_text: img.altText || undefined,
+                is_primary: img.isPrimary,
+                sort_order: img.sortOrder
+              });
+            }
+          }
+        }
+
         setMessage({ type: 'success', text: 'Product updated successfully!' });
       } else {
-        await createProductAdmin(payload);
+        const newProduct = await createProductAdmin(payload, prodSection || null);
+        
+        // Set editingId so a retry performs an update instead of a new creation
+        setEditingId(newProduct.id);
+        
+        // Add initial gallery images
+        for (const img of prodGalleryImages) {
+          await addProductGalleryImage(newProduct.id, img.imageUrl, img.altText, img.isPrimary, img.sortOrder);
+        }
+
         setMessage({ type: 'success', text: 'Product created successfully!' });
       }
       resetForms();
@@ -317,28 +448,69 @@ export function AdminWorkspace() {
   const handleServiceSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!svcName || !svcSlug || !svcDesc) return;
+
+    // Image validation — must be non-empty and a valid URL or root-relative path
+    const trimmedImage = svcImage ? svcImage.trim() : '';
+    if (!trimmedImage) {
+      setMessage({ type: 'error', text: 'Service image is required. Upload an image or enter a valid URL.' });
+      return;
+    }
+    if (!trimmedImage.startsWith('https://') && !trimmedImage.startsWith('http://') && !trimmedImage.startsWith('/')) {
+      setMessage({ type: 'error', text: 'Service image must be a valid URL (https://…) or a root-relative path (/uploads/…).' });
+      return;
+    }
+
     setLoading(true);
     try {
       const featArr = svcFeatures ? svcFeatures.split('\n').filter(Boolean) : [];
       const appArr = svcApplications ? svcApplications.split('\n').filter(Boolean) : [];
-      const payload = {
+
+      // Process steps: accept only a JSON array in the textarea (lossless round-trip).
+      // Plain empty string → preserve existing DB value when editing, or send [] for new records.
+      let processStepsValue: any[] | undefined = undefined;
+      const trimmedSteps = svcProcessSteps.trim();
+      if (trimmedSteps === '') {
+        // No steps typed — for new records send []; for edits omit the field so DB value is unchanged.
+        processStepsValue = editingId ? undefined : [];
+      } else {
+        let parsed: unknown;
+        try {
+          parsed = JSON.parse(trimmedSteps);
+        } catch {
+          setMessage({ type: 'error', text: 'Process Steps must be a valid JSON array, e.g. [{"title":"Step 1","description":"…"}].' });
+          setLoading(false);
+          return;
+        }
+        if (!Array.isArray(parsed)) {
+          setMessage({ type: 'error', text: 'Process Steps must be a JSON array.' });
+          setLoading(false);
+          return;
+        }
+        processStepsValue = parsed as any[];
+      }
+
+      const basePayload = {
         name: svcName,
         slug: svcSlug,
         short_name: svcShortName || svcName,
         description: svcDesc,
         long_description: svcLongDesc || svcDesc,
-        image: svcImage || 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=800',
+        image: trimmedImage,
         features: featArr,
         applications: appArr,
         display_order: parseInt(svcOrder) || 0,
         is_published: svcIsPublished,
       };
 
+      const payload = processStepsValue !== undefined
+        ? { ...basePayload, process_steps: processStepsValue }
+        : basePayload;
+
       if (editingId) {
         await updateServiceAdmin(editingId, payload);
         setMessage({ type: 'success', text: 'Service updated successfully!' });
       } else {
-        await createServiceAdmin(payload);
+        await createServiceAdmin({ ...payload, process_steps: processStepsValue ?? [] });
         setMessage({ type: 'success', text: 'Service created successfully!' });
       }
       resetForms();
@@ -444,8 +616,8 @@ export function AdminWorkspace() {
       {message && (
         <div
           className={`flex items-center gap-3 rounded-xl border p-4 text-sm ${message.type === 'success'
-              ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-400'
-              : 'border-destructive/30 bg-destructive/10 text-destructive'
+            ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-400'
+            : 'border-destructive/30 bg-destructive/10 text-destructive'
             }`}
         >
           {message.type === 'success' ? <CheckCircle2 className="h-5 w-5 shrink-0" /> : <AlertCircle className="h-5 w-5 shrink-0" />}
@@ -471,8 +643,8 @@ export function AdminWorkspace() {
               resetForms();
             }}
             className={`flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-semibold transition-colors ${activeTab === tab.id
-                ? 'bg-gold-deep text-black font-bold shadow-lg'
-                : 'bg-card/60 text-muted-foreground hover:text-foreground hover:bg-card'
+              ? 'bg-gold-deep text-black font-bold shadow-lg'
+              : 'bg-card/60 text-muted-foreground hover:text-foreground hover:bg-card'
               }`}
           >
             <tab.icon className="h-4 w-4" />
@@ -504,6 +676,35 @@ export function AdminWorkspace() {
               {editingId ? 'Edit Category' : 'Add Category'}
             </h3>
             <form onSubmit={handleCategorySubmit} className="space-y-4">
+              {hierarchySupported !== true && <p className="text-xs text-muted-foreground">
+                {hierarchySupported === false ? 'Hierarchy columns are unavailable. Existing category details can be edited; new categories and hierarchy controls require the approved schema.' : 'Checking category schema…'}
+              </p>}
+              {hierarchySupported && <>
+                <div>
+                  <Label htmlFor="cat-section">Main Section *</Label>
+                  <select id="cat-section" required={!editingId} value={catSection}
+                    onChange={(event) => { setCatSection(event.target.value as MainSection | ''); setCatParentId(''); }}
+                    className="w-full rounded-xl border border-border bg-background p-2.5 text-sm">
+                    <option value="">{editingId ? 'Unassigned (legacy)' : 'Select main section'}</option>
+                    {Object.entries(SECTION_LABELS).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
+                  </select>
+                </div>
+                <div>
+                  <Label htmlFor="cat-parent">Parent Category</Label>
+                  <select id="cat-parent" value={catParentId} onChange={(event) => setCatParentId(event.target.value)}
+                    className="w-full rounded-xl border border-border bg-background p-2.5 text-sm">
+                    <option value="">None — top-level category</option>
+                    {parentOptions.map((category) => <option key={category.id} value={category.id}>{getCategoryPath(category, mappedCategories)}</option>)}
+                    {catParentId && !parentOptions.some((category) => category.id === catParentId) &&
+                      <option value={catParentId} disabled>Invalid existing parent — select a valid parent</option>}
+                  </select>
+                </div>
+                <div className="flex items-center gap-2">
+                  <input id="cat-published" type="checkbox" checked={catIsPublished} onChange={(event) => setCatIsPublished(event.target.checked)} />
+                  <Label htmlFor="cat-published">Published</Label>
+                </div>
+                <p className="text-xs text-muted-foreground">Draft categories hide their entire branch from public listings. Existing product assignments are retained.</p>
+              </>}
               <div>
                 <Label>Category Name *</Label>
                 <Input
@@ -587,7 +788,7 @@ export function AdminWorkspace() {
                   <Label htmlFor="catFeat">Featured</Label>
                 </div>
               </div>
-              <Button type="submit" disabled={loading || uploading} className="w-full gold-button font-medium">
+              <Button type="submit" disabled={loading || uploading || hierarchySupported === null || (!editingId && !hierarchySupported)} className="w-full gold-button font-medium">
                 {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : editingId ? 'Update Category' : 'Save Category'}
               </Button>
               {editingId && (
@@ -619,6 +820,11 @@ export function AdminWorkspace() {
                           {c.is_featured && <span className="text-[10px] bg-gold/20 text-gold-deep px-2 py-0.5 rounded-full font-bold">Featured</span>}
                         </div>
                         <p className="text-xs font-mono text-muted-foreground">slug: {c.slug} • Order: {c.display_order || 0}</p>
+                        <p className="text-xs text-muted-foreground">
+                          {c.main_section === 'home_decor' || c.main_section === 'metal_services' ? SECTION_LABELS[c.main_section as MainSection] : 'Unassigned (legacy)'}
+                          {c.parent_id ? ` · Parent: ${categories.find((parent) => parent.id === c.parent_id)?.name || 'Invalid'}` : ' · Top level'}
+                          {c.is_published === false ? ' · Draft' : ''}
+                        </p>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
@@ -634,6 +840,9 @@ export function AdminWorkspace() {
                           setCatImage(c.image || '');
                           setCatIsFeatured(c.is_featured || false);
                           setCatOrder(c.display_order?.toString() || '0');
+                          setCatSection(c.main_section === 'home_decor' || c.main_section === 'metal_services' ? c.main_section : '');
+                          setCatParentId(c.parent_id || '');
+                          setCatIsPublished(c.is_published !== false);
                         }}
                       >
                         <Edit className="h-4 w-4" />
@@ -692,22 +901,37 @@ export function AdminWorkspace() {
                     <Input value={prodSku} onChange={(e) => setProdSku(e.target.value)} placeholder="RTM-BRS-001" />
                   </div>
                 </div>
+                <div>
+                  <Label htmlFor="prod-section">Main Section</Label>
+                  <select id="prod-section" value={prodSection}
+                    onChange={(event) => { setProdSection(event.target.value as MainSection | ''); setProdCatId(''); }}
+                    className="w-full rounded-xl border border-border bg-background p-2.5 text-sm">
+                    <option value="">Unassigned / legacy categories</option>
+                    {Object.entries(SECTION_LABELS).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
+                  </select>
+                </div>
                 <div className="grid grid-cols-2 gap-2">
                   <div>
-                    <Label>Category *</Label>
+                    <Label htmlFor="prod-category">Category / Subcategory *</Label>
                     <select
+                      id="prod-category"
+                      required
                       value={prodCatId}
                       onChange={(e) => setProdCatId(e.target.value)}
                       className="w-full rounded-xl border border-border bg-background/50 p-2.5 text-sm"
                     >
-                      {categories.map((c) => (
-                        <option key={c.id} value={c.id}>{c.name}</option>
+                      <option value="">Select a category</option>
+                      {productCategoryOptions.map((c) => (
+                        <option key={c.id} value={c.id}>{getCategoryPath(c, mappedCategories)}{c.isPublished === false ? ' (Draft)' : ''}</option>
                       ))}
+                      {prodCatId && !productCategoryOptions.some((category) => category.id === prodCatId) &&
+                        <option value={prodCatId} disabled>Invalid existing assignment — review required</option>}
                     </select>
                   </div>
                   <div>
-                    <Label>Sub-Category</Label>
+                    <Label>Legacy Sub-Category Label</Label>
                     <Input value={prodSubCat} onChange={(e) => setProdSubCat(e.target.value)} placeholder="Vessels / Planters" />
+                    <p className="mt-1 text-xs text-muted-foreground">Text only. Select a configured subcategory above for navigation.</p>
                   </div>
                 </div>
               </div>
@@ -799,7 +1023,86 @@ export function AdminWorkspace() {
               </div>
 
               <div className="space-y-3 pt-2">
+                <p className="text-xs font-bold uppercase tracking-wider text-gold-deep border-b border-border pb-1">6. Product Gallery</p>
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <Label>Additional Images</Label>
+                    <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5">
+                        {prodGalleryImages.map((img, idx) => (
+                          <div key={img.id || idx} className="group relative aspect-square overflow-hidden rounded-xl border border-border">
+                            <img src={img.imageUrl} alt="" className="h-full w-full object-cover" />
+                            <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 bg-black/40 opacity-0 transition-opacity group-hover:opacity-100 group-focus-within:opacity-100">
+                              <div className="flex gap-1">
+                                <button
+                                  type="button"
+                                  onClick={() => moveGalleryImage(idx, 'up')}
+                                  disabled={idx === 0}
+                                  aria-label="Move image up"
+                                  className="rounded-md bg-background/80 p-1 text-foreground disabled:opacity-50"
+                                >
+                                  <ChevronUp className="h-3 w-3" />
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => moveGalleryImage(idx, 'down')}
+                                  disabled={idx === prodGalleryImages.length - 1}
+                                  aria-label="Move image down"
+                                  className="rounded-md bg-background/80 p-1 text-foreground disabled:opacity-50"
+                                >
+                                  <ChevronDown className="h-3 w-3" />
+                                </button>
+                              </div>
+                              <button
+                                type="button"
+                                onClick={() => removeGalleryImage(idx)}
+                                aria-label="Remove image"
+                                className="rounded-md bg-destructive/80 p-1 text-white"
+                              >
+                                <Trash2 className="h-3 w-3" />
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  setProdImage(img.imageUrl);
+                                  setProdGalleryImages(prev => prev.map(pImg => ({
+                                    ...pImg,
+                                    isPrimary: pImg.imageUrl === img.imageUrl
+                                  })));
+                                }}
+                                aria-label="Set as primary image"
+                                className="rounded-md bg-gold/80 p-1 text-ink text-[10px] font-bold"
+                              >
+                                Set Primary
+                              </button>
+                            </div>
+                            <div className="absolute bottom-0 w-full bg-background/60 px-1 py-0.5 text-[10px] text-center backdrop-blur-sm">
+                              {idx + 1}
+                            </div>
+                          </div>
+                        ))}
+                      {uploading && (
+                        <div className="flex aspect-square items-center justify-center rounded-xl border border-dashed border-border bg-muted/30">
+                          <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+                        </div>
+                      )}
+                      <label className="flex aspect-square cursor-pointer items-center justify-center rounded-xl border border-dashed border-border bg-muted/30 transition-colors hover:bg-muted/50">
+                        <Upload className="h-5 w-5 text-muted-foreground" />
+                        <input
+                          type="file"
+                          multiple
+                          accept="image/*"
+                          className="hidden"
+                          onChange={handleGalleryFileUpload}
+                        />
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-3 pt-2">
                 <p className="text-xs font-bold uppercase tracking-wider text-gold-deep border-b border-border pb-1">7. Publishing & Sorting</p>
+
                 <div className="grid grid-cols-2 gap-2">
                   <div>
                     <Label>Display Order</Label>
@@ -883,6 +1186,7 @@ export function AdminWorkspace() {
                           setProdSlug(p.slug);
                           setProdSku(p.sku || '');
                           setProdCatId(p.category_id);
+                          setProdSection(mappedCategories.find((category) => category.id === p.category_id)?.mainSection || '');
                           setProdSubCat(p.sub_category || '');
                           setProdImage(p.image || '');
                           setProdBadge(p.badge || '');
@@ -898,6 +1202,7 @@ export function AdminWorkspace() {
                           setProdIsPublished(p.is_published);
                           setProdIsFeatured(p.is_featured || false);
                           setProdOrder(p.display_order?.toString() || '0');
+                          setProdGalleryImages(p.images || []);
                         }}
                       >
                         <Edit className="h-4 w-4" />
@@ -961,6 +1266,18 @@ export function AdminWorkspace() {
               <div>
                 <Label>Applications (1 per line)</Label>
                 <Textarea value={svcApplications} onChange={(e) => setSvcApplications(e.target.value)} placeholder="Architectural facades&#10;Interior decor" className="min-h-[70px]" />
+              </div>
+              <div>
+                <Label>Process Steps (JSON array — leave blank to preserve existing)</Label>
+                <Textarea
+                  value={svcProcessSteps}
+                  onChange={(e) => setSvcProcessSteps(e.target.value)}
+                  placeholder={'[\n  {"title": "Step 1", "description": "…"}\n]'}
+                  className="min-h-[100px] font-mono text-xs"
+                />
+                <p className="mt-1 text-xs text-muted-foreground">
+                  Must be a valid JSON array or left empty. Leave blank when editing to preserve existing process steps unchanged.
+                </p>
               </div>
               <div>
                 <Label>Image URL / Upload</Label>
@@ -1036,6 +1353,13 @@ export function AdminWorkspace() {
                         setSvcImage(s.image || '');
                         setSvcFeatures(s.features ? s.features.join('\n') : '');
                         setSvcApplications(s.applications ? s.applications.join('\n') : '');
+                        // Lossless: serialise the raw DB array as JSON so structured objects are fully preserved.
+                        // Editing the textarea is intentionally explicit; leave blank to preserve existing steps unchanged.
+                        setSvcProcessSteps(
+                          s.process_steps && Array.isArray(s.process_steps) && s.process_steps.length > 0
+                            ? JSON.stringify(s.process_steps, null, 2)
+                            : ''
+                        );
                         setSvcOrder(s.display_order?.toString() || '0');
                         setSvcIsPublished(s.is_published);
                       }}
@@ -1211,12 +1535,12 @@ export function AdminWorkspace() {
                 <Input required value={faqQ} onChange={(e) => setFaqQ(e.target.value)} placeholder="What is PU coating?" />
               </div>
               <div>
-                <Label>Category</Label>
-                <Input value={faqCategory} onChange={(e) => setFaqCategory(e.target.value)} placeholder="General / Services / Pricing" />
+                <Label>Answer *</Label>
+                <Textarea required value={faqA} onChange={(e) => setFaqA(e.target.value)} placeholder="Provide a clear answer…" className="min-h-[90px]" />
               </div>
               <div>
-                <Label>Answer *</Label>
-                <Textarea required value={faqA} onChange={(e) => setFaqA(e.target.value)} placeholder="PU coating provides high durability." className="min-h-[100px]" />
+                <Label>Category</Label>
+                <Input value={faqCategory} onChange={(e) => setFaqCategory(e.target.value)} placeholder="General / Services / Pricing" />
               </div>
               <div className="grid grid-cols-2 gap-2">
                 <div>
@@ -1411,14 +1735,14 @@ export function AdminWorkspace() {
                             <h4 className="text-base font-semibold">{inq.name}</h4>
                             <span
                               className={`text-[10px] px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider ${inq.status === 'new'
-                                  ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
-                                  : inq.status === 'contacted'
-                                    ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
-                                    : inq.status === 'in_progress'
-                                      ? 'bg-purple-500/20 text-purple-400 border border-purple-500/30'
-                                      : inq.status === 'converted'
-                                        ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                                        : 'bg-zinc-500/20 text-zinc-400 border border-zinc-500/30'
+                                ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
+                                : inq.status === 'contacted'
+                                  ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
+                                  : inq.status === 'in_progress'
+                                    ? 'bg-purple-500/20 text-purple-400 border border-purple-500/30'
+                                    : inq.status === 'converted'
+                                      ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                                      : 'bg-zinc-500/20 text-zinc-400 border border-zinc-500/30'
                                 }`}
                             >
                               {inq.status.replace('_', ' ')}

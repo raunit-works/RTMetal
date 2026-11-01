@@ -6,14 +6,19 @@ import { Button } from '@/components/ui/button';
 import { Reveal, StaggerGroup, StaggerItem } from '@/components/motion/reveal';
 import { SectionHeading } from '@/components/sections/section-heading';
 import { ProductCard } from '@/components/sections/product-card';
-import type { Product } from '@/lib/types';
+import type { Category, Product } from '@/lib/types';
 import { getProducts } from '@/lib/data-access';
+import { getCategorySection } from '@/lib/category-hierarchy';
 
 interface FeaturedProductsProps {
   products?: Product[];
+  categories?: Category[];
 }
 
-export function FeaturedProducts({ products: productsProp }: FeaturedProductsProps) {
+export function FeaturedProducts({
+  products: productsProp,
+  categories = [],
+}: FeaturedProductsProps) {
   const products = productsProp ?? getProducts();
 
   return (
@@ -24,7 +29,7 @@ export function FeaturedProducts({ products: productsProp }: FeaturedProductsPro
             align="left"
             eyebrow="The Collection"
             title="Featured products"
-            description="A selection of pieces that define the RT METALS aesthetic — material-led, quietly confident and built to last."
+            description="A selection of pieces that define the RTMETALCOATING aesthetic — material-led, quietly confident and built to last."
           />
           <Button
             asChild
@@ -46,7 +51,10 @@ export function FeaturedProducts({ products: productsProp }: FeaturedProductsPro
           <StaggerGroup className="mt-14 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
             {products.slice(0, 4).map((product) => (
               <StaggerItem key={product.id}>
-                <ProductCard product={product} />
+                <ProductCard
+                  product={product}
+                  division={getCategorySection(categories, product.category)}
+                />
               </StaggerItem>
             ))}
           </StaggerGroup>

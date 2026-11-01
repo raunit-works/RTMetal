@@ -1,14 +1,16 @@
 'use client';
 
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { MessageCircle, Mail, MapPin, Phone, Send, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Reveal } from '@/components/motion/reveal';
 import { SectionHeading } from '@/components/sections/section-heading';
-import { whatsappLink, EMAIL, PHONE_DISPLAY } from '@/lib/site';
+import { whatsappLink, EMAIL, PHONE_DISPLAY, isHomeDecorWhatsappVerified, isEmailVerified, isPhoneVerified, getMetalCoatingWhatsAppLink } from '@/lib/site';
 import { createInquiry } from '@/lib/supabase/inquiries';
 
 export function ContactSection() {
@@ -20,6 +22,20 @@ export function ContactSection() {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const pathname = usePathname();
+  const homeDecorWhatsAppUrl = whatsappLink(
+    "Hello RTMETALCOATING, I'd like to discuss a project.",
+  );
+  const metalCoatingWhatsAppUrl = getMetalCoatingWhatsAppLink(
+    "Hello RTMETALCOATING, I'd like to enquire about metal coating services.",
+  );
+  const isMetalCoatingPage = pathname.startsWith('/metal-coating');
+  const isHomeDecorPage = pathname.startsWith('/home-decor');
+  const contactWhatsAppUrl = isMetalCoatingPage
+    ? metalCoatingWhatsAppUrl
+    : isHomeDecorPage
+      ? homeDecorWhatsAppUrl
+      : null;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -67,7 +83,7 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-20 sm:py-28">
+    <section id="contact" className="pt-4 pb-4 sm:pt-6 sm:pb-6">
       <div className="mx-auto max-w-7xl px-5 lg:px-10">
         <SectionHeading
           eyebrow="Get in touch"
@@ -75,7 +91,7 @@ export function ContactSection() {
           description="Whether it is a product enquiry, a coating brief or a full project — tell us what you have in mind."
         />
 
-        <div className="mt-14 grid gap-8 lg:grid-cols-12 lg:gap-12">
+        <div className="mt-8 grid gap-6 lg:grid-cols-12 lg:gap-8">
           <Reveal className="lg:col-span-5">
             <div className="flex h-full flex-col justify-between gap-8 rounded-3xl bg-ink p-8 text-white sm:p-10">
               <div>
@@ -107,12 +123,18 @@ export function ContactSection() {
                     <p className="text-xs uppercase tracking-wider text-gold/90 font-medium">
                       Phone
                     </p>
-                    <a
-                      href={`tel:${PHONE_DISPLAY.replace(/\s/g, '')}`}
-                      className="mt-1 block text-sm text-white/90 transition-colors hover:text-gold"
-                    >
-                      {PHONE_DISPLAY}
-                    </a>
+                    {isPhoneVerified() ? (
+                      <a
+                        href={`tel:${PHONE_DISPLAY.replace(/\s/g, '')}`}
+                        className="mt-1 block text-sm text-white/90 transition-colors hover:text-gold"
+                      >
+                        {PHONE_DISPLAY}
+                      </a>
+                    ) : (
+                      <span className="mt-1 block text-sm text-white/40 cursor-not-allowed">
+                        {PHONE_DISPLAY}
+                      </span>
+                    )}
                   </div>
                 </li>
                 <li className="flex items-start gap-4">
@@ -123,31 +145,84 @@ export function ContactSection() {
                     <p className="text-xs uppercase tracking-wider text-gold/90 font-medium">
                       Email
                     </p>
-                    <a
-                      href={`mailto:${EMAIL}`}
-                      className="mt-1 block text-sm text-white/90 transition-colors hover:text-gold"
-                    >
-                      {EMAIL}
-                    </a>
+                    {isEmailVerified() ? (
+                      <a
+                        href={`mailto:${EMAIL}`}
+                        className="mt-1 block text-sm text-white/90 transition-colors hover:text-gold"
+                      >
+                        {EMAIL}
+                      </a>
+                    ) : (
+                      <span className="mt-1 block text-sm text-white/40 cursor-not-allowed">
+                        {EMAIL}
+                      </span>
+                    )}
                   </div>
                 </li>
               </ul>
-              <Button
-                asChild
-                size="lg"
-                className="w-full rounded-full bg-[#25D366] text-white hover:bg-[#25D366]/90"
-              >
-                <a
-                  href={whatsappLink(
-                    "Hello RT METALS, I'd like to discuss a project."
-                  )}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <MessageCircle className="mr-2 h-4 w-4" />
-                  Chat on WhatsApp
-                </a>
-              </Button>
+              {isMetalCoatingPage || isHomeDecorPage ? (
+                contactWhatsAppUrl ? (
+                  <Button
+                    asChild
+                    size="lg"
+                    className="w-full rounded-full bg-[#25D366] text-white hover:bg-[#25D366]/90"
+                  >
+                    <a
+                      href={contactWhatsAppUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <MessageCircle className="mr-2 h-4 w-4" />
+                      Chat on WhatsApp
+                    </a>
+                  </Button>
+                ) : (
+                  <Button
+                    disabled
+                    size="lg"
+                    className="w-full rounded-full bg-[#25D366]/20 text-white/40 cursor-not-allowed"
+                  >
+                    <MessageCircle className="mr-2 h-4 w-4" style={{ opacity: 0.5 }} />
+                    Chat on WhatsApp
+                  </Button>
+                )
+              ) : (
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      size="lg"
+                      className="w-full rounded-full bg-[#25D366] text-white hover:bg-[#25D366]/90"
+                    >
+                      <MessageCircle className="mr-2 h-4 w-4" />
+                      Chat on WhatsApp
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent side="bottom">
+                    {metalCoatingWhatsAppUrl ? (
+                      <DropdownMenuItem
+                        onClick={() => window.open(metalCoatingWhatsAppUrl, '_blank', 'noopener,noreferrer')}
+                      >
+                        Metal Coating Enquiry
+                      </DropdownMenuItem>
+                    ) : (
+                      <DropdownMenuItem disabled>
+                        Metal Coating Enquiry
+                      </DropdownMenuItem>
+                    )}
+                    {homeDecorWhatsAppUrl ? (
+                      <DropdownMenuItem
+                        onClick={() => window.open(homeDecorWhatsAppUrl, '_blank', 'noopener,noreferrer')}
+                      >
+                        RT HOME DECOR Support
+                      </DropdownMenuItem>
+                    ) : (
+                      <DropdownMenuItem disabled>
+                        RT HOME DECOR Support
+                      </DropdownMenuItem>
+                    )}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              )}
             </div>
           </Reveal>
 

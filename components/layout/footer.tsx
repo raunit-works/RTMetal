@@ -1,8 +1,11 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Instagram, MessageCircle, Mail, MapPin, Phone, ArrowUpRight } from 'lucide-react';
-import { INSTAGRAM_URL, EMAIL, PHONE_DISPLAY, whatsappLink } from '@/lib/site';
+import { INSTAGRAM_URL, EMAIL, PHONE_DISPLAY, whatsappLink, isHomeDecorWhatsappVerified, isEmailVerified, isPhoneVerified, getBusinessAddress, getMetalCoatingWhatsAppLink } from '@/lib/site';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 
 const footerLinks = {
   Collections: [
@@ -30,6 +33,14 @@ const footerLinks = {
 };
 
 export function Footer() {
+  const pathname = usePathname();
+  const homeDecorWhatsAppUrl = whatsappLink('Hello RTMETALCOATING.');
+  const metalCoatingWhatsAppUrl = getMetalCoatingWhatsAppLink(
+    'Hello RTMETALCOATING, I would like to enquire about metal coating services.',
+  );
+  const footerWhatsAppUrl = pathname.startsWith('/metal-coating')
+    ? metalCoatingWhatsAppUrl
+    : homeDecorWhatsAppUrl;
   return (
     <footer className="relative overflow-hidden bg-ink text-white/80">
       <div className="pointer-events-none absolute -left-32 top-0 h-96 w-96 rounded-full bg-gold/10 blur-[120px]" />
@@ -39,11 +50,14 @@ export function Footer() {
         <div className="grid gap-12 border-b border-white/10 py-16 lg:grid-cols-12 lg:gap-8 lg:py-20">
           <div className="lg:col-span-4">
             <Link href="/" className="group flex items-center gap-2.5">
-              <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/30 text-sm font-semibold text-white">
-                R
-              </span>
-              <span className="font-display text-2xl font-medium text-white">
-                RT PU <span className="gold-text">COATING</span> WORKS
+              <span className="relative h-12 w-36 overflow-hidden block">
+                <Image
+                  src="/brand/rt-logo.png"
+                  alt="RTMETALCOATING"
+                  fill
+                  sizes="144px"
+                  className="object-contain"
+                />
               </span>
             </Link>
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-white/70">
@@ -51,6 +65,30 @@ export function Footer() {
               coating services. Crafted for architects, designers and
               discerning homeowners.
             </p>
+
+            <div className="mt-10 space-y-4">
+              <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+                <p className="text-xs font-medium uppercase tracking-ultra text-gold/90">
+                  RTMETALCOATING
+                </p>
+                <p className="text-sm text-white/80 leading-relaxed">
+                  Professional Metal Coating &amp; Decorative Finishing Services
+                  <br />
+                  Mumbai, Maharashtra, India
+                </p>
+              </div>
+              <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+                <p className="text-xs font-medium uppercase tracking-ultra text-gold/90">
+                  RT HOME DECOR
+                </p>
+                <p className="text-sm text-white/80 leading-relaxed">
+                  Online Home Decoration Store
+                  <br />
+                  Wai, Satara, Maharashtra, India
+                </p>
+              </div>
+            </div>
+
             <div className="mt-8 flex items-center gap-3">
               <a
                 href={INSTAGRAM_URL}
@@ -61,22 +99,102 @@ export function Footer() {
               >
                 <Instagram className="h-5 w-5" />
               </a>
-              <a
-                href={whatsappLink('Hello RT METALS.')}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="WhatsApp"
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white/80 transition-all hover:border-gold hover:text-gold"
-              >
-                <MessageCircle className="h-5 w-5" />
-              </a>
-              <a
-                href={`mailto:${EMAIL}`}
-                aria-label="Email"
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white/80 transition-all hover:border-gold hover:text-gold"
-              >
-                <Mail className="h-5 w-5" />
-              </a>
+              {pathname.startsWith('/metal-coating') ? (
+                footerWhatsAppUrl ? (
+                  <a
+                    href={footerWhatsAppUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="WhatsApp"
+                    className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white/80 transition-all hover:border-gold hover:text-gold"
+                  >
+                    <MessageCircle className="h-5 w-5" />
+                  </a>
+                ) : (
+                  <button
+                    disabled
+                    aria-label="WhatsApp contact pending"
+                    title="Business WhatsApp contact pending client approval"
+                    className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white/40 bg-white/5 cursor-not-allowed"
+                  >
+                    <MessageCircle className="h-5 w-5" />
+                  </button>
+                )
+              ) : pathname.startsWith('/home-decor') ? (
+                footerWhatsAppUrl ? (
+                  <a
+                    href={footerWhatsAppUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="WhatsApp"
+                    className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white/80 transition-all hover:border-gold hover:text-gold"
+                  >
+                    <MessageCircle className="h-5 w-5" />
+                  </a>
+                ) : (
+                  <button
+                    disabled
+                    aria-label="WhatsApp contact pending"
+                    title="Business WhatsApp contact pending client approval"
+                    className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white/40 bg-white/5 cursor-not-allowed"
+                  >
+                    <MessageCircle className="h-5 w-5" />
+                  </button>
+                )
+              ) : (
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <button
+                      className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white/80 transition-all hover:border-gold hover:text-gold"
+                      aria-label="WhatsApp contact"
+                    >
+                      <MessageCircle className="h-5 w-5" />
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent side="bottom">
+                    {metalCoatingWhatsAppUrl ? (
+                      <DropdownMenuItem
+                        onClick={() => window.open(metalCoatingWhatsAppUrl, '_blank', 'noopener,noreferrer')}
+                      >
+                        Metal Coating Enquiry
+                      </DropdownMenuItem>
+                    ) : (
+                      <DropdownMenuItem disabled>
+                        Metal Coating Enquiry
+                      </DropdownMenuItem>
+                    )}
+                    {homeDecorWhatsAppUrl ? (
+                      <DropdownMenuItem
+                        onClick={() => window.open(homeDecorWhatsAppUrl, '_blank', 'noopener,noreferrer')}
+                      >
+                        RT HOME DECOR Support
+                      </DropdownMenuItem>
+                    ) : (
+                      <DropdownMenuItem disabled>
+                        RT HOME DECOR Support
+                      </DropdownMenuItem>
+                    )}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              )}
+              {isEmailVerified() ? (
+                <a
+                  href={`mailto:${EMAIL}`}
+                  aria-label="Email"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white/80 transition-all hover:border-gold hover:text-gold"
+                >
+                  <Mail className="h-5 w-5" />
+                </a>
+              ) : (
+                <button
+                  disabled
+                  aria-label="Email contact pending"
+                  title="Business email pending client approval"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white/40 bg-white/5 cursor-not-allowed"
+                >
+                  <Mail className="h-5 w-5" />
+                </button>
+              )}
             </div>
           </div>
 
@@ -111,35 +229,45 @@ export function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin className="mt-0.5 h-4 w-4 text-gold shrink-0" />
                 <span className="text-white/80">
-                  Studio 12, Design District
-                  <br />
-                  Mumbai, India
+                  {getBusinessAddress() || 'Business address pending client approval'}
                 </span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="h-4 w-4 text-gold shrink-0" />
-                <a
-                  href={`tel:${PHONE_DISPLAY.replace(/\s/g, '')}`}
-                  className="text-white/80 transition-colors hover:text-gold"
-                >
-                  {PHONE_DISPLAY}
-                </a>
+                {isPhoneVerified() ? (
+                  <a
+                    href={`tel:${PHONE_DISPLAY.replace(/\s/g, '')}`}
+                    className="text-white/80 transition-colors hover:text-gold"
+                  >
+                    {PHONE_DISPLAY}
+                  </a>
+                ) : (
+                  <span className="text-white/40 cursor-not-allowed">
+                    {PHONE_DISPLAY}
+                  </span>
+                )}
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="h-4 w-4 text-gold shrink-0" />
-                <a
-                  href={`mailto:${EMAIL}`}
-                  className="text-white/80 transition-colors hover:text-gold"
-                >
-                  {EMAIL}
-                </a>
+                {isEmailVerified() ? (
+                  <a
+                    href={`mailto:${EMAIL}`}
+                    className="text-white/80 transition-colors hover:text-gold"
+                  >
+                    {EMAIL}
+                  </a>
+                ) : (
+                  <span className="text-white/40 cursor-not-allowed">
+                    {EMAIL}
+                  </span>
+                )}
               </li>
             </ul>
           </div>
         </div>
 
         <div className="flex flex-col items-center justify-between gap-4 py-8 text-xs text-white/50 sm:flex-row">
-          <p>© {new Date().getFullYear()} RT METALS — All rights reserved.</p>
+          <p>© {new Date().getFullYear()} RTMETALCOATING — All rights reserved.</p>
           <p className="flex items-center gap-4">
             <Link href="/" className="transition-colors hover:text-white">
               Privacy

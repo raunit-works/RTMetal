@@ -54,23 +54,23 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'RT METALS — Home Decor & Premium Metal Coating',
-    template: '%s | RT METALS',
+    default: 'RTMETALCOATING — Professional Metal Coating & RT HOME DECOR',
+    template: '%s | RTMETALCOATING',
   },
   description:
     'A luxury house of home decor, lifestyle products, and premium metal coating services. Crafted for architects, interior designers, and discerning homeowners.',
   keywords: [
-    'RT METALS',
+    'RTMETALCOATING',
+    'RT HOME DECOR',
     'PU Coating Services',
     'Metal Coating',
     'Home Decor',
     'Lifestyle Products',
-    'Luxury Furniture Coating',
     'Custom Metal Finishes',
   ],
-  authors: [{ name: 'RT METALS' }],
-  creator: 'RT METALS',
-  publisher: 'RT METALS',
+  authors: [{ name: 'RTMETALCOATING' }],
+  creator: 'RTMETALCOATING',
+  publisher: 'RTMETALCOATING',
   formatDetection: {
     email: false,
     address: false,
@@ -83,14 +83,14 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: siteUrl || '/',
-    siteName: 'RT METALS',
-    title: 'RT METALS — Home Decor & Premium Metal Coating',
+    siteName: 'RTMETALCOATING',
+    title: 'RTMETALCOATING — Professional Metal Coating & RT HOME DECOR',
     description:
       'A luxury house of home decor, lifestyle products, and premium metal coating services.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'RT METALS — Home Decor & Premium Metal Coating',
+    title: 'RTMETALCOATING — Professional Metal Coating & RT HOME DECOR',
     description:
       'A luxury house of home decor, lifestyle products, and premium metal coating services.',
   },
