@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'My Account | RT METALS',
+  title: 'My Account | RTMETALCOATING',
   description: 'Customer Account Dashboard.',
   robots: {
     index: false,

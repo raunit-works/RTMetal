@@ -7,10 +7,8 @@ import { ArrowRight, GripVertical } from 'lucide-react';
 import { Reveal } from '@/components/motion/reveal';
 import { cn } from '@/lib/utils';
 
-const BEFORE_IMAGE =
-  'https://images.pexels.com/photos/1108101/pexels-photo-1108101.jpeg?auto=compress&cs=tinysrgb&w=1200';
-const AFTER_IMAGE =
-  'https://images.pexels.com/photos/8216549/pexels-photo-8216549.jpeg?auto=compress&cs=tinysrgb&w=1200';
+const BEFORE_IMAGE = '/before-metal-worn.jpg';
+const AFTER_IMAGE = '/after-metal-polished.jpg';
 
 function BeforeAfterSlider() {
   const [sliderPosition, setSliderPosition] = React.useState(50);

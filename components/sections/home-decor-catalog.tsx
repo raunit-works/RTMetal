@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import Link from 'next/link';
 import { SlidersHorizontal } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ProductCard } from '@/components/sections/product-card';
@@ -8,7 +9,8 @@ import { Reveal, StaggerGroup, StaggerItem } from '@/components/motion/reveal';
 import { SectionHeading } from '@/components/sections/section-heading';
 import { InstagramSection } from '@/components/sections/instagram-section';
 import { CtaBanner } from '@/components/sections/cta-banner';
-import type { Category, Product, InstagramPost } from '@/lib/types';
+import type { Category, Product, InstagramPost, MainSection } from '@/lib/types';
+import { categoryHref, filterCategoryProducts, getCategoryPath } from '@/lib/category-hierarchy';
 
 const sortOptions = [
   { value: 'featured', label: 'Featured' },
@@ -19,26 +21,28 @@ interface HomeDecorCatalogProps {
   categories: Category[];
   products: Product[];
   instagramPosts: InstagramPost[];
+  selectedCategory?: Category;
+  mainSection?: MainSection;
 }
 
 export function HomeDecorCatalog({
   categories,
   products,
   instagramPosts,
+  selectedCategory,
+  mainSection = 'home_decor',
 }: HomeDecorCatalogProps) {
-  const [activeCategory, setActiveCategory] = useState<string>('all');
+  const activeCategory = selectedCategory?.slug;
+  const collectionHref = mainSection === 'metal_services' ? '/metal-coating' : '/home-decor';
   const [sortBy, setSortBy] = useState<string>('featured');
 
   const filtered = useMemo(() => {
-    let list =
-      activeCategory === 'all'
-        ? products
-        : products.filter((p) => p.category === activeCategory);
+    const list = filterCategoryProducts(products, categories, activeCategory);
 
     const sorted = [...list];
     if (sortBy === 'rating') sorted.sort((a, b) => b.rating - a.rating);
     return sorted;
-  }, [activeCategory, sortBy, products]);
+  }, [activeCategory, sortBy, products, categories]);
 
   return (
     <>
@@ -56,16 +60,21 @@ export function HomeDecorCatalog({
         <div className="relative mx-auto max-w-7xl px-5 pb-20 lg:px-10">
           <Reveal>
             <p className="mb-4 text-xs font-medium uppercase tracking-ultra text-gold">
-              Division 01 · Home Decor & Lifestyle
+              {mainSection === 'metal_services' ? 'Metal · Product Collection' : 'RT METAL / HOME DECOR'}
             </p>
             <h1 className="font-display text-5xl font-medium leading-[0.98] tracking-tight sm:text-7xl lg:text-8xl">
-              The <span className="gold-text">Collection</span>
+              {selectedCategory ? selectedCategory.name : <>Home Decor & <span className="gold-text">Decorative Metalwork</span></>}
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">
-              A curated edit of home decor, decorative accessories, gift
-              articles and daily utility — each piece chosen for material,
-              form and the way it feels to live with.
+              {selectedCategory ? selectedCategory.description : mainSection === 'metal_services'
+                ? 'Explore our metal product collections. Contact our team for availability and a quotation.'
+                : <>Explore decorative metal art, mirrors, furniture accents, partitions and
+                  custom metalwork for residential and commercial spaces.</>}
             </p>
+            {selectedCategory && <nav aria-label="Category breadcrumb" className="mt-4 text-sm text-white/80">
+              <Link href={collectionHref} className="hover:text-gold">All collections</Link>
+              <span> / {getCategoryPath(selectedCategory, categories)}</span>
+            </nav>}
           </Reveal>
         </div>
       </section>
@@ -75,15 +84,15 @@ export function HomeDecorCatalog({
           <div className="hide-scrollbar flex items-center gap-2 overflow-x-auto">
             <CategoryChip
               label="All"
-              active={activeCategory === 'all'}
-              onClick={() => setActiveCategory('all')}
+              active={!activeCategory}
+              href={collectionHref}
             />
             {categories.map((cat) => (
               <CategoryChip
                 key={cat.slug}
-                label={cat.name}
+                label={getCategoryPath(cat, categories)}
                 active={activeCategory === cat.slug}
-                onClick={() => setActiveCategory(cat.slug)}
+                href={categoryHref(cat)}
               />
             ))}
           </div>
@@ -109,7 +118,7 @@ export function HomeDecorCatalog({
           <p className="mb-8 text-sm text-muted-foreground">
             Showing <span className="font-medium text-foreground">{filtered.length}</span>{' '}
             {filtered.length === 1 ? 'piece' : 'pieces'}
-            {activeCategory !== 'all' && (
+            {activeCategory && (
               <>
                 {' '}in{' '}
                 <span className="font-medium text-foreground">
@@ -122,7 +131,7 @@ export function HomeDecorCatalog({
           <StaggerGroup className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
             {filtered.map((product) => (
               <StaggerItem key={product.id}>
-                <ProductCard product={product} />
+                <ProductCard product={product} division={mainSection} />
               </StaggerItem>
             ))}
           </StaggerGroup>
@@ -154,8 +163,8 @@ export function HomeDecorCatalog({
             <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {categories.slice(0, 3).map((cat, i) => (
                 <Reveal key={cat.slug} delay={i * 0.1}>
-                  <button
-                    onClick={() => setActiveCategory(cat.slug)}
+                  <Link
+                    href={categoryHref(cat)}
                     className="group relative block w-full text-left overflow-hidden rounded-3xl"
                   >
                     <div className="relative aspect-[4/3] overflow-hidden">
@@ -175,7 +184,7 @@ export function HomeDecorCatalog({
                         {cat.description}
                       </p>
                     </div>
-                  </button>
+                  </Link>
                 </Reveal>
               ))}
             </div>
@@ -199,7 +208,7 @@ export function HomeDecorCatalog({
         }
         description="Our team can guide you to the right pieces for your space, or arrange a bespoke commission."
         primary={{ label: 'Contact Us', href: '/#contact' }}
-        secondary={{ label: 'Explore Services', href: '/metal-coating' }}
+        secondary={{ label: 'Explore Our Services', href: '/metal-coating' }}
         variant="light"
       />
     </>
@@ -209,22 +218,22 @@ export function HomeDecorCatalog({
 function CategoryChip({
   label,
   active,
-  onClick,
+  href,
 }: {
   label: string;
   active: boolean;
-  onClick: () => void;
+  href: string;
 }) {
   return (
-    <button
-      onClick={onClick}
-      className={`whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition-all ${
-        active
-          ? 'bg-ink text-white'
-          : 'border border-border text-foreground/70 hover:border-foreground/30 hover:text-foreground'
-      }`}
+    <Link
+      href={href}
+      aria-current={active ? 'page' : undefined}
+      className={`whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition-all ${active
+        ? 'bg-ink text-white'
+        : 'border border-border text-foreground/70 hover:border-foreground/30 hover:text-foreground'
+        }`}
     >
       {label}
-    </button>
+    </Link>
   );
 }

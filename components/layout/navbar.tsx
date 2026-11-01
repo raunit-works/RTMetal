@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import * as React from 'react';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
@@ -7,26 +8,28 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, X, ChevronDown, MessageCircle, User, LogOut, LogIn, Shield, Heart } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { getCategories, getServices } from '@/lib/data-access';
-import { whatsappLink } from '@/lib/site';
+import { getCategoriesAsync, getServices, getServicesAsync, isSupabaseAuthoritative } from '@/lib/data-access';
+import { categoryHref, getCategoryPath, isCategoryInSection } from '@/lib/category-hierarchy';
+import { whatsappLink, isHomeDecorWhatsappVerified, getMetalCoatingWhatsAppLink, isMetalCoatingWhatsappVerified } from '@/lib/site';
 import { resolveIcon } from '@/lib/icons';
 import { Wrench } from 'lucide-react';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { createSupabaseBrowserClient } from '@/lib/supabase/client';
 import { useWishlist } from '@/components/providers/wishlist-provider';
+import type { Category, Service } from '@/lib/types';
 import type { User as SupabaseUser } from '@supabase/supabase-js';
 
-const categories = getCategories();
-const services = getServices();
+const curatedServices = getServices();
 
 const navLinks = [
   { label: 'Home', href: '/' },
   {
-    label: 'Products',
+    label: 'Home Decor',
     href: '/home-decor',
     mega: true,
   },
   {
-    label: 'Services',
+    label: 'Metal Services',
     href: '/metal-coating',
     dropdown: true,
   },
@@ -70,10 +73,29 @@ export function Navbar() {
   const [isAdmin, setIsAdmin] = React.useState(false);
   const [userMenuOpen, setUserMenuOpen] = React.useState(false);
   const [headerMounted, setHeaderMounted] = React.useState(false);
+  const [services, setServices] = React.useState<Service[]>(
+    isSupabaseAuthoritative() ? [] : curatedServices,
+  );
+  const [configuredCategories, setConfiguredCategories] = React.useState<Category[]>([]);
+  const homeDecorWhatsAppUrl = whatsappLink(
+    "Hello RTMETALCOATING, I'd like to enquire about your services.",
+  );
+  const metalCoatingWhatsAppUrl = getMetalCoatingWhatsAppLink(
+    "Hello RTMETALCOATING, I'd like to enquire about metal coating services.",
+  );
+  const navWhatsAppUrl = pathname.startsWith('/metal-coating')
+    ? metalCoatingWhatsAppUrl
+    : pathname.startsWith('/home-decor')
+      ? homeDecorWhatsAppUrl
+      : null;
+  const categories = configuredCategories.filter((category) => isCategoryInSection(category, 'home_decor'));
+  const metalCategories = configuredCategories.filter((category) => isCategoryInSection(category, 'metal_services'));
 
-  // Refs for outside-click detection
+  // Refs for outside-click detection and keyboard focus management
   const productsRef = React.useRef<HTMLLIElement>(null);
   const servicesRef = React.useRef<HTMLLIElement>(null);
+  const servicesTriggerRef = React.useRef<HTMLAnchorElement>(null);
+  const servicesMenuRef = React.useRef<HTMLDivElement>(null);
 
   // Close timer ref — debounce mouseleave to bridge hover dead zone
   const closeTimerRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -90,6 +112,30 @@ export function Navbar() {
     setUserMenuOpen(false);
     setMobileOpen(false);
   }, [pathname]);
+
+  React.useEffect(() => {
+    let cancelled = false;
+
+    getCategoriesAsync({ allowStaticFallback: false }).then((items) => {
+      if (!cancelled) setConfiguredCategories(items);
+    });
+
+    getServicesAsync({ allowStaticFallback: false })
+      .then((publishedServices) => {
+        if (cancelled) return;
+        setServices(publishedServices);
+      })
+      .catch(() => {
+        if (cancelled) return;
+        // In Supabase-authoritative mode, a database error must fail closed.
+        // Static services must never override an admin's unpublished state.
+        setServices(isSupabaseAuthoritative() ? [] : curatedServices.filter((s) => s.isPublished !== false));
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   // Close menu on Escape key
   React.useEffect(() => {
@@ -119,9 +165,10 @@ export function Navbar() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [openMenu]);
 
-  // Close menu on meaningful scroll (> 50px from header)
+  // Close Products on meaningful page scroll, but keep Services open
+  // so its internally scrollable published list remains usable.
   React.useEffect(() => {
-    if (!openMenu) return;
+    if (openMenu !== 'products') return;
     const handleScroll = () => {
       if (window.scrollY > 120) {
         setOpenMenu(null);
@@ -146,6 +193,63 @@ export function Navbar() {
       closeTimerRef.current = null;
     }, 80); // 80ms debounce bridges the hover gap
   }, []);
+
+  const focusFirstServiceItem = React.useCallback(() => {
+    requestAnimationFrame(() => {
+      servicesMenuRef.current
+        ?.querySelector<HTMLElement>('[role="menuitem"]')
+        ?.focus();
+    });
+  }, []);
+
+  const handleServiceTriggerKeyDown = React.useCallback(
+    (event: React.KeyboardEvent<HTMLAnchorElement>) => {
+      if (services.length === 0 || event.key !== 'ArrowDown') return;
+      event.preventDefault();
+      handleMenuEnter('services');
+      focusFirstServiceItem();
+    },
+    [focusFirstServiceItem, handleMenuEnter, services.length]
+  );
+
+  const handleServicesMenuKeyDown = React.useCallback(
+    (event: React.KeyboardEvent<HTMLDivElement>) => {
+      const menu = servicesMenuRef.current;
+      if (!menu) return;
+
+      const items = Array.from(
+        menu.querySelectorAll<HTMLElement>('[role="menuitem"]')
+      );
+      if (items.length === 0) return;
+
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        event.stopPropagation();
+        setOpenMenu(null);
+        servicesTriggerRef.current?.focus();
+        return;
+      }
+
+      const activeIndex = items.indexOf(document.activeElement as HTMLElement);
+      let nextIndex = -1;
+
+      if (event.key === 'ArrowDown') {
+        nextIndex = activeIndex < 0 ? 0 : (activeIndex + 1) % items.length;
+      } else if (event.key === 'ArrowUp') {
+        nextIndex = activeIndex <= 0 ? items.length - 1 : activeIndex - 1;
+      } else if (event.key === 'Home') {
+        nextIndex = 0;
+      } else if (event.key === 'End') {
+        nextIndex = items.length - 1;
+      }
+
+      if (nextIndex >= 0) {
+        event.preventDefault();
+        items[nextIndex]?.focus();
+      }
+    },
+    []
+  );
 
   // Animation variants
   const dropdownMotion = prefersReducedMotion.current
@@ -261,29 +365,24 @@ export function Navbar() {
             transition: 'height 300ms ease',
           }}
         >
+
           {/* ── LOGO / BRAND ── */}
           <Link
             href="/"
-            className="group flex items-center gap-2.5"
+            className="flex shrink-0 items-center"
             onClick={() => setMobileOpen(false)}
+            aria-label="RT Metal Coating — Home"
           >
-            <span
-              className="flex h-9 w-9 items-center justify-center rounded-full text-sm font-semibold tracking-tight transition-colors"
-              style={{
-                border: '1.5px solid rgba(255,255,255,0.35)',
-                color: HDR.ivory,
-                background: 'transparent',
-              }}
-            >
-              R
-            </span>
-            <span
-              className="font-display text-xl font-medium tracking-tight sm:text-2xl"
-              style={{ color: HDR.logoLight }}
-            >
-              RT <span className="gold-text">METAL</span> WORKS
-            </span>
+            <Image
+              src="/brand/rt-logo.png"
+              alt="RT Metal Coating"
+              width={180}
+              height={72}
+              priority
+              className="block h-12 w-auto max-w-[150px] object-contain sm:h-14 sm:max-w-[180px]"
+            />
           </Link>
+
 
           {/* ── DESKTOP NAV LINKS ── */}
           <ul className="hidden items-center lg:flex" style={{ gap: '6px' }}>
@@ -291,6 +390,7 @@ export function Navbar() {
               const isProducts = link.mega;
               const isServices = link.dropdown;
               const menuKey: OpenMenu = isProducts ? 'products' : isServices ? 'services' : null;
+              const showServicesMenu = Boolean(isServices && services.length > 0);
 
               return (
                 <li
@@ -298,15 +398,23 @@ export function Navbar() {
                   ref={isProducts ? productsRef : isServices ? servicesRef : undefined}
                   className="relative"
                   onMouseEnter={() => {
+                    if (menuKey === 'services' && services.length === 0) return;
                     if (menuKey) handleMenuEnter(menuKey);
                   }}
                   onMouseLeave={() => {
+                    if (
+                      menuKey === 'services' &&
+                      servicesRef.current?.contains(document.activeElement)
+                    ) {
+                      return;
+                    }
                     if (menuKey) handleMenuLeave();
                   }}
                 >
                   <Link
+                    ref={isServices ? servicesTriggerRef : undefined}
                     href={link.href}
-                    className="rt-nav-link group flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium"
+                    className="rt-nav-link group flex items-center gap-1 whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium"
                     style={{
                       color: isActive(link.href) ? HDR.ivory : HDR.textMuted,
                       opacity: isActive(link.href) ? 1 : 0.85,
@@ -320,14 +428,26 @@ export function Navbar() {
                       (e.currentTarget as HTMLElement).style.color = isActive(link.href) ? HDR.ivory : HDR.textMuted;
                       (e.currentTarget as HTMLElement).style.opacity = isActive(link.href) ? '1' : '0.85';
                     }}
-                    aria-haspopup={menuKey ? 'true' : undefined}
-                    aria-expanded={menuKey ? (openMenu === menuKey) : undefined}
+                    aria-haspopup={
+                      isProducts ? 'true' : showServicesMenu ? 'menu' : undefined
+                    }
+                    aria-expanded={
+                      menuKey && (isProducts || showServicesMenu)
+                        ? openMenu === menuKey
+                        : undefined
+                    }
+                    aria-controls={
+                      showServicesMenu ? 'navbar-services-menu' : undefined
+                    }
+                    onKeyDown={
+                      isServices ? handleServiceTriggerKeyDown : undefined
+                    }
                     onClick={() => {
                       if (menuKey) setOpenMenu(null);
                     }}
                   >
                     {link.label}
-                    {(isProducts || isServices) && (
+                    {(isProducts || showServicesMenu) && (
                       <ChevronDown
                         className="h-3.5 w-3.5 opacity-60 transition-transform duration-300"
                         style={{
@@ -371,7 +491,7 @@ export function Navbar() {
                             }}
                           >
                             <div
-                              className="p-6"
+                              className="rt-services-scroll p-6"
                               style={{
                                 background: HDR.ddBg,
                                 border: `1px solid ${HDR.ddBorder}`,
@@ -404,7 +524,7 @@ export function Navbar() {
                                 {categories.map((cat) => (
                                   <Link
                                     key={cat.slug}
-                                    href={`/home-decor?category=${cat.slug}`}
+                                    href={categoryHref(cat)}
                                     className="group flex gap-4 rounded-xl p-3 transition-colors"
                                     style={{ color: '#ECE8E1' }}
                                     role="menuitem"
@@ -424,8 +544,8 @@ export function Navbar() {
                                         className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                                       />
                                     </div>
-                                    <div>
-                                      <p className="text-sm font-semibold" style={{ color: '#ECE8E1' }}>{cat.name}</p>
+                                    <div className="min-w-0">
+                                      <p className="break-words text-sm font-semibold" style={{ color: '#ECE8E1' }}>{getCategoryPath(cat, categories)}</p>
                                       <p className="mt-0.5 text-xs" style={{ color: 'rgba(236,232,225,0.55)' }}>
                                         {cat.tagline}
                                       </p>
@@ -436,6 +556,7 @@ export function Navbar() {
                                   </Link>
                                 ))}
                               </div>
+                              {categories.length === 0 && <p className="text-sm text-white/60">No published collections available yet.</p>}
                             </div>
                           </motion.div>
                         )}
@@ -450,10 +571,11 @@ export function Navbar() {
                       style={{ transform: 'translateX(-50%)', pointerEvents: openMenu === 'services' ? 'auto' : 'none' }}
                     >
                       <AnimatePresence>
-                        {openMenu === 'services' && (
+                        {openMenu === 'services' && showServicesMenu && (
                           <motion.div
                             {...dropdownMotion}
                             role="menu"
+                            aria-label="Metal services"
                             onFocus={() => handleMenuEnter('services')}
                             onBlur={(e) => {
                               if (!e.currentTarget.contains(e.relatedTarget as Node)) {
@@ -462,7 +584,10 @@ export function Navbar() {
                             }}
                           >
                             <div
-                              className="w-80 p-3"
+                              ref={servicesMenuRef}
+                              id="navbar-services-menu"
+                              className="rt-services-scroll w-80 p-3"
+                              onKeyDown={handleServicesMenuKeyDown}
                               style={{
                                 background: HDR.ddBg,
                                 border: `1px solid ${HDR.ddBorder}`,
@@ -477,8 +602,8 @@ export function Navbar() {
                                 return (
                                   <Link
                                     key={svc.slug}
-                                    href={`/metal-coating#${svc.slug}`}
-                                    className="group flex items-start gap-3 rounded-xl p-3 transition-colors"
+                                    href={`/metal-coating/${svc.slug}`}
+                                    className="group flex min-w-0 items-start gap-3 rounded-xl p-3 transition-colors"
                                     style={{ color: '#ECE8E1' }}
                                     role="menuitem"
                                     onClick={() => setOpenMenu(null)}
@@ -489,16 +614,28 @@ export function Navbar() {
                                       (e.currentTarget as HTMLElement).style.background = 'transparent';
                                     }}
                                   >
-                                    <SvcIcon className="mt-0.5 h-5 w-5" style={{ color: HDR.brass }} />
-                                    <div>
-                                      <p className="text-sm font-semibold" style={{ color: '#ECE8E1' }}>{svc.name}</p>
-                                      <p className="mt-0.5 text-xs" style={{ color: 'rgba(236,232,225,0.55)' }}>
+                                    <SvcIcon className="mt-0.5 h-5 w-5 shrink-0" style={{ color: HDR.brass }} />
+                                    <div className="min-w-0">
+                                      <p className="break-words text-sm font-semibold" style={{ color: '#ECE8E1' }}>{svc.name}</p>
+                                      <p className="mt-0.5 line-clamp-2 break-words text-xs" style={{ color: 'rgba(236,232,225,0.55)' }}>
                                         {svc.description}
                                       </p>
                                     </div>
                                   </Link>
                                 );
                               })}
+                              {metalCategories.length > 0 && (
+                                <div className="mt-3 border-t border-white/10 pt-3">
+                                  <Link
+                                    href="/metal-coating#collections"
+                                    role="menuitem"
+                                    onClick={() => setOpenMenu(null)}
+                                    className="block rounded-xl p-3 text-sm text-white/80 hover:bg-white/5"
+                                  >
+                                    View Metal Collections
+                                  </Link>
+                                </div>
+                              )}
                             </div>
                           </motion.div>
                         )}
@@ -513,34 +650,86 @@ export function Navbar() {
           {/* ── DESKTOP CTA BUTTONS ── */}
           <div className="hidden items-center lg:flex" style={{ gap: '12px' }}>
             {/* WhatsApp */}
-            <a
-              href={whatsappLink(
-                "Hello RT METALS, I'd like to enquire about your services."
-              )}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rt-wa-btn inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-              style={{
-                height: '36px',
-                paddingLeft: '20px',
-                paddingRight: '20px',
-                background: 'transparent',
-                border: '1px solid rgba(255,255,255,0.28)',
-                color: HDR.ivory,
-                transition: 'background 200ms ease, border-color 200ms ease',
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.08)';
-                (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.45)';
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.background = 'transparent';
-                (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.28)';
-              }}
-            >
-              <MessageCircle className="mr-2 h-4 w-4" style={{ color: HDR.ivory }} />
-              WhatsApp
-            </a>
+            {navWhatsAppUrl ? (
+              <a
+                href={navWhatsAppUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rt-wa-btn inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+                style={{
+                  height: '36px',
+                  paddingLeft: '20px',
+                  paddingRight: '20px',
+                  background: 'transparent',
+                  border: '1px solid rgba(255,255,255,0.28)',
+                  color: HDR.ivory,
+                  transition: 'background 200ms ease, border-color 200ms ease',
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.08)';
+                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.45)';
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = 'transparent';
+                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.28)';
+                }}
+              >
+                <MessageCircle className="mr-2 h-4 w-4" style={{ color: HDR.ivory }} />
+                WhatsApp
+              </a>
+            ) : (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button
+                    className="rt-wa-btn inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+                    style={{
+                      height: '36px',
+                      paddingLeft: '20px',
+                      paddingRight: '20px',
+                      background: 'transparent',
+                      border: '1px solid rgba(255,255,255,0.28)',
+                      color: HDR.ivory,
+                      transition: 'background 200ms ease, border-color 200ms ease',
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.08)';
+                      (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.45)';
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLElement).style.background = 'transparent';
+                      (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.28)';
+                    }}
+                  >
+                    <MessageCircle className="mr-2 h-4 w-4" style={{ color: HDR.ivory }} />
+                    WhatsApp
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent side="bottom">
+                  {metalCoatingWhatsAppUrl ? (
+                    <DropdownMenuItem
+                      onClick={() => window.open(metalCoatingWhatsAppUrl, '_blank', 'noopener,noreferrer')}
+                    >
+                      Metal Coating Enquiry
+                    </DropdownMenuItem>
+                  ) : (
+                    <DropdownMenuItem disabled>
+                      Metal Coating Enquiry
+                    </DropdownMenuItem>
+                  )}
+                  {homeDecorWhatsAppUrl ? (
+                    <DropdownMenuItem
+                      onClick={() => window.open(homeDecorWhatsAppUrl, '_blank', 'noopener,noreferrer')}
+                    >
+                      RT HOME DECOR Support
+                    </DropdownMenuItem>
+                  ) : (
+                    <DropdownMenuItem disabled>
+                      RT HOME DECOR Support
+                    </DropdownMenuItem>
+                  )}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )}
 
             {/* Sign In / User Menu */}
             {user ? (
@@ -751,8 +940,14 @@ export function Navbar() {
                 className="flex items-center justify-between px-6 py-5"
                 style={{ borderBottom: `1px solid ${HDR.ddBorder}` }}
               >
-                <span className="font-display text-xl font-medium" style={{ color: HDR.mobileText }}>
-                  RT PU <span className="gold-text">COATING</span> WORKS
+                <span className="relative h-10 w-20 overflow-hidden block inline">
+                  <Image
+                    src="/brand/rt-logo.png"
+                    alt="RTMETALCOATING"
+                    fill
+                    sizes="80px"
+                    className="object-contain"
+                  />
                 </span>
                 <button
                   className="flex h-10 w-10 items-center justify-center rounded-full"
@@ -768,7 +963,7 @@ export function Navbar() {
               </div>
 
               {/* Mobile drawer body */}
-              <div className="flex-1 overflow-y-auto px-6 py-6">
+              <div className="flex-1 overflow-y-auto overscroll-contain px-6 py-6">
                 {/* Logged-in user block */}
                 {user && (
                   <div
@@ -888,60 +1083,121 @@ export function Navbar() {
                   {categories.map((cat) => (
                     <li key={cat.slug}>
                       <Link
-                        href={`/home-decor?category=${cat.slug}`}
+                        href={categoryHref(cat)}
                         onClick={() => setMobileOpen(false)}
                         className="block rounded-lg px-3 py-2.5 text-sm transition-colors"
                         style={{ color: 'rgba(241,238,232,0.7)' }}
                       >
-                        {cat.name}
+                        {getCategoryPath(cat, categories)}
                       </Link>
                     </li>
                   ))}
                 </ul>
 
-                <p
-                  className="mb-3 mt-8 text-xs font-medium uppercase tracking-ultra"
-                  style={{ color: 'rgba(241,238,232,0.4)' }}
-                >
-                  Services
-                </p>
-                <ul className="space-y-1">
-                  {services.map((svc) => (
-                    <li key={svc.slug}>
-                      <Link
-                        href={`/metal-coating#${svc.slug}`}
-                        onClick={() => setMobileOpen(false)}
-                        className="block rounded-lg px-3 py-2.5 text-sm transition-colors"
-                        style={{ color: 'rgba(241,238,232,0.7)' }}
-                      >
-                        {svc.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+                {services.length > 0 && (
+                  <>
+                    <p
+                      className="mb-3 mt-8 text-xs font-medium uppercase tracking-ultra"
+                      style={{ color: 'rgba(241,238,232,0.4)' }}
+                    >
+                      Metal Services
+                    </p>
+                    <ul className="space-y-1">
+                      {services.map((svc) => (
+                        <li key={svc.slug}>
+                          <Link
+                            href={`/metal-coating/${svc.slug}`}
+                            onClick={() => setMobileOpen(false)}
+                            className="block break-words rounded-lg px-3 py-3 text-sm transition-colors"
+                            style={{ color: 'rgba(241,238,232,0.7)' }}
+                          >
+                            {svc.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+                {metalCategories.length > 0 && (
+                  <Link
+                    href="/metal-coating#collections"
+                    onClick={() => setMobileOpen(false)}
+                    className="mt-8 block break-words rounded-lg px-3 py-3 text-sm text-white/70"
+                  >
+                    View Metal Collections
+                  </Link>
+                )}
               </div>
 
               {/* Mobile drawer footer */}
               <div className="p-6" style={{ borderTop: `1px solid ${HDR.ddBorder}` }}>
-                <a
-                  href={whatsappLink(
-                    "Hello RT METALS, I'd like to enquire about your services."
-                  )}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setMobileOpen(false)}
-                  className="flex w-full items-center justify-center rounded-full text-sm font-medium"
-                  style={{
-                    height: '44px',
-                    background: 'rgba(255,255,255,0.08)',
-                    border: `1px solid rgba(255,255,255,0.15)`,
-                    color: HDR.mobileText,
-                    transition: 'background 200ms ease',
-                  }}
-                >
-                  <MessageCircle className="mr-2 h-4 w-4" />
-                  Chat on WhatsApp
-                </a>
+                {navWhatsAppUrl ? (
+                  <a
+                    href={navWhatsAppUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setMobileOpen(false)}
+                    className="flex w-full items-center justify-center rounded-full text-sm font-medium"
+                    style={{
+                      height: '44px',
+                      background: 'rgba(255,255,255,0.08)',
+                      border: `1px solid rgba(255,255,255,0.15)`,
+                      color: HDR.mobileText,
+                      transition: 'background 200ms ease',
+                    }}
+                  >
+                    <MessageCircle className="mr-2 h-4 w-4" />
+                    Chat on WhatsApp
+                  </a>
+                ) : (
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <button
+                        className="flex w-full items-center justify-center rounded-full text-sm font-medium"
+                        style={{
+                          height: '44px',
+                          background: 'rgba(255,255,255,0.08)',
+                          border: `1px solid rgba(255,255,255,0.15)`,
+                          color: HDR.mobileText,
+                          transition: 'background 200ms ease',
+                        }}
+                      >
+                        <MessageCircle className="mr-2 h-4 w-4" />
+                        WhatsApp
+                      </button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent side="bottom">
+                      {metalCoatingWhatsAppUrl ? (
+                        <DropdownMenuItem
+                          onClick={() => {
+                            setMobileOpen(false);
+                            window.open(metalCoatingWhatsAppUrl, '_blank', 'noopener,noreferrer');
+                          }}
+                        >
+                          Metal Coating Enquiry
+                        </DropdownMenuItem>
+                      ) : (
+                        <DropdownMenuItem disabled>
+                          Metal Coating Enquiry
+                        </DropdownMenuItem>
+                      )}
+                      {homeDecorWhatsAppUrl ? (
+                        <DropdownMenuItem
+                          onClick={() => {
+                            setMobileOpen(false);
+                            window.open(homeDecorWhatsAppUrl, '_blank', 'noopener,noreferrer');
+                          }}
+                        >
+                          RT HOME DECOR Support
+                        </DropdownMenuItem>
+                      ) : (
+                        <DropdownMenuItem disabled>
+                          RT HOME DECOR Support
+                        </DropdownMenuItem>
+                      )}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                )}
               </div>
             </motion.div>
           </>
@@ -956,6 +1212,30 @@ export function Navbar() {
         }
         .rt-header li:hover .rt-nav-underline {
           transform: scaleX(1) !important;
+        }
+        /* Viewport-aware scrolling for the published services dropdown */
+        .rt-services-scroll {
+          max-height: calc(100vh - 7rem);
+          max-height: calc(100dvh - 7rem);
+          overflow-x: hidden;
+          overflow-y: auto;
+          overscroll-behavior: contain;
+          scrollbar-width: thin;
+          scrollbar-color: rgba(201, 155, 76, 0.55) transparent;
+        }
+        .rt-services-scroll::-webkit-scrollbar {
+          width: 6px;
+        }
+        .rt-services-scroll::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .rt-services-scroll::-webkit-scrollbar-thumb {
+          background: rgba(201, 155, 76, 0.45);
+          border: 0;
+          border-radius: 999px;
+        }
+        .rt-services-scroll::-webkit-scrollbar-thumb:hover {
+          background: rgba(201, 155, 76, 0.7);
         }
         /* Focus styles for accessibility */
         .rt-header a:focus-visible,

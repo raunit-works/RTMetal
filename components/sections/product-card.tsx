@@ -8,17 +8,26 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import type { Product } from '@/lib/types';
 
-import { getHomeDecorWhatsAppLink } from '@/lib/site';
+import { getHomeDecorWhatsAppLink, isHomeDecorWhatsappVerified, getMetalCoatingWhatsAppLink } from '@/lib/site';
 
 import { useWishlist } from '@/components/providers/wishlist-provider';
 
-export function ProductCard({ product }: { product: Product }) {
+interface ProductCardProps {
+  product: Product;
+  division?: 'home_decor' | 'metal_services';
+}
+
+export function ProductCard({ product, division = 'home_decor' }: ProductCardProps) {
   const [quickView, setQuickView] = useState(false);
   const [isPending, setIsPending] = useState(false);
   const { isInWishlist, toggleItem } = useWishlist();
 
   const productSlug = product.slug || product.id;
   const isSaved = isInWishlist(product.id) || (product.slug ? isInWishlist(product.slug) : false);
+  const productDetailLink = division === 'metal_services' ? `/metal-coating/product/${productSlug}` : `/home-decor/${productSlug}`;
+  const productWhatsAppUrl = division === 'metal_services'
+    ? getMetalCoatingWhatsAppLink(`Hello RTMETALCOATING, I am interested in ${product.name}. Please share more details.`)
+    : getHomeDecorWhatsAppLink(`Hello RTMETALCOATING, I am interested in ${product.name}. Please share more details.`);
 
   const handleWishlistToggle = async (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -75,13 +84,13 @@ export function ProductCard({ product }: { product: Product }) {
             )}
           </button>
 
-          <div className="absolute inset-x-3 bottom-3 flex translate-y-3 gap-2 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+<div className="absolute inset-x-3 bottom-3 flex translate-y-3 gap-2 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
             <Button
               asChild
               size="sm"
               className="flex-1 rounded-full bg-ink/90 text-white backdrop-blur-md hover:bg-ink"
             >
-              <Link href={`/home-decor/${productSlug}`}>View Details</Link>
+              <Link href={productDetailLink}>View Details</Link>
             </Button>
             <Button
               size="sm"
@@ -96,8 +105,8 @@ export function ProductCard({ product }: { product: Product }) {
         </div>
 
         <div className="mt-4 flex items-start justify-between gap-2">
-          <div>
-            <Link href={`/home-decor/${productSlug}`}>
+<div>
+            <Link href={productDetailLink}>
               <h3 className="text-sm font-semibold leading-snug transition-colors hover:text-gold-deep">
                 {product.name}
               </h3>
@@ -105,49 +114,62 @@ export function ProductCard({ product }: { product: Product }) {
             <div className="mt-1 flex items-center gap-1">
               <Star className="h-3 w-3 fill-gold text-gold" />
               <span className="text-xs text-muted-foreground">
-                {product.rating} · {product.category.replace('-', ' ')}
+                {product.rating} Â· {product.category.replace('-', ' ')}
               </span>
             </div>
           </div>
           <div className="text-right">
-            <Button asChild className="rounded-full bg-[#25D366] text-white hover:bg-[#25D366]/90">
-              <a
-                href={getHomeDecorWhatsAppLink(
-                  `Hello RT METALS, I am interested in ${product.name}. Please share more details.`
-                )}
-                target="_blank"
-                rel="noopener noreferrer"
+            {productWhatsAppUrl ? (
+              <Button asChild className="rounded-full bg-[#25D366] text-white hover:bg-[#25D366]/90">
+                <a
+                  href={productWhatsAppUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Enquire Now
+                </a>
+              </Button>
+            ) : (
+              <Button
+                disabled
+                className="rounded-full bg-[#25D366]/20 text-white/40 cursor-not-allowed"
               >
                 Enquire Now
-              </a>
-            </Button>
+              </Button>
+            )}
           </div>
         </div>
       </div>
 
-      <AnimatePresence>
+<AnimatePresence>
         {quickView && (
-          <QuickViewModal product={product} onClose={() => setQuickView(false)} />
+          <QuickViewModal product={product} division={division} onClose={() => setQuickView(false)} />
         )}
       </AnimatePresence>
     </>
   );
 }
 
-/* ─────────────────────────────────────────────────────────────────
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    Polished centered Quick-View Modal
-───────────────────────────────────────────────────────────────── */
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function QuickViewModal({
   product,
+  division = 'home_decor',
   onClose,
 }: {
   product: Product;
+  division?: 'home_decor' | 'metal_services';
   onClose: () => void;
 }) {
   const productSlug = product.slug || product.id;
-  const whatsappMsg = `Hello RT METALS, I am interested in ${product.name}. Please share more details.`;
+  const productDetailLink = division === 'metal_services' ? `/metal-coating/product/${productSlug}` : `/home-decor/${productSlug}`;
+  const whatsappMsg = `Hello RTMETALCOATING, I am interested in ${product.name}. Please share more details.`;
+  const quickViewWhatsAppUrl = division === 'metal_services'
+    ? getMetalCoatingWhatsAppLink(whatsappMsg)
+    : getHomeDecorWhatsAppLink(whatsappMsg);
 
-  /* ── Prevent background scroll while modal is open ── */
+  /* â”€â”€ Prevent background scroll while modal is open â”€â”€ */
   useEffect(() => {
     const prev = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
@@ -156,7 +178,7 @@ function QuickViewModal({
     };
   }, []);
 
-  /* ── Close on Escape key ── */
+  /* â”€â”€ Close on Escape key â”€â”€ */
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -167,7 +189,7 @@ function QuickViewModal({
 
   return (
     <>
-      {/* ── Dark overlay / backdrop ── */}
+      {/* â”€â”€ Dark overlay / backdrop â”€â”€ */}
       <motion.div
         key="qv-backdrop"
         initial={{ opacity: 0 }}
@@ -179,7 +201,7 @@ function QuickViewModal({
         aria-hidden="true"
       />
 
-      {/* ── Centering wrapper (flex so the modal is always in the viewport centre) ── */}
+      {/* â”€â”€ Centering wrapper (flex so the modal is always in the viewport centre) â”€â”€ */}
       <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8">
         <motion.div
           key="qv-modal"
@@ -194,7 +216,7 @@ function QuickViewModal({
           onClick={(e) => e.stopPropagation()}
           className="relative w-full max-w-3xl overflow-hidden rounded-3xl bg-background shadow-[0_40px_100px_-10px_rgba(0,0,0,0.4)] ring-1 ring-border/30"
         >
-          {/* ── Close button ── */}
+          {/* â”€â”€ Close button â”€â”€ */}
           <button
             onClick={onClose}
             className="absolute right-4 top-4 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-background/90 shadow-lg ring-1 ring-border/50 backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-muted"
@@ -204,7 +226,7 @@ function QuickViewModal({
           </button>
 
           <div className="grid sm:grid-cols-[1fr_1.1fr]">
-            {/* ────────── Left — Large Product Image ────────── */}
+            {/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Left â€” Large Product Image â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
             <div className="relative min-h-[260px] sm:min-h-[500px]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -229,7 +251,7 @@ function QuickViewModal({
               )}
             </div>
 
-            {/* ────────── Right — Product Details ────────── */}
+            {/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Right â€” Product Details â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
             <div className="flex flex-col justify-between gap-8 p-7 sm:p-9">
               <div className="space-y-0">
                 {/* Category eyebrow */}
@@ -270,7 +292,7 @@ function QuickViewModal({
                   {product.shortDescription || product.description}
                 </p>
 
-                {/* Attribute pills — only rendered when data is available */}
+                {/* Attribute pills â€” only rendered when data is available */}
                 {(product.material || product.colorFinish || product.dimensions) && (
                   <div className="mt-5 flex flex-wrap gap-2">
                     {product.material && (
@@ -292,30 +314,41 @@ function QuickViewModal({
                 )}
               </div>
 
-              {/* ── Action buttons ── */}
+              {/* â”€â”€ Action buttons â”€â”€ */}
               <div className="flex flex-col gap-3">
-                <Button
-                  asChild
-                  size="lg"
-                  className="w-full rounded-full bg-[#25D366] text-white shadow-sm hover:bg-[#22c15e] focus-visible:ring-[#25D366]/50"
-                >
-                  <a
-                    href={getHomeDecorWhatsAppLink(whatsappMsg)}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                {quickViewWhatsAppUrl ? (
+                  <Button
+                    asChild
+                    size="lg"
+                    className="w-full rounded-full bg-[#25D366] text-white shadow-sm hover:bg-[#22c15e] focus-visible:ring-[#25D366]/50"
                   >
-                    <MessageCircle className="mr-2 h-4 w-4" />
+                    <a
+                      href={quickViewWhatsAppUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <MessageCircle className="mr-2 h-4 w-4" />
+                      Enquire via WhatsApp
+                    </a>
+                  </Button>
+                ) : (
+                  <Button
+                    disabled
+                    size="lg"
+                    className="w-full rounded-full bg-[#25D366]/20 text-white/40 cursor-not-allowed"
+                  >
+                    <MessageCircle className="mr-2 h-4 w-4" style={{ opacity: 0.5 }} />
                     Enquire via WhatsApp
-                  </a>
-                </Button>
+                  </Button>
+                )}
 
-                <Button
+<Button
                   asChild
                   variant="outline"
                   size="lg"
                   className="w-full rounded-full"
                 >
-                  <Link href={`/home-decor/${productSlug}`} onClick={onClose}>
+                  <Link href={productDetailLink} onClick={onClose}>
                     View Full Details
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>

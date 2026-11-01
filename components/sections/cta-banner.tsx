@@ -98,7 +98,7 @@ export function CtaBanner({
                 className={cn(
                   'rounded-full px-7',
                   dark
-                    ? 'border-white/20 text-white hover:bg-white/10'
+                    ? 'border-white/20 text-white hover:bg-white/10 hover:text-white'
                     : 'border-foreground/20'
                 )}
               >

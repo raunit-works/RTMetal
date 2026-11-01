@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
-import { getCategoriesAsync, getProductsAsync, getInstagramPosts } from '@/lib/data-access';
-import { HomeDecorCatalog } from '@/components/sections/home-decor-catalog';
+import { CategoryCatalogPage } from '@/components/sections/category-catalog-page';
 
 export const revalidate = 0;
 
@@ -14,7 +13,7 @@ export const metadata: Metadata = {
     canonical: siteUrl ? `${siteUrl}/home-decor` : '/home-decor',
   },
   openGraph: {
-    title: 'Home Decor & Lifestyle Collection | RT METALS',
+    title: 'Home Decor & Lifestyle Collection | RTMETALCOATING',
     description:
       'Explore our curated collection of luxury home decor, architectural hardware, and hand-finished lifestyle products.',
     url: siteUrl ? `${siteUrl}/home-decor` : '/home-decor',
@@ -22,18 +21,11 @@ export const metadata: Metadata = {
 };
 
 
-export default async function HomeDecorPage() {
-  const [categories, products] = await Promise.all([
-    getCategoriesAsync(),
-    getProductsAsync(),
-  ]);
-  const instagramPosts = getInstagramPosts();
-
-  return (
-    <HomeDecorCatalog
-      categories={categories}
-      products={products}
-      instagramPosts={instagramPosts}
-    />
-  );
+export default function HomeDecorPage({ searchParams }: {
+  searchParams: { category?: string | string[]; section?: string | string[] };
+}) {
+  // Preserve existing header/bookmark query URLs, including ?category=all.
+  const category = Array.isArray(searchParams.category) ? searchParams.category[0] : searchParams.category;
+  const section = Array.isArray(searchParams.section) ? searchParams.section[0] : searchParams.section;
+  return <CategoryCatalogPage slug={category === 'all' ? undefined : category} section={section} />;
 }

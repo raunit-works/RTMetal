@@ -11,7 +11,8 @@ import { ContactSection } from '@/components/sections/home/contact';
 import { InstagramSection } from '@/components/sections/instagram-section';
 import { CtaBanner } from '@/components/sections/cta-banner';
 import {
-  getProductsAsync,
+  getPublicCatalogAsync,
+  getServicesAsync,
   getTestimonialsAsync,
   getFAQsAsync,
   getInstagramPosts,
@@ -20,10 +21,11 @@ import {
 export const revalidate = 0;
 
 export default async function Home() {
-  const [products, testimonials, faqs] = await Promise.all([
-    getProductsAsync(),
+  const [catalog, testimonials, faqs, services] = await Promise.all([
+    getPublicCatalogAsync(),
     getTestimonialsAsync(),
     getFAQsAsync(),
+    getServicesAsync({ allowStaticFallback: false }),
   ]);
   const instagramPosts = getInstagramPosts();
 
@@ -37,13 +39,13 @@ export default async function Home() {
 
       {/* ── EXISTING LOWER SECTIONS (unchanged) ──────────────── */}
       <OurProcess />
-      <FeaturedProducts products={products} />
-      <MetalCoatingShowcase />
+      <FeaturedProducts products={catalog.products} categories={catalog.categories} />
+      <MetalCoatingShowcase services={services} />
       <InstagramSection
-        posts={instagramPosts.slice(0, 6)}
-        eyebrow="On Instagram"
-        title="Follow the craft"
-        description="A glimpse into our workshop, recent work and new arrivals — captured in motion."
+        posts={instagramPosts}
+        eyebrow="OUR WORK IN MOTION"
+        title="Craftsmanship in Every Detail"
+        description="Explore real projects, premium finishes and workshop craftsmanship through our latest videos."
       />
       <Testimonials testimonials={testimonials} />
       <FAQ faqs={faqs} />

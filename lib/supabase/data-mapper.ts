@@ -53,6 +53,9 @@ export interface DatabaseCategoryRow {
   image: string | null;
   icon: string | null;
   display_order: number;
+  main_section?: string | null;
+  parent_id?: string | null;
+  is_published?: boolean | null;
 }
 
 export interface DatabaseProductImageRow {
@@ -69,7 +72,7 @@ export interface DatabaseProductRow {
   slug: string;
   name: string;
   category_id: string;
-  price: number | string;
+  price: number | string | null;
   original_price: number | string | null;
   image: string;
   rating: number | string | null;
@@ -102,6 +105,8 @@ export interface DatabaseServiceRow {
   image: string;
   icon: string | null;
   features: string[] | null;
+  applications?: string[] | null;
+  process_steps?: unknown[] | null;
   display_order: number;
   is_published: boolean;
 }
@@ -131,6 +136,7 @@ export function mapCategoryRow(
   productCount: number = 0
 ): Category {
   return {
+    id: row.id,
     slug: row.slug,
     name: row.name,
     tagline: row.tagline || '',
@@ -138,6 +144,11 @@ export function mapCategoryRow(
     image: row.image || 'https://images.pexels.com/photos/6585608/pexels-photo-6585608.jpeg',
     icon: row.icon || 'boxes',
     productCount,
+    mainSection: row.main_section === 'metal_services' || row.main_section === 'home_decor'
+      ? row.main_section : undefined,
+    parentId: row.parent_id || null,
+    isPublished: row.is_published !== false,
+    isHierarchyValid: row.main_section == null || row.main_section === 'home_decor' || row.main_section === 'metal_services',
   };
 }
 
@@ -156,7 +167,7 @@ export function mapProductRow(
   row: DatabaseProductRow,
   categorySlugLookup?: Record<string, string>
 ): Product {
-  let resolvedCategory = 'home-decor';
+  let resolvedCategory = '';
 
   if (row.categories) {
     if (Array.isArray(row.categories) && row.categories.length > 0) {
@@ -182,7 +193,7 @@ export function mapProductRow(
     slug: row.slug,
     name: row.name,
     category: resolvedCategory,
-    price: Number(row.price),
+    price: row.price != null ? Number(row.price) : null,
     originalPrice: row.original_price != null ? Number(row.original_price) : undefined,
     image: row.image,
     rating: row.rating != null ? Number(row.rating) : 5.0,
@@ -215,6 +226,9 @@ export function mapServiceRow(row: DatabaseServiceRow): Service {
     icon: row.icon || 'wrench',
     image: row.image,
     features: Array.isArray(row.features) ? row.features : [],
+    applications: Array.isArray(row.applications) ? row.applications : [],
+    processSteps: Array.isArray(row.process_steps) ? row.process_steps : [],
+    isPublished: row.is_published !== false,
   };
 }
 

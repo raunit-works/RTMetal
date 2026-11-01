@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Create Customer Account | RT METALS',
+  title: 'Create Customer Account | RTMETALCOATING',
   description: 'Register for a customer account to manage your persistent wishlist.',
   robots: {
     index: false,

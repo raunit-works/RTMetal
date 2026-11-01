@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import * as React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -78,18 +79,21 @@ export default function SignupPage() {
           Back to home
         </Link>
         <div className="flex items-center justify-center gap-2.5">
-          <span className="flex h-10 w-10 items-center justify-center rounded-full border border-foreground/30 text-base font-semibold tracking-tight">
-            R
+          <span className="relative h-12 w-36 overflow-hidden block inline">
+            <Image
+              src="/brand/rt-logo.png"
+              alt="RTMETALCOATING"
+              fill
+              sizes="144px"
+              className="object-contain"
+            />
           </span>
-          <h1 className="font-display text-2xl font-medium tracking-tight sm:text-3xl">
-            RT PU <span className="gold-text">COATING</span> WORKS
-          </h1>
         </div>
         <h2 className="mt-4 text-center text-xl font-semibold tracking-tight">
           Create a new account
         </h2>
         <p className="mt-1 text-center text-sm text-muted-foreground">
-          Join RT Metal for seamless catalog browsing and custom coating enquiries
+          Join RTMETALCOATING for catalog browsing and custom coating enquiries
         </p>
       </div>
 

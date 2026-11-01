@@ -1,6 +1,9 @@
 export type IconType = string;
 
+export type MainSection = 'home_decor' | 'metal_services';
+
 export interface Category {
+  id?: string;
   slug: string;
   name: string;
   tagline: string;
@@ -8,6 +11,10 @@ export interface Category {
   image: string;
   icon: IconType;
   productCount: number;
+  mainSection?: MainSection;
+  parentId?: string | null;
+  isPublished?: boolean;
+  isHierarchyValid?: boolean;
 }
 
 export interface ProductImage {
@@ -55,6 +62,9 @@ export interface Service {
   icon: IconType;
   image: string;
   features: string[];
+  applications?: string[];
+  processSteps?: unknown[];
+  isPublished?: boolean;
 }
 
 export interface Testimonial {
@@ -85,6 +95,7 @@ export interface InstagramPost {
   category: 'Recent Work' | 'Behind The Scenes' | 'Workshop' | 'Product';
   image: string;
   caption: string;
+  reelUrl?: string;
 }
 
 export interface BusinessDivision {
@@ -111,6 +122,9 @@ export interface SiteSettings {
     phone: string;
     phoneDisplay: string;
     address: string;
+    emailVerified: boolean;
+    phoneVerified: boolean;
+    addressVerified: boolean;
   };
   social: {
     instagram: string;
@@ -119,6 +133,12 @@ export interface SiteSettings {
   whatsapp: {
     homeDecor: string;
     metalCoating: string;
+    homeDecorVerified: boolean;
+    metalCoatingVerified: boolean;
+  };
+  contactAvailability?: {
+    days: string;
+    hours: string;
   };
 }
 
@@ -162,5 +182,4 @@ export interface WishlistItem {
   createdAt: string;
   product?: Product;
 }
-
 

@@ -4,29 +4,29 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Reveal } from '@/components/motion/reveal';
+import { cn } from '@/lib/utils';
 
 const divisions = [
   {
     slug: 'metal-coating',
-    eyebrow: 'SURFACE SOLUTIONS',
+    eyebrow: 'METAL COATING & SURFACE FINISHING',
     headline: 'Metal Coating for Every Industry',
-    tagline: 'Durable. Precise. Beautiful finishes.',
+    tagline: 'Surface finishing and restoration for industrial components, architectural details and custom applications.',
     points: [
       'Metal Coating & Surface Treatment',
       'Furniture & Industrial Coating',
       'Restoration & Polishing',
       'Art Piece Finishing',
     ],
-    cta: { label: 'Explore Surface Solutions', href: '/metal-coating' },
-    image:
-      'https://images.pexels.com/photos/8216549/pexels-photo-8216549.jpeg?auto=compress&cs=tinysrgb&w=1400',
+    cta: { label: 'Explore Metal Coating', href: '/metal-coating' },
+    image: '/metal.jpg',
     imageAlt: 'Professional metal coating industrial workshop',
   },
   {
     slug: 'home-decor',
-    eyebrow: 'HOME DÉCOR',
-    headline: 'Metal Art Pieces for Inspired Spaces',
-    tagline: 'Statement pieces. Timeless design.',
+    eyebrow: 'HOME DÉCOR & METAL ART',
+    headline: 'Decorative Metalwork for Distinctive Spaces',
+    tagline: 'Explore decorative objects, statement pieces and custom metal accents for homes and interiors.',
     points: [
       'Sculptures & Decorative Objects',
       'Table & Wall Décor',
@@ -34,9 +34,8 @@ const divisions = [
       'Gifting & Decorative Collections',
     ],
     cta: { label: 'Explore Home Décor', href: '/home-decor' },
-    image:
-      'https://images.pexels.com/photos/6585608/pexels-photo-6585608.jpeg?auto=compress&cs=tinysrgb&w=1400',
-    imageAlt: 'Premium decorative metal art pieces in a luxury interior',
+    image: '/homedecor.jpeg',
+    imageAlt: 'Premium decorative metal art pieces',
   },
 ];
 
@@ -49,20 +48,20 @@ export function BusinessDivisions() {
             <Reveal key={div.slug} delay={i * 0.1}>
               <Link
                 href={div.cta.href}
-                className="group relative block overflow-hidden"
+                className="group relative block overflow-hidden rounded-2xl border border-transparent transition-colors duration-300 hover:border-[#c9a96e]/30"
                 aria-label={`${div.eyebrow}: ${div.headline}`}
               >
                 {/* Image Container */}
-                <div className="relative aspect-[4/3] overflow-hidden sm:aspect-[16/10]">
+                <div className="relative aspect-[4/3] overflow-hidden sm:aspect-[16/10] rounded-[inherit]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={div.image}
                     alt={div.imageAlt}
-                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     loading="lazy"
                   />
                   {/* Dark gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0e0c0a]/80 via-[#0e0c0a]/30 to-transparent transition-opacity duration-500 group-hover:from-[#0e0c0a]/85" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0e0c0a]/85 via-[#0e0c0a]/35 to-transparent transition-opacity duration-500 group-hover:from-[#0e0c0a]/90" />
                 </div>
 
                 {/* Text overlay */}
@@ -73,7 +72,9 @@ export function BusinessDivisions() {
                   <h3 className="font-display text-2xl font-medium leading-tight text-white sm:text-3xl lg:text-4xl">
                     {div.headline}
                   </h3>
-                  <p className="mt-2 text-sm text-white/70">{div.tagline}</p>
+                  <p className="mt-2 text-sm text-white/70 leading-relaxed max-w-[420px]">
+                    {div.tagline}
+                  </p>
 
                   <ul className="mt-4 space-y-1.5" aria-label={`${div.eyebrow} services`}>
                     {div.points.map((point) => (

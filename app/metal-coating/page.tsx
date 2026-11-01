@@ -4,8 +4,10 @@ import {
   getProcessSteps,
   getInstagramPosts,
   getIndustriesServed,
+  getPublicCatalogAsync,
 } from '@/lib/data-access';
 import { MetalCoatingClient } from '@/components/sections/metal-coating-client';
+import { isCategoryInSection } from '@/lib/category-hierarchy';
 
 export const revalidate = 0;
 
@@ -19,7 +21,7 @@ export const metadata: Metadata = {
     canonical: siteUrl ? `${siteUrl}/metal-coating` : '/metal-coating',
   },
   openGraph: {
-    title: 'Premium Metal & PU Coating Services | RT METALS',
+    title: 'Premium Metal & PU Coating Services | RTMETALCOATING',
     description:
       'Industrial and architectural PU metal coating, electroplating, liquid metal finishing, and custom protective metal treatments.',
     url: siteUrl ? `${siteUrl}/metal-coating` : '/metal-coating',
@@ -28,10 +30,14 @@ export const metadata: Metadata = {
 
 
 export default async function MetalCoatingPage() {
-  const services = await getServicesAsync();
+  const services = await getServicesAsync({ allowStaticFallback: false });
   const processSteps = getProcessSteps();
   const instagramPosts = getInstagramPosts();
   const industriesServed = getIndustriesServed();
+  const { categories } = await getPublicCatalogAsync();
+  const metalCategories = categories.filter((category) =>
+    isCategoryInSection(category, 'metal_services')
+  );
 
   return (
     <MetalCoatingClient
@@ -39,6 +45,7 @@ export default async function MetalCoatingPage() {
       processSteps={processSteps}
       instagramPosts={instagramPosts}
       industriesServed={industriesServed}
+      categories={metalCategories}
     />
   );
 }
