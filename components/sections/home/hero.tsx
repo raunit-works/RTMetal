@@ -106,16 +106,19 @@ export function Hero() {
         </div>
       </div>
 
-      {/* ── Subtle overlays for text readability (kept light so photos show) ── */}
-      <div className="absolute inset-0 z-10 bg-[#0e0c0a]/20" aria-hidden="true" />
+
+      {/* Full-image dark overlay for consistent readability */}
       <div
-        className="absolute inset-0 z-10 bg-gradient-to-b from-transparent via-[#0e0c0a]/15 to-[#0e0c0a]/30"
+        className="pointer-events-none absolute inset-0 z-10 bg-black/40"
         aria-hidden="true"
       />
+
+      {/* Stronger gradient behind the content */}
       <div
-        className="absolute inset-y-0 z-10 bg-gradient-to-t from-[#0e0c0a]/20 to-transparent"
+        className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-black/80 via-black/35 to-transparent"
         aria-hidden="true"
       />
+
 
       {/* ── Centered content — normal flow, clears the navbar via section pt ── */}
       <div className="relative z-20 mx-auto max-w-[900px] px-5 sm:px-8 md:px-12 pb-24 text-center">
@@ -146,7 +149,7 @@ export function Hero() {
           initial={initial}
           animate={variant}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.22 }}
-          className="mt-6 mx-auto max-w-[560px] text-base sm:text-lg leading-relaxed text-[#e8e2d8]"
+          className="mt-6 mx-auto max-w-[560px] text-base sm:text-lg leading-relaxed text-white/95"
         >
           RT Metals delivers premium metal coating and decorative metal
           solutions for modern spaces — built to last, crafted to impress.

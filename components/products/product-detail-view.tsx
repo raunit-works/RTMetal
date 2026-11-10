@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { MessageCircle, ArrowLeft, ArrowRight, Check, Info } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -49,11 +50,13 @@ export function ProductDetailView({ product, division, relatedProducts = [] }: P
       {/* Header Banner */}
       <section className="relative overflow-hidden bg-ink pt-32 text-white sm:pt-40">
         <div className="pointer-events-none absolute inset-0 opacity-20">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={product.image}
             alt=""
-            className="h-full w-full object-cover blur-sm"
+            aria-hidden="true"
+            fill
+            sizes="100vw"
+            className="object-cover blur-sm"
           />
         </div>
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-ink/80 to-ink/40" />

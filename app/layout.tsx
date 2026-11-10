@@ -5,6 +5,7 @@ import { Navbar } from '@/components/layout/navbar';
 import { Footer } from '@/components/layout/footer';
 import { ScrollProgress } from '@/components/layout/scroll-progress';
 import { WishlistProvider } from '@/components/providers/wishlist-provider';
+import { getSiteUrl } from '@/lib/site-url';
 
 // Fonts served from public/fonts/ to avoid build-time Google Fonts network
 // requests that caused ETIMEDOUT failures on Netlify (fonts.gstatic.com).
@@ -49,10 +50,10 @@ const spaceGrotesk = localFont({
   display: 'swap',
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: siteUrl ? new URL(siteUrl) : undefined,
   title: {
     default: 'RTMETALCOATING — Professional Metal Coating & RT HOME DECOR',
     template: '%s | RTMETALCOATING',
@@ -76,13 +77,11 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  alternates: {
-    canonical: siteUrl || '/',
-  },
+  alternates: siteUrl ? { canonical: siteUrl } : undefined,
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: siteUrl || '/',
+    url: siteUrl || undefined,
     siteName: 'RTMETALCOATING',
     title: 'RTMETALCOATING — Professional Metal Coating & RT HOME DECOR',
     description:

@@ -1,0 +1,9 @@
+{
+  "expectedImages": 87,
+  "foundImages": 87,
+  "generatedImageElements": 87,
+  "resolvedImagePaths": 87,
+  "missingImagePaths": [],
+  "duplicateIds": [],
+  "pass": true
+}

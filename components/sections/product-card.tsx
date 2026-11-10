@@ -1,12 +1,14 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, Eye, Star, X, MessageCircle, ArrowRight, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import type { Product } from '@/lib/types';
+import type { Product, ProductImage } from '@/lib/types';
+import { getProductGalleryImages, sortGalleryImages } from '@/lib/supabase/product-gallery';
 
 import { getHomeDecorWhatsAppLink, isHomeDecorWhatsappVerified, getMetalCoatingWhatsAppLink } from '@/lib/site';
 
@@ -46,11 +48,12 @@ export function ProductCard({ product, division = 'home_decor' }: ProductCardPro
     <>
       <div className="group relative">
         <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-muted">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={product.image}
             alt={product.name}
-            className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
           />
 
           {product.badge && (
@@ -153,6 +156,9 @@ export function ProductCard({ product, division = 'home_decor' }: ProductCardPro
 /* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    Polished centered Quick-View Modal
 â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+const GALLERY_CACHE_TTL_MS = 5 * 60 * 1000;
+const galleryCache = new Map<string, { images: ProductImage[]; ts: number }>();
+
 function QuickViewModal({
   product,
   division = 'home_decor',
@@ -168,6 +174,90 @@ function QuickViewModal({
   const quickViewWhatsAppUrl = division === 'metal_services'
     ? getMetalCoatingWhatsAppLink(whatsappMsg)
     : getHomeDecorWhatsAppLink(whatsappMsg);
+
+  const productIdRef = useRef(product.id);
+  const requestIdRef = useRef(0);
+  const [galleryImages, setGalleryImages] = useState<ProductImage[]>([]);
+  const [galleryLoading, setGalleryLoading] = useState(false);
+  const [galleryError, setGalleryError] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState<ProductImage | null>(null);
+
+  const buildGalleryItems = useMemo(() => {
+    const mainImage: ProductImage = {
+      id: `${product.id}::main`,
+      productId: product.id,
+      imageUrl: product.image,
+      altText: product.name,
+      sortOrder: -1,
+      isPrimary: true,
+    };
+
+    const additionalImages = (product.images ?? galleryImages).filter(
+      (image) => Boolean(image.imageUrl) && image.imageUrl !== product.image
+    );
+
+    return sortGalleryImages([mainImage, ...additionalImages]);
+  }, [product.id, product.image, product.name, product.images, galleryImages]);
+
+  const additionalImages = buildGalleryItems.slice(1);
+
+  const loadGallery = useCallback(async () => {
+    if (product.images && product.images.length > 0) {
+      setGalleryImages(product.images);
+      return;
+    }
+
+    const cached = galleryCache.get(product.id);
+    if (cached && Date.now() - cached.ts < GALLERY_CACHE_TTL_MS) {
+      setGalleryImages(cached.images);
+      return;
+    }
+
+    const requestId = ++requestIdRef.current;
+    setGalleryLoading(true);
+    setGalleryError(null);
+
+    try {
+      const images = await getProductGalleryImages(product.id);
+      if (requestId !== requestIdRef.current) return;
+      setGalleryImages(images);
+      galleryCache.set(product.id, { images, ts: Date.now() });
+    } catch (error) {
+      if (requestId !== requestIdRef.current) return;
+      setGalleryError(
+        error instanceof Error ? error.message : 'The additional images could not be loaded.'
+      );
+    } finally {
+      if (requestId === requestIdRef.current) {
+        setGalleryLoading(false);
+      }
+    }
+  }, [product.id, product.images]);
+
+  useEffect(() => {
+    loadGallery();
+  }, [loadGallery]);
+
+  useEffect(() => {
+    if (buildGalleryItems.length === 0) return;
+    if (
+      selectedImage &&
+      buildGalleryItems.some(
+        (item) => item.id === selectedImage.id || item.imageUrl === selectedImage.imageUrl
+      )
+    ) {
+      return;
+    }
+    setSelectedImage(buildGalleryItems[0] ?? null);
+  }, [buildGalleryItems, selectedImage, product.id]);
+
+  useEffect(() => {
+    productIdRef.current = product.id;
+    setSelectedImage(null);
+    setGalleryImages([]);
+    setGalleryError(null);
+    setGalleryLoading(false);
+  }, [product.id]);
 
   /* â”€â”€ Prevent background scroll while modal is open â”€â”€ */
   useEffect(() => {
@@ -212,9 +302,9 @@ function QuickViewModal({
           role="dialog"
           aria-modal="true"
           aria-label={`Quick view: ${product.name}`}
-          /* Stop click from bubbling through to the backdrop */
+  /* Stop click from bubbling through to the backdrop */
           onClick={(e) => e.stopPropagation()}
-          className="relative w-full max-w-3xl overflow-hidden rounded-3xl bg-background shadow-[0_40px_100px_-10px_rgba(0,0,0,0.4)] ring-1 ring-border/30"
+          className="relative w-full max-w-3xl max-h-[90dvh] overflow-y-auto rounded-3xl bg-background shadow-[0_40px_100px_-10px_rgba(0,0,0,0.4)] ring-1 ring-border/30"
         >
           {/* â”€â”€ Close button â”€â”€ */}
           <button
@@ -228,11 +318,13 @@ function QuickViewModal({
           <div className="grid sm:grid-cols-[1fr_1.1fr]">
             {/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Left â€” Large Product Image â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
             <div className="relative min-h-[260px] sm:min-h-[500px]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={product.image}
-                alt={product.name}
-                className="absolute inset-0 h-full w-full object-cover"
+              <Image
+                src={selectedImage?.imageUrl ?? product.image}
+                alt={selectedImage?.altText ?? product.name}
+                fill
+                sizes="(max-width: 1024px) 100vw, 640px"
+                className="object-cover"
+                loading="eager"
               />
               {/* Subtle depth gradient */}
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
@@ -313,6 +405,67 @@ function QuickViewModal({
                   </div>
                 )}
               </div>
+
+              {galleryLoading && (
+                <p className="text-xs text-muted-foreground">Loading more images…</p>
+              )}
+
+              {galleryError && (
+                <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                  {galleryError}
+                  <button
+                    onClick={loadGallery}
+                    className="underline underline-offset-4 text-gold hover:text-gold-deep"
+                  >
+                    Retry
+                  </button>
+                </div>
+              )}
+
+              {additionalImages.length > 0 && (
+                <div className="space-y-3">
+                  <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.15em] text-gold-deep">
+                    More Images
+                  </p>
+
+                  <div
+                    role="group"
+                    aria-label="Additional product images"
+                    className={cn(
+                      'flex flex-row gap-2 overflow-x-auto sm:grid sm:grid-cols-3 lg:grid-cols-4 sm:overflow-visible',
+                      'pb-1'
+                    )}
+                  >
+                    {additionalImages.map((image, index) => {
+                      const isSelected = selectedImage?.imageUrl === image.imageUrl;
+                      return (
+                        <button
+                          key={image.id}
+                          onClick={() => setSelectedImage(image)}
+                          aria-pressed={isSelected}
+                          aria-label={image.altText || `Image ${index + 1} of ${product.name}`}
+                          className={cn(
+                            'relative flex-shrink-0 aspect-square rounded border transition-colors duration-200',
+                            'border-transparent hover:border-muted/50 focus-visible:ring-2 focus-visible:ring-gold/50 focus-visible:ring-offset-1',
+                            isSelected
+                              ? 'border-[#C9A96E] ring-1 ring-[#C9A96E]/60'
+                              : 'border-transparent'
+                          )}
+                        >
+                          <Image
+                            src={image.imageUrl}
+                            alt={image.altText || `Image ${index + 1} of ${product.name}`}
+                            fill
+                            sizes="(max-width: 768px) 80px, (max-width: 1024px) 120px, 150px"
+                            className="object-contain rounded"
+                            loading="lazy"
+                          />
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
 
               {/* â”€â”€ Action buttons â”€â”€ */}
               <div className="flex flex-col gap-3">

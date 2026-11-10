@@ -39,7 +39,7 @@ export default async function AdminDashboardPage() {
             </span>
             <div>
               <h1 className="font-display text-2xl font-medium tracking-tight sm:text-3xl">
-                Admin <span className="gold-text">Catalog Management</span>
+                Admin Catalog Management
               </h1>
               <p className="text-xs text-muted-foreground mt-0.5">
                 Protected Management Workspace • Authenticated as <span className="font-medium text-foreground">{email}</span>

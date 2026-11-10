@@ -23,6 +23,7 @@ import {
   RefreshCw,
   Upload,
   Image as ImageIcon,
+  Images,
   Star,
   Layers,
   FileText,
@@ -35,16 +36,15 @@ import {
 import {
   uploadCatalogImage,
   getCategoriesAdmin,
+  getCategoriesAdminPage,
   createCategoryAdmin,
   updateCategoryAdmin,
   deleteCategoryAdmin,
   getProductsAdmin,
+  getProductsAdminPage,
   createProductAdmin,
   updateProductAdmin,
   deleteProductAdmin,
-  addProductGalleryImage,
-  updateProductGalleryImage,
-  deleteProductGalleryImage,
   getServicesAdmin,
   createServiceAdmin,
   updateServiceAdmin,
@@ -66,20 +66,105 @@ import {
   updateInquiryStatusAdmin,
   deleteInquiryAdmin,
 } from '@/lib/supabase/inquiries';
+import { getBeforeAfterCountAdmin } from '@/lib/supabase/before-after-admin';
+import { getMetalFinishCountAdmin } from '@/lib/supabase/metal-finishes-admin';
+import { BeforeAfterManagement } from '@/components/admin/before-after/before-after-management';
+import { MetalFinishesManagement } from '@/components/admin/finishes/metal-finishes-management';
+import {
+  AdminFilterSelect,
+  AdminListToolbar,
+  AdminPagination,
+} from '@/components/admin/shared/admin-list-controls';
+import {
+  getAdminPageCount,
+  getAdminPageSlice,
+  matchesAdminSearch,
+} from '@/lib/admin/list-utils';
+import { useDebouncedValue } from '@/hooks/use-debounced-value';
 import type { InquiryStatus, MainSection, ProductImage } from '@/lib/types';
 import { getCategoryHierarchySupportAdmin } from '@/lib/supabase/admin-catalog';
-import { mapCategoryRow } from '@/lib/supabase/data-mapper';
+import { mapCategoryRow, mapProductImageRow, type DatabaseProductImageRow } from '@/lib/supabase/data-mapper';
+import {
+  getProductGalleryImages,
+  mergeGallerySyncResult,
+  sortGalleryImages,
+  syncProductGalleryImages,
+} from '@/lib/supabase/product-gallery';
 import { getCategoryPath, getDescendantSlugs, getValidCategories, SECTION_LABELS } from '@/lib/category-hierarchy';
+import {
+  formatCategorySelectionCount,
+  formatServiceSelectionCount,
+  getMetalCategoryPickerOptions,
+  isNoServiceAssigned,
+  normalizeIdList,
+  toggleIdSelection,
+  toggleNoServiceAssigned,
+} from '@/lib/service-categories';
+import {
+  getServiceCategoryErrorMessage,
+  getServiceCategoryLinksAdmin,
+  getServiceCategorySupportAdmin,
+  isServiceCategoryConflict,
+  replaceCategoryServicesAdmin,
+  replaceServiceCategoriesAdmin,
+  type ServiceCategoryLinkRow,
+} from '@/lib/supabase/service-categories';
 import { Inbox } from 'lucide-react';
+import {
+  ImagePreparationError,
+  getImageErrorMessage,
+  prepareImageUpload,
+} from '@/lib/images/prepare-image-upload';
+import { runWithConcurrency } from '@/lib/images/concurrency';
+import { copySelectedFilesAndReset } from '@/lib/images/file-selection';
+import {
+  UPLOAD_CONCURRENCY,
+  formatBytes,
+  type ImagePurpose,
+} from '@/lib/images/image-config';
+import {
+  ImageUploadStatusCard,
+  ImageUploadStatusList,
+  isImageUploadActive,
+  type ImageUploadItem,
+  type ImageUploadTarget,
+} from '@/components/admin/image-upload-status';
+
+const ADMIN_LIST_PAGE_SIZE = 8;
 
 export function AdminWorkspace() {
   const [activeTab, setActiveTab] = React.useState<
-    'categories' | 'products' | 'services' | 'testimonials' | 'faqs' | 'settings' | 'inquiries'
+    | 'categories'
+    | 'products'
+    | 'services'
+    | 'testimonials'
+    | 'metal-finishes'
+    | 'before-after'
+    | 'faqs'
+    | 'settings'
+    | 'inquiries'
   >('categories');
 
   const [loading, setLoading] = React.useState(false);
   const [uploading, setUploading] = React.useState(false);
   const [message, setMessage] = React.useState<{ type: 'success' | 'error'; text: string } | null>(null);
+
+  // Image optimization / upload feedback state
+  const [singleUpload, setSingleUpload] = React.useState<ImageUploadItem | null>(null);
+  const [galleryUploads, setGalleryUploads] = React.useState<ImageUploadItem[]>([]);
+  const gallerySourceRef = React.useRef<Map<string, File>>(new Map());
+  const singleSourceRef = React.useRef<{
+    file: File;
+    setter: (url: string) => void;
+    purpose: ImagePurpose;
+    target: ImageUploadTarget;
+  } | null>(null);
+  const uploadControllersRef = React.useRef<Map<string, AbortController>>(new Map());
+  const previewObjectUrlsRef = React.useRef<Set<string>>(new Set());
+  const mountedRef = React.useRef(true);
+  const galleryBaselineRef = React.useRef<ProductImage[]>([]);
+  const galleryLoadedProductIdRef = React.useRef<string | null>(null);
+  const removedGalleryIdsRef = React.useRef<Set<string>>(new Set());
 
   // Edit Mode state
   const [editingId, setEditingId] = React.useState<string | null>(null);
@@ -144,6 +229,23 @@ export function AdminWorkspace() {
   const [svcIsPublished, setSvcIsPublished] = React.useState(false);
 
   // ==================================================
+  // SERVICE <-> METAL CATEGORY RELATIONSHIP STATE
+  // ==================================================
+  const [serviceCategorySupported, setServiceCategorySupported] = React.useState<boolean | null>(null);
+  const [serviceCategoryLinks, setServiceCategoryLinks] = React.useState<ServiceCategoryLinkRow[]>([]);
+  const [serviceCategoryLinksLoaded, setServiceCategoryLinksLoaded] = React.useState(false);
+  const [serviceCategoryLinksError, setServiceCategoryLinksError] = React.useState<string | null>(null);
+
+  // Service form: related Metal categories
+  const [svcCategoryIds, setSvcCategoryIds] = React.useState<string[]>([]);
+  const [svcCategoryBaseline, setSvcCategoryBaseline] = React.useState<string[] | null>([]);
+  const [svcCategorySearch, setSvcCategorySearch] = React.useState('');
+
+  // Category form: applicable Metal services
+  const [catServiceIds, setCatServiceIds] = React.useState<string[]>([]);
+  const [catServiceBaseline, setCatServiceBaseline] = React.useState<string[] | null>([]);
+
+  // ==================================================
   // TESTIMONIALS STATE
   // ==================================================
   const [testimonials, setTestimonials] = React.useState<any[]>([]);
@@ -155,6 +257,82 @@ export function AdminWorkspace() {
   const [testAvatar, setTestAvatar] = React.useState('');
   const [testOrder, setTestOrder] = React.useState('0');
   const [testIsPublished, setTestIsPublished] = React.useState(true);
+
+  // ==================================================
+  // BEFORE & AFTER STATE
+  // ==================================================
+  const [beforeAfterCount, setBeforeAfterCount] = React.useState(0);
+  const handleBeforeAfterCountChange = React.useCallback(
+    (count: number) => setBeforeAfterCount(count),
+    []
+  );
+
+  // ==================================================
+  // METAL FINISHES STATE
+  // ==================================================
+  const [metalFinishCount, setMetalFinishCount] = React.useState(0);
+  const handleMetalFinishCountChange = React.useCallback(
+    (count: number) => setMetalFinishCount(count),
+    []
+  );
+
+  // ==================================================
+  // ADMIN LIST SEARCH / FILTER / SORT / PAGINATION
+  // ==================================================
+  const [catListSearch, setCatListSearch] = React.useState('');
+  const [catListSection, setCatListSection] = React.useState('all');
+  const [catListStatus, setCatListStatus] = React.useState('all');
+  const [catListAssignment, setCatListAssignment] = React.useState('all');
+  const [catListHierarchy, setCatListHierarchy] = React.useState('all');
+  const [catListSort, setCatListSort] = React.useState('order');
+  const [catListPage, setCatListPage] = React.useState(1);
+  const debouncedCatListSearch = useDebouncedValue(catListSearch, 300);
+  const [categoryListData, setCategoryListData] = React.useState({
+    rows: [] as any[],
+    total: 0,
+    page: 1,
+    pageCount: 1,
+  });
+  const [categoryListLoading, setCategoryListLoading] = React.useState(false);
+  const [categoryListError, setCategoryListError] = React.useState<string | null>(null);
+  const [categoryListReloadToken, setCategoryListReloadToken] = React.useState(0);
+  const categoryListRequestRef = React.useRef(0);
+
+  const [prodListSearch, setProdListSearch] = React.useState('');
+  const [prodListStatus, setProdListStatus] = React.useState('all');
+  const [prodListSection, setProdListSection] = React.useState('all');
+  const [prodListCategory, setProdListCategory] = React.useState('all');
+  const [prodListStock, setProdListStock] = React.useState('all');
+  const [prodListSort, setProdListSort] = React.useState('newest');
+  const [prodListPage, setProdListPage] = React.useState(1);
+  const debouncedProdListSearch = useDebouncedValue(prodListSearch, 300);
+  const [productListData, setProductListData] = React.useState({
+    rows: [] as any[],
+    total: 0,
+    page: 1,
+    pageCount: 1,
+  });
+  const [productListLoading, setProductListLoading] = React.useState(false);
+  const [productListError, setProductListError] = React.useState<string | null>(null);
+  const [productListReloadToken, setProductListReloadToken] = React.useState(0);
+  const productListRequestRef = React.useRef(0);
+
+  const [svcListSearch, setSvcListSearch] = React.useState('');
+  const [svcListStatus, setSvcListStatus] = React.useState('all');
+  const [svcListCategory, setSvcListCategory] = React.useState('all');
+  const [svcListSort, setSvcListSort] = React.useState('order');
+  const [svcListPage, setSvcListPage] = React.useState(1);
+
+  const [testListSearch, setTestListSearch] = React.useState('');
+  const [testListStatus, setTestListStatus] = React.useState('all');
+  const [testListSort, setTestListSort] = React.useState('order');
+  const [testListPage, setTestListPage] = React.useState(1);
+
+  const [faqListSearch, setFaqListSearch] = React.useState('');
+  const [faqListCategory, setFaqListCategory] = React.useState('all');
+  const [faqListStatus, setFaqListStatus] = React.useState('all');
+  const [faqListSort, setFaqListSort] = React.useState('order');
+  const [faqListPage, setFaqListPage] = React.useState(1);
 
   // ==================================================
   // FAQS STATE
@@ -172,6 +350,8 @@ export function AdminWorkspace() {
   const [settings, setSettings] = React.useState<any[]>([]);
   const [setKey, setSetKey] = React.useState('');
   const [setValue, setSetValue] = React.useState('');
+  const [settingsSearch, setSettingsSearch] = React.useState('');
+  const [settingsPage, setSettingsPage] = React.useState(1);
 
   // ==================================================
   // INQUIRIES / LEADS STATE
@@ -179,6 +359,9 @@ export function AdminWorkspace() {
   const [inquiries, setInquiries] = React.useState<any[]>([]);
   const [inquiryStatusFilter, setInquiryStatusFilter] = React.useState<string>('all');
   const [inquiryDivisionFilter, setInquiryDivisionFilter] = React.useState<string>('all');
+  const [inquirySearch, setInquirySearch] = React.useState('');
+  const [inquirySort, setInquirySort] = React.useState('newest');
+  const [inquiryPage, setInquiryPage] = React.useState(1);
   const [editingNotesId, setEditingNotesId] = React.useState<string | null>(null);
   const [currentNotesText, setCurrentNotesText] = React.useState<string>('');
 
@@ -190,32 +373,447 @@ export function AdminWorkspace() {
   const parentOptions = validCategories.filter((category) =>
     (category.mainSection || '') === catSection && !excludedParents.has(category.slug));
 
+  const metalCategoryOptions = React.useMemo(
+    () => getMetalCategoryPickerOptions(validCategories),
+    [validCategories]
+  );
+  const filteredMetalCategoryOptions = React.useMemo(() => {
+    const query = svcCategorySearch.trim().toLowerCase();
+    if (!query) return metalCategoryOptions;
+    return metalCategoryOptions.filter((option) =>
+      `${option.name} ${option.slug} ${option.path}`.toLowerCase().includes(query)
+    );
+  }, [metalCategoryOptions, svcCategorySearch]);
+
+  const relationshipControlsReady =
+    serviceCategorySupported === true && (!editingId || serviceCategoryLinksLoaded);
+
+  const showCategoryServiceAssignments =
+    catSection === 'metal_services' ||
+    (editingId !== null && (catServiceBaseline?.length ?? 0) > 0);
+
+  const relatedCategoryCountForService = (serviceId: string) =>
+    serviceCategoryLinks.filter((link) => link.service_id === serviceId).length;
+  const relatedServiceCountForCategory = (categoryId: string) =>
+    serviceCategoryLinks.filter((link) => link.category_id === categoryId).length;
+
+  const productListCategoryOptions = React.useMemo(
+    () =>
+      validCategories.filter((category) => {
+        if (prodListSection === 'all') return true;
+        if (prodListSection === 'legacy') {
+          return !category.mainSection;
+        }
+        return category.mainSection === prodListSection;
+      }),
+    [validCategories, prodListSection]
+  );
+
+  React.useEffect(() => {
+    if (activeTab !== 'categories') return;
+    const requestId = ++categoryListRequestRef.current;
+    const serviceId = catListAssignment.startsWith('service:')
+      ? catListAssignment.slice('service:'.length)
+      : undefined;
+
+    setCategoryListLoading(true);
+    setCategoryListError(null);
+
+    getCategoriesAdminPage({
+      search: debouncedCatListSearch,
+      section: catListSection as 'all' | 'home_decor' | 'metal_services' | 'legacy',
+      status: catListStatus as 'all' | 'published' | 'draft',
+      serviceAssignment:
+        catListAssignment === 'assigned' || catListAssignment === 'unassigned'
+          ? catListAssignment
+          : 'all',
+      serviceId,
+      hierarchy: catListHierarchy as 'all' | 'top' | 'child',
+      sort: catListSort as 'order' | 'name' | 'newest',
+      page: catListPage,
+      pageSize: ADMIN_LIST_PAGE_SIZE,
+    })
+      .then((result) => {
+        if (categoryListRequestRef.current !== requestId) return;
+        setCategoryListData(result);
+        if (result.total > 0 && result.page > result.pageCount) {
+          setCatListPage(result.pageCount);
+        }
+      })
+      .catch((error: unknown) => {
+        if (categoryListRequestRef.current !== requestId) return;
+        setCategoryListData({ rows: [], total: 0, page: 1, pageCount: 1 });
+        setCategoryListError(
+          error instanceof Error ? error.message : 'Categories could not be loaded.'
+        );
+      })
+      .finally(() => {
+        if (categoryListRequestRef.current === requestId) setCategoryListLoading(false);
+      });
+  }, [
+    activeTab,
+    debouncedCatListSearch,
+    catListSection,
+    catListStatus,
+    catListAssignment,
+    catListHierarchy,
+    catListSort,
+    catListPage,
+    categoryListReloadToken,
+  ]);
+
+  React.useEffect(() => {
+    if (activeTab !== 'products') return;
+    const requestId = ++productListRequestRef.current;
+
+    setProductListLoading(true);
+    setProductListError(null);
+
+    getProductsAdminPage({
+      search: debouncedProdListSearch,
+      division: prodListSection as 'all' | 'home_decor' | 'metal_services' | 'legacy',
+      categoryId: prodListCategory === 'all' ? undefined : prodListCategory,
+      status: prodListStatus as 'all' | 'published' | 'draft',
+      stock: prodListStock,
+      sort: prodListSort as 'newest' | 'order' | 'name' | 'sku',
+      page: prodListPage,
+      pageSize: ADMIN_LIST_PAGE_SIZE,
+    })
+      .then((result) => {
+        if (productListRequestRef.current !== requestId) return;
+        setProductListData(result);
+        if (result.total > 0 && result.page > result.pageCount) {
+          setProdListPage(result.pageCount);
+        }
+      })
+      .catch((error: unknown) => {
+        if (productListRequestRef.current !== requestId) return;
+        setProductListData({ rows: [], total: 0, page: 1, pageCount: 1 });
+        setProductListError(
+          error instanceof Error ? error.message : 'Products could not be loaded.'
+        );
+      })
+      .finally(() => {
+        if (productListRequestRef.current === requestId) setProductListLoading(false);
+      });
+  }, [
+    activeTab,
+    debouncedProdListSearch,
+    prodListSection,
+    prodListCategory,
+    prodListStatus,
+    prodListStock,
+    prodListSort,
+    prodListPage,
+    productListReloadToken,
+  ]);
+
+  const pagedCategories = categoryListData.rows;
+  const categoryListPageCount = categoryListData.pageCount;
+  const safeCategoryListPage = categoryListData.page;
+  const pagedProducts = productListData.rows;
+  const productListPageCount = productListData.pageCount;
+  const safeProductListPage = productListData.page;
+
+  const filteredServices = React.useMemo(() => {
+    const rows = services.filter((service) => {
+      const statusMatch =
+        svcListStatus === 'all' ||
+        (svcListStatus === 'published' ? service.is_published : !service.is_published);
+      const searchMatch = matchesAdminSearch(svcListSearch, [
+        service.name,
+        service.slug,
+        service.short_name,
+        service.description,
+      ]);
+      const serviceLinks = serviceCategoryLinks.filter(
+        (link) => link.service_id === service.id
+      );
+      const categoryMatch =
+        svcListCategory === 'all' ||
+        (svcListCategory === 'unassigned'
+          ? serviceLinks.length === 0
+          : serviceLinks.some((link) => link.category_id === svcListCategory));
+      return statusMatch && searchMatch && categoryMatch;
+    });
+
+    return [...rows].sort((a, b) => {
+      if (svcListSort === 'name') return String(a.name).localeCompare(String(b.name));
+      return Number(a.display_order ?? 0) - Number(b.display_order ?? 0);
+    });
+  }, [
+    services,
+    svcListStatus,
+    svcListSearch,
+    svcListCategory,
+    svcListSort,
+    serviceCategoryLinks,
+  ]);
+
+  const serviceListPageCount = getAdminPageCount(
+    filteredServices.length,
+    ADMIN_LIST_PAGE_SIZE
+  );
+  const safeServiceListPage = Math.min(svcListPage, serviceListPageCount);
+  const pagedServices = getAdminPageSlice(
+    filteredServices,
+    safeServiceListPage,
+    ADMIN_LIST_PAGE_SIZE
+  );
+
+  const filteredTestimonials = React.useMemo(() => {
+    const rows = testimonials.filter((testimonial) => {
+      const statusMatch =
+        testListStatus === 'all' ||
+        (testListStatus === 'published'
+          ? testimonial.is_published
+          : !testimonial.is_published);
+      const searchMatch = matchesAdminSearch(testListSearch, [
+        testimonial.name,
+        testimonial.company,
+        testimonial.role,
+        testimonial.content,
+      ]);
+      return statusMatch && searchMatch;
+    });
+
+    return [...rows].sort((a, b) => {
+      if (testListSort === 'name') return String(a.name).localeCompare(String(b.name));
+      if (testListSort === 'rating') return Number(b.rating ?? 0) - Number(a.rating ?? 0);
+      return Number(a.display_order ?? 0) - Number(b.display_order ?? 0);
+    });
+  }, [testimonials, testListStatus, testListSearch, testListSort]);
+
+  const testimonialListPageCount = getAdminPageCount(
+    filteredTestimonials.length,
+    ADMIN_LIST_PAGE_SIZE
+  );
+  const safeTestimonialListPage = Math.min(testListPage, testimonialListPageCount);
+  const pagedTestimonials = getAdminPageSlice(
+    filteredTestimonials,
+    safeTestimonialListPage,
+    ADMIN_LIST_PAGE_SIZE
+  );
+
+  const faqCategories = React.useMemo(
+    () =>
+      Array.from(
+        new Set(faqs.map((faq) => String(faq.category || 'General')))
+      ).sort((a, b) => a.localeCompare(b)),
+    [faqs]
+  );
+
+  const filteredFaqs = React.useMemo(() => {
+    const rows = faqs.filter((faq) => {
+      const categoryMatch =
+        faqListCategory === 'all' || String(faq.category || 'General') === faqListCategory;
+      const statusMatch =
+        faqListStatus === 'all' ||
+        (faqListStatus === 'published' ? faq.is_published : !faq.is_published);
+      const searchMatch = matchesAdminSearch(faqListSearch, [
+        faq.question,
+        faq.answer,
+        faq.category,
+      ]);
+      return categoryMatch && statusMatch && searchMatch;
+    });
+
+    return [...rows].sort((a, b) => {
+      if (faqListSort === 'question') {
+        return String(a.question).localeCompare(String(b.question));
+      }
+      return Number(a.display_order ?? 0) - Number(b.display_order ?? 0);
+    });
+  }, [faqs, faqListCategory, faqListStatus, faqListSearch, faqListSort]);
+
+  const faqListPageCount = getAdminPageCount(filteredFaqs.length, ADMIN_LIST_PAGE_SIZE);
+  const safeFaqListPage = Math.min(faqListPage, faqListPageCount);
+  const pagedFaqs = getAdminPageSlice(
+    filteredFaqs,
+    safeFaqListPage,
+    ADMIN_LIST_PAGE_SIZE
+  );
+
+  const filteredInquiries = React.useMemo(() => {
+    const rows = inquiries.filter((inquiry) => {
+      const divisionMatch =
+        inquiryDivisionFilter === 'all' || inquiry.division === inquiryDivisionFilter;
+      const statusMatch =
+        inquiryStatusFilter === 'all' || inquiry.status === inquiryStatusFilter;
+      const searchMatch = matchesAdminSearch(inquirySearch, [
+        inquiry.name,
+        inquiry.email,
+        inquiry.phone,
+        inquiry.message,
+        inquiry.productNameSnapshot,
+        inquiry.serviceNameSnapshot,
+        inquiry.adminNotes,
+      ]);
+      return divisionMatch && statusMatch && searchMatch;
+    });
+
+    return [...rows].sort((a, b) => {
+      if (inquirySort === 'oldest') {
+        return String(a.createdAt ?? '').localeCompare(String(b.createdAt ?? ''));
+      }
+      if (inquirySort === 'status') {
+        return String(a.status ?? '').localeCompare(String(b.status ?? ''));
+      }
+      if (inquirySort === 'name') {
+        return String(a.name ?? '').localeCompare(String(b.name ?? ''));
+      }
+      return String(b.createdAt ?? '').localeCompare(String(a.createdAt ?? ''));
+    });
+  }, [
+    inquiries,
+    inquiryDivisionFilter,
+    inquiryStatusFilter,
+    inquirySearch,
+    inquirySort,
+  ]);
+
+  const inquiryListPageCount = getAdminPageCount(
+    filteredInquiries.length,
+    ADMIN_LIST_PAGE_SIZE
+  );
+  const safeInquiryListPage = Math.min(inquiryPage, inquiryListPageCount);
+  const pagedInquiries = getAdminPageSlice(
+    filteredInquiries,
+    safeInquiryListPage,
+    ADMIN_LIST_PAGE_SIZE
+  );
+
+  const filteredSettings = React.useMemo(
+    () =>
+      settings.filter((setting) =>
+        matchesAdminSearch(settingsSearch, [
+          setting.key,
+          JSON.stringify(setting.value),
+        ])
+      ),
+    [settings, settingsSearch]
+  );
+
+  const settingsListPageCount = getAdminPageCount(
+    filteredSettings.length,
+    ADMIN_LIST_PAGE_SIZE
+  );
+  const safeSettingsListPage = Math.min(settingsPage, settingsListPageCount);
+  const pagedSettings = getAdminPageSlice(
+    filteredSettings,
+    safeSettingsListPage,
+    ADMIN_LIST_PAGE_SIZE
+  );
+
+  // After a concurrency conflict we reload the latest links and reset the form
+  // to that saved state, so the admin reviews it instead of overwriting it.
+  const syncServiceRelationshipState = (
+    serviceId: string,
+    links: ServiceCategoryLinkRow[]
+  ) => {
+    const ids = normalizeIdList(
+      links.filter((link) => link.service_id === serviceId).map((link) => link.category_id)
+    );
+    setSvcCategoryIds(ids);
+    setSvcCategoryBaseline(ids);
+  };
+
+  const syncCategoryServiceState = (
+    categoryId: string,
+    links: ServiceCategoryLinkRow[]
+  ) => {
+    const ids = normalizeIdList(
+      links.filter((link) => link.category_id === categoryId).map((link) => link.service_id)
+    );
+    setCatServiceIds(ids);
+    setCatServiceBaseline(ids);
+  };
+
   const loadAllData = React.useCallback(async () => {
     setLoading(true);
-    setMessage(null);
+    const loadErrors: string[] = [];
+    const loadedRelationships = {
+      relationshipLinks: [] as ServiceCategoryLinkRow[],
+      relationshipLinksLoaded: false,
+    };
+    const loadOr = async <T,>(label: string, task: Promise<T>, fallback: T): Promise<T> => {
+      try {
+        return await task;
+      } catch (error) {
+        loadErrors.push(
+          `${label}: ${error instanceof Error ? error.message : 'unknown error'}`
+        );
+        return fallback;
+      }
+    };
+
     try {
-      const [catList, prodList, svcList, testList, faqList, setList, inqList, supportsHierarchy] = await Promise.all([
+      const [catList, prodList, svcList, testList, faqList, setList, inqList, supportsHierarchy, beforeAfterTotal, metalFinishTotal] = await Promise.all([
         getCategoriesAdmin(),
-        getProductsAdmin().catch(() => []),
-        getServicesAdmin().catch(() => []),
-        getTestimonialsAdmin().catch(() => []),
-        getFaqsAdmin().catch(() => []),
-        getSiteSettingsAdmin().catch(() => []),
-        getInquiriesAdmin().catch(() => []),
+        loadOr('Products', getProductsAdmin(), []),
+        loadOr('Services', getServicesAdmin(), []),
+        loadOr('Testimonials', getTestimonialsAdmin(), []),
+        loadOr('FAQs', getFaqsAdmin(), []),
+        loadOr('Site settings', getSiteSettingsAdmin(), []),
+        loadOr('Inquiries', getInquiriesAdmin(), []),
         getCategoryHierarchySupportAdmin(),
+        loadOr('Before & After', getBeforeAfterCountAdmin(), 0),
+        loadOr('Metal Finishes', getMetalFinishCountAdmin(), 0),
       ]);
 
+      let supportsServiceCategories = false;
+      try {
+        supportsServiceCategories = await getServiceCategorySupportAdmin();
+      } catch (error) {
+        loadErrors.push(
+          `Service-category schema: ${error instanceof Error ? error.message : 'unknown error'}`
+        );
+      }
+
+      let relationshipLinks: ServiceCategoryLinkRow[] = [];
+      let relationshipLinksLoaded = false;
+      let relationshipLinksError: string | null = null;
+      if (supportsServiceCategories) {
+        try {
+          relationshipLinks = await getServiceCategoryLinksAdmin();
+          relationshipLinksLoaded = true;
+        } catch (error) {
+          relationshipLinksError =
+            error instanceof Error ? error.message : 'Unknown relationship load error';
+          loadErrors.push(`Service-category links: ${relationshipLinksError}`);
+        }
+      }
+
       setCategories(catList);
+      setCategoryListReloadToken((token) => token + 1);
       setHierarchySupported(supportsHierarchy);
       setProducts(prodList);
+      setProductListReloadToken((token) => token + 1);
       setServices(svcList);
       setTestimonials(testList);
       setFaqs(faqList);
       setSettings(setList);
       setInquiries(inqList);
+      setBeforeAfterCount(beforeAfterTotal);
+      setMetalFinishCount(metalFinishTotal);
+      setServiceCategorySupported(supportsServiceCategories);
+      setServiceCategoryLinks(relationshipLinks);
+      setServiceCategoryLinksLoaded(relationshipLinksLoaded);
+      setServiceCategoryLinksError(relationshipLinksError);
 
+      if (loadErrors.length > 0) {
+        setMessage({
+          type: 'error',
+          text: `Some admin data could not be loaded. ${loadErrors.join(' | ')}`,
+        });
+      }
+
+      loadedRelationships.relationshipLinks = relationshipLinks;
+      loadedRelationships.relationshipLinksLoaded = relationshipLinksLoaded;
+      return loadedRelationships;
     } catch (err: any) {
       setMessage({ type: 'error', text: err.message || 'Failed to load catalog data' });
+      return loadedRelationships;
     } finally {
       setLoading(false);
     }
@@ -225,62 +823,397 @@ export function AdminWorkspace() {
     loadAllData();
   }, [loadAllData]);
 
-  // Image File Uploader Helper
-  const handleFileUpload = async (file: File, targetSetter: (url: string) => void) => {
+  // ==================================================
+  // IMAGE OPTIMIZATION / UPLOAD HELPERS
+  // ==================================================
+  const createUploadId = () =>
+    `${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
+
+  const trackPreviewUrl = (url: string) => {
+    previewObjectUrlsRef.current.add(url);
+    return url;
+  };
+
+  const releasePreviewUrl = (url?: string) => {
+    if (!url || !url.startsWith('blob:')) return;
+    if (!previewObjectUrlsRef.current.has(url)) return;
+    URL.revokeObjectURL(url);
+    previewObjectUrlsRef.current.delete(url);
+  };
+
+  const updateSingleUpload = (id: string, patch: Partial<ImageUploadItem>) => {
+    if (!mountedRef.current) return;
+    setSingleUpload((prev) => (prev && prev.id === id ? { ...prev, ...patch } : prev));
+  };
+
+  const updateGalleryUpload = (id: string, patch: Partial<ImageUploadItem>) => {
+    if (!mountedRef.current) return;
+    setGalleryUploads((prev) =>
+      prev.map((item) => (item.id === id ? { ...item, ...patch } : item))
+    );
+  };
+
+  const clearUploadState = () => {
+    uploadControllersRef.current.forEach((controller) => controller.abort());
+    uploadControllersRef.current.clear();
+    previewObjectUrlsRef.current.forEach((url) => URL.revokeObjectURL(url));
+    previewObjectUrlsRef.current.clear();
+    gallerySourceRef.current.clear();
+    singleSourceRef.current = null;
+    setSingleUpload(null);
+    setGalleryUploads([]);
+  };
+
+  React.useEffect(() => {
+    mountedRef.current = true;
+    const controllers = uploadControllersRef.current;
+    const previewUrls = previewObjectUrlsRef.current;
+    const gallerySources = gallerySourceRef.current;
+    const singleSource = singleSourceRef;
+
+    return () => {
+      mountedRef.current = false;
+      controllers.forEach((controller) => controller.abort());
+      controllers.clear();
+      previewUrls.forEach((url) => URL.revokeObjectURL(url));
+      previewUrls.clear();
+      gallerySources.clear();
+      singleSource.current = null;
+    };
+  }, []);
+
+  /**
+   * Optimize a single image first, then upload the optimized file.
+   * The original file is never uploaded or modified.
+   */
+  const handleFileUpload = async (
+    file: File,
+    targetSetter: (url: string) => void,
+    purpose: ImagePurpose,
+    target: ImageUploadTarget
+  ) => {
     if (!file) return;
-    if (file.size > 5 * 1024 * 1024) {
-      setMessage({ type: 'error', text: 'Image file size exceeds 5MB limit.' });
+    if (uploading || loading) {
+      setMessage({ type: 'error', text: 'Please wait for the current operation to finish.' });
       return;
     }
+
+    const id = createUploadId();
+    const controller = new AbortController();
+    uploadControllersRef.current.set(id, controller);
+    singleSourceRef.current = { file, setter: targetSetter, purpose, target };
+    releasePreviewUrl(singleUpload?.previewUrl);
     setUploading(true);
+    setMessage(null);
+    setSingleUpload({
+      id,
+      target,
+      purpose,
+      fileName: file.name,
+      status: 'preparing',
+      progress: 0,
+      originalSize: file.size,
+    });
+
     try {
-      const publicUrl = await uploadCatalogImage(file);
+      updateSingleUpload(id, { status: 'compressing', progress: 1 });
+
+      const prepared = await prepareImageUpload(file, purpose, {
+        signal: controller.signal,
+        onProgress: (progress) => updateSingleUpload(id, { status: 'compressing', progress }),
+      });
+
+      if (controller.signal.aborted) {
+        throw new ImagePreparationError('cancelled', 'Image upload cancelled.');
+      }
+
+      const previewUrl = trackPreviewUrl(URL.createObjectURL(prepared.file));
+      updateSingleUpload(id, {
+        status: 'ready',
+        progress: 100,
+        optimizedSize: prepared.optimizedSize,
+        previewUrl,
+      });
+
+      updateSingleUpload(id, { status: 'uploading' });
+      const publicUrl = await uploadCatalogImage(prepared.file);
+
+      if (controller.signal.aborted) {
+        throw new ImagePreparationError('cancelled', 'Image upload cancelled.');
+      }
+
+      if (!mountedRef.current) {
+        releasePreviewUrl(previewUrl);
+        return;
+      }
+
       targetSetter(publicUrl);
-      setMessage({ type: 'success', text: 'Image uploaded to Supabase Storage!' });
-    } catch (err: any) {
-      setMessage({ type: 'error', text: err.message || 'Failed to upload image.' });
+      updateSingleUpload(id, { status: 'uploaded', previewUrl: publicUrl });
+      releasePreviewUrl(previewUrl);
+      singleSourceRef.current = null;
+      setMessage({
+        type: 'success',
+        text: `Image optimized from ${formatBytes(prepared.originalSize)} to ${formatBytes(
+          prepared.optimizedSize
+        )} (${prepared.savedPercent}% smaller) and uploaded.`,
+      });
+    } catch (error: any) {
+      const cancelled =
+        controller.signal.aborted ||
+        (error instanceof ImagePreparationError && error.code === 'cancelled');
+      const text = cancelled ? 'Image upload cancelled.' : getImageErrorMessage(error);
+
+      if (mountedRef.current) {
+        updateSingleUpload(id, {
+          status: cancelled ? 'cancelled' : 'failed',
+          error: text,
+        });
+        setMessage({ type: 'error', text });
+      }
     } finally {
-      setUploading(false);
+      uploadControllersRef.current.delete(id);
+      if (mountedRef.current) setUploading(false);
+    }
+  };
+
+  const retrySingleUpload = () => {
+    const source = singleSourceRef.current;
+    if (!source || uploading || loading) return;
+    void handleFileUpload(source.file, source.setter, source.purpose, source.target);
+  };
+
+  const cancelSingleUpload = (id: string) => {
+    uploadControllersRef.current.get(id)?.abort();
+  };
+
+  const dismissSingleUpload = (id: string) => {
+    if (singleUpload?.id !== id || isImageUploadActive(singleUpload)) return;
+    releasePreviewUrl(singleUpload.previewUrl);
+    setSingleUpload(null);
+    singleSourceRef.current = null;
+  };
+
+  /**
+   * Optimize and upload one gallery image. Failures are isolated so one bad
+   * file cannot discard the rest of a multi-image selection.
+   */
+  const processGalleryEntry = async (
+    id: string,
+    file: File,
+    controller: AbortController
+  ): Promise<boolean> => {
+    uploadControllersRef.current.set(id, controller);
+
+    try {
+      if (controller.signal.aborted) {
+        throw new ImagePreparationError('cancelled', 'Image upload cancelled.');
+      }
+
+      updateGalleryUpload(id, {
+        status: 'compressing',
+        progress: 1,
+        error: undefined,
+      });
+
+      const prepared = await prepareImageUpload(file, 'product-gallery', {
+        signal: controller.signal,
+        onProgress: (progress) =>
+          updateGalleryUpload(id, { status: 'compressing', progress }),
+      });
+
+      if (controller.signal.aborted) {
+        throw new ImagePreparationError('cancelled', 'Image upload cancelled.');
+      }
+
+      const previewUrl = trackPreviewUrl(URL.createObjectURL(prepared.file));
+      updateGalleryUpload(id, {
+        status: 'ready',
+        progress: 100,
+        optimizedSize: prepared.optimizedSize,
+        previewUrl,
+      });
+
+      updateGalleryUpload(id, { status: 'uploading' });
+      const publicUrl = await uploadCatalogImage(prepared.file);
+
+      if (controller.signal.aborted) {
+        throw new ImagePreparationError('cancelled', 'Image upload cancelled.');
+      }
+
+      if (!mountedRef.current) {
+        releasePreviewUrl(previewUrl);
+        return false;
+      }
+
+      setProdGalleryImages((prev) => {
+        const combined = [
+          ...prev,
+          {
+            id: '',
+            productId: '',
+            imageUrl: publicUrl,
+            altText: '',
+            sortOrder: prev.length,
+            isPrimary: false,
+          },
+        ];
+        return combined.map((img, index) => ({ ...img, sortOrder: index }));
+      });
+
+      updateGalleryUpload(id, {
+        status: 'uploaded',
+        previewUrl: publicUrl,
+        optimizedSize: prepared.optimizedSize,
+      });
+      releasePreviewUrl(previewUrl);
+      gallerySourceRef.current.delete(id);
+      return true;
+    } catch (error: any) {
+      const cancelled =
+        controller.signal.aborted ||
+        (error instanceof ImagePreparationError && error.code === 'cancelled');
+      const text = cancelled ? 'Image upload cancelled.' : getImageErrorMessage(error);
+
+      if (mountedRef.current) {
+        updateGalleryUpload(id, {
+          status: cancelled ? 'cancelled' : 'failed',
+          error: text,
+        });
+      }
+      return false;
+    } finally {
+      uploadControllersRef.current.delete(id);
     }
   };
 
   const handleGalleryFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    if (!files) return;
+    // Copy the FileList before resetting the input. Assigning value = '' clears
+    // the live FileList, which previously made every multi-file selection empty.
+    const files = copySelectedFilesAndReset(e.target);
+    if (files.length === 0) return;
+
+    if (uploading || loading) {
+      setMessage({ type: 'error', text: 'Please wait for the current operation to finish.' });
+      return;
+    }
+
+    if (editingId && galleryLoadedProductIdRef.current !== editingId) {
+      setMessage({
+        type: 'error',
+        text: 'The saved gallery has not loaded for this product. Reopen the product before adding images.',
+      });
+      return;
+    }
 
     setUploading(true);
-    try {
-      const uploadPromises = Array.from(files).map(async (file) => {
-        if (file.size > 5 * 1024 * 1024) {
-          throw new Error(`File ${file.name} exceeds 5MB limit.`);
-        }
-        const publicUrl = await uploadCatalogImage(file);
-        return {
-          id: '',
-          productId: '',
-          imageUrl: publicUrl,
-          altText: '',
-          sortOrder: 0,
-          isPrimary: false,
-        };
-      });
+    setMessage(null);
 
-      const newImages = await Promise.all(uploadPromises);
-      setProdGalleryImages(prev => {
-        const combined = [...prev, ...newImages];
-        // Re-assign sort orders
-        return combined.map((img, idx) => ({ ...img, sortOrder: idx }));
-      });
-      setMessage({ type: 'success', text: 'Gallery images uploaded!' });
-    } catch (err: any) {
-      setMessage({ type: 'error', text: err.message || 'Failed to upload gallery images.' });
-    } finally {
+    const entries = files.map((file) => {
+      const id = createUploadId();
+      const controller = new AbortController();
+      gallerySourceRef.current.set(id, file);
+      uploadControllersRef.current.set(id, controller);
+      return { id, file, controller };
+    });
+
+    setGalleryUploads((prev) => [
+      ...prev,
+      ...entries.map<ImageUploadItem>(({ id, file }) => ({
+        id,
+        target: 'product-gallery',
+        purpose: 'product-gallery',
+        fileName: file.name,
+        status: 'preparing',
+        progress: 0,
+        originalSize: file.size,
+      })),
+    ]);
+
+    let uploadedCount = 0;
+    let failedCount = 0;
+
+    await runWithConcurrency(entries, UPLOAD_CONCURRENCY, async (entry) => {
+      const ok = await processGalleryEntry(entry.id, entry.file, entry.controller);
+      if (ok) uploadedCount += 1;
+      else failedCount += 1;
+    });
+
+    if (mountedRef.current) {
       setUploading(false);
+      if (uploadedCount > 0 && failedCount === 0) {
+        setMessage({
+          type: 'success',
+          text: `${uploadedCount} gallery image${uploadedCount === 1 ? '' : 's'} optimized and uploaded.`,
+        });
+      } else if (uploadedCount > 0) {
+        setMessage({
+          type: 'error',
+          text: `${uploadedCount} uploaded, ${failedCount} failed. Retry failed images below before saving.`,
+        });
+      } else if (failedCount > 0) {
+        setMessage({
+          type: 'error',
+          text: 'Gallery upload failed. Retry or remove the failed images below.',
+        });
+      }
     }
   };
 
+  const retryGalleryUpload = async (id: string) => {
+    const file = gallerySourceRef.current.get(id);
+    if (!file || uploading || loading) return;
+
+    const existing = galleryUploads.find((item) => item.id === id);
+    if (!existing) return;
+
+    releasePreviewUrl(existing.previewUrl);
+    const controller = new AbortController();
+    setUploading(true);
+    setMessage(null);
+    updateGalleryUpload(id, {
+      status: 'preparing',
+      progress: 0,
+      optimizedSize: undefined,
+      previewUrl: undefined,
+      error: undefined,
+    });
+
+    const ok = await processGalleryEntry(id, file, controller);
+    if (mountedRef.current) {
+      setUploading(false);
+      setMessage(
+        ok
+          ? { type: 'success', text: `"${existing.fileName}" optimized and uploaded.` }
+          : { type: 'error', text: `"${existing.fileName}" could not be uploaded.` }
+      );
+    }
+  };
+
+  const cancelGalleryUpload = (id: string) => {
+    uploadControllersRef.current.get(id)?.abort();
+  };
+
+  const dismissGalleryUpload = (id: string) => {
+    const item = galleryUploads.find((entry) => entry.id === id);
+    if (!item || isImageUploadActive(item)) return;
+    releasePreviewUrl(item.previewUrl);
+    gallerySourceRef.current.delete(id);
+    setGalleryUploads((prev) => prev.filter((entry) => entry.id !== id));
+  };
+
   const removeGalleryImage = (index: number) => {
+    const removed = prodGalleryImages[index];
+    if (removed?.id) {
+      removedGalleryIdsRef.current.add(removed.id);
+    }
     setProdGalleryImages(prev => prev.filter((_, i) => i !== index));
+    if (removed) {
+      setGalleryUploads((prev) =>
+        prev.filter(
+          (item) => !(item.status === 'uploaded' && item.previewUrl === removed.imageUrl)
+        )
+      );
+    }
   };
 
   const moveGalleryImage = (index: number, direction: 'up' | 'down') => {
@@ -293,8 +1226,44 @@ export function AdminWorkspace() {
     });
   };
 
+  const loadProductGallery = (
+    productId: string,
+    rows: DatabaseProductImageRow[] | null | undefined
+  ) => {
+    const images = sortGalleryImages((rows ?? []).map(mapProductImageRow));
+    galleryBaselineRef.current = images;
+    galleryLoadedProductIdRef.current = productId;
+    removedGalleryIdsRef.current.clear();
+    setProdGalleryImages(images);
+  };
+
+  const applyGallerySyncResult = (
+    productId: string,
+    result: Awaited<ReturnType<typeof syncProductGalleryImages>>
+  ) => {
+    galleryBaselineRef.current = result.savedImages;
+    galleryLoadedProductIdRef.current = productId;
+    result.deletedIds.forEach((id) => removedGalleryIdsRef.current.delete(id));
+    setProdGalleryImages((prev) => mergeGallerySyncResult(prev, result));
+  };
+
+  const verifySavedGallery = async (productId: string, expected: ProductImage[]) => {
+    const verified = await getProductGalleryImages(productId);
+    galleryBaselineRef.current = verified;
+    galleryLoadedProductIdRef.current = productId;
+    setProdGalleryImages(verified);
+    const verifiedUrls = new Set(verified.map((image) => image.imageUrl));
+    return expected.filter(
+      (image) => image.imageUrl && !verifiedUrls.has(image.imageUrl)
+    );
+  };
+
   // Reset Forms
   const resetForms = () => {
+    clearUploadState();
+    galleryBaselineRef.current = [];
+    galleryLoadedProductIdRef.current = null;
+    removedGalleryIdsRef.current.clear();
     setEditingId(null);
     setCatSection(''); setCatParentId(''); setCatIsPublished(false);
     setProdSection(''); setProdCatId('');
@@ -303,6 +1272,8 @@ export function AdminWorkspace() {
     setProdOrder('0');
     setProdGalleryImages([]);
     setSvcName(''); setSvcSlug(''); setSvcShortName(''); setSvcDesc(''); setSvcLongDesc(''); setSvcImage(''); setSvcFeatures(''); setSvcApplications(''); setSvcProcessSteps(''); setSvcOrder('0'); setSvcIsPublished(false);
+    setSvcCategoryIds([]); setSvcCategoryBaseline([]); setSvcCategorySearch('');
+    setCatServiceIds([]); setCatServiceBaseline([]);
     setTestName(''); setTestCompany(''); setTestRole(''); setTestContent(''); setTestRating('5'); setTestAvatar(''); setTestOrder('0'); setTestIsPublished(true);
     setFaqQ(''); setFaqA(''); setFaqCategory('General'); setFaqOrder('0'); setFaqIsPublished(true);
     setSetKey(''); setSetValue('');
@@ -311,12 +1282,47 @@ export function AdminWorkspace() {
   // CATEGORIES SUBMIT
   const handleCategorySubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (loading || uploading) return;
     if (!catName || !catSlug) return;
     if (hierarchySupported === null || (!editingId && (!hierarchySupported || !catSection))) {
       setMessage({ type: 'error', text: 'Creating a category requires the hierarchy schema and an explicit main section.' });
       return;
     }
+
+    const isMetalCategory = catSection === 'metal_services';
+    const knownServiceAssignments = catServiceBaseline ?? [];
+
+    if (editingId && !isMetalCategory && catServiceBaseline === null) {
+      setMessage({
+        type: 'error',
+        text: 'Applicable Metal Services could not be loaded. Refresh and reopen this category before changing its main section.',
+      });
+      return;
+    }
+
+    if (editingId && !isMetalCategory && knownServiceAssignments.length > 0) {
+      setMessage({
+        type: 'error',
+        text: 'This category still has Metal service assignments. Keep Main Section set to Metal, save with N/A — No Service Assigned to remove the links, then change the main section.',
+      });
+      return;
+    }
+
+    const validServiceIds = new Set(services.map((service) => service.id));
+    if (isMetalCategory && catServiceIds.some((id) => !validServiceIds.has(id))) {
+      setMessage({ type: 'error', text: 'Choose only existing services for Applicable Metal Services.' });
+      return;
+    }
+
+    const shouldSaveRelationships =
+      isMetalCategory && serviceCategorySupported === true && relationshipControlsReady;
+    const relationshipsNeedRefresh =
+      isMetalCategory && serviceCategorySupported === true && editingId !== null && !serviceCategoryLinksLoaded;
+
     setLoading(true);
+    let detailsSaved = false;
+    let categoryId: string | null = editingId;
+
     try {
       const payload = {
         name: catName,
@@ -332,17 +1338,54 @@ export function AdminWorkspace() {
           is_published: catIsPublished,
         } : {}),
       };
+
       if (editingId) {
         await updateCategoryAdmin(editingId, payload);
-        setMessage({ type: 'success', text: 'Category updated successfully!' });
+        detailsSaved = true;
+        categoryId = editingId;
       } else {
-        await createCategoryAdmin(payload);
-        setMessage({ type: 'success', text: 'Category created successfully!' });
+        const created = await createCategoryAdmin(payload);
+        detailsSaved = true;
+        categoryId = created.id;
       }
+
+      if (shouldSaveRelationships && categoryId) {
+        await replaceCategoryServicesAdmin(
+          categoryId,
+          catServiceIds,
+          editingId ? (catServiceBaseline ?? []) : []
+        );
+      }
+
+      const completionNote = relationshipsNeedRefresh
+        ? ' Category details were saved, but service assignments were not changed because they had not loaded. Refresh and reopen the category.'
+        : !shouldSaveRelationships && isMetalCategory && serviceCategorySupported === false
+          ? ' Service-category assignments require the approved database migration.'
+          : '';
+
+      setMessage({
+        type: 'success',
+        text: `${editingId ? 'Category updated' : 'Category created'} successfully!${completionNote}`,
+      });
       resetForms();
       await loadAllData();
     } catch (err: any) {
-      setMessage({ type: 'error', text: err.message || 'Category action failed.' });
+      const errorMessage = getServiceCategoryErrorMessage(err);
+      if (detailsSaved) {
+        if (!editingId && categoryId) setEditingId(categoryId);
+        setMessage({
+          type: 'error',
+          text: `Category details were saved, but Applicable Metal Services could not be updated: ${errorMessage}`,
+        });
+        if (isServiceCategoryConflict(err)) {
+          const refreshed = await loadAllData();
+          if (refreshed.relationshipLinksLoaded && categoryId) {
+            syncCategoryServiceState(categoryId, refreshed.relationshipLinks);
+          }
+        }
+      } else {
+        setMessage({ type: 'error', text: errorMessage || 'Category action failed.' });
+      }
       setLoading(false);
     }
   };
@@ -350,9 +1393,18 @@ export function AdminWorkspace() {
   // PRODUCTS SUBMIT (All 19 Fields Handled)
   const handleProductSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (loading || uploading) return;
     if (!prodName || !prodSlug || !prodCatId) return;
     if (!productCategoryOptions.some((category) => category.id === prodCatId)) {
       setMessage({ type: 'error', text: 'Choose a valid category in the selected main section.' });
+      return;
+    }
+
+    if (editingId && galleryLoadedProductIdRef.current !== editingId) {
+      setMessage({
+        type: 'error',
+        text: 'The saved gallery has not loaded for this product. Reopen the product before saving.',
+      });
       return;
     }
 
@@ -386,57 +1438,99 @@ export function AdminWorkspace() {
       if (editingId) {
         await updateProductAdmin(editingId, payload, prodSection || null);
 
-        // Sync gallery
-        const currentProduct = products.find(p => p.id === editingId);
-        if (currentProduct) {
-          const originalImages = currentProduct.images || [];
+        const result = await syncProductGalleryImages(
+          editingId,
+          prodGalleryImages,
+          galleryBaselineRef.current,
+          { removedIds: removedGalleryIdsRef.current }
+        );
+        applyGallerySyncResult(editingId, result);
 
-          // 1. Add new images
-          for (const img of prodGalleryImages) {
-            if (!img.id) {
-              // Avoid duplicates on retry
-              const alreadyExists = (originalImages as ProductImage[]).some(existing => existing.imageUrl === img.imageUrl);
-              if (!alreadyExists) {
-                await addProductGalleryImage(editingId, img.imageUrl, img.altText, img.isPrimary, img.sortOrder);
-              }
-            }
-          }
-
-          // 2. Delete removed images
-          for (const img of originalImages) {
-            if (!prodGalleryImages.some(pImg => pImg.id === img.id)) {
-              await deleteProductGalleryImage(img.id);
-            }
-          }
-
-          // 3. Update existing images (order/primary/alt)
-          for (const img of prodGalleryImages) {
-            if (img.id) {
-              await updateProductGalleryImage(img.id, {
-                alt_text: img.altText || undefined,
-                is_primary: img.isPrimary,
-                sort_order: img.sortOrder
+        if (result.failures.length > 0) {
+          await loadAllData();
+          setMessage({
+            type: 'error',
+            text: `Product details were saved, but ${result.failures.length} gallery image${
+              result.failures.length === 1 ? '' : 's'
+            } could not be updated. ${result.failures[0].message} Retry before leaving this product.`,
+          });
+        } else {
+          try {
+            const missing = await verifySavedGallery(editingId, result.savedImages);
+            if (missing.length > 0) {
+              await loadAllData();
+              setMessage({
+                type: 'error',
+                text: `Product details were saved, but ${missing.length} gallery image${
+                  missing.length === 1 ? ' was' : 's were'
+                } not found in the refreshed gallery. Retry before leaving this product.`,
               });
+            } else {
+              resetForms();
+              await loadAllData();
+              setMessage({ type: 'success', text: 'Product and gallery saved successfully.' });
             }
+          } catch (verificationError: any) {
+            await loadAllData();
+            setMessage({
+              type: 'error',
+              text: `Product details were saved, but the gallery could not be verified: ${
+                verificationError?.message || 'reload the product and check the images.'
+              }`,
+            });
           }
         }
-
-        setMessage({ type: 'success', text: 'Product updated successfully!' });
       } else {
         const newProduct = await createProductAdmin(payload, prodSection || null);
-        
-        // Set editingId so a retry performs an update instead of a new creation
-        setEditingId(newProduct.id);
-        
-        // Add initial gallery images
-        for (const img of prodGalleryImages) {
-          await addProductGalleryImage(newProduct.id, img.imageUrl, img.altText, img.isPrimary, img.sortOrder);
-        }
 
-        setMessage({ type: 'success', text: 'Product created successfully!' });
+        // The product now exists. Keep the form pointed at it so any gallery
+        // failure retries through the update path instead of creating a duplicate.
+        setEditingId(newProduct.id);
+        galleryLoadedProductIdRef.current = newProduct.id;
+
+        const result = await syncProductGalleryImages(
+          newProduct.id,
+          prodGalleryImages,
+          [],
+          { removedIds: removedGalleryIdsRef.current }
+        );
+        applyGallerySyncResult(newProduct.id, result);
+
+        if (result.failures.length > 0) {
+          await loadAllData();
+          setMessage({
+            type: 'error',
+            text: `Product was created, but ${result.failures.length} gallery image${
+              result.failures.length === 1 ? '' : 's'
+            } could not be saved. ${result.failures[0].message} Retry before leaving this product.`,
+          });
+        } else {
+          try {
+            const missing = await verifySavedGallery(newProduct.id, result.savedImages);
+            if (missing.length > 0) {
+              await loadAllData();
+              setMessage({
+                type: 'error',
+                text: `Product was created, but ${missing.length} gallery image${
+                  missing.length === 1 ? ' was' : 's were'
+                } not found in the refreshed gallery. Retry before leaving this product.`,
+              });
+            } else {
+              resetForms();
+              await loadAllData();
+              setMessage({ type: 'success', text: 'Product and gallery created successfully.' });
+            }
+          } catch (verificationError: any) {
+            await loadAllData();
+            setMessage({
+              type: 'error',
+              text: `Product was created, but the gallery could not be verified: ${
+                verificationError?.message || 'reopen the product and check the images.'
+              }`,
+            });
+          }
+        }
       }
-      resetForms();
-      await loadAllData();
     } catch (err: any) {
       setMessage({ type: 'error', text: err.message || 'Product action failed.' });
     } finally {
@@ -447,6 +1541,7 @@ export function AdminWorkspace() {
   // SERVICES SUBMIT
   const handleServiceSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (loading || uploading) return;
     if (!svcName || !svcSlug || !svcDesc) return;
 
     // Image validation — must be non-empty and a valid URL or root-relative path
@@ -456,11 +1551,29 @@ export function AdminWorkspace() {
       return;
     }
     if (!trimmedImage.startsWith('https://') && !trimmedImage.startsWith('http://') && !trimmedImage.startsWith('/')) {
-      setMessage({ type: 'error', text: 'Service image must be a valid URL (https://…) or a root-relative path (/uploads/…).' });
+      setMessage({ type: 'error', text: 'Service image must be a valid URL (https://.) or a root-relative path (/uploads/.).' });
       return;
     }
 
+    const validCategoryIds = new Set(
+      mappedCategories
+        .filter((category) => category.id && category.mainSection === 'metal_services')
+        .map((category) => category.id!)
+    );
+    if (svcCategoryIds.some((id) => !validCategoryIds.has(id))) {
+      setMessage({ type: 'error', text: 'Choose only Metal division categories for Related Metal Categories.' });
+      return;
+    }
+
+    const shouldSaveRelationships =
+      serviceCategorySupported === true && relationshipControlsReady;
+    const relationshipsNeedRefresh =
+      serviceCategorySupported === true && editingId !== null && !serviceCategoryLinksLoaded;
+
     setLoading(true);
+    let detailsSaved = false;
+    let serviceId: string | null = editingId;
+
     try {
       const featArr = svcFeatures ? svcFeatures.split('\n').filter(Boolean) : [];
       const appArr = svcApplications ? svcApplications.split('\n').filter(Boolean) : [];
@@ -508,15 +1621,51 @@ export function AdminWorkspace() {
 
       if (editingId) {
         await updateServiceAdmin(editingId, payload);
-        setMessage({ type: 'success', text: 'Service updated successfully!' });
+        detailsSaved = true;
+        serviceId = editingId;
       } else {
-        await createServiceAdmin({ ...payload, process_steps: processStepsValue ?? [] });
-        setMessage({ type: 'success', text: 'Service created successfully!' });
+        const created = await createServiceAdmin({ ...payload, process_steps: processStepsValue ?? [] });
+        detailsSaved = true;
+        serviceId = created.id;
       }
+
+      if (shouldSaveRelationships && serviceId) {
+        await replaceServiceCategoriesAdmin(
+          serviceId,
+          svcCategoryIds,
+          editingId ? (svcCategoryBaseline ?? []) : []
+        );
+      }
+
+      const completionNote = relationshipsNeedRefresh
+        ? ' Service details were saved, but related categories were not changed because they had not loaded. Refresh and reopen the service.'
+        : serviceCategorySupported === false
+          ? ' Related category assignments require the approved database migration.'
+          : '';
+
+      setMessage({
+        type: 'success',
+        text: `${editingId ? 'Service updated' : 'Service created'} successfully!${completionNote}`,
+      });
       resetForms();
       await loadAllData();
     } catch (err: any) {
-      setMessage({ type: 'error', text: err.message || 'Service action failed.' });
+      const errorMessage = getServiceCategoryErrorMessage(err);
+      if (detailsSaved) {
+        if (!editingId && serviceId) setEditingId(serviceId);
+        setMessage({
+          type: 'error',
+          text: `Service details were saved, but related categories could not be updated: ${errorMessage}`,
+        });
+        if (isServiceCategoryConflict(err)) {
+          const refreshed = await loadAllData();
+          if (refreshed.relationshipLinksLoaded && serviceId) {
+            syncServiceRelationshipState(serviceId, refreshed.relationshipLinks);
+          }
+        }
+      } else {
+        setMessage({ type: 'error', text: errorMessage || 'Service action failed.' });
+      }
       setLoading(false);
     }
   };
@@ -524,6 +1673,7 @@ export function AdminWorkspace() {
   // TESTIMONIALS SUBMIT
   const handleTestimonialSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (loading || uploading) return;
     if (!testName || !testContent) return;
 
     const rVal = parseInt(testRating) || 5;
@@ -633,6 +1783,8 @@ export function AdminWorkspace() {
           { id: 'products', label: 'Products', icon: Package, count: products.length },
           { id: 'services', label: 'Services', icon: Wrench, count: services.length },
           { id: 'testimonials', label: 'Testimonials', icon: MessageSquare, count: testimonials.length },
+          { id: 'metal-finishes', label: 'Metal Finishes', icon: Layers, count: metalFinishCount },
+          { id: 'before-after', label: 'Before & After', icon: Images, count: beforeAfterCount },
           { id: 'faqs', label: 'FAQs', icon: HelpCircle, count: faqs.length },
           { id: 'settings', label: 'Site Settings', icon: Settings, count: settings.length },
         ].map((tab) => (
@@ -705,6 +1857,115 @@ export function AdminWorkspace() {
                 </div>
                 <p className="text-xs text-muted-foreground">Draft categories hide their entire branch from public listings. Existing product assignments are retained.</p>
               </>}
+
+              {showCategoryServiceAssignments && (
+                <div className="rounded-xl border border-gold/20 bg-background/40 p-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <p className="text-xs font-bold uppercase tracking-wider text-gold-deep">
+                        Applicable Metal Services
+                      </p>
+                      <p className="mt-1 text-xs text-muted-foreground">
+                        Choose one or more services, or keep N/A. Home Decor categories are not eligible.
+                      </p>
+                    </div>
+                    <span className="shrink-0 rounded-full bg-gold/10 px-2 py-1 text-[10px] font-semibold text-gold-deep">
+                      {isNoServiceAssigned(catServiceIds)
+                        ? 'N/A'
+                        : formatServiceSelectionCount(catServiceIds.length)}
+                    </span>
+                  </div>
+
+                  {catSection !== 'metal_services' && (
+                    <p className="mt-3 rounded-lg border border-amber-500/30 bg-amber-500/10 p-2 text-xs text-amber-400">
+                      This category is outside the Metal division. Set Main Section to Metal to edit its service links.
+                    </p>
+                  )}
+
+                  {serviceCategorySupported === null && (
+                    <p className="mt-3 text-xs text-muted-foreground">
+                      Checking service-category relationship schema…
+                    </p>
+                  )}
+
+                  {serviceCategorySupported === false && (
+                    <p className="mt-3 rounded-lg border border-amber-500/30 bg-amber-500/10 p-2 text-xs text-amber-400">
+                      Service-category assignments require the approved database migration. Category details can still be saved.
+                    </p>
+                  )}
+
+                  {serviceCategorySupported === true && catSection === 'metal_services' && (
+                    <div className="mt-3 space-y-2">
+                      {!relationshipControlsReady && (
+                        <p className="rounded-lg border border-destructive/30 bg-destructive/10 p-2 text-xs text-destructive">
+                          Applicable Metal Services could not be loaded. Refresh and reopen this category before changing assignments.
+                        </p>
+                      )}
+
+                      <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-gold/30 bg-gold/5 p-3">
+                        <input
+                          type="checkbox"
+                          className="mt-0.5"
+                          checked={isNoServiceAssigned(catServiceIds)}
+                          disabled={!relationshipControlsReady}
+                          onChange={(event) =>
+                            setCatServiceIds(
+                              toggleNoServiceAssigned(catServiceIds, event.target.checked)
+                            )
+                          }
+                        />
+                        <span className="text-xs font-medium">
+                          N/A — No Service Assigned
+                          <span className="mt-0.5 block font-normal text-muted-foreground">
+                            Keep this checked to leave the category published in Metal Collections without a service link.
+                          </span>
+                        </span>
+                      </label>
+
+                      {services.length === 0 ? (
+                        <p className="rounded-lg border border-border/60 p-2.5 text-xs text-muted-foreground">
+                          No services are available yet. Create a service first.
+                        </p>
+                      ) : (
+                        <div className="grid gap-2 sm:grid-cols-2">
+                          {services.map((serviceRow) => (
+                            <label
+                              key={serviceRow.id}
+                              className="flex cursor-pointer items-start gap-2 rounded-lg border border-border/60 bg-card/40 p-2.5"
+                            >
+                              <input
+                                type="checkbox"
+                                className="mt-0.5"
+                                checked={catServiceIds.includes(serviceRow.id)}
+                                disabled={!relationshipControlsReady}
+                                onChange={() =>
+                                  setCatServiceIds((previous) =>
+                                    toggleIdSelection(previous, serviceRow.id)
+                                  )
+                                }
+                              />
+                              <span className="min-w-0 text-xs">
+                                <span className="block font-medium">{serviceRow.name}</span>
+                                <span className="block truncate font-mono text-[10px] text-muted-foreground">
+                                  {serviceRow.slug}
+                                  {serviceRow.is_published === false ? ' · Draft' : ''}
+                                </span>
+                              </span>
+                            </label>
+                          ))}
+                        </div>
+                      )}
+
+                      <p className="text-xs text-muted-foreground">
+                        {isNoServiceAssigned(catServiceIds)
+                          ? 'N/A — No Service Assigned'
+                          : formatServiceSelectionCount(catServiceIds.length)}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              )}
+
               <div>
                 <Label>Category Name *</Label>
                 <Input
@@ -759,12 +2020,26 @@ export function AdminWorkspace() {
                     {uploading ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Upload'}
                     <input
                       type="file"
-                      accept="image/*"
+                      accept="image/jpeg,image/png,image/webp,image/avif,image/heic,image/heif"
                       className="hidden"
-                      onChange={(e) => e.target.files?.[0] && handleFileUpload(e.target.files[0], setCatImage)}
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        e.target.value = '';
+                        if (file) void handleFileUpload(file, setCatImage, 'category', 'category');
+                      }}
                     />
                   </label>
                 </div>
+                {singleUpload?.target === 'category' && (
+                  <div className="mt-2">
+                    <ImageUploadStatusCard
+                      item={singleUpload}
+                      onCancel={cancelSingleUpload}
+                      onRetry={retrySingleUpload}
+                      onDismiss={dismissSingleUpload}
+                    />
+                  </div>
+                )}
                 {catImage && (
                   <div className="mt-2 relative aspect-video w-full overflow-hidden rounded-xl border border-border">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -801,11 +2076,125 @@ export function AdminWorkspace() {
 
           <div className="lg:col-span-2 rounded-2xl border border-border bg-card/60 p-6 backdrop-blur-xl">
             <h3 className="text-base font-semibold mb-4">Categories ({categories.length})</h3>
-            {categories.length === 0 ? (
-              <p className="text-sm text-muted-foreground py-8 text-center">No categories in database.</p>
+            <AdminListToolbar
+              search={catListSearch}
+              onSearchChange={(value) => {
+                setCatListSearch(value);
+                setCatListPage(1);
+              }}
+              searchPlaceholder="Search category name, slug, tagline, ID…"
+              resultCount={categoryListData.total}
+              totalCount={categories.length}
+              onClear={() => {
+                setCatListSearch('');
+                setCatListSection('all');
+                setCatListStatus('all');
+                setCatListAssignment('all');
+                setCatListHierarchy('all');
+                setCatListSort('order');
+                setCatListPage(1);
+              }}
+              clearDisabled={
+                !catListSearch &&
+                catListSection === 'all' &&
+                catListStatus === 'all' &&
+                catListAssignment === 'all' &&
+                catListHierarchy === 'all' &&
+                catListSort === 'order'
+              }
+            >
+              <AdminFilterSelect
+                label="Division"
+                value={catListSection}
+                onChange={(value) => {
+                  setCatListSection(value);
+                  setCatListPage(1);
+                }}
+                options={[
+                  { value: 'all', label: 'All divisions' },
+                  { value: 'home_decor', label: 'Home Decor' },
+                  { value: 'metal_services', label: 'Metal Services' },
+                  { value: 'legacy', label: 'Unassigned / legacy' },
+                ]}
+              />
+              {serviceCategorySupported === true && (
+                <AdminFilterSelect
+                  label="Service"
+                  value={catListAssignment}
+                  onChange={(value) => {
+                    setCatListAssignment(value);
+                    setCatListPage(1);
+                  }}
+                  options={[
+                    { value: 'all', label: 'All assignments' },
+                    { value: 'assigned', label: 'Assigned to a service' },
+                    { value: 'unassigned', label: 'N/A — no service assigned' },
+                    ...services.map((service) => ({
+                      value: `service:${service.id}`,
+                      label: service.name,
+                    })),
+                  ]}
+                />
+              )}
+              <AdminFilterSelect
+                label="Hierarchy"
+                value={catListHierarchy}
+                onChange={(value) => {
+                  setCatListHierarchy(value);
+                  setCatListPage(1);
+                }}
+                options={[
+                  { value: 'all', label: 'All levels' },
+                  { value: 'top', label: 'Top level' },
+                  { value: 'child', label: 'Subcategories' },
+                ]}
+              />
+              <AdminFilterSelect
+                label="Status"
+                value={catListStatus}
+                onChange={(value) => {
+                  setCatListStatus(value);
+                  setCatListPage(1);
+                }}
+                options={[
+                  { value: 'all', label: 'All statuses' },
+                  { value: 'published', label: 'Published' },
+                  { value: 'draft', label: 'Draft' },
+                ]}
+              />
+              <AdminFilterSelect
+                label="Sort"
+                value={catListSort}
+                onChange={(value) => {
+                  setCatListSort(value);
+                  setCatListPage(1);
+                }}
+                options={[
+                  { value: 'order', label: 'Display order' },
+                  { value: 'name', label: 'Name A–Z' },
+                  { value: 'newest', label: 'Newest first' },
+                ]}
+              />
+            </AdminListToolbar>
+            {categoryListError && (
+              <p className="mb-3 rounded-lg border border-destructive/30 bg-destructive/10 p-2 text-xs text-destructive">
+                {categoryListError}
+              </p>
+            )}
+            {categoryListLoading && categoryListData.rows.length === 0 ? (
+              <p className="text-sm text-muted-foreground py-8 text-center">
+                <Loader2 className="mr-2 inline h-4 w-4 animate-spin" />
+                Loading categories…
+              </p>
+            ) : categoryListData.total === 0 ? (
+              <p className="text-sm text-muted-foreground py-8 text-center">
+                {categories.length === 0
+                  ? 'No categories in database.'
+                  : 'No categories match these filters.'}
+              </p>
             ) : (
               <div className="space-y-3">
-                {categories.map((c) => (
+                {pagedCategories.map((c) => (
                   <div key={c.id} className="flex items-center justify-between rounded-xl border border-border/60 bg-background/40 p-4">
                     <div className="flex items-center gap-3">
                       {c.image && (
@@ -825,6 +2214,15 @@ export function AdminWorkspace() {
                           {c.parent_id ? ` · Parent: ${categories.find((parent) => parent.id === c.parent_id)?.name || 'Invalid'}` : ' · Top level'}
                           {c.is_published === false ? ' · Draft' : ''}
                         </p>
+                        {serviceCategorySupported === true &&
+                          (c.main_section === 'metal_services' ||
+                            relatedServiceCountForCategory(c.id) > 0) && (
+                            <p className="text-xs text-muted-foreground">
+                              {relatedServiceCountForCategory(c.id) === 0
+                                ? 'N/A — No Service Assigned'
+                                : `${relatedServiceCountForCategory(c.id)} service${relatedServiceCountForCategory(c.id) === 1 ? '' : 's'} assigned`}
+                            </p>
+                          )}
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
@@ -832,6 +2230,7 @@ export function AdminWorkspace() {
                         variant="ghost"
                         size="sm"
                         onClick={() => {
+                          clearUploadState();
                           setEditingId(c.id);
                           setCatName(c.name);
                           setCatSlug(c.slug);
@@ -843,6 +2242,23 @@ export function AdminWorkspace() {
                           setCatSection(c.main_section === 'home_decor' || c.main_section === 'metal_services' ? c.main_section : '');
                           setCatParentId(c.parent_id || '');
                           setCatIsPublished(c.is_published !== false);
+                          const canReadAssignments =
+                            serviceCategorySupported === true && serviceCategoryLinksLoaded;
+                          const assignedServiceIds = canReadAssignments
+                            ? normalizeIdList(
+                                serviceCategoryLinks
+                                  .filter((link) => link.category_id === c.id)
+                                  .map((link) => link.service_id)
+                              )
+                            : [];
+                          setCatServiceIds(assignedServiceIds);
+                          setCatServiceBaseline(
+                            canReadAssignments
+                              ? assignedServiceIds
+                              : serviceCategorySupported === false
+                                ? []
+                                : null
+                          );
                         }}
                       >
                         <Edit className="h-4 w-4" />
@@ -864,6 +2280,13 @@ export function AdminWorkspace() {
                 ))}
               </div>
             )}
+            <AdminPagination
+              page={safeCategoryListPage}
+              pageCount={categoryListPageCount}
+              total={categoryListData.total}
+              pageSize={ADMIN_LIST_PAGE_SIZE}
+              onPageChange={setCatListPage}
+            />
           </div>
         </div>
       )}
@@ -1010,9 +2433,28 @@ export function AdminWorkspace() {
                     <label className="cursor-pointer flex items-center gap-1 rounded-xl border border-border bg-muted/60 px-3 py-2 text-xs font-medium hover:bg-muted">
                       <Upload className="h-4 w-4" />
                       {uploading ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Upload'}
-                      <input type="file" accept="image/*" className="hidden" onChange={(e) => e.target.files?.[0] && handleFileUpload(e.target.files[0], setProdImage)} />
+                      <input
+                        type="file"
+                        accept="image/jpeg,image/png,image/webp,image/avif,image/heic,image/heif"
+                        className="hidden"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          e.target.value = '';
+                          if (file) void handleFileUpload(file, setProdImage, 'product-main', 'product-main');
+                        }}
+                      />
                     </label>
                   </div>
+                  {singleUpload?.target === 'product-main' && (
+                    <div className="mt-2">
+                      <ImageUploadStatusCard
+                        item={singleUpload}
+                        onCancel={cancelSingleUpload}
+                        onRetry={retrySingleUpload}
+                        onDismiss={dismissSingleUpload}
+                      />
+                    </div>
+                  )}
                   {prodImage && (
                     <div className="mt-2 relative aspect-video w-full overflow-hidden rounded-xl border border-border">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -1030,6 +2472,7 @@ export function AdminWorkspace() {
                     <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5">
                         {prodGalleryImages.map((img, idx) => (
                           <div key={img.id || idx} className="group relative aspect-square overflow-hidden rounded-xl border border-border">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img src={img.imageUrl} alt="" className="h-full w-full object-cover" />
                             <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 bg-black/40 opacity-0 transition-opacity group-hover:opacity-100 group-focus-within:opacity-100">
                               <div className="flex gap-1">
@@ -1080,23 +2523,26 @@ export function AdminWorkspace() {
                             </div>
                           </div>
                         ))}
-                      {uploading && (
-                        <div className="flex aspect-square items-center justify-center rounded-xl border border-dashed border-border bg-muted/30">
-                          <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
-                        </div>
-                      )}
                       <label className="flex aspect-square cursor-pointer items-center justify-center rounded-xl border border-dashed border-border bg-muted/30 transition-colors hover:bg-muted/50">
                         <Upload className="h-5 w-5 text-muted-foreground" />
                         <input
                           type="file"
                           multiple
-                          accept="image/*"
+                          accept="image/jpeg,image/png,image/webp,image/avif,image/heic,image/heif"
                           className="hidden"
                           onChange={handleGalleryFileUpload}
                         />
                       </label>
                     </div>
                   </div>
+                  {galleryUploads.length > 0 && (
+                    <ImageUploadStatusList
+                      items={galleryUploads}
+                      onCancel={cancelGalleryUpload}
+                      onRetry={retryGalleryUpload}
+                      onDismiss={dismissGalleryUpload}
+                    />
+                  )}
                 </div>
               </div>
 
@@ -1138,11 +2584,124 @@ export function AdminWorkspace() {
 
           <div className="lg:col-span-2 rounded-2xl border border-border bg-card/60 p-6 backdrop-blur-xl">
             <h3 className="text-base font-semibold mb-4">Products ({products.length})</h3>
-            {products.length === 0 ? (
-              <p className="text-sm text-muted-foreground py-8 text-center">No products in database.</p>
+            <AdminListToolbar
+              search={prodListSearch}
+              onSearchChange={(value) => {
+                setProdListSearch(value);
+                setProdListPage(1);
+              }}
+              searchPlaceholder="Search product name, ID, SKU, material, category…"
+              resultCount={productListData.total}
+              totalCount={products.length}
+              onClear={() => {
+                setProdListSearch('');
+                setProdListStatus('all');
+                setProdListSection('all');
+                setProdListCategory('all');
+                setProdListStock('all');
+                setProdListSort('newest');
+                setProdListPage(1);
+              }}
+              clearDisabled={
+                !prodListSearch &&
+                prodListStatus === 'all' &&
+                prodListSection === 'all' &&
+                prodListCategory === 'all' &&
+                prodListStock === 'all' &&
+                prodListSort === 'newest'
+              }
+            >
+              <AdminFilterSelect
+                label="Division"
+                value={prodListSection}
+                onChange={(value) => {
+                  setProdListSection(value);
+                  setProdListCategory('all');
+                  setProdListPage(1);
+                }}
+                options={[
+                  { value: 'all', label: 'All divisions' },
+                  { value: 'home_decor', label: 'Home Decor' },
+                  { value: 'metal_services', label: 'Metal Services' },
+                  { value: 'legacy', label: 'Unassigned / legacy' },
+                ]}
+              />
+              <AdminFilterSelect
+                label="Category"
+                value={prodListCategory}
+                onChange={(value) => {
+                  setProdListCategory(value);
+                  setProdListPage(1);
+                }}
+                options={[
+                  { value: 'all', label: 'All categories' },
+                  ...productListCategoryOptions.map((category) => ({
+                    value: String(category.id),
+                    label: category.name,
+                  })),
+                ]}
+              />
+              <AdminFilterSelect
+                label="Status"
+                value={prodListStatus}
+                onChange={(value) => {
+                  setProdListStatus(value);
+                  setProdListPage(1);
+                }}
+                options={[
+                  { value: 'all', label: 'All statuses' },
+                  { value: 'published', label: 'Published' },
+                  { value: 'draft', label: 'Draft' },
+                ]}
+              />
+              <AdminFilterSelect
+                label="Stock"
+                value={prodListStock}
+                onChange={(value) => {
+                  setProdListStock(value);
+                  setProdListPage(1);
+                }}
+                options={[
+                  { value: 'all', label: 'All stock' },
+                  { value: 'in_stock', label: 'In stock' },
+                  { value: 'low_stock', label: 'Low stock' },
+                  { value: 'out_of_stock', label: 'Out of stock' },
+                ]}
+              />
+              <AdminFilterSelect
+                label="Sort"
+                value={prodListSort}
+                onChange={(value) => {
+                  setProdListSort(value);
+                  setProdListPage(1);
+                }}
+                options={[
+                  { value: 'newest', label: 'Newest first' },
+                  { value: 'order', label: 'Display order' },
+                  { value: 'name', label: 'Name A–Z' },
+                  { value: 'sku', label: 'SKU A–Z' },
+                ]}
+              />
+            </AdminListToolbar>
+            {productListError && (
+              <p className="mb-3 rounded-lg border border-destructive/30 bg-destructive/10 p-2 text-xs text-destructive">
+                {productListError}
+              </p>
+            )}
+            {productListLoading && productListData.rows.length === 0 ? (
+              <p className="text-sm text-muted-foreground py-8 text-center">
+                <Loader2 className="mr-2 inline h-4 w-4 animate-spin" />
+                Loading products…
+              </p>
+            ) : productListData.total === 0 ? (
+              <p className="text-sm text-muted-foreground py-8 text-center">
+                {products.length === 0
+                  ? 'No products in database.'
+                  : 'No products match these filters.'}
+              </p>
             ) : (
               <div className="space-y-3">
-                {products.map((p) => (
+                {pagedProducts.map((p) => (
                   <div key={p.id} className="flex items-center justify-between rounded-xl border border-border/60 bg-background/40 p-4">
                     <div className="flex items-center gap-3">
                       {p.image && (
@@ -1161,6 +2720,9 @@ export function AdminWorkspace() {
                         </div>
                         <p className="text-xs text-muted-foreground mt-0.5">
                           slug: {p.slug}{p.sku ? ` • SKU: ${p.sku}` : ''}
+                        </p>
+                        <p className="text-[10px] font-mono text-muted-foreground/70">
+                          ID: {p.id}
                         </p>
                         <p className="text-[11px] text-muted-foreground/80 mt-0.5">
                           Stock: {p.stock_status || 'in_stock'} • Material: {p.material || 'N/A'} • Order: {p.display_order || 0}
@@ -1181,6 +2743,7 @@ export function AdminWorkspace() {
                         variant="ghost"
                         size="sm"
                         onClick={() => {
+                          clearUploadState();
                           setEditingId(p.id);
                           setProdName(p.name);
                           setProdSlug(p.slug);
@@ -1202,7 +2765,7 @@ export function AdminWorkspace() {
                           setProdIsPublished(p.is_published);
                           setProdIsFeatured(p.is_featured || false);
                           setProdOrder(p.display_order?.toString() || '0');
-                          setProdGalleryImages(p.images || []);
+                          loadProductGallery(p.id, p.product_images);
                         }}
                       >
                         <Edit className="h-4 w-4" />
@@ -1224,6 +2787,13 @@ export function AdminWorkspace() {
                 ))}
               </div>
             )}
+            <AdminPagination
+              page={safeProductListPage}
+              pageCount={productListPageCount}
+              total={productListData.total}
+              pageSize={ADMIN_LIST_PAGE_SIZE}
+              onPageChange={setProdListPage}
+            />
           </div>
         </div>
       )}
@@ -1286,9 +2856,28 @@ export function AdminWorkspace() {
                   <label className="cursor-pointer flex items-center gap-1 rounded-xl border border-border bg-muted/60 px-3 py-2 text-xs font-medium hover:bg-muted">
                     <Upload className="h-4 w-4" />
                     {uploading ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Upload'}
-                    <input type="file" accept="image/*" className="hidden" onChange={(e) => e.target.files?.[0] && handleFileUpload(e.target.files[0], setSvcImage)} />
+                    <input
+                      type="file"
+                      accept="image/jpeg,image/png,image/webp,image/avif,image/heic,image/heif"
+                      className="hidden"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        e.target.value = '';
+                        if (file) void handleFileUpload(file, setSvcImage, 'service', 'service');
+                      }}
+                    />
                   </label>
                 </div>
+                {singleUpload?.target === 'service' && (
+                  <div className="mt-2">
+                    <ImageUploadStatusCard
+                      item={singleUpload}
+                      onCancel={cancelSingleUpload}
+                      onRetry={retrySingleUpload}
+                      onDismiss={dismissSingleUpload}
+                    />
+                  </div>
+                )}
                 {svcImage && (
                   <div className="mt-2 relative aspect-video w-full overflow-hidden rounded-xl border border-border">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -1296,6 +2885,111 @@ export function AdminWorkspace() {
                   </div>
                 )}
               </div>
+
+              <div className="rounded-xl border border-gold/20 bg-background/40 p-4">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-wider text-gold-deep">
+                      Related Metal Categories
+                    </p>
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      Link this service to any number of Metal categories. Unassigned categories stay in the main Metal Collections directory.
+                    </p>
+                  </div>
+                  <span className="shrink-0 rounded-full bg-gold/10 px-2 py-1 text-[10px] font-semibold text-gold-deep">
+                    {isNoServiceAssigned(svcCategoryIds)
+                      ? 'None'
+                      : formatCategorySelectionCount(svcCategoryIds.length)}
+                  </span>
+                </div>
+
+                {serviceCategorySupported === null && (
+                  <p className="mt-3 text-xs text-muted-foreground">
+                    Checking service-category relationship schema…
+                  </p>
+                )}
+
+                {serviceCategorySupported === false && (
+                  <p className="mt-3 rounded-lg border border-amber-500/30 bg-amber-500/10 p-2 text-xs text-amber-400">
+                    Related category assignments require the approved database migration. Service details can still be saved.
+                  </p>
+                )}
+
+                {serviceCategorySupported === true && (
+                  <div className="mt-3 space-y-3">
+                    {!relationshipControlsReady && (
+                      <p className="rounded-lg border border-destructive/30 bg-destructive/10 p-2 text-xs text-destructive">
+                        Related categories could not be loaded{serviceCategoryLinksError ? `: ${serviceCategoryLinksError}` : ''}. Refresh and reopen this service before changing assignments.
+                      </p>
+                    )}
+
+                    <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+                      <Input
+                        value={svcCategorySearch}
+                        onChange={(event) => setSvcCategorySearch(event.target.value)}
+                        placeholder="Search Metal categories…"
+                        className="h-9 text-xs"
+                        aria-label="Search Metal categories"
+                      />
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setSvcCategoryIds([])}
+                        disabled={svcCategoryIds.length === 0 || !relationshipControlsReady}
+                        className="shrink-0 rounded-lg text-xs"
+                      >
+                        Clear selection
+                      </Button>
+                    </div>
+
+                    {metalCategoryOptions.length === 0 ? (
+                      <p className="rounded-lg border border-border/60 p-2.5 text-xs text-muted-foreground">
+                        No Metal categories are available. Create a Metal category first.
+                      </p>
+                    ) : filteredMetalCategoryOptions.length === 0 ? (
+                      <p className="rounded-lg border border-border/60 p-2.5 text-xs text-muted-foreground">
+                        No categories match “{svcCategorySearch}”.
+                      </p>
+                    ) : (
+                      <div className="grid gap-2 sm:grid-cols-2">
+                        {filteredMetalCategoryOptions.map((option) => (
+                          <label
+                            key={option.id}
+                            className="flex cursor-pointer items-start gap-2 rounded-lg border border-border/60 bg-card/40 p-2.5"
+                          >
+                            <input
+                              type="checkbox"
+                              className="mt-0.5"
+                              checked={svcCategoryIds.includes(option.id)}
+                              disabled={!relationshipControlsReady}
+                              onChange={() =>
+                                setSvcCategoryIds((previous) =>
+                                  toggleIdSelection(previous, option.id)
+                                )
+                              }
+                            />
+                            <span className="min-w-0 text-xs">
+                              <span className="block font-medium">{option.name}</span>
+                              <span className="block truncate text-[10px] text-muted-foreground">
+                                {option.path}
+                                {option.isPublished ? '' : ' · Draft'}
+                              </span>
+                            </span>
+                          </label>
+                        ))}
+                      </div>
+                    )}
+
+                    <p className="text-xs text-muted-foreground">
+                      {isNoServiceAssigned(svcCategoryIds)
+                        ? 'No Categories Assigned'
+                        : formatCategorySelectionCount(svcCategoryIds.length)}
+                    </p>
+                  </div>
+                )}
+              </div>
+
               <div className="grid grid-cols-2 gap-2">
                 <div>
                   <Label>Display Order</Label>
@@ -1319,8 +3013,82 @@ export function AdminWorkspace() {
 
           <div className="lg:col-span-2 rounded-2xl border border-border bg-card/60 p-6 backdrop-blur-xl">
             <h3 className="text-base font-semibold mb-4">Services ({services.length})</h3>
-            <div className="space-y-3">
-              {services.map((s) => (
+            <AdminListToolbar
+              search={svcListSearch}
+              onSearchChange={(value) => {
+                setSvcListSearch(value);
+                setSvcListPage(1);
+              }}
+              searchPlaceholder="Search service name, slug, description…"
+              resultCount={filteredServices.length}
+              totalCount={services.length}
+              onClear={() => {
+                setSvcListSearch('');
+                setSvcListStatus('all');
+                setSvcListCategory('all');
+                setSvcListSort('order');
+                setSvcListPage(1);
+              }}
+              clearDisabled={
+                !svcListSearch &&
+                svcListStatus === 'all' &&
+                svcListCategory === 'all' &&
+                svcListSort === 'order'
+              }
+            >
+              {serviceCategorySupported === true && (
+                <AdminFilterSelect
+                  label="Category"
+                  value={svcListCategory}
+                  onChange={(value) => {
+                    setSvcListCategory(value);
+                    setSvcListPage(1);
+                  }}
+                  options={[
+                    { value: 'all', label: 'All categories' },
+                    { value: 'unassigned', label: 'No categories assigned' },
+                  ...metalCategoryOptions.map((category) => ({
+                    value: String(category.id),
+                    label: category.name,
+                  })),
+                  ]}
+                />
+              )}
+              <AdminFilterSelect
+                label="Status"
+                value={svcListStatus}
+                onChange={(value) => {
+                  setSvcListStatus(value);
+                  setSvcListPage(1);
+                }}
+                options={[
+                  { value: 'all', label: 'All statuses' },
+                  { value: 'published', label: 'Published' },
+                  { value: 'draft', label: 'Draft' },
+                ]}
+              />
+              <AdminFilterSelect
+                label="Sort"
+                value={svcListSort}
+                onChange={(value) => {
+                  setSvcListSort(value);
+                  setSvcListPage(1);
+                }}
+                options={[
+                  { value: 'order', label: 'Display order' },
+                  { value: 'name', label: 'Name A–Z' },
+                ]}
+              />
+            </AdminListToolbar>
+            {filteredServices.length === 0 ? (
+              <p className="text-sm text-muted-foreground py-8 text-center">
+                {services.length === 0
+                  ? 'No services in database.'
+                  : 'No services match these filters.'}
+              </p>
+            ) : (
+              <div className="space-y-3">
+                {pagedServices.map((s) => (
                 <div key={s.id} className="flex items-center justify-between rounded-xl border border-border/60 bg-background/40 p-4">
                   <div className="flex items-center gap-3">
                     {s.image && (
@@ -1337,6 +3105,13 @@ export function AdminWorkspace() {
                         </span>
                       </div>
                       <p className="text-xs text-muted-foreground">slug: {s.slug} • Short name: {s.short_name || s.name}</p>
+                      {serviceCategorySupported === true && (
+                        <p className="text-xs text-muted-foreground">
+                          {relatedCategoryCountForService(s.id) === 0
+                            ? 'No Categories Assigned'
+                            : `${relatedCategoryCountForService(s.id)} related categor${relatedCategoryCountForService(s.id) === 1 ? 'y' : 'ies'}`}
+                        </p>
+                      )}
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
@@ -1344,6 +3119,7 @@ export function AdminWorkspace() {
                       variant="ghost"
                       size="sm"
                       onClick={() => {
+                        clearUploadState();
                         setEditingId(s.id);
                         setSvcName(s.name);
                         setSvcSlug(s.slug);
@@ -1362,6 +3138,24 @@ export function AdminWorkspace() {
                         );
                         setSvcOrder(s.display_order?.toString() || '0');
                         setSvcIsPublished(s.is_published);
+                        const canReadAssignments =
+                          serviceCategorySupported === true && serviceCategoryLinksLoaded;
+                        const assignedCategoryIds = canReadAssignments
+                          ? normalizeIdList(
+                              serviceCategoryLinks
+                                .filter((link) => link.service_id === s.id)
+                                .map((link) => link.category_id)
+                            )
+                          : [];
+                        setSvcCategoryIds(assignedCategoryIds);
+                        setSvcCategoryBaseline(
+                          canReadAssignments
+                            ? assignedCategoryIds
+                            : serviceCategorySupported === false
+                              ? []
+                              : null
+                        );
+                        setSvcCategorySearch('');
                       }}
                     >
                       <Edit className="h-4 w-4" />
@@ -1379,7 +3173,15 @@ export function AdminWorkspace() {
                   </div>
                 </div>
               ))}
-            </div>
+              </div>
+            )}
+            <AdminPagination
+              page={safeServiceListPage}
+              pageCount={serviceListPageCount}
+              total={filteredServices.length}
+              pageSize={ADMIN_LIST_PAGE_SIZE}
+              onPageChange={setSvcListPage}
+            />
           </div>
         </div>
       )}
@@ -1432,9 +3234,28 @@ export function AdminWorkspace() {
                   <label className="cursor-pointer flex items-center gap-1 rounded-xl border border-border bg-muted/60 px-3 py-2 text-xs font-medium hover:bg-muted">
                     <Upload className="h-4 w-4" />
                     {uploading ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Upload'}
-                    <input type="file" accept="image/*" className="hidden" onChange={(e) => e.target.files?.[0] && handleFileUpload(e.target.files[0], setTestAvatar)} />
+                    <input
+                      type="file"
+                      accept="image/jpeg,image/png,image/webp,image/avif,image/heic,image/heif"
+                      className="hidden"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        e.target.value = '';
+                        if (file) void handleFileUpload(file, setTestAvatar, 'testimonial', 'testimonial');
+                      }}
+                    />
                   </label>
                 </div>
+                {singleUpload?.target === 'testimonial' && (
+                  <div className="mt-2">
+                    <ImageUploadStatusCard
+                      item={singleUpload}
+                      onCancel={cancelSingleUpload}
+                      onRetry={retrySingleUpload}
+                      onDismiss={dismissSingleUpload}
+                    />
+                  </div>
+                )}
                 {testAvatar && (
                   <div className="mt-2 relative h-16 w-16 overflow-hidden rounded-full border border-border">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -1465,8 +3286,61 @@ export function AdminWorkspace() {
 
           <div className="lg:col-span-2 rounded-2xl border border-border bg-card/60 p-6 backdrop-blur-xl">
             <h3 className="text-base font-semibold mb-4">Testimonials ({testimonials.length})</h3>
-            <div className="space-y-3">
-              {testimonials.map((t) => (
+            <AdminListToolbar
+              search={testListSearch}
+              onSearchChange={(value) => {
+                setTestListSearch(value);
+                setTestListPage(1);
+              }}
+              searchPlaceholder="Search client, company, role, content…"
+              resultCount={filteredTestimonials.length}
+              totalCount={testimonials.length}
+              onClear={() => {
+                setTestListSearch('');
+                setTestListStatus('all');
+                setTestListSort('order');
+                setTestListPage(1);
+              }}
+              clearDisabled={
+                !testListSearch && testListStatus === 'all' && testListSort === 'order'
+              }
+            >
+              <AdminFilterSelect
+                label="Status"
+                value={testListStatus}
+                onChange={(value) => {
+                  setTestListStatus(value);
+                  setTestListPage(1);
+                }}
+                options={[
+                  { value: 'all', label: 'All' },
+                  { value: 'published', label: 'Published' },
+                  { value: 'draft', label: 'Draft' },
+                ]}
+              />
+              <AdminFilterSelect
+                label="Sort"
+                value={testListSort}
+                onChange={(value) => {
+                  setTestListSort(value);
+                  setTestListPage(1);
+                }}
+                options={[
+                  { value: 'order', label: 'Display order' },
+                  { value: 'rating', label: 'Highest rating' },
+                  { value: 'name', label: 'Name A–Z' },
+                ]}
+              />
+            </AdminListToolbar>
+            {filteredTestimonials.length === 0 ? (
+              <p className="text-sm text-muted-foreground py-8 text-center">
+                {testimonials.length === 0
+                  ? 'No testimonials in database.'
+                  : 'No testimonials match these filters.'}
+              </p>
+            ) : (
+              <div className="space-y-3">
+                {pagedTestimonials.map((t) => (
                 <div key={t.id} className="flex items-center justify-between rounded-xl border border-border/60 bg-background/40 p-4">
                   <div className="flex items-center gap-3">
                     {t.avatar && (
@@ -1490,6 +3364,7 @@ export function AdminWorkspace() {
                       variant="ghost"
                       size="sm"
                       onClick={() => {
+                        clearUploadState();
                         setEditingId(t.id);
                         setTestName(t.name);
                         setTestCompany(t.company || '');
@@ -1516,9 +3391,32 @@ export function AdminWorkspace() {
                   </div>
                 </div>
               ))}
-            </div>
+              </div>
+            )}
+            <AdminPagination
+              page={safeTestimonialListPage}
+              pageCount={testimonialListPageCount}
+              total={filteredTestimonials.length}
+              pageSize={ADMIN_LIST_PAGE_SIZE}
+              onPageChange={setTestListPage}
+            />
           </div>
         </div>
+      )}
+
+      {/* METAL FINISHES TAB */}
+      {activeTab === 'metal-finishes' && (
+        <MetalFinishesManagement onTotalChange={handleMetalFinishCountChange} />
+      )}
+
+      {/* BEFORE & AFTER TAB */}
+      {activeTab === 'before-after' && (
+        <BeforeAfterManagement
+          categories={categories}
+          products={products}
+          services={services}
+          onTotalChange={handleBeforeAfterCountChange}
+        />
       )}
 
       {/* FAQS TAB */}
@@ -1565,8 +3463,79 @@ export function AdminWorkspace() {
 
           <div className="lg:col-span-2 rounded-2xl border border-border bg-card/60 p-6 backdrop-blur-xl">
             <h3 className="text-base font-semibold mb-4">FAQs ({faqs.length})</h3>
-            <div className="space-y-3">
-              {faqs.map((f) => (
+            <AdminListToolbar
+              search={faqListSearch}
+              onSearchChange={(value) => {
+                setFaqListSearch(value);
+                setFaqListPage(1);
+              }}
+              searchPlaceholder="Search question, answer, category…"
+              resultCount={filteredFaqs.length}
+              totalCount={faqs.length}
+              onClear={() => {
+                setFaqListSearch('');
+                setFaqListCategory('all');
+                setFaqListStatus('all');
+                setFaqListSort('order');
+                setFaqListPage(1);
+              }}
+              clearDisabled={
+                !faqListSearch &&
+                faqListCategory === 'all' &&
+                faqListStatus === 'all' &&
+                faqListSort === 'order'
+              }
+            >
+              <AdminFilterSelect
+                label="Category"
+                value={faqListCategory}
+                onChange={(value) => {
+                  setFaqListCategory(value);
+                  setFaqListPage(1);
+                }}
+                options={[
+                  { value: 'all', label: 'All categories' },
+                  ...faqCategories.map((category) => ({
+                    value: category,
+                    label: category,
+                  })),
+                ]}
+              />
+              <AdminFilterSelect
+                label="Status"
+                value={faqListStatus}
+                onChange={(value) => {
+                  setFaqListStatus(value);
+                  setFaqListPage(1);
+                }}
+                options={[
+                  { value: 'all', label: 'All' },
+                  { value: 'published', label: 'Published' },
+                  { value: 'draft', label: 'Draft' },
+                ]}
+              />
+              <AdminFilterSelect
+                label="Sort"
+                value={faqListSort}
+                onChange={(value) => {
+                  setFaqListSort(value);
+                  setFaqListPage(1);
+                }}
+                options={[
+                  { value: 'order', label: 'Display order' },
+                  { value: 'question', label: 'Question A–Z' },
+                ]}
+              />
+            </AdminListToolbar>
+            {filteredFaqs.length === 0 ? (
+              <p className="text-sm text-muted-foreground py-8 text-center">
+                {faqs.length === 0
+                  ? 'No FAQs in database.'
+                  : 'No FAQs match these filters.'}
+              </p>
+            ) : (
+              <div className="space-y-3">
+                {pagedFaqs.map((f) => (
                 <div key={f.id} className="flex items-center justify-between rounded-xl border border-border/60 bg-background/40 p-4">
                   <div>
                     <div className="flex items-center gap-2">
@@ -1603,7 +3572,15 @@ export function AdminWorkspace() {
                   </div>
                 </div>
               ))}
-            </div>
+              </div>
+            )}
+            <AdminPagination
+              page={safeFaqListPage}
+              pageCount={faqListPageCount}
+              total={filteredFaqs.length}
+              pageSize={ADMIN_LIST_PAGE_SIZE}
+              onPageChange={setFaqListPage}
+            />
           </div>
         </div>
       )}
@@ -1633,8 +3610,30 @@ export function AdminWorkspace() {
 
           <div className="lg:col-span-2 rounded-2xl border border-border bg-card/60 p-6 backdrop-blur-xl">
             <h3 className="text-base font-semibold mb-4">Site Settings ({settings.length})</h3>
-            <div className="space-y-3">
-              {settings.map((s) => (
+            <AdminListToolbar
+              search={settingsSearch}
+              onSearchChange={(value) => {
+                setSettingsSearch(value);
+                setSettingsPage(1);
+              }}
+              searchPlaceholder="Search setting key or value…"
+              resultCount={filteredSettings.length}
+              totalCount={settings.length}
+              onClear={() => {
+                setSettingsSearch('');
+                setSettingsPage(1);
+              }}
+              clearDisabled={!settingsSearch}
+            />
+            {filteredSettings.length === 0 ? (
+              <p className="text-sm text-muted-foreground py-8 text-center">
+                {settings.length === 0
+                  ? 'No site settings in database.'
+                  : 'No settings match this search.'}
+              </p>
+            ) : (
+              <div className="space-y-3">
+                {pagedSettings.map((s) => (
                 <div key={s.id || s.key} className="flex items-center justify-between rounded-xl border border-border/60 bg-background/40 p-4">
                   <div>
                     <h4 className="text-sm font-semibold">{s.key}</h4>
@@ -1654,7 +3653,15 @@ export function AdminWorkspace() {
                   </Button>
                 </div>
               ))}
-            </div>
+              </div>
+            )}
+            <AdminPagination
+              page={safeSettingsListPage}
+              pageCount={settingsListPageCount}
+              total={filteredSettings.length}
+              pageSize={ADMIN_LIST_PAGE_SIZE}
+              onPageChange={setSettingsPage}
+            />
           </div>
         </div>
       )}
@@ -1663,45 +3670,74 @@ export function AdminWorkspace() {
       {activeTab === 'inquiries' && (
         <div className="space-y-6">
           {/* Filters Bar */}
-          <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border bg-card/60 p-4 backdrop-blur-xl">
-            <div className="flex flex-wrap items-center gap-3">
-              <div>
-                <span className="mr-2 text-xs font-medium text-muted-foreground">Division:</span>
-                <select
-                  value={inquiryDivisionFilter}
-                  onChange={(e) => setInquiryDivisionFilter(e.target.value)}
-                  className="rounded-xl border border-border bg-background/50 px-3 py-1.5 text-xs"
-                >
-                  <option value="all">All Divisions</option>
-                  <option value="home_decor">Home Decor & Lifestyle</option>
-                  <option value="metal_coating">Metal Coating Services</option>
-                </select>
-              </div>
-
-              <div>
-                <span className="mr-2 text-xs font-medium text-muted-foreground">Status:</span>
-                <select
-                  value={inquiryStatusFilter}
-                  onChange={(e) => setInquiryStatusFilter(e.target.value)}
-                  className="rounded-xl border border-border bg-background/50 px-3 py-1.5 text-xs"
-                >
-                  <option value="all">All Statuses</option>
-                  <option value="new">New</option>
-                  <option value="contacted">Contacted</option>
-                  <option value="in_progress">In Progress</option>
-                  <option value="converted">Converted</option>
-                  <option value="closed">Closed</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="text-xs text-muted-foreground">
-              Showing <span className="font-semibold text-foreground">{inquiries.filter((inq) => {
-                const matchDiv = inquiryDivisionFilter === 'all' || inq.division === inquiryDivisionFilter;
-                const matchStat = inquiryStatusFilter === 'all' || inq.status === inquiryStatusFilter;
-                return matchDiv && matchStat;
-              }).length}</span> of {inquiries.length} leads
-            </div>
+          <div className="rounded-2xl border border-border bg-card/60 p-4 backdrop-blur-xl">
+            <AdminListToolbar
+              search={inquirySearch}
+              onSearchChange={(value) => {
+                setInquirySearch(value);
+                setInquiryPage(1);
+              }}
+              searchPlaceholder="Search name, email, phone, message, admin notes…"
+              resultCount={filteredInquiries.length}
+              totalCount={inquiries.length}
+              onClear={() => {
+                setInquirySearch('');
+                setInquiryDivisionFilter('all');
+                setInquiryStatusFilter('all');
+                setInquirySort('newest');
+                setInquiryPage(1);
+              }}
+              clearDisabled={
+                !inquirySearch &&
+                inquiryDivisionFilter === 'all' &&
+                inquiryStatusFilter === 'all' &&
+                inquirySort === 'newest'
+              }
+            >
+              <AdminFilterSelect
+                label="Division"
+                value={inquiryDivisionFilter}
+                onChange={(value) => {
+                  setInquiryDivisionFilter(value);
+                  setInquiryPage(1);
+                }}
+                options={[
+                  { value: 'all', label: 'All divisions' },
+                  { value: 'home_decor', label: 'Home Decor & Lifestyle' },
+                  { value: 'metal_coating', label: 'Metal Coating Services' },
+                ]}
+              />
+              <AdminFilterSelect
+                label="Status"
+                value={inquiryStatusFilter}
+                onChange={(value) => {
+                  setInquiryStatusFilter(value);
+                  setInquiryPage(1);
+                }}
+                options={[
+                  { value: 'all', label: 'All statuses' },
+                  { value: 'new', label: 'New' },
+                  { value: 'contacted', label: 'Contacted' },
+                  { value: 'in_progress', label: 'In Progress' },
+                  { value: 'converted', label: 'Converted' },
+                  { value: 'closed', label: 'Closed' },
+                ]}
+              />
+              <AdminFilterSelect
+                label="Sort"
+                value={inquirySort}
+                onChange={(value) => {
+                  setInquirySort(value);
+                  setInquiryPage(1);
+                }}
+                options={[
+                  { value: 'newest', label: 'Newest first' },
+                  { value: 'oldest', label: 'Oldest first' },
+                  { value: 'status', label: 'Status' },
+                  { value: 'name', label: 'Name A–Z' },
+                ]}
+              />
+            </AdminListToolbar>
           </div>
 
           {/* Inquiries List */}
@@ -1711,19 +3747,15 @@ export function AdminWorkspace() {
               Customer Inquiry Leads ({inquiries.length})
             </h3>
 
-            {inquiries.length === 0 ? (
+            {filteredInquiries.length === 0 ? (
               <div className="py-12 text-center text-sm text-muted-foreground">
-                No customer inquiries in database yet.
+                {inquiries.length === 0
+                  ? 'No customer inquiries in database yet.'
+                  : 'No inquiries match these filters.'}
               </div>
             ) : (
               <div className="space-y-4">
-                {inquiries
-                  .filter((inq) => {
-                    const matchDiv = inquiryDivisionFilter === 'all' || inq.division === inquiryDivisionFilter;
-                    const matchStat = inquiryStatusFilter === 'all' || inq.status === inquiryStatusFilter;
-                    return matchDiv && matchStat;
-                  })
-                  .map((inq) => (
+                {pagedInquiries.map((inq) => (
                     <div
                       key={inq.id}
                       className="rounded-2xl border border-border/80 bg-background/50 p-5 space-y-4 transition-all hover:border-border"
@@ -1886,6 +3918,13 @@ export function AdminWorkspace() {
                   ))}
               </div>
             )}
+            <AdminPagination
+              page={safeInquiryListPage}
+              pageCount={inquiryListPageCount}
+              total={filteredInquiries.length}
+              pageSize={ADMIN_LIST_PAGE_SIZE}
+              onPageChange={setInquiryPage}
+            />
           </div>
         </div>
       )}

@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { MessageCircle, ArrowRight, Check, Building2, Loader2, CheckCircle2, AlertCircle, Wrench, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -10,7 +11,7 @@ import { InstagramSection } from '@/components/sections/instagram-section';
 import { CtaBanner } from '@/components/sections/cta-banner';
 import { getMetalCoatingWhatsAppLink, isMetalCoatingWhatsappVerified } from '@/lib/site';
 import { resolveIcon } from '@/lib/icons';
-import type { Service, ProcessStep, InstagramPost, Category } from '@/lib/types';
+import type { Service, ProcessStep, InstagramPost, Category, MetalFinishCardData } from '@/lib/types';
 import { createInquiry } from '@/lib/supabase/inquiries';
 import { PrincipalServiceCards } from '@/components/sections/principal-service-cards';
 import { FinishCollection } from '@/components/sections/finish-collection';
@@ -23,6 +24,7 @@ interface MetalCoatingClientProps {
   instagramPosts: InstagramPost[];
   industriesServed: string[];
   categories: Category[];
+  finishes: MetalFinishCardData[];
 }
 
 // Phase 2D note: Before/after image pairing and project identity are pending
@@ -53,6 +55,7 @@ export function MetalCoatingClient({
   instagramPosts,
   industriesServed,
   categories,
+  finishes,
 }: MetalCoatingClientProps) {
   const [quoteName, setQuoteName] = useState('');
   const [quoteEmail, setQuoteEmail] = useState('');
@@ -63,9 +66,28 @@ export function MetalCoatingClient({
   const [quoteSubmitting, setQuoteSubmitting] = useState(false);
   const [quoteSubmitted, setQuoteSubmitted] = useState(false);
   const [quoteError, setQuoteError] = useState<string | null>(null);
+  const [quoteServiceId, setQuoteServiceId] = useState<string | undefined>(undefined);
   const metalCoatingWhatsAppUrl = getMetalCoatingWhatsAppLink(
     "Hello RTMETALCOATING, I'd like a quote for metal coating services."
   );
+
+  // Service detail pages link here with ?service=<slug>#quote. Prefill the
+  // enquiry with that service and carry its ID into the existing API flow.
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const requestedSlug = new URLSearchParams(window.location.search).get('service');
+    if (!requestedSlug) return;
+
+    const requestedService = services.find((service) => service.slug === requestedSlug);
+    if (!requestedService) return;
+
+    setQuoteServiceId(requestedService.id);
+    setQuoteMessage((current) =>
+      current.trim().length > 0
+        ? current
+        : `I would like a quotation for ${requestedService.name}.\n\nPlease share your component details, material, quantity and finishing requirements.`
+    );
+  }, [services]);
 
   const selectFinishForEnquiry = (finId: string, displayName: string) => {
     setQuoteFinishRef(finId);
@@ -104,6 +126,7 @@ export function MetalCoatingClient({
         (quoteFinishRef ? `\nFinish reference (FIN ID): ${quoteFinishRef}` : ''),
       division: 'metal_coating',
       inquiry_type: 'service',
+      service_id: quoteServiceId,
     });
 
     setQuoteSubmitting(false);
@@ -113,8 +136,17 @@ export function MetalCoatingClient({
       setQuoteName('');
       setQuoteEmail('');
       setQuotePhone('');
-      setQuoteMessage('');
       setQuoteFinishRef('');
+
+      const selectedService = quoteServiceId
+        ? services.find((service) => service.id === quoteServiceId)
+        : undefined;
+      setQuoteMessage(
+        selectedService
+          ? `I would like a quotation for ${selectedService.name}.\n\nPlease share your component details, material, quantity and finishing requirements.`
+          : ''
+      );
+
       setTimeout(() => setQuoteSubmitted(false), 5000);
     } else {
       setQuoteError(res.message);
@@ -125,11 +157,13 @@ export function MetalCoatingClient({
     <>
       <section className="relative overflow-hidden bg-ink pt-32 text-white sm:pt-40">
         <div className="pointer-events-none absolute inset-0 opacity-25">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="/hero-coating-process.jpg"
             alt=""
-            className="h-full w-full object-cover"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
           />
         </div>
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-ink/75 to-ink/40" />
@@ -184,7 +218,10 @@ export function MetalCoatingClient({
           )}
 
           {/* Metal Finishes & Colour Collection — always rendered */}
-          <FinishCollection onEnquireFinish={selectFinishForEnquiry} />
+          <FinishCollection
+            finishes={finishes}
+            onEnquireFinish={selectFinishForEnquiry}
+          />
 
           {/* Published specialist services — only when Supabase has records */}
           {specialistServices.length > 0 && (
@@ -204,12 +241,13 @@ export function MetalCoatingClient({
                           <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-[#2b2419] via-ink-soft to-ink">
                             {svc.image && (
                               <>
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img
+                                <Image
                                   src={svc.image}
                                   alt={svc.name}
+                                  fill
+                                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                   loading="lazy"
-                                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                  className="object-cover transition-transform duration-700 group-hover:scale-110"
                                   onError={(event) => {
                                     event.currentTarget.style.display = 'none';
                                   }}
@@ -313,12 +351,13 @@ export function MetalCoatingClient({
                       <div className="relative aspect-[4/3] overflow-hidden">
                         {category.image && (
                           <>
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
+                            <Image
                               src={category.image}
                               alt={category.name}
+                              fill
+                              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                               loading="lazy"
-                              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                              className="object-cover transition-transform duration-700 group-hover:scale-105"
                               onError={(event) => {
                                 event.currentTarget.style.display = 'none';
                               }}
@@ -395,17 +434,19 @@ export function MetalCoatingClient({
               <Reveal key={item.label} delay={i * 0.1}>
                 <div className="group overflow-hidden rounded-2xl border border-border">
                   <div className="relative aspect-[4/3] overflow-hidden">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                    <Image
                       src={item.before}
                       alt={`${item.label} before`}
-                      className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500 group-hover:opacity-0"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 33vw"
+                      className="object-cover transition-opacity duration-500 group-hover:opacity-0"
                     />
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                    <Image
                       src={item.after}
                       alt={`${item.label} after`}
-                      className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 33vw"
+                      className="object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                     />
                     <span className="absolute left-3 top-3 rounded-full bg-ink/70 px-3 py-1 text-[10px] font-medium uppercase tracking-wider text-white backdrop-blur-md">
                       Before

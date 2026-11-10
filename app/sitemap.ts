@@ -1,8 +1,13 @@
 import { MetadataRoute } from 'next';
 import { getProductsAsync } from '@/lib/data-access';
+import { getPublishedBeforeAfterSitemapEntries } from '@/lib/supabase/before-after-public';
+import { getSiteUrl } from '@/lib/site-url';
+
+export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+  const siteUrl = getSiteUrl();
+  if (!siteUrl) return [];
 
   // Base static public routes
   const routes: MetadataRoute.Sitemap = [
@@ -30,6 +35,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'weekly',
       priority: 0.9,
     },
+    {
+      url: `${siteUrl}/before-after`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
   ];
 
   try {
@@ -51,6 +62,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error('[Sitemap Exception] Error fetching catalog products:', err);
     // Returns base static public routes safely without corrupting sitemap
   }
+
+  const beforeAfterEntries = await getPublishedBeforeAfterSitemapEntries();
+  beforeAfterEntries.forEach((project) => {
+    routes.push({
+      url: `${siteUrl}/before-after/${encodeURIComponent(project.slug)}`,
+      lastModified: project.updatedAt ? new Date(project.updatedAt) : new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    });
+  });
 
   return routes;
 }

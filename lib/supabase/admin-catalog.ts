@@ -1,31 +1,176 @@
 import { createSupabaseBrowserClient } from './client';
 import { mapCategoryRow } from './data-mapper';
 import { getValidCategories, validateCategoryChange } from '../category-hierarchy';
+import {
+  CATALOG_ALLOWED_MIME_TYPES,
+  CATALOG_BUCKET,
+  MAX_OUTPUT_BYTES,
+  extensionForMime,
+  formatBytes,
+} from '../images/image-config';
 import type { MainSection } from '../types';
+import { normalizeAdminSearch } from '../admin/list-utils';
+import { isMetalFinishSchemaMissingError } from './metal-finishes-shared';
 
 // ==================================================
 // IMAGE STORAGE UPLOADER
 // ==================================================
+/**
+ * Upload an already-optimized image to Supabase Storage.
+ *
+ * Paths are unique and immutable, so the public object can safely be cached
+ * for a long time. Old objects are never overwritten or deleted here.
+ */
 export async function uploadCatalogImage(file: File) {
+  const mimeType = (file.type || '').toLowerCase();
+  if (!CATALOG_ALLOWED_MIME_TYPES.has(mimeType)) {
+    throw new Error(
+      `Unsupported upload type "${mimeType || 'unknown'}". Use JPG, PNG or WebP.`
+    );
+  }
+
+  if (file.size > MAX_OUTPUT_BYTES) {
+    throw new Error(
+      `The optimized image is ${formatBytes(file.size)}, above the ${formatBytes(
+        MAX_OUTPUT_BYTES
+      )} storage limit.`
+    );
+  }
+
   const supabase = createSupabaseBrowserClient();
-  const fileExt = file.name.split('.').pop();
+  const fileExt = extensionForMime(mimeType);
   const fileName = `${Date.now()}-${Math.random().toString(36).substring(2, 9)}.${fileExt}`;
   const filePath = `uploads/${fileName}`;
 
   const { data, error } = await supabase.storage
-    .from('catalog-images')
+    .from(CATALOG_BUCKET)
     .upload(filePath, file, {
-      cacheControl: '3600',
+      cacheControl: '31536000',
       upsert: false,
+      contentType: mimeType,
     });
 
-  if (error) throw error;
+  if (error) {
+    const statusCode = (error as { statusCode?: string | number }).statusCode;
+    throw new Error(
+      `Storage upload failed${statusCode ? ` (HTTP ${statusCode})` : ''}: ${error.message}`
+    );
+  }
 
   const { data: publicUrlData } = supabase.storage
-    .from('catalog-images')
+    .from(CATALOG_BUCKET)
     .getPublicUrl(data.path);
 
+  if (!publicUrlData.publicUrl) {
+    throw new Error('Storage upload succeeded but Supabase did not return a public URL.');
+  }
+
   return publicUrlData.publicUrl;
+}
+
+function getCatalogObjectPath(publicUrl: string): string | null {
+  try {
+    const url = new URL(publicUrl);
+    const marker = `/storage/v1/object/public/${CATALOG_BUCKET}/`;
+    const markerIndex = url.pathname.indexOf(marker);
+    if (markerIndex < 0) return null;
+
+    const path = decodeURIComponent(url.pathname.slice(markerIndex + marker.length));
+    if (!path || path.includes('..') || path.startsWith('/')) return null;
+    return path;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Delete an uploaded catalogue object only when no catalogue/CMS record still
+ * references its public URL. Any lookup failure is treated as "referenced" so
+ * cleanup can never remove an image that is still in use.
+ */
+export async function deleteCatalogImageIfUnreferenced(
+  publicUrl: string | null | undefined
+): Promise<boolean> {
+  if (!publicUrl) return false;
+  const objectPath = getCatalogObjectPath(publicUrl);
+  if (!objectPath) return false;
+
+  const supabase = createSupabaseBrowserClient();
+  const countQuery = (
+    table:
+      | 'before_after_projects'
+      | 'products'
+      | 'product_images'
+      | 'categories'
+      | 'services'
+      | 'testimonials'
+      | 'metal_finishes',
+    column: string
+  ) =>
+    supabase
+      .from(table)
+      .select('id', { count: 'exact', head: true })
+      .eq(column, publicUrl);
+
+  try {
+    const [beforeRows, afterRows, additionalRows, productRows, galleryRows, categoryRows, serviceRows, testimonialRows, settings, finishMainRows, finishAdditionalRows] =
+      await Promise.all([
+        countQuery('before_after_projects', 'before_image_url'),
+        countQuery('before_after_projects', 'after_image_url'),
+        supabase
+          .from('before_after_projects')
+          .select('id', { count: 'exact', head: true })
+          .contains('additional_images', [publicUrl]),
+        countQuery('products', 'image'),
+        countQuery('product_images', 'image_url'),
+        countQuery('categories', 'image'),
+        countQuery('services', 'image'),
+        countQuery('testimonials', 'avatar'),
+        supabase.from('site_settings').select('key, value'),
+        countQuery('metal_finishes', 'main_image_url'),
+        supabase
+          .from('metal_finishes')
+          .select('id', { count: 'exact', head: true })
+          .contains('additional_images', [publicUrl]),
+      ]);
+
+    const referenceChecks = [
+      beforeRows,
+      afterRows,
+      additionalRows,
+      productRows,
+      galleryRows,
+      categoryRows,
+      serviceRows,
+      testimonialRows,
+    ];
+
+    if (referenceChecks.some((result) => result.error)) return false;
+    if (referenceChecks.some((result) => (result.count ?? 0) > 0)) return false;
+
+    // The Metal Finishes table is additive and may not be applied yet. Its
+    // absence must not block cleanup for every other catalogue module.
+    for (const result of [finishMainRows, finishAdditionalRows]) {
+      if (result.error) {
+        if (isMetalFinishSchemaMissingError(result.error)) continue;
+        return false;
+      }
+      if ((result.count ?? 0) > 0) return false;
+    }
+    if (settings.error) return false;
+    if (
+      (settings.data ?? []).some((row) =>
+        JSON.stringify(row.value ?? null).includes(publicUrl)
+      )
+    ) {
+      return false;
+    }
+
+    const { error } = await supabase.storage.from(CATALOG_BUCKET).remove([objectPath]);
+    return !error;
+  } catch {
+    return false;
+  }
 }
 
 // ==================================================
@@ -142,6 +287,301 @@ export async function getProductsAdmin() {
   return data || [];
 }
 
+export type AdminProductDivision = 'all' | 'home_decor' | 'metal_services' | 'legacy';
+export type AdminProductStatus = 'all' | 'published' | 'draft';
+export type AdminProductSort = 'newest' | 'order' | 'name' | 'sku';
+
+export interface AdminProductQuery {
+  search?: string;
+  division?: AdminProductDivision;
+  categoryId?: string;
+  status?: AdminProductStatus;
+  stock?: string;
+  sort?: AdminProductSort;
+  page?: number;
+  pageSize?: number;
+}
+
+export interface AdminProductPage {
+  rows: any[];
+  total: number;
+  page: number;
+  pageSize: number;
+  pageCount: number;
+}
+
+function cleanseSearchTerm(value: unknown): string {
+  return normalizeAdminSearch(value).replace(/[%_,()"'\\]/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
+function isUuid(value: string): boolean {
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
+    value
+  );
+}
+
+async function getCategoryLookup() {
+  const { data, error } = await createSupabaseBrowserClient()
+    .from('categories')
+    .select('id, name, slug, parent_id, main_section');
+  if (error) throw error;
+  return data ?? [];
+}
+
+function categoryMatchesLegacy(category: { main_section?: string | null }): boolean {
+  return category.main_section !== 'home_decor' && category.main_section !== 'metal_services';
+}
+
+export async function getProductsAdminPage(
+  filters: AdminProductQuery = {}
+): Promise<AdminProductPage> {
+  const pageSize = Math.min(50, Math.max(1, Math.floor(filters.pageSize ?? 8)));
+  const page = Math.max(1, Math.floor(filters.page ?? 1));
+  const offset = (page - 1) * pageSize;
+  const search = cleanseSearchTerm(filters.search);
+  const supabase = createSupabaseBrowserClient();
+
+  const categories = await getCategoryLookup();
+  const categoryIdsByName = search
+    ? categories
+        .filter((category) =>
+          `${category.name ?? ''} ${category.slug ?? ''}`.toLowerCase().includes(search)
+        )
+        .map((category) => category.id)
+    : [];
+
+  const legacyDivision = filters.division === 'legacy';
+  let divisionCategoryIds: string[] | null = null;
+  if (filters.division && filters.division !== 'all') {
+    divisionCategoryIds = categories
+      .filter((category) =>
+        legacyDivision
+          ? categoryMatchesLegacy(category)
+          : category.main_section === filters.division
+      )
+      .map((category) => category.id);
+
+    if (divisionCategoryIds.length === 0 && !legacyDivision) {
+      return { rows: [], total: 0, page, pageSize, pageCount: 1 };
+    }
+  }
+
+  let query = supabase
+    .from('products')
+    .select('*, categories(name, slug), product_images(*)', { count: 'exact' });
+
+  if (legacyDivision && divisionCategoryIds) {
+    const clauses = ['category_id.is.null'];
+    if (divisionCategoryIds.length > 0) {
+      clauses.push(`category_id.in.(${divisionCategoryIds.join(',')})`);
+    }
+    query = query.or(clauses.join(','));
+  } else if (divisionCategoryIds) {
+    query = query.in('category_id', divisionCategoryIds);
+  }
+  if (filters.categoryId) query = query.eq('category_id', filters.categoryId);
+  if (filters.status === 'published') query = query.eq('is_published', true);
+  if (filters.status === 'draft') query = query.eq('is_published', false);
+  if (filters.stock && filters.stock !== 'all') {
+    query = query.eq('stock_status', filters.stock);
+  }
+
+  if (search) {
+    const clauses = [
+      `name.ilike.%${search}%`,
+      `slug.ilike.%${search}%`,
+      `sku.ilike.%${search}%`,
+      `material.ilike.%${search}%`,
+      `color_finish.ilike.%${search}%`,
+      `sub_category.ilike.%${search}%`,
+    ];
+    if (isUuid(search)) clauses.push(`id.eq.${search}`);
+    if (categoryIdsByName.length > 0) {
+      clauses.push(`category_id.in.(${categoryIdsByName.join(',')})`);
+    }
+    query = query.or(clauses.join(','));
+  }
+
+  switch (filters.sort) {
+    case 'name':
+      query = query.order('name', { ascending: true });
+      break;
+    case 'sku':
+      query = query.order('sku', { ascending: true, nullsFirst: false });
+      break;
+    case 'order':
+      query = query
+        .order('display_order', { ascending: true })
+        .order('created_at', { ascending: false });
+      break;
+    default:
+      query = query.order('created_at', { ascending: false });
+      break;
+  }
+
+  const { data, error, count } = await query.range(offset, offset + pageSize - 1);
+  if (error) throw error;
+
+  const total = count ?? 0;
+  return {
+    rows: data ?? [],
+    total,
+    page,
+    pageSize,
+    pageCount: Math.max(1, Math.ceil(total / pageSize)),
+  };
+}
+
+export type AdminCategorySection = 'all' | 'home_decor' | 'metal_services' | 'legacy';
+export type AdminCategoryStatus = 'all' | 'published' | 'draft';
+export type AdminCategoryHierarchy = 'all' | 'top' | 'child';
+export type AdminCategoryServiceFilter = 'all' | 'assigned' | 'unassigned';
+export type AdminCategorySort = 'order' | 'name' | 'newest';
+
+export interface AdminCategoryQuery {
+  search?: string;
+  section?: AdminCategorySection;
+  status?: AdminCategoryStatus;
+  serviceAssignment?: AdminCategoryServiceFilter;
+  serviceId?: string;
+  hierarchy?: AdminCategoryHierarchy;
+  sort?: AdminCategorySort;
+  page?: number;
+  pageSize?: number;
+}
+
+export interface AdminCategoryPage {
+  rows: any[];
+  total: number;
+  page: number;
+  pageSize: number;
+  pageCount: number;
+}
+
+async function getServiceLinkedCategoryIds(serviceId?: string): Promise<string[] | null> {
+  const supabase = createSupabaseBrowserClient();
+  let query = supabase.from('service_categories').select('category_id');
+  if (serviceId) query = query.eq('service_id', serviceId);
+  const { data, error } = await query;
+  if (error) {
+    if (error.code === '42P01' || error.code === 'PGRST204' || error.code === 'PGRST205') {
+      return null;
+    }
+    throw error;
+  }
+  return Array.from(new Set((data ?? []).map((row) => String(row.category_id))));
+}
+
+export async function getCategoriesAdminPage(
+  filters: AdminCategoryQuery = {}
+): Promise<AdminCategoryPage> {
+  const pageSize = Math.min(50, Math.max(1, Math.floor(filters.pageSize ?? 8)));
+  const page = Math.max(1, Math.floor(filters.page ?? 1));
+  const offset = (page - 1) * pageSize;
+  const search = cleanseSearchTerm(filters.search);
+  const supabase = createSupabaseBrowserClient();
+
+  const categories = await getCategoryLookup();
+  const categoryIdsByName = search
+    ? categories
+        .filter((category) =>
+          `${category.name ?? ''} ${category.slug ?? ''}`.toLowerCase().includes(search)
+        )
+        .map((category) => category.id)
+    : [];
+
+  let sectionCategoryIds: string[] | null = null;
+  if (filters.section && filters.section !== 'all') {
+    sectionCategoryIds = categories
+      .filter((category) =>
+        filters.section === 'legacy'
+          ? categoryMatchesLegacy(category)
+          : category.main_section === filters.section
+      )
+      .map((category) => category.id);
+
+    if (sectionCategoryIds.length === 0) {
+      return { rows: [], total: 0, page, pageSize, pageCount: 1 };
+    }
+  }
+
+  let linkedCategoryIds: string[] | null = null;
+  if (
+    filters.serviceId ||
+    filters.serviceAssignment === 'assigned' ||
+    filters.serviceAssignment === 'unassigned'
+  ) {
+    linkedCategoryIds = await getServiceLinkedCategoryIds(filters.serviceId);
+
+    if (filters.serviceAssignment === 'assigned' && (linkedCategoryIds?.length ?? 0) === 0) {
+      return { rows: [], total: 0, page, pageSize, pageCount: 1 };
+    }
+  }
+
+  let query = supabase.from('categories').select('*', { count: 'exact' });
+
+  if (sectionCategoryIds) query = query.in('id', sectionCategoryIds);
+  if (filters.status === 'published') query = query.eq('is_published', true);
+  if (filters.status === 'draft') query = query.eq('is_published', false);
+  if (filters.hierarchy === 'top') query = query.is('parent_id', null);
+  if (filters.hierarchy === 'child') query = query.not('parent_id', 'is', null);
+
+  if (filters.serviceId && linkedCategoryIds) {
+    query = query.in('id', linkedCategoryIds);
+  } else if (filters.serviceAssignment === 'assigned' && linkedCategoryIds) {
+    query = query.in('id', linkedCategoryIds);
+  } else if (
+    filters.serviceAssignment === 'unassigned' &&
+    linkedCategoryIds &&
+    linkedCategoryIds.length > 0
+  ) {
+    query = query.not('id', 'in', `(${linkedCategoryIds.join(',')})`);
+  }
+
+  if (search) {
+    const clauses = [
+      `name.ilike.%${search}%`,
+      `slug.ilike.%${search}%`,
+      `tagline.ilike.%${search}%`,
+      `description.ilike.%${search}%`,
+    ];
+    if (isUuid(search)) clauses.push(`id.eq.${search}`);
+    if (categoryIdsByName.length > 0) {
+      const parentIds = categories
+        .filter((category) => categoryIdsByName.includes(category.id))
+        .map((category) => category.id);
+      if (parentIds.length > 0) clauses.push(`parent_id.in.(${parentIds.join(',')})`);
+    }
+    query = query.or(clauses.join(','));
+  }
+
+  switch (filters.sort) {
+    case 'name':
+      query = query.order('name', { ascending: true });
+      break;
+    case 'newest':
+      query = query.order('created_at', { ascending: false });
+      break;
+    default:
+      query = query
+        .order('display_order', { ascending: true })
+        .order('created_at', { ascending: false });
+      break;
+  }
+
+  const { data, error, count } = await query.range(offset, offset + pageSize - 1);
+  if (error) throw error;
+
+  const total = count ?? 0;
+  return {
+    rows: data ?? [],
+    total,
+    page,
+    pageSize,
+    pageCount: Math.max(1, Math.ceil(total / pageSize)),
+  };
+}
+
 export async function createProductAdmin(product: {
   category_id: string;
   name: string;
@@ -222,34 +662,12 @@ export async function deleteProductAdmin(id: string) {
 }
 
 // Product Images Gallery Management
-export async function addProductGalleryImage(productId: string, imageUrl: string, altText?: string, isPrimary = false, sortOrder = 0) {
-  const supabase = createSupabaseBrowserClient();
-  const { data, error } = await supabase
-    .from('product_images')
-    .insert([{ product_id: productId, image_url: imageUrl, alt_text: altText, is_primary: isPrimary, sort_order: sortOrder }])
-    .select()
-    .single();
-  if (error) throw error;
-  return data;
-}
-
-export async function updateProductGalleryImage(imageId: string, updates: Partial<{ alt_text: string; is_primary: boolean; sort_order: number }>) {
-  const supabase = createSupabaseBrowserClient();
-  const { data, error } = await supabase
-    .from('product_images')
-    .update(updates)
-    .eq('id', imageId)
-    .select()
-    .single();
-  if (error) throw error;
-  return data;
-}
-
-export async function deleteProductGalleryImage(imageId: string) {
-  const supabase = createSupabaseBrowserClient();
-  const { error } = await supabase.from('product_images').delete().eq('id', imageId);
-  if (error) throw error;
-}
+export {
+  addProductGalleryImage,
+  updateProductGalleryImage,
+  deleteProductGalleryImage,
+  getProductGalleryImages,
+} from './product-gallery';
 
 // ==================================================
 // SERVICES
