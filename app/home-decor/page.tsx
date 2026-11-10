@@ -1,22 +1,21 @@
 import type { Metadata } from 'next';
 import { CategoryCatalogPage } from '@/components/sections/category-catalog-page';
+import { getSiteUrlForPath } from '@/lib/site-url';
 
 export const revalidate = 0;
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+const canonicalUrl = getSiteUrlForPath('/home-decor');
 
 export const metadata: Metadata = {
   title: 'Home Decor & Lifestyle Collection',
   description:
     'Explore our curated collection of luxury home decor, architectural hardware, and hand-finished lifestyle products crafted with precision metal coating.',
-  alternates: {
-    canonical: siteUrl ? `${siteUrl}/home-decor` : '/home-decor',
-  },
+  alternates: canonicalUrl ? { canonical: canonicalUrl } : undefined,
   openGraph: {
     title: 'Home Decor & Lifestyle Collection | RTMETALCOATING',
     description:
       'Explore our curated collection of luxury home decor, architectural hardware, and hand-finished lifestyle products.',
-    url: siteUrl ? `${siteUrl}/home-decor` : '/home-decor',
+    url: canonicalUrl,
   },
 };
 

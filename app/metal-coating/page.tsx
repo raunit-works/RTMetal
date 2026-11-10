@@ -8,23 +8,23 @@ import {
 } from '@/lib/data-access';
 import { MetalCoatingClient } from '@/components/sections/metal-coating-client';
 import { isCategoryInSection } from '@/lib/category-hierarchy';
+import { getSiteUrlForPath } from '@/lib/site-url';
+import { getPublishedMetalFinishes } from '@/lib/supabase/metal-finishes-public';
 
 export const revalidate = 0;
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+const canonicalUrl = getSiteUrlForPath('/metal-coating');
 
 export const metadata: Metadata = {
   title: 'Premium Metal & PU Coating Services',
   description:
     'Industrial and architectural PU metal coating, electroplating, liquid metal finishing, and custom protective metal treatments for commercial and luxury residential projects.',
-  alternates: {
-    canonical: siteUrl ? `${siteUrl}/metal-coating` : '/metal-coating',
-  },
+  alternates: canonicalUrl ? { canonical: canonicalUrl } : undefined,
   openGraph: {
     title: 'Premium Metal & PU Coating Services | RTMETALCOATING',
     description:
       'Industrial and architectural PU metal coating, electroplating, liquid metal finishing, and custom protective metal treatments.',
-    url: siteUrl ? `${siteUrl}/metal-coating` : '/metal-coating',
+    url: canonicalUrl,
   },
 };
 
@@ -38,6 +38,7 @@ export default async function MetalCoatingPage() {
   const metalCategories = categories.filter((category) =>
     isCategoryInSection(category, 'metal_services')
   );
+  const finishes = await getPublishedMetalFinishes();
 
   return (
     <MetalCoatingClient
@@ -46,6 +47,7 @@ export default async function MetalCoatingPage() {
       instagramPosts={instagramPosts}
       industriesServed={industriesServed}
       categories={metalCategories}
+      finishes={finishes}
     />
   );
 }

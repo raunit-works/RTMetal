@@ -28,6 +28,7 @@
     --chart-3: 0 0% 60%;
     --radius: 1rem;
   }
+
   .dark {
     --background: 0 0% 4%;
     --foreground: 0 0% 98%;
@@ -58,14 +59,17 @@
   * {
     @apply border-border;
   }
+
   html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
   body {
     @apply bg-background text-foreground font-sans;
   }
+
   ::selection {
     background-color: hsl(var(--accent));
     color: hsl(var(--background));
@@ -73,6 +77,7 @@
 }
 
 @layer components {
+
   /* Systematic Dark Section Color Token Context */
   .bg-ink,
   .dark-section,
@@ -109,39 +114,48 @@
   .font-display {
     font-family: var(--font-display), 'Cormorant Garamond', Georgia, serif;
   }
+
   .font-sans {
     font-family: var(--font-sans), 'Manrope', system-ui, sans-serif;
   }
+
   .font-label {
     font-family: var(--font-label), 'Space Grotesk', system-ui, sans-serif;
   }
+
   .gold-text {
     background: linear-gradient(120deg, hsl(40 70% 62%), hsl(38 55% 45%), hsl(42 75% 70%));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
+
   .glass {
     background: rgba(255, 255, 255, 0.06);
     backdrop-filter: blur(16px) saturate(140%);
     -webkit-backdrop-filter: blur(16px) saturate(140%);
     border: 1px solid rgba(255, 255, 255, 0.08);
   }
+
   .glass-light {
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(16px) saturate(140%);
     -webkit-backdrop-filter: blur(16px) saturate(140%);
     border: 1px solid rgba(0, 0, 0, 0.05);
   }
+
   .luxury-shadow {
     box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.18), 0 8px 24px -12px rgba(0, 0, 0, 0.1);
   }
+
   .gold-shadow {
     box-shadow: 0 18px 50px -16px hsl(38 60% 50% / 0.35);
   }
+
   .hide-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
   .hide-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -152,16 +166,20 @@
   .text-balance {
     text-wrap: balance;
   }
+
   .perspective {
     perspective: 1200px;
   }
+
   .preserve-3d {
     transform-style: preserve-3d;
   }
+
   /* Warm ivory background used by new hero / before-after sections */
   .bg-ivory {
     background-color: #f8f5f0;
   }
+
   .bg-ivory-soft {
     background-color: #faf8f4;
   }
@@ -169,6 +187,7 @@
 
 /* Reduced motion: disable transforms and crossfades but keep layout */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -190,29 +209,44 @@
   scrollbar-width: thin;
   scrollbar-color: #c9a96e #1f1a16;
 }
+
 .instagram-reel-scroll::-webkit-scrollbar {
   height: 6px;
 }
+
 .instagram-reel-scroll::-webkit-scrollbar-track {
   background: #1f1a16;
   border-radius: 999px;
 }
+
 .instagram-reel-scroll::-webkit-scrollbar-thumb {
   background: #c9a96e;
   border-radius: 999px;
   border: 2px solid #1f1a16;
 }
+
 .instagram-reel-scroll::-webkit-scrollbar-thumb:hover {
   background: #b5935c;
 }
+
 ::-webkit-scrollbar-track {
   background: hsl(var(--background));
 }
+
 ::-webkit-scrollbar-thumb {
   background: hsl(var(--muted-foreground) / 0.4);
   border-radius: 999px;
   border: 2px solid hsl(var(--background));
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--accent) / 0.6);
+}
+
+
+
+
+html,
+body {
+  overflow-x: clip;
 }

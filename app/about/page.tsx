@@ -1,25 +1,25 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, CheckCircle, Sparkles, Layers, Shield, Wrench } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Reveal, StaggerGroup, StaggerItem } from '@/components/motion/reveal';
 import { SectionHeading } from '@/components/sections/section-heading';
 import { CtaBanner } from '@/components/sections/cta-banner';
+import { getSiteUrlForPath } from '@/lib/site-url';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+const canonicalUrl = getSiteUrlForPath('/about');
 
 export const metadata: Metadata = {
   title: 'About — Our Story & Philosophy',
   description:
     'Learn about RTMETALCOATING and our approach to considered home decor, premium surface finishing, craftsmanship and precision.',
-  alternates: {
-    canonical: `${siteUrl}/about`,
-  },
+  alternates: canonicalUrl ? { canonical: canonicalUrl } : undefined,
   openGraph: {
     title: 'About RTMETALCOATING — Story & Philosophy',
     description:
       'A design-led house bringing together considered home objects and premium surface finishing for spaces, products and projects.',
-    url: `${siteUrl}/about`,
+    url: canonicalUrl,
     type: 'website',
   },
   twitter: {
@@ -59,11 +59,13 @@ export default function AboutPage() {
       {/* SECTION 01 — HERO */}
       <section className="relative overflow-hidden bg-ink pt-32 pb-20 text-white sm:pt-40 sm:pb-28">
         <div className="pointer-events-none absolute inset-0 opacity-25">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="https://images.pexels.com/photos/8216549/pexels-photo-8216549.jpeg?auto=compress&cs=tinysrgb&w=1600"
             alt="Workshop and Craft"
-            className="h-full w-full object-cover"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
           />
         </div>
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-ink/80 to-ink/40" />
@@ -114,11 +116,12 @@ export default function AboutPage() {
             <div className="lg:col-span-6">
               <Reveal delay={0.1}>
                 <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-border shadow-2xl">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src="https://images.pexels.com/photos/6585608/pexels-photo-6585608.jpeg?auto=compress&cs=tinysrgb&w=1600"
                     alt="Craftsmanship and Materiality"
-                    className="h-full w-full object-cover"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent" />
                   <div className="absolute bottom-6 left-6 right-6 p-4 rounded-2xl glass text-white text-xs">

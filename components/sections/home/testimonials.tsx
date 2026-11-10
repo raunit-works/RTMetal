@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { Star, Quote } from 'lucide-react';
 import { Reveal } from '@/components/motion/reveal';
 import { SectionHeading } from '@/components/sections/section-heading';
@@ -48,10 +49,12 @@ export function Testimonials({ testimonials: testimonialsProp }: TestimonialsPro
                   ))}
                 </div>
                 <figcaption className="mt-4 flex items-center gap-3 border-t border-border pt-5">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src={t.avatar}
                     alt={t.name}
+                    width={40}
+                    height={40}
+                    sizes="40px"
                     className="h-10 w-10 rounded-full object-cover"
                   />
                   <div>

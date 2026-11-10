@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RT METAL Coating — Client Finish Approval Package</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f7; color: #1a1a1a; padding: 24px; line-height: 1.5; }
+  .banner { background: #856404; color: #fff; padding: 16px; border-radius: 8px; margin-bottom: 24px; font-weight: 700; text-align: center; font-size: 1.1rem; }
+  .banner .sub { font-weight: 400; font-size: 0.9rem; margin-top: 6px; opacity: 0.95; }
+  header { margin-bottom: 24px; }
+  header h1 { font-size: 1.6rem; margin-bottom: 8px; }
+  header p { color: #666; font-size: 0.95rem; }
+  .meta { display: flex; gap: 24px; margin-bottom: 24px; font-size: 0.85rem; color: #666; background: #fff; padding: 12px 16px; border: 1px solid #ddd; border-radius: 8px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; margin-bottom: 32px; }
+  .card { background: #fff; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); display: flex; flex-direction: column; page-break-inside: avoid; }
+  .card-img { width: 100%; height: 200px; background: #f0f0f0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .card-img img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+  .card-body { padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+  .row { display: flex; flex-direction: column; gap: 4px; }
+  .label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; color: #666; letter-spacing: 0.5px; }
+  .value { font-size: 0.95rem; color: #1a1a1a; font-family: monospace; }
+  .value.proposed { color: #856404; font-weight: 600; }
+  .field, select { width: 100%; border: 1px solid #e0e0e0; border-radius: 4px; padding: 8px 10px; font-size: 0.9rem; font-family: inherit; }
+  .notes { min-height: 64px; resize: vertical; }
+  label { font-size: 0.85rem; color: #333; margin: 2px 4px 2px 0; cursor: pointer; }
+  .disclaimer { background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; padding: 16px; margin-top: 24px; font-size: 0.85rem; color: #856404; }
+  .disclaimer p { margin: 6px 0; }
+  .print-note { font-size: 0.8rem; color: #888; text-align: center; margin-bottom: 12px; }
+  @media print { body { background: #fff; padding: 0; } .banner { background: #000; color: #fff; } .card { border: 1px solid #000; break-inside: avoid; } }
+</style>
+</head>
+<body>
+
+  <div class="banner">
+    INTERNAL CLIENT REVIEW — NOT FOR PUBLICATION
+    <div class="sub">Finish Sample Approval Package — Portable Offline Document — No Service Assignment or Publication Approval Implied</div>
+  </div>
+
+  <header>
+    <h1>RT METAL Coating — Client Finish Approval Package</h1>
+    <p>Twelve shortlisted finish samples from the RT METAL finish sample catalogue.</p>
+  </header>
+
+  <div class="meta">
+    <span><strong>Package type:</strong> Internal client review — NOT FOR PUBLICATION</span>
+    <span><strong>Samples:</strong> 12 finish samples</span>
+    <span><strong>Status:</strong> All pending client confirmation</span>
+    <span><strong>Images:</strong> Embedded locally — opens independently of source catalogue</span>
+  </div>
+
+  <p class="print-note">Print or save this page for client review. Complete the fields and return the filled document plus client-finish-approval.csv.</p>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-img">
+        <img src="./images/FIN-0003-main.jpeg" alt="FIN-0003-main.jpeg" loading="lazy">
+      </div>
+      <div class="card-body" data-fin-id="FIN-0003">
+        <div class="row"><div class="label">FIN ID</div><div class="value">FIN-0003</div></div>
+        <div class="row"><div class="label">Original filename</div><div class="value">FIN-0003-main.jpeg</div></div>
+        <div class="row"><div class="label">Proposed finish name</div><div class="value proposed">Brown Antique</div></div>
+        <div class="row"><div class="label">Corrected finish name (client)</div><input type="text" class="field" data-field="client-finish-name" placeholder="Enter corrected name if different"></div>
+        <div class="row"><div class="label">Confirmed coating process</div><input type="text" class="field" data-field="coating-process" placeholder="e.g. PVD, PU, powder coating, electroplating"></div>
+        <div class="row"><div class="label">Supported substrate / material</div><input type="text" class="field" data-field="supported-material" placeholder="e.g. brass, steel, aluminium"></div>
+        <div class="row"><div class="label">Availability confirmation</div><select class="field" data-field="availability"><option value="PENDING">PENDING</option><option value="AVAILABLE">Available</option><option value="NOT AVAILABLE">Not available</option><option value="DISCONTINUED">Discontinued</option></select></div>
+        <div class="row"><div class="label">Image publication permission</div>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0003" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0003" value="YES"> YES</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0003" value="NO"> NO</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0003" value="HOLD"> HOLD</label>
+        </div>
+        <div class="row"><div class="label">Actually offered by company</div>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0003" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0003" value="YES"> YES</label>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0003" value="NO"> NO</label>
+        </div>
+        <div class="row"><div class="label">Final review decision</div>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0003" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0003" value="APPROVE"> APPROVE</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0003" value="REJECT"> REJECT</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0003" value="NEEDS CHANGES"> NEEDS CHANGES</label>
+        </div>
+        <div class="row"><div class="label">Reviewer name</div><input type="text" class="field" data-field="reviewer-name" placeholder="Reviewer name"></div>
+        <div class="row"><div class="label">Approval date</div><input type="date" class="field" data-field="approval-date"></div>
+        <div class="row"><div class="label">Remarks</div><textarea class="field notes" data-field="remarks" placeholder="Client comments and corrections..."></textarea></div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="card-img">
+        <img src="./images/FIN-0004-main.jpeg" alt="FIN-0004-main.jpeg" loading="lazy">
+      </div>
+      <div class="card-body" data-fin-id="FIN-0004">
+        <div class="row"><div class="label">FIN ID</div><div class="value">FIN-0004</div></div>
+        <div class="row"><div class="label">Original filename</div><div class="value">FIN-0004-main.jpeg</div></div>
+        <div class="row"><div class="label">Proposed finish name</div><div class="value proposed">Rustic Iron Finish</div></div>
+        <div class="row"><div class="label">Corrected finish name (client)</div><input type="text" class="field" data-field="client-finish-name" placeholder="Enter corrected name if different"></div>
+        <div class="row"><div class="label">Confirmed coating process</div><input type="text" class="field" data-field="coating-process" placeholder="e.g. PVD, PU, powder coating, electroplating"></div>
+        <div class="row"><div class="label">Supported substrate / material</div><input type="text" class="field" data-field="supported-material" placeholder="e.g. brass, steel, aluminium"></div>
+        <div class="row"><div class="label">Availability confirmation</div><select class="field" data-field="availability"><option value="PENDING">PENDING</option><option value="AVAILABLE">Available</option><option value="NOT AVAILABLE">Not available</option><option value="DISCONTINUED">Discontinued</option></select></div>
+        <div class="row"><div class="label">Image publication permission</div>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0004" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0004" value="YES"> YES</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0004" value="NO"> NO</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0004" value="HOLD"> HOLD</label>
+        </div>
+        <div class="row"><div class="label">Actually offered by company</div>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0004" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0004" value="YES"> YES</label>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0004" value="NO"> NO</label>
+        </div>
+        <div class="row"><div class="label">Final review decision</div>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0004" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0004" value="APPROVE"> APPROVE</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0004" value="REJECT"> REJECT</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0004" value="NEEDS CHANGES"> NEEDS CHANGES</label>
+        </div>
+        <div class="row"><div class="label">Reviewer name</div><input type="text" class="field" data-field="reviewer-name" placeholder="Reviewer name"></div>
+        <div class="row"><div class="label">Approval date</div><input type="date" class="field" data-field="approval-date"></div>
+        <div class="row"><div class="label">Remarks</div><textarea class="field notes" data-field="remarks" placeholder="Client comments and corrections..."></textarea></div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="card-img">
+        <img src="./images/FIN-0013-main.jpeg" alt="FIN-0013-main.jpeg" loading="lazy">
+      </div>
+      <div class="card-body" data-fin-id="FIN-0013">
+        <div class="row"><div class="label">FIN ID</div><div class="value">FIN-0013</div></div>
+        <div class="row"><div class="label">Original filename</div><div class="value">FIN-0013-main.jpeg</div></div>
+        <div class="row"><div class="label">Proposed finish name</div><div class="value proposed">Blue PU-labelled sample; confirm actual designation</div></div>
+        <div class="row"><div class="label">Corrected finish name (client)</div><input type="text" class="field" data-field="client-finish-name" placeholder="Enter corrected name if different"></div>
+        <div class="row"><div class="label">Confirmed coating process</div><input type="text" class="field" data-field="coating-process" placeholder="e.g. PVD, PU, powder coating, electroplating"></div>
+        <div class="row"><div class="label">Supported substrate / material</div><input type="text" class="field" data-field="supported-material" placeholder="e.g. brass, steel, aluminium"></div>
+        <div class="row"><div class="label">Availability confirmation</div><select class="field" data-field="availability"><option value="PENDING">PENDING</option><option value="AVAILABLE">Available</option><option value="NOT AVAILABLE">Not available</option><option value="DISCONTINUED">Discontinued</option></select></div>
+        <div class="row"><div class="label">Image publication permission</div>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0013" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0013" value="YES"> YES</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0013" value="NO"> NO</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0013" value="HOLD"> HOLD</label>
+        </div>
+        <div class="row"><div class="label">Actually offered by company</div>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0013" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0013" value="YES"> YES</label>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0013" value="NO"> NO</label>
+        </div>
+        <div class="row"><div class="label">Final review decision</div>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0013" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0013" value="APPROVE"> APPROVE</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0013" value="REJECT"> REJECT</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0013" value="NEEDS CHANGES"> NEEDS CHANGES</label>
+        </div>
+        <div class="row"><div class="label">Reviewer name</div><input type="text" class="field" data-field="reviewer-name" placeholder="Reviewer name"></div>
+        <div class="row"><div class="label">Approval date</div><input type="date" class="field" data-field="approval-date"></div>
+        <div class="row"><div class="label">Remarks</div><textarea class="field notes" data-field="remarks" placeholder="Client comments and corrections..."></textarea></div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="card-img">
+        <img src="./images/FIN-0041-main.jpeg" alt="FIN-0041-main.jpeg" loading="lazy">
+      </div>
+      <div class="card-body" data-fin-id="FIN-0041">
+        <div class="row"><div class="label">FIN ID</div><div class="value">FIN-0041</div></div>
+        <div class="row"><div class="label">Original filename</div><div class="value">FIN-0041-main.jpeg</div></div>
+        <div class="row"><div class="label">Proposed finish name</div><div class="value proposed">Rose Gold Hairline</div></div>
+        <div class="row"><div class="label">Corrected finish name (client)</div><input type="text" class="field" data-field="client-finish-name" placeholder="Enter corrected name if different"></div>
+        <div class="row"><div class="label">Confirmed coating process</div><input type="text" class="field" data-field="coating-process" placeholder="e.g. PVD, PU, powder coating, electroplating"></div>
+        <div class="row"><div class="label">Supported substrate / material</div><input type="text" class="field" data-field="supported-material" placeholder="e.g. brass, steel, aluminium"></div>
+        <div class="row"><div class="label">Availability confirmation</div><select class="field" data-field="availability"><option value="PENDING">PENDING</option><option value="AVAILABLE">Available</option><option value="NOT AVAILABLE">Not available</option><option value="DISCONTINUED">Discontinued</option></select></div>
+        <div class="row"><div class="label">Image publication permission</div>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0041" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0041" value="YES"> YES</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0041" value="NO"> NO</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0041" value="HOLD"> HOLD</label>
+        </div>
+        <div class="row"><div class="label">Actually offered by company</div>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0041" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0041" value="YES"> YES</label>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0041" value="NO"> NO</label>
+        </div>
+        <div class="row"><div class="label">Final review decision</div>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0041" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0041" value="APPROVE"> APPROVE</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0041" value="REJECT"> REJECT</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0041" value="NEEDS CHANGES"> NEEDS CHANGES</label>
+        </div>
+        <div class="row"><div class="label">Reviewer name</div><input type="text" class="field" data-field="reviewer-name" placeholder="Reviewer name"></div>
+        <div class="row"><div class="label">Approval date</div><input type="date" class="field" data-field="approval-date"></div>
+        <div class="row"><div class="label">Remarks</div><textarea class="field notes" data-field="remarks" placeholder="Client comments and corrections..."></textarea></div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="card-img">
+        <img src="./images/FIN-0044-main.jpeg" alt="FIN-0044-main.jpeg" loading="lazy">
+      </div>
+      <div class="card-body" data-fin-id="FIN-0044">
+        <div class="row"><div class="label">FIN ID</div><div class="value">FIN-0044</div></div>
+        <div class="row"><div class="label">Original filename</div><div class="value">FIN-0044-main.jpeg</div></div>
+        <div class="row"><div class="label">Proposed finish name</div><div class="value proposed">Rose Gold Mirror</div></div>
+        <div class="row"><div class="label">Corrected finish name (client)</div><input type="text" class="field" data-field="client-finish-name" placeholder="Enter corrected name if different"></div>
+        <div class="row"><div class="label">Confirmed coating process</div><input type="text" class="field" data-field="coating-process" placeholder="e.g. PVD, PU, powder coating, electroplating"></div>
+        <div class="row"><div class="label">Supported substrate / material</div><input type="text" class="field" data-field="supported-material" placeholder="e.g. brass, steel, aluminium"></div>
+        <div class="row"><div class="label">Availability confirmation</div><select class="field" data-field="availability"><option value="PENDING">PENDING</option><option value="AVAILABLE">Available</option><option value="NOT AVAILABLE">Not available</option><option value="DISCONTINUED">Discontinued</option></select></div>
+        <div class="row"><div class="label">Image publication permission</div>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0044" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0044" value="YES"> YES</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0044" value="NO"> NO</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0044" value="HOLD"> HOLD</label>
+        </div>
+        <div class="row"><div class="label">Actually offered by company</div>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0044" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0044" value="YES"> YES</label>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0044" value="NO"> NO</label>
+        </div>
+        <div class="row"><div class="label">Final review decision</div>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0044" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0044" value="APPROVE"> APPROVE</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0044" value="REJECT"> REJECT</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0044" value="NEEDS CHANGES"> NEEDS CHANGES</label>
+        </div>
+        <div class="row"><div class="label">Reviewer name</div><input type="text" class="field" data-field="reviewer-name" placeholder="Reviewer name"></div>
+        <div class="row"><div class="label">Approval date</div><input type="date" class="field" data-field="approval-date"></div>
+        <div class="row"><div class="label">Remarks</div><textarea class="field notes" data-field="remarks" placeholder="Client comments and corrections..."></textarea></div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="card-img">
+        <img src="./images/FIN-0045-main.jpeg" alt="FIN-0045-main.jpeg" loading="lazy">
+      </div>
+      <div class="card-body" data-fin-id="FIN-0045">
+        <div class="row"><div class="label">FIN ID</div><div class="value">FIN-0045</div></div>
+        <div class="row"><div class="label">Original filename</div><div class="value">FIN-0045-main.jpeg</div></div>
+        <div class="row"><div class="label">Proposed finish name</div><div class="value proposed">Graphite Mirror</div></div>
+        <div class="row"><div class="label">Corrected finish name (client)</div><input type="text" class="field" data-field="client-finish-name" placeholder="Enter corrected name if different"></div>
+        <div class="row"><div class="label">Confirmed coating process</div><input type="text" class="field" data-field="coating-process" placeholder="e.g. PVD, PU, powder coating, electroplating"></div>
+        <div class="row"><div class="label">Supported substrate / material</div><input type="text" class="field" data-field="supported-material" placeholder="e.g. brass, steel, aluminium"></div>
+        <div class="row"><div class="label">Availability confirmation</div><select class="field" data-field="availability"><option value="PENDING">PENDING</option><option value="AVAILABLE">Available</option><option value="NOT AVAILABLE">Not available</option><option value="DISCONTINUED">Discontinued</option></select></div>
+        <div class="row"><div class="label">Image publication permission</div>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0045" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0045" value="YES"> YES</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0045" value="NO"> NO</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0045" value="HOLD"> HOLD</label>
+        </div>
+        <div class="row"><div class="label">Actually offered by company</div>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0045" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0045" value="YES"> YES</label>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0045" value="NO"> NO</label>
+        </div>
+        <div class="row"><div class="label">Final review decision</div>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0045" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0045" value="APPROVE"> APPROVE</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0045" value="REJECT"> REJECT</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0045" value="NEEDS CHANGES"> NEEDS CHANGES</label>
+        </div>
+        <div class="row"><div class="label">Reviewer name</div><input type="text" class="field" data-field="reviewer-name" placeholder="Reviewer name"></div>
+        <div class="row"><div class="label">Approval date</div><input type="date" class="field" data-field="approval-date"></div>
+        <div class="row"><div class="label">Remarks</div><textarea class="field notes" data-field="remarks" placeholder="Client comments and corrections..."></textarea></div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="card-img">
+        <img src="./images/FIN-0046-main.jpeg" alt="FIN-0046-main.jpeg" loading="lazy">
+      </div>
+      <div class="card-body" data-fin-id="FIN-0046">
+        <div class="row"><div class="label">FIN ID</div><div class="value">FIN-0046</div></div>
+        <div class="row"><div class="label">Original filename</div><div class="value">FIN-0046-main.jpeg</div></div>
+        <div class="row"><div class="label">Proposed finish name</div><div class="value proposed">Satin Brass</div></div>
+        <div class="row"><div class="label">Corrected finish name (client)</div><input type="text" class="field" data-field="client-finish-name" placeholder="Enter corrected name if different"></div>
+        <div class="row"><div class="label">Confirmed coating process</div><input type="text" class="field" data-field="coating-process" placeholder="e.g. PVD, PU, powder coating, electroplating"></div>
+        <div class="row"><div class="label">Supported substrate / material</div><input type="text" class="field" data-field="supported-material" placeholder="e.g. brass, steel, aluminium"></div>
+        <div class="row"><div class="label">Availability confirmation</div><select class="field" data-field="availability"><option value="PENDING">PENDING</option><option value="AVAILABLE">Available</option><option value="NOT AVAILABLE">Not available</option><option value="DISCONTINUED">Discontinued</option></select></div>
+        <div class="row"><div class="label">Image publication permission</div>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0046" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0046" value="YES"> YES</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0046" value="NO"> NO</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0046" value="HOLD"> HOLD</label>
+        </div>
+        <div class="row"><div class="label">Actually offered by company</div>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0046" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0046" value="YES"> YES</label>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0046" value="NO"> NO</label>
+        </div>
+        <div class="row"><div class="label">Final review decision</div>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0046" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0046" value="APPROVE"> APPROVE</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0046" value="REJECT"> REJECT</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0046" value="NEEDS CHANGES"> NEEDS CHANGES</label>
+        </div>
+        <div class="row"><div class="label">Reviewer name</div><input type="text" class="field" data-field="reviewer-name" placeholder="Reviewer name"></div>
+        <div class="row"><div class="label">Approval date</div><input type="date" class="field" data-field="approval-date"></div>
+        <div class="row"><div class="label">Remarks</div><textarea class="field notes" data-field="remarks" placeholder="Client comments and corrections..."></textarea></div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="card-img">
+        <img src="./images/FIN-0053-main.jpeg" alt="FIN-0053-main.jpeg" loading="lazy">
+      </div>
+      <div class="card-body" data-fin-id="FIN-0053">
+        <div class="row"><div class="label">FIN ID</div><div class="value">FIN-0053</div></div>
+        <div class="row"><div class="label">Original filename</div><div class="value">FIN-0053-main.jpeg</div></div>
+        <div class="row"><div class="label">Proposed finish name</div><div class="value proposed">Gold Mirror</div></div>
+        <div class="row"><div class="label">Corrected finish name (client)</div><input type="text" class="field" data-field="client-finish-name" placeholder="Enter corrected name if different"></div>
+        <div class="row"><div class="label">Confirmed coating process</div><input type="text" class="field" data-field="coating-process" placeholder="e.g. PVD, PU, powder coating, electroplating"></div>
+        <div class="row"><div class="label">Supported substrate / material</div><input type="text" class="field" data-field="supported-material" placeholder="e.g. brass, steel, aluminium"></div>
+        <div class="row"><div class="label">Availability confirmation</div><select class="field" data-field="availability"><option value="PENDING">PENDING</option><option value="AVAILABLE">Available</option><option value="NOT AVAILABLE">Not available</option><option value="DISCONTINUED">Discontinued</option></select></div>
+        <div class="row"><div class="label">Image publication permission</div>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0053" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0053" value="YES"> YES</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0053" value="NO"> NO</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0053" value="HOLD"> HOLD</label>
+        </div>
+        <div class="row"><div class="label">Actually offered by company</div>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0053" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0053" value="YES"> YES</label>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0053" value="NO"> NO</label>
+        </div>
+        <div class="row"><div class="label">Final review decision</div>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0053" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0053" value="APPROVE"> APPROVE</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0053" value="REJECT"> REJECT</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0053" value="NEEDS CHANGES"> NEEDS CHANGES</label>
+        </div>
+        <div class="row"><div class="label">Reviewer name</div><input type="text" class="field" data-field="reviewer-name" placeholder="Reviewer name"></div>
+        <div class="row"><div class="label">Approval date</div><input type="date" class="field" data-field="approval-date"></div>
+        <div class="row"><div class="label">Remarks</div><textarea class="field notes" data-field="remarks" placeholder="Client comments and corrections..."></textarea></div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="card-img">
+        <img src="./images/FIN-0054-main.jpeg" alt="FIN-0054-main.jpeg" loading="lazy">
+      </div>
+      <div class="card-body" data-fin-id="FIN-0054">
+        <div class="row"><div class="label">FIN ID</div><div class="value">FIN-0054</div></div>
+        <div class="row"><div class="label">Original filename</div><div class="value">FIN-0054-main.jpeg</div></div>
+        <div class="row"><div class="label">Proposed finish name</div><div class="value proposed">Graphite Hairline</div></div>
+        <div class="row"><div class="label">Corrected finish name (client)</div><input type="text" class="field" data-field="client-finish-name" placeholder="Enter corrected name if different"></div>
+        <div class="row"><div class="label">Confirmed coating process</div><input type="text" class="field" data-field="coating-process" placeholder="e.g. PVD, PU, powder coating, electroplating"></div>
+        <div class="row"><div class="label">Supported substrate / material</div><input type="text" class="field" data-field="supported-material" placeholder="e.g. brass, steel, aluminium"></div>
+        <div class="row"><div class="label">Availability confirmation</div><select class="field" data-field="availability"><option value="PENDING">PENDING</option><option value="AVAILABLE">Available</option><option value="NOT AVAILABLE">Not available</option><option value="DISCONTINUED">Discontinued</option></select></div>
+        <div class="row"><div class="label">Image publication permission</div>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0054" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0054" value="YES"> YES</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0054" value="NO"> NO</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0054" value="HOLD"> HOLD</label>
+        </div>
+        <div class="row"><div class="label">Actually offered by company</div>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0054" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0054" value="YES"> YES</label>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0054" value="NO"> NO</label>
+        </div>
+        <div class="row"><div class="label">Final review decision</div>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0054" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0054" value="APPROVE"> APPROVE</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0054" value="REJECT"> REJECT</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0054" value="NEEDS CHANGES"> NEEDS CHANGES</label>
+        </div>
+        <div class="row"><div class="label">Reviewer name</div><input type="text" class="field" data-field="reviewer-name" placeholder="Reviewer name"></div>
+        <div class="row"><div class="label">Approval date</div><input type="date" class="field" data-field="approval-date"></div>
+        <div class="row"><div class="label">Remarks</div><textarea class="field notes" data-field="remarks" placeholder="Client comments and corrections..."></textarea></div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="card-img">
+        <img src="./images/FIN-0058-main.jpeg" alt="FIN-0058-main.jpeg" loading="lazy">
+      </div>
+      <div class="card-body" data-fin-id="FIN-0058">
+        <div class="row"><div class="label">FIN ID</div><div class="value">FIN-0058</div></div>
+        <div class="row"><div class="label">Original filename</div><div class="value">FIN-0058-main.jpeg</div></div>
+        <div class="row"><div class="label">Proposed finish name</div><div class="value proposed">Gold Matte</div></div>
+        <div class="row"><div class="label">Corrected finish name (client)</div><input type="text" class="field" data-field="client-finish-name" placeholder="Enter corrected name if different"></div>
+        <div class="row"><div class="label">Confirmed coating process</div><input type="text" class="field" data-field="coating-process" placeholder="e.g. PVD, PU, powder coating, electroplating"></div>
+        <div class="row"><div class="label">Supported substrate / material</div><input type="text" class="field" data-field="supported-material" placeholder="e.g. brass, steel, aluminium"></div>
+        <div class="row"><div class="label">Availability confirmation</div><select class="field" data-field="availability"><option value="PENDING">PENDING</option><option value="AVAILABLE">Available</option><option value="NOT AVAILABLE">Not available</option><option value="DISCONTINUED">Discontinued</option></select></div>
+        <div class="row"><div class="label">Image publication permission</div>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0058" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0058" value="YES"> YES</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0058" value="NO"> NO</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0058" value="HOLD"> HOLD</label>
+        </div>
+        <div class="row"><div class="label">Actually offered by company</div>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0058" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0058" value="YES"> YES</label>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0058" value="NO"> NO</label>
+        </div>
+        <div class="row"><div class="label">Final review decision</div>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0058" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0058" value="APPROVE"> APPROVE</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0058" value="REJECT"> REJECT</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0058" value="NEEDS CHANGES"> NEEDS CHANGES</label>
+        </div>
+        <div class="row"><div class="label">Reviewer name</div><input type="text" class="field" data-field="reviewer-name" placeholder="Reviewer name"></div>
+        <div class="row"><div class="label">Approval date</div><input type="date" class="field" data-field="approval-date"></div>
+        <div class="row"><div class="label">Remarks</div><textarea class="field notes" data-field="remarks" placeholder="Client comments and corrections..."></textarea></div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="card-img">
+        <img src="./images/FIN-0060-main.jpeg" alt="FIN-0060-main.jpeg" loading="lazy">
+      </div>
+      <div class="card-body" data-fin-id="FIN-0060">
+        <div class="row"><div class="label">FIN ID</div><div class="value">FIN-0060</div></div>
+        <div class="row"><div class="label">Original filename</div><div class="value">FIN-0060-main.jpeg</div></div>
+        <div class="row"><div class="label">Proposed finish name</div><div class="value proposed">Champagne Mirror</div></div>
+        <div class="row"><div class="label">Corrected finish name (client)</div><input type="text" class="field" data-field="client-finish-name" placeholder="Enter corrected name if different"></div>
+        <div class="row"><div class="label">Confirmed coating process</div><input type="text" class="field" data-field="coating-process" placeholder="e.g. PVD, PU, powder coating, electroplating"></div>
+        <div class="row"><div class="label">Supported substrate / material</div><input type="text" class="field" data-field="supported-material" placeholder="e.g. brass, steel, aluminium"></div>
+        <div class="row"><div class="label">Availability confirmation</div><select class="field" data-field="availability"><option value="PENDING">PENDING</option><option value="AVAILABLE">Available</option><option value="NOT AVAILABLE">Not available</option><option value="DISCONTINUED">Discontinued</option></select></div>
+        <div class="row"><div class="label">Image publication permission</div>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0060" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0060" value="YES"> YES</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0060" value="NO"> NO</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0060" value="HOLD"> HOLD</label>
+        </div>
+        <div class="row"><div class="label">Actually offered by company</div>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0060" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0060" value="YES"> YES</label>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0060" value="NO"> NO</label>
+        </div>
+        <div class="row"><div class="label">Final review decision</div>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0060" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0060" value="APPROVE"> APPROVE</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0060" value="REJECT"> REJECT</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0060" value="NEEDS CHANGES"> NEEDS CHANGES</label>
+        </div>
+        <div class="row"><div class="label">Reviewer name</div><input type="text" class="field" data-field="reviewer-name" placeholder="Reviewer name"></div>
+        <div class="row"><div class="label">Approval date</div><input type="date" class="field" data-field="approval-date"></div>
+        <div class="row"><div class="label">Remarks</div><textarea class="field notes" data-field="remarks" placeholder="Client comments and corrections..."></textarea></div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="card-img">
+        <img src="./images/FIN-0063-main.jpeg" alt="FIN-0063-main.jpeg" loading="lazy">
+      </div>
+      <div class="card-body" data-fin-id="FIN-0063">
+        <div class="row"><div class="label">FIN ID</div><div class="value">FIN-0063</div></div>
+        <div class="row"><div class="label">Original filename</div><div class="value">FIN-0063-main.jpeg</div></div>
+        <div class="row"><div class="label">Proposed finish name</div><div class="value proposed">Copper Antique Glossy</div></div>
+        <div class="row"><div class="label">Corrected finish name (client)</div><input type="text" class="field" data-field="client-finish-name" placeholder="Enter corrected name if different"></div>
+        <div class="row"><div class="label">Confirmed coating process</div><input type="text" class="field" data-field="coating-process" placeholder="e.g. PVD, PU, powder coating, electroplating"></div>
+        <div class="row"><div class="label">Supported substrate / material</div><input type="text" class="field" data-field="supported-material" placeholder="e.g. brass, steel, aluminium"></div>
+        <div class="row"><div class="label">Availability confirmation</div><select class="field" data-field="availability"><option value="PENDING">PENDING</option><option value="AVAILABLE">Available</option><option value="NOT AVAILABLE">Not available</option><option value="DISCONTINUED">Discontinued</option></select></div>
+        <div class="row"><div class="label">Image publication permission</div>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0063" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0063" value="YES"> YES</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0063" value="NO"> NO</label>
+          <label><input type="radio" data-field="publication-permission" name="perm-FIN-0063" value="HOLD"> HOLD</label>
+        </div>
+        <div class="row"><div class="label">Actually offered by company</div>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0063" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0063" value="YES"> YES</label>
+          <label><input type="radio" data-field="offered-by-company" name="offered-FIN-0063" value="NO"> NO</label>
+        </div>
+        <div class="row"><div class="label">Final review decision</div>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0063" value="PENDING" checked> PENDING</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0063" value="APPROVE"> APPROVE</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0063" value="REJECT"> REJECT</label>
+          <label><input type="radio" data-field="review-decision" name="decision-FIN-0063" value="NEEDS CHANGES"> NEEDS CHANGES</label>
+        </div>
+        <div class="row"><div class="label">Reviewer name</div><input type="text" class="field" data-field="reviewer-name" placeholder="Reviewer name"></div>
+        <div class="row"><div class="label">Approval date</div><input type="date" class="field" data-field="approval-date"></div>
+        <div class="row"><div class="label">Remarks</div><textarea class="field notes" data-field="remarks" placeholder="Client comments and corrections..."></textarea></div>
+      </div>
+    </div>
+  
+  </div>
+
+  <div class="meta" style="margin-top:24px;background:#fff;border:1px solid #ddd;border-radius:8px;padding:16px;">
+    <strong>Important:</strong> Complete the fields above for each sample, then click
+    <button onclick="downloadCSV()" style="background:#856404;color:#fff;border:none;padding:10px 16px;border-radius:4px;cursor:pointer;font-weight:600;">Download Completed Approval CSV</button>
+    to export your responses. Saving or printing this HTML page alone does <strong>not</strong> save your completed responses — you must download the CSV and return it.
+  </div>
+
+  <div class="disclaimer">
+    <p><strong>INTERNAL CLIENT REVIEW — NOT FOR PUBLICATION.</strong> This document is for internal client review only.</p>
+    <p>All proposed finish names are <strong>tentative visual labels</strong> based on filename and appearance. They are not verified production capabilities and do not imply any coating process (PVD, PU, electroplating, powder coating, etc.).</p>
+    <p>No image has been approved for publication. Image publication permission remains undecided until the client selects YES / NO / HOLD for each sample.</p>
+    <p>Original photographs are preserved unmodified — no recolouring or visual alteration has been applied.</p>
+    <p>This package is self-contained: images are stored in the local <code>images/</code> folder and do not depend on the original catalogue directory.</p>
+  </div>
+
+  <script>
+    function csvEscape(v) {
+      const s = String(v == null ? '' : v);
+      if (/[",\n\r]/.test(s)) return '"' + s.replace(/"/g, '""') + '"';
+      return s;
+    }
+
+    function collectResponses() {
+      const headers = [
+        'FIN ID',
+        'Original filename',
+        'Proposed finish name',
+        'Client-confirmed finish name',
+        'Confirmed coating process',
+        'Supported material',
+        'Availability',
+        'Actually offered by company',
+        'Image publication permission',
+        'Final review decision',
+        'Reviewer name',
+        'Approval date',
+        'Remarks'
+      ];
+      const rows = [];
+      document.querySelectorAll('.card-body[data-fin-id]').forEach(function (card) {
+        const finId = card.getAttribute('data-fin-id');
+        const valueDivs = card.querySelectorAll('.value');
+        const originalFilename = valueDivs[1] ? valueDivs[1].textContent.trim() : '';
+        const proposedFinish = valueDivs[2] ? valueDivs[2].textContent.trim() : '';
+
+        const fields = {};
+        card.querySelectorAll('[data-field]').forEach(function (el) {
+          const key = el.getAttribute('data-field');
+          if (el.type === 'radio') {
+            if (el.checked) fields[key] = el.value;
+          } else if (el.tagName === 'SELECT') {
+            fields[key] = el.value;
+          } else {
+            fields[key] = el.value.trim();
+          }
+        });
+
+        const offeredBy = fields['offered-by-company'] || 'PENDING';
+        const permission = fields['publication-permission'] || 'PENDING';
+        const decision = fields['review-decision'] || 'PENDING';
+
+        rows.push([
+          finId,
+          csvEscape(originalFilename),
+          csvEscape(proposedFinish),
+          csvEscape(fields['client-finish-name'] || ''),
+          csvEscape(fields['coating-process'] || ''),
+          csvEscape(fields['supported-material'] || ''),
+          csvEscape(fields['availability'] || 'PENDING'),
+          csvEscape(offeredBy),
+          csvEscape(permission),
+          csvEscape(decision),
+          csvEscape(fields['reviewer-name'] || ''),
+          csvEscape(fields['approval-date'] || ''),
+          csvEscape(fields['remarks'] || '')
+        ]);
+      });
+      return [headers, rows];
+    }
+
+    function downloadCSV() {
+      const result = collectResponses();
+      const headers = result[0];
+      const rows = result[1];
+      const lines = [headers.map(csvEscape).join(',')];
+      rows.forEach(function (r) { lines.push(r.join(',')); });
+      const csv = lines.join('\n') + '\n';
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'RTMETALCOATING-Finish-Approval-Responses.csv';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+  </script>
+</body>
+</html>

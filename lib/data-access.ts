@@ -22,7 +22,9 @@ import type {
   WhyChooseUsItem,
 } from './types';
 import { createSupabaseClient } from './supabase/client';
-import { filterCategoryProducts, getDescendantSlugs, getValidCategories } from './category-hierarchy';
+import { filterCategoryProducts, getDescendantSlugs, getValidCategories, isCategoryInSection } from './category-hierarchy';
+import { selectRelatedMetalCategories } from './service-categories';
+import { getServiceCategoryLinksForService } from './supabase/service-categories';
 import {
   mapCategoryRow,
   mapProductRow,
@@ -412,6 +414,44 @@ export async function getPublishedServiceBySlugAsync(slug: string): Promise<Serv
   }
 
   return mapServiceRow(data as unknown as DatabaseServiceRow);
+}
+
+/**
+ * Fetch the published Metal categories explicitly linked to one service.
+ *
+ * Fail closed: a missing relationship table, a draft category, a Home Decor
+ * category or a deleted link all resolve to an empty list so the public
+ * service page simply omits the section instead of rendering an error.
+ */
+export async function getRelatedMetalCategoriesForServiceAsync(
+  service: Service
+): Promise<Category[]> {
+  if (!service.id) return [];
+
+  try {
+    const links = await getServiceCategoryLinksForService(service.id);
+    if (links.length === 0) return [];
+
+    const { categories } = await getPublicCatalogAsync();
+    const metalCategories = categories.filter((category) =>
+      isCategoryInSection(category, 'metal_services')
+    );
+    const orderedIds = links
+      .slice()
+      .sort((a, b) => {
+        if (a.display_order !== b.display_order) return a.display_order - b.display_order;
+        return a.category_id.localeCompare(b.category_id);
+      })
+      .map((link) => link.category_id);
+
+    return selectRelatedMetalCategories(metalCategories, orderedIds);
+  } catch (error) {
+    console.error(
+      `[Supabase Error] getRelatedMetalCategoriesForServiceAsync(${service.slug}) failed:`,
+      error
+    );
+    return [];
+  }
 }
 
 /**

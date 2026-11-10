@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Boxes } from 'lucide-react';
@@ -40,11 +41,12 @@ export function FeaturedCategories({ categories: categoriesProp }: FeaturedCateg
                     className="group relative block overflow-hidden rounded-2xl bg-background"
                   >
                     <div className="relative aspect-[4/5] overflow-hidden">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
+                      <Image
                         src={cat.image}
                         alt={cat.name}
-                        className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/20 to-transparent" />
                       <div className="absolute left-4 top-4 flex h-10 w-10 items-center justify-center rounded-full glass">

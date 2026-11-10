@@ -54,6 +54,7 @@ export interface Product {
 }
 
 export interface Service {
+  id?: string;
   slug: string;
   name: string;
   shortName: string;
@@ -163,6 +164,83 @@ export interface Inquiry {
   adminNotes?: string | null;
   createdAt: string;
   updatedAt: string;
+}
+
+export type BeforeAfterStatus = 'draft' | 'published' | 'archived';
+export type BeforeAfterComparisonType = 'verified' | 'illustrative';
+
+export interface BeforeAfterServiceRef {
+  id: string;
+  name: string;
+  slug: string;
+  displayOrder?: number;
+}
+
+export interface BeforeAfterProjectLink {
+  id: string;
+  name: string;
+  slug: string;
+}
+
+export interface BeforeAfterProject {
+  id: string;
+  title: string;
+  slug: string;
+  reference?: string | null;
+  shortDescription?: string | null;
+  description?: string | null;
+  componentType?: string | null;
+  material?: string | null;
+  finishName?: string | null;
+  finishDescription?: string | null;
+  beforeImageUrl?: string | null;
+  afterImageUrl?: string | null;
+  additionalImages: string[];
+  initialCondition?: string | null;
+  treatmentDescription?: string | null;
+  finalDescription?: string | null;
+  features: string[];
+  comparisonType: BeforeAfterComparisonType;
+  verificationConfirmed: boolean;
+  status: BeforeAfterStatus;
+  isFeatured: boolean;
+  displayOrder: number;
+  projectDate?: string | null;
+  relatedCategoryId?: string | null;
+  relatedProductId?: string | null;
+  relatedCategory?: BeforeAfterProjectLink | null;
+  relatedProduct?: BeforeAfterProjectLink | null;
+  services: BeforeAfterServiceRef[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export type MetalFinishStatus = 'draft' | 'published' | 'archived';
+
+export interface MetalFinish {
+  id: string;
+  finishCode: string;
+  name: string;
+  appearance: string;
+  applications: string;
+  shortDescription?: string | null;
+  mainImageUrl: string;
+  additionalImages: string[];
+  status: MetalFinishStatus;
+  displayOrder: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface MetalFinishCardData {
+  id: string;
+  finId: string;
+  displayName: string;
+  imagePath: string;
+  altText: string;
+  appearance: string;
+  applications: string;
+  displayOrder: number;
 }
 
 export interface UserProfile {

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
+import Image from 'next/image';
 import Link from 'next/link';
 import { Star, MessageCircle, ArrowLeft, Check, Info } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -11,6 +12,7 @@ import { ProductImageGallery } from '@/components/sections/product-image-gallery
 import { getPublicProductBySlugAsync, getPublicCatalogAsync, getCategoriesAsync } from '@/lib/data-access';
 import { getHomeDecorWhatsAppLink, isHomeDecorWhatsappVerified } from '@/lib/site';
 import { isCategoryInSection } from '@/lib/category-hierarchy';
+import { getSiteUrlForPath } from '@/lib/site-url';
 import { MainSection } from '@/lib/types';
 
 export const revalidate = 0;
@@ -31,15 +33,14 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
     };
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
-  const canonicalUrl = `${siteUrl}/home-decor/${product.slug || product.id}`;
+  const canonicalUrl = getSiteUrlForPath(
+    `/home-decor/${product.slug || product.id}`
+  );
 
   return {
     title: product.name,
     description: product.description.substring(0, 160),
-    alternates: {
-      canonical: canonicalUrl,
-    },
+    alternates: canonicalUrl ? { canonical: canonicalUrl } : undefined,
     openGraph: {
       title: `${product.name} — Home Decor | RTMETALCOATING`,
       description: product.description.substring(0, 160),
@@ -102,11 +103,13 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
       {/* Header Banner */}
       <section className="relative overflow-hidden bg-ink pt-32 text-white sm:pt-40">
         <div className="pointer-events-none absolute inset-0 opacity-20">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={product.image}
             alt=""
-            className="h-full w-full object-cover blur-sm"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover blur-sm"
           />
         </div>
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-ink/80 to-ink/40" />

@@ -33,6 +33,7 @@ const navLinks = [
     href: '/metal-coating',
     dropdown: true,
   },
+  { label: 'Gallery', href: '/before-after' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/#contact' },
 ];
@@ -537,11 +538,12 @@ export function Navbar() {
                                     }}
                                   >
                                     <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg">
-                                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                                      <img
+                                      <Image
                                         src={cat.image}
                                         alt={cat.name}
-                                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                        fill
+                                        sizes="64px"
+                                        className="object-cover transition-transform duration-700 group-hover:scale-110"
                                       />
                                     </div>
                                     <div className="min-w-0">

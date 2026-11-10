@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import Image from 'next/image';
 import { ArrowRight, Wrench } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Reveal } from '@/components/motion/reveal';
@@ -46,11 +47,13 @@ export function MetalCoatingShowcase({
         style={{ y }}
         className="pointer-events-none absolute inset-0 opacity-15"
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src="/hero-coating-process.jpg"
           alt=""
-          className="h-full w-full object-cover"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
         />
       </motion.div>
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink via-ink/90 to-ink/60" />
@@ -136,13 +139,14 @@ export function MetalCoatingShowcase({
                     {/* Background image */}
                     {cardImage && (
                       <>
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
+                        <Image
                           src={cardImage}
                           alt=""
                           aria-hidden="true"
+                          fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                           loading="lazy"
-                          className="absolute inset-0 h-full w-full object-cover opacity-30 transition-all duration-700 group-hover:opacity-40 group-hover:scale-105"
+                          className="object-cover opacity-30 transition-all duration-700 group-hover:opacity-40 group-hover:scale-105"
                           onError={(event) => {
                             event.currentTarget.style.display = 'none';
                           }}

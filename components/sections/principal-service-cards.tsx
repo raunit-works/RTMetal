@@ -2,6 +2,7 @@
 'use client';
 
 import { useState, type CSSProperties } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { getMetalCoatingWhatsAppLink } from '@/lib/site';
@@ -103,16 +104,14 @@ function ServiceCard({
           bg-stone-100
         "
       >
-        {showImage ? (
+        {showImage && imageSrc ? (
           <>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={imageSrc}
               alt={`${displayName} service`}
-              width={800}
-              height={500}
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               loading="lazy"
-              decoding="async"
               onError={() => setImageFailed(true)}
               className="
                 h-full w-full object-cover

@@ -185,7 +185,12 @@ export function mapProductRow(
   }
 
   const mappedImages = Array.isArray(row.product_images)
-    ? row.product_images.map(mapProductImageRow)
+    ? row.product_images
+        .map(mapProductImageRow)
+        .sort((a, b) => {
+          if (a.sortOrder !== b.sortOrder) return a.sortOrder - b.sortOrder;
+          return a.id.localeCompare(b.id);
+        })
     : undefined;
 
   return {
@@ -218,6 +223,7 @@ export function mapProductRow(
 
 export function mapServiceRow(row: DatabaseServiceRow): Service {
   return {
+    id: row.id,
     slug: row.slug,
     name: row.name,
     shortName: row.short_name,

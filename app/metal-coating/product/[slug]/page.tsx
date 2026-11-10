@@ -3,6 +3,7 @@ import { notFound, redirect } from 'next/navigation';
 import { ProductDetailView } from '@/components/products/product-detail-view';
 import { getPublicProductBySlugAsync, getPublicCatalogAsync, getCategoriesAsync } from '@/lib/data-access';
 import { isCategoryInSection } from '@/lib/category-hierarchy';
+import { getSiteUrlForPath } from '@/lib/site-url';
 
 export const revalidate = 0;
 
@@ -26,15 +27,14 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     };
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
-  const canonicalUrl = `${siteUrl}/metal-coating/product/${product.slug || product.id}`;
+  const canonicalUrl = getSiteUrlForPath(
+    `/metal-coating/product/${product.slug || product.id}`
+  );
 
   return {
     title: product.name,
     description: product.description.substring(0, 160),
-    alternates: {
-      canonical: canonicalUrl,
-    },
+    alternates: canonicalUrl ? { canonical: canonicalUrl } : undefined,
     openGraph: {
       title: `${product.name} — Metal Products | RTMETALCOATING`,
       description: product.description.substring(0, 160),
