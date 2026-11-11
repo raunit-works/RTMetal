@@ -200,7 +200,7 @@ function ServiceCard({
               className="
                 inline-flex w-fit items-center gap-2
                 border-b border-gold/50 pb-1
-                text-[13px] font-semibold text-gold-deep
+                text-[13px] font-semibold text-[#8a6414]
                 transition-colors duration-200
                 hover:border-gold hover:text-foreground
                 focus-visible:rounded-sm
@@ -234,7 +234,7 @@ function ServiceCard({
               className="
                 inline-flex w-fit items-center gap-2
                 border-b border-gold/50 pb-1
-                text-[13px] font-semibold text-gold-deep
+                text-[13px] font-semibold text-[#8a6414]
                 transition-colors duration-200
                 hover:border-gold hover:text-foreground
                 focus-visible:rounded-sm

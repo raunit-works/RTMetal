@@ -1,0 +1,12 @@
+
+> nextjs@0.1.0 start
+> next start -p 3100
+
+  ▲ Next.js 13.5.1
+  - Local:        http://localhost:3100
+
+ ✓ Ready in 542ms
+
+ ⚠ metadata.metadataBase is not set for resolving social open graph or twitter images, using "http://localhost:3100". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+[Supabase Info] "testimonials" table query returned 0 rows.
+[Supabase Info] "faqs" table query returned 0 rows.

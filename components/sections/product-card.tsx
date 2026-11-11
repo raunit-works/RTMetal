@@ -87,7 +87,7 @@ export function ProductCard({ product, division = 'home_decor' }: ProductCardPro
             )}
           </button>
 
-<div className="absolute inset-x-3 bottom-3 flex translate-y-3 gap-2 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+<div className="absolute inset-x-3 bottom-3 flex translate-y-0 gap-2 opacity-100 transition-all duration-500 sm:translate-y-3 sm:opacity-0 sm:group-hover:translate-y-0 sm:group-hover:opacity-100 sm:group-focus-within:translate-y-0 sm:group-focus-within:opacity-100">
             <Button
               asChild
               size="sm"
@@ -123,7 +123,7 @@ export function ProductCard({ product, division = 'home_decor' }: ProductCardPro
           </div>
           <div className="text-right">
             {productWhatsAppUrl ? (
-              <Button asChild className="rounded-full bg-[#25D366] text-white hover:bg-[#25D366]/90">
+              <Button asChild className="rounded-full bg-[#25D366] text-ink hover:bg-[#25D366]/90">
                 <a
                   href={productWhatsAppUrl}
                   target="_blank"
@@ -135,7 +135,7 @@ export function ProductCard({ product, division = 'home_decor' }: ProductCardPro
             ) : (
               <Button
                 disabled
-                className="rounded-full bg-[#25D366]/20 text-white/40 cursor-not-allowed"
+                className="cursor-not-allowed rounded-full border border-[#25D366]/25 bg-[#25D366]/10 text-muted-foreground disabled:opacity-100"
               >
                 Enquire Now
               </Button>
@@ -473,7 +473,7 @@ function QuickViewModal({
                   <Button
                     asChild
                     size="lg"
-                    className="w-full rounded-full bg-[#25D366] text-white shadow-sm hover:bg-[#22c15e] focus-visible:ring-[#25D366]/50"
+                    className="w-full rounded-full bg-[#25D366] text-ink shadow-sm hover:bg-[#22c15e] focus-visible:ring-[#25D366]/50"
                   >
                     <a
                       href={quickViewWhatsAppUrl}
@@ -488,9 +488,9 @@ function QuickViewModal({
                   <Button
                     disabled
                     size="lg"
-                    className="w-full rounded-full bg-[#25D366]/20 text-white/40 cursor-not-allowed"
+                    className="w-full cursor-not-allowed rounded-full border border-[#25D366]/25 bg-[#25D366]/10 text-muted-foreground disabled:opacity-100"
                   >
-                    <MessageCircle className="mr-2 h-4 w-4" style={{ opacity: 0.5 }} />
+                    <MessageCircle className="mr-2 h-4 w-4" />
                     Enquire via WhatsApp
                   </Button>
                 )}

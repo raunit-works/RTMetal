@@ -166,7 +166,7 @@ export default function AccountPage() {
               asChild
               variant="outline"
               size="sm"
-              className="rounded-full border-white/20 text-white hover:bg-white/10"
+              className="rounded-full border-white/20 bg-transparent text-white hover:border-white/40 hover:bg-white hover:text-ink"
             >
               <Link href="/wishlist">
                 <Heart className="mr-2 h-4 w-4 text-destructive" />

@@ -65,6 +65,22 @@ const config: Config = {
           soft: 'hsl(0 0% 12%)',
           muted: 'hsl(0 0% 20%)',
         },
+        charcoal: {
+          DEFAULT: '#171717',
+          soft: '#202020',
+        },
+        ivory: {
+          DEFAULT: '#F8F5F0',
+          soft: '#FAF8F4',
+        },
+        champagne: '#F2E9DC',
+        parchment: '#E7DDD0',
+        brass: {
+          DEFAULT: '#B8862C',
+          light: '#D6A84D',
+          rich: '#A57722',
+          deep: '#8A6220',
+        },
         chart: {
           '1': 'hsl(var(--chart-1))',
           '2': 'hsl(var(--chart-2))',

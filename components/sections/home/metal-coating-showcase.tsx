@@ -98,7 +98,7 @@ export function MetalCoatingShowcase({
                   asChild
                   size="lg"
                   className={cn(
-                    'rounded-full border border-white/30 bg-transparent text-white hover:bg-white/10 hover:border-white/50 font-medium',
+                    'rounded-full border border-white/30 bg-transparent text-white hover:border-white/50 hover:bg-white hover:text-ink font-medium',
                     'flex-1 sm:flex-initial min-w-[140px]'
                   )}
                 >

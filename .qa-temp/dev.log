@@ -1,0 +1,64 @@
+
+> nextjs@0.1.0 dev
+> next dev
+
+  ▲ Next.js 13.5.1
+  - Local:        http://localhost:3000
+  - Environments: .env.development.local, .env.local
+
+ ✓ Ready in 3.4s
+ ✓ Compiled /middleware in 283ms (113 modules)
+ ○ compiling /page ...
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+ ✓ Compiled /page in 9.5s (1829 modules)
+ ✓ Compiled in 929ms (864 modules)
+ ✓ Compiled in 134ms (850 modules)
+[Supabase Info] "testimonials" table query returned 0 rows.
+[Supabase Info] "faqs" table query returned 0 rows.
+ ○ compiling /about/page ...
+ ✓ Compiled /about/page in 3.1s (1815 modules)
+ ✓ Compiled /metal-coating/page in 1097ms (1912 modules)
+ ✓ Compiled /home-decor/page in 725ms (1936 modules)
+ ✓ Compiled /before-after/page in 1851ms (1966 modules)
+[Supabase Info] "faqs" table query returned 0 rows.
+[Supabase Info] "testimonials" table query returned 0 rows.
+[Supabase Info] "testimonials" table query returned 0 rows.
+[Supabase Info] "faqs" table query returned 0 rows.
+ ✓ Compiled in 3.7s (908 modules)
+ ✓ Compiled in 349ms (908 modules)
+ ✓ Compiled in 726ms (908 modules)
+ ✓ Compiled in 1559ms (908 modules)
+ ✓ Compiled in 498ms (908 modules)
+ ✓ Compiled in 454ms (908 modules)
+ ✓ Compiled in 421ms (908 modules)
+ ✓ Compiled in 435ms (908 modules)
+ ✓ Compiled in 442ms (908 modules)
+ ✓ Compiled in 442ms (908 modules)
+ ✓ Compiled in 1360ms (908 modules)
+ ✓ Compiled in 524ms (908 modules)
+ ✓ Compiled in 429ms (908 modules)
+ ✓ Compiled in 426ms (908 modules)
+ ✓ Compiled in 704ms (908 modules)
+ ✓ Compiled /about/page in 1199ms (1755 modules)
+ ✓ Compiled /not-found in 414ms (1759 modules)
+ ✓ Compiled in 1427ms (908 modules)
+ ✓ Compiled in 320ms (908 modules)
+ ✓ Compiled in 341ms (908 modules)
+ ✓ Compiled in 418ms (908 modules)
+ ✓ Compiled in 382ms (908 modules)
+ ✓ Compiled in 305ms (908 modules)
+ ✓ Compiled in 297ms (908 modules)
+ ✓ Compiled in 330ms (908 modules)
+ ✓ Compiled in 376ms (908 modules)
+ ✓ Compiled in 357ms (908 modules)
+ ✓ Compiled in 352ms (908 modules)
+ ✓ Compiled in 345ms (908 modules)
+ ✓ Compiled in 328ms (908 modules)
+ ✓ Compiled in 317ms (908 modules)
+ ✓ Compiled in 369ms (908 modules)
+ ✓ Compiled in 428ms (908 modules)
+ ✓ Compiled in 345ms (908 modules)
+ ✓ Compiled in 528ms (908 modules)
+[?25h

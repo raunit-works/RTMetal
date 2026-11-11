@@ -3,59 +3,41 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { MessageCircle, ArrowRight, Check, Building2, Loader2, CheckCircle2, AlertCircle, Wrench, Sparkles } from 'lucide-react';
+import { MessageCircle, ArrowRight, Check, Building2, Loader2, CheckCircle2, AlertCircle, Wrench } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Reveal, StaggerGroup, StaggerItem } from '@/components/motion/reveal';
 import { SectionHeading } from '@/components/sections/section-heading';
 import { InstagramSection } from '@/components/sections/instagram-section';
 import { CtaBanner } from '@/components/sections/cta-banner';
-import { getMetalCoatingWhatsAppLink, isMetalCoatingWhatsappVerified } from '@/lib/site';
+import { getMetalCoatingWhatsAppLink } from '@/lib/site';
 import { resolveIcon } from '@/lib/icons';
-import type { Service, ProcessStep, InstagramPost, Category, MetalFinishCardData } from '@/lib/types';
+import type { Service, InstagramPost, Category, MetalFinishCardData, BeforeAfterProject } from '@/lib/types';
 import { createInquiry } from '@/lib/supabase/inquiries';
 import { PrincipalServiceCards } from '@/components/sections/principal-service-cards';
 import { FinishCollection } from '@/components/sections/finish-collection';
 import { PRINCIPAL_SERVICE_GROUPS } from '@/lib/principal-service-groups';
 import { categoryHref, isCategoryInSection } from '@/lib/category-hierarchy';
+import { WorkflowSection } from '@/components/metal-coating/workflow/workflow-section';
+import { TransformationSection } from '@/components/metal-coating/transformations/transformation-section';
 
 interface MetalCoatingClientProps {
   services: Service[];
-  processSteps: ProcessStep[];
   instagramPosts: InstagramPost[];
   industriesServed: string[];
   categories: Category[];
   finishes: MetalFinishCardData[];
+  beforeAfterProjects: BeforeAfterProject[];
+  beforeAfterAvailable: boolean;
 }
-
-// Phase 2D note: Before/after image pairing and project identity are pending
-// client verification. Labels are illustrative only and must not assert
-// specific project names, customer identity, locations or confirmed coating
-// processes until client approves each pair for publication.
-const beforeAfter = [
-  {
-    before: '/before-metal-worn.jpg',
-    after: '/after-metal-polished.jpg',
-    label: 'Surface restoration — worn to refinished',
-  },
-  {
-    before: '/before-metal-worn.jpg',
-    after: '/hero-metal-art-decor.jpg',
-    label: 'Decorative metal finishing',
-  },
-  {
-    before: '/hero-coating-process.jpg',
-    after: '/hero-brass-interior.jpg',
-    label: 'Coating process — application to result',
-  },
-];
 
 export function MetalCoatingClient({
   services,
-  processSteps,
   instagramPosts,
   industriesServed,
   categories,
   finishes,
+  beforeAfterProjects,
+  beforeAfterAvailable,
 }: MetalCoatingClientProps) {
   const [quoteName, setQuoteName] = useState('');
   const [quoteEmail, setQuoteEmail] = useState('');
@@ -197,7 +179,7 @@ export function MetalCoatingClient({
               <Button
                 asChild
                 size="lg"
-                className="rounded-full border border-white/30 bg-transparent text-white hover:bg-white/10 hover:border-white/50 font-medium"
+                className="rounded-full border border-white/30 bg-transparent text-white hover:border-white/50 hover:bg-white hover:text-ink font-medium"
               >
                 <a href="#quote">
                   Enquire About a Project
@@ -307,9 +289,9 @@ export function MetalCoatingClient({
                                 disabled
                                 size="sm"
                                 variant="outline"
-                                className="w-full rounded-full border-gold/10 text-white/40 cursor-not-allowed"
+                                className="w-full cursor-not-allowed rounded-full border-gold/20 bg-transparent text-muted-foreground disabled:opacity-100"
                               >
-                                <MessageCircle className="mr-2 h-3.5 w-3.5 text-gold-deep" style={{ opacity: 0.5 }} />
+                                <MessageCircle className="mr-2 h-3.5 w-3.5 text-gold-deep" />
                                 Enquire About {svc.shortName || svc.name}
                               </Button>
                             );
@@ -334,7 +316,7 @@ export function MetalCoatingClient({
         );
         if (metalCategories.length === 0) return null;
         return (
-          <section id="collections" className="scroll-mt-24 py-20 sm:py-28">
+          <section id="collections" className="scroll-mt-24 py-10 sm:py-12 lg:py-14">
             <div className="mx-auto max-w-7xl px-5 lg:px-10">
               <SectionHeading
                 eyebrow="Metal Product Collections"
@@ -398,7 +380,7 @@ export function MetalCoatingClient({
         );
       })()}
 
-      <section className="bg-ink py-20 text-white sm:py-28">
+      <section className="bg-ink py-10 text-white sm:py-12 lg:py-14">
         <div className="mx-auto max-w-7xl px-5 lg:px-10">
           <SectionHeading
             eyebrow="Industries We Serve"
@@ -422,89 +404,14 @@ export function MetalCoatingClient({
         </div>
       </section>
 
-      <section className="py-20 sm:py-28">
-        <div className="mx-auto max-w-7xl px-5 lg:px-10">
-          <SectionHeading
-            eyebrow="Before & After"
-            title="The transformation."
-            description="See the difference our coatings make — from raw substrate to premium finish."
-          />
-          <div className="mt-14 grid gap-6 lg:grid-cols-3">
-            {beforeAfter.map((item, i) => (
-              <Reveal key={item.label} delay={i * 0.1}>
-                <div className="group overflow-hidden rounded-2xl border border-border">
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <Image
-                      src={item.before}
-                      alt={`${item.label} before`}
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 33vw"
-                      className="object-cover transition-opacity duration-500 group-hover:opacity-0"
-                    />
-                    <Image
-                      src={item.after}
-                      alt={`${item.label} after`}
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 33vw"
-                      className="object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                    />
-                    <span className="absolute left-3 top-3 rounded-full bg-ink/70 px-3 py-1 text-[10px] font-medium uppercase tracking-wider text-white backdrop-blur-md">
-                      Before
-                    </span>
-                    <span className="absolute right-3 top-3 rounded-full bg-gold/90 px-3 py-1 text-[10px] font-medium uppercase tracking-wider text-ink backdrop-blur-md">
-                      After
-                    </span>
-                  </div>
-                  <div className="p-5">
-                    <p className="text-sm font-semibold">{item.label}</p>
-                    <p className="mt-1 text-xs text-muted-foreground">
-                      Hover to reveal the finished result
-                    </p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      <TransformationSection
+        projects={beforeAfterProjects}
+        available={beforeAfterAvailable}
+      />
 
-      <section className="bg-muted/40 py-20 sm:py-28">
-        <div className="mx-auto max-w-7xl px-5 lg:px-10">
-          <SectionHeading
-            eyebrow="The Process"
-            title="From brief to finish."
-            description="Every coating project moves through five considered stages — transparent at each step."
-          />
-          <div className="relative mt-16">
-            <div className="pointer-events-none absolute left-0 right-0 top-7 hidden h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent lg:block" />
-            <div className="grid gap-8 lg:grid-cols-5 lg:gap-4">
-              {processSteps.map((step, i) => {
-                const StepIcon = resolveIcon(step.icon, Sparkles);
-                return (
-                  <Reveal key={step.step} delay={i * 0.1}>
-                    <div className="relative">
-                      <div className="relative z-10 mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-gold/30 bg-background text-gold">
-                        <StepIcon className="h-6 w-6" />
-                      </div>
-                      <p className="mt-6 text-center text-xs font-medium uppercase tracking-ultra text-gold-deep">
-                        Step {step.step}
-                      </p>
-                      <h3 className="mt-2 text-center font-display text-xl font-medium">
-                        {step.title}
-                      </h3>
-                      <p className="mt-3 text-center text-sm leading-relaxed text-muted-foreground">
-                        {step.description}
-                      </p>
-                    </div>
-                  </Reveal>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
+      <WorkflowSection />
 
-      <section className="py-20 sm:py-28">
+      <section className="py-10 sm:py-12 lg:py-14">
         <div className="mx-auto max-w-7xl px-5 lg:px-10">
           <SectionHeading
             eyebrow="Premium Finishes"
@@ -545,8 +452,8 @@ export function MetalCoatingClient({
         description="Reels and posts from the coating floor — process, machinery and completed projects."
       />
 
-      <section id="quote" className="scroll-mt-24 px-5 py-12 lg:px-10 lg:py-16">
-        <div className="relative mx-auto max-w-7xl overflow-hidden rounded-3xl bg-ink px-6 py-16 text-center text-white sm:px-12 sm:py-24">
+      <section id="quote" className="scroll-mt-24 px-5 py-8 lg:px-10 lg:py-12">
+        <div className="relative mx-auto max-w-7xl overflow-hidden rounded-3xl bg-ink px-6 py-10 text-center text-white sm:px-12 sm:py-14">
           <div className="pointer-events-none absolute -left-20 -top-20 h-72 w-72 rounded-full bg-gold/15 blur-[100px]" />
           <div className="pointer-events-none absolute -bottom-20 -right-20 h-72 w-72 rounded-full bg-gold/10 blur-[100px]" />
           <div className="relative">
@@ -636,13 +543,13 @@ export function MetalCoatingClient({
                     </>
                   )}
                 </Button>
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="w-full rounded-full border-white/20 text-white hover:bg-white/10 hover:text-white sm:w-auto"
-                >
-                  {metalCoatingWhatsAppUrl ? (
+                {metalCoatingWhatsAppUrl ? (
+                  <Button
+                    asChild
+                    size="lg"
+                    variant="outline"
+                    className="w-full rounded-full border-white/30 bg-transparent text-white hover:border-white/50 hover:bg-white hover:text-ink sm:w-auto"
+                  >
                     <a
                       href={metalCoatingWhatsAppUrl}
                       target="_blank"
@@ -651,18 +558,25 @@ export function MetalCoatingClient({
                       <MessageCircle className="mr-2 h-4 w-4" />
                       Chat on WhatsApp
                     </a>
-                  ) : (
-                    <span>
-                      <MessageCircle className="mr-2 h-4 w-4" style={{ opacity: 0.5 }} />
-                      Chat on WhatsApp
-                    </span>
-                  )}
-                </Button>
+                  </Button>
+                ) : (
+                  <Button
+                    type="button"
+                    disabled
+                    size="lg"
+                    variant="outline"
+                    title="WhatsApp contact is not configured yet. Please use the quote form above."
+                    className="w-full cursor-not-allowed rounded-full border-white/25 bg-transparent text-white/70 disabled:opacity-100 sm:w-auto"
+                  >
+                    <MessageCircle className="mr-2 h-4 w-4" />
+                    Chat on WhatsApp
+                  </Button>
+                )}
               </div>
             </form>
           </div>
         </div>
-      </section>
+      </section >
 
       <CtaBanner
         eyebrow="Two divisions, one standard"

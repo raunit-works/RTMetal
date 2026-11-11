@@ -165,7 +165,7 @@ export function ContactSection() {
                   <Button
                     asChild
                     size="lg"
-                    className="w-full rounded-full bg-[#25D366] text-white hover:bg-[#25D366]/90"
+                    className="w-full rounded-full bg-[#25D366] text-ink hover:bg-[#25D366]/90"
                   >
                     <a
                       href={contactWhatsAppUrl}
@@ -180,9 +180,9 @@ export function ContactSection() {
                   <Button
                     disabled
                     size="lg"
-                    className="w-full rounded-full bg-[#25D366]/20 text-white/40 cursor-not-allowed"
+                    className="w-full cursor-not-allowed rounded-full border border-[#25D366]/25 bg-[#25D366]/10 text-white/70 disabled:opacity-100"
                   >
-                    <MessageCircle className="mr-2 h-4 w-4" style={{ opacity: 0.5 }} />
+                    <MessageCircle className="mr-2 h-4 w-4" />
                     Chat on WhatsApp
                   </Button>
                 )
@@ -191,7 +191,7 @@ export function ContactSection() {
                   <DropdownMenuTrigger asChild>
                     <Button
                       size="lg"
-                      className="w-full rounded-full bg-[#25D366] text-white hover:bg-[#25D366]/90"
+                      className="w-full rounded-full bg-[#25D366] text-ink hover:bg-[#25D366]/90"
                     >
                       <MessageCircle className="mr-2 h-4 w-4" />
                       Chat on WhatsApp
