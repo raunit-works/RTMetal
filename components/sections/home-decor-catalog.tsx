@@ -7,11 +7,12 @@ import { SlidersHorizontal } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ProductCard } from '@/components/sections/product-card';
 import { Reveal, StaggerGroup, StaggerItem } from '@/components/motion/reveal';
-import { SectionHeading } from '@/components/sections/section-heading';
+import { CategoryShowcase } from '@/components/categories/category-showcase';
 import { InstagramSection } from '@/components/sections/instagram-section';
 import { CtaBanner } from '@/components/sections/cta-banner';
 import type { Category, Product, InstagramPost, MainSection } from '@/lib/types';
 import { categoryHref, filterCategoryProducts, getCategoryPath } from '@/lib/category-hierarchy';
+import { toCategoryShowcaseItems } from '@/lib/category-showcase';
 
 const sortOptions = [
   { value: 'featured', label: 'Featured' },
@@ -156,44 +157,13 @@ export function HomeDecorCatalog({
       </section>
 
       {categories.length > 0 && (
-        <section className="bg-muted/40 py-20 sm:py-28">
-          <div className="mx-auto max-w-7xl px-5 lg:px-10">
-            <SectionHeading
-              eyebrow="Featured Collections"
-              title="Shop by story"
-              description="Curated edits that bring a single idea into focus — gifting, entertaining, the considered desk."
-            />
-            <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {categories.slice(0, 3).map((cat, i) => (
-                <Reveal key={cat.slug} delay={i * 0.1}>
-                  <Link
-                    href={categoryHref(cat)}
-                    className="group relative block w-full text-left overflow-hidden rounded-3xl"
-                  >
-                    <div className="relative aspect-[4/3] overflow-hidden">
-                      <Image
-                        src={cat.image}
-                        alt={cat.name}
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        className="object-cover transition-transform duration-700 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-ink/80 to-transparent" />
-                    </div>
-                    <div className="absolute inset-x-0 bottom-0 p-6">
-                      <h3 className="font-display text-2xl font-medium text-white sm:text-3xl">
-                        {cat.name}
-                      </h3>
-                      <p className="mt-1 text-sm text-white/80">
-                        {cat.description}
-                      </p>
-                    </div>
-                  </Link>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
+        <CategoryShowcase
+          eyebrow="Featured Collections"
+          title="Shop by story"
+          description="Curated edits that bring a single idea into focus — gifting, entertaining, the considered desk."
+          items={toCategoryShowcaseItems(categories)}
+          ctaLabel="Explore Collection"
+        />
       )}
 
       <InstagramSection

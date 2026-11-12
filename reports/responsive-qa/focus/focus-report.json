@@ -1,0 +1,68 @@
+{
+  "viewport": 393,
+  "home": {
+    "businessDivisionCards": [
+      { "title": "Metal Coating for Every Industry", "height": 393, "gapCardTopToTitle": 90, "titleClipped": false, "imageLoaded": true },
+      { "title": "Metal Art & Decorative Interiors", "height": 393, "gapCardTopToTitle": 90, "titleClipped": false, "imageLoaded": true }
+    ],
+    "featuredProductCard": {
+      "wishlist": { "width": 44, "height": 44 },
+      "viewDetails": { "width": 103, "height": 44 },
+      "quickView": { "width": 44, "height": 44 },
+      "enquireNow": { "width": 169, "height": 44 },
+      "title": { "width": 169, "height": 36, "lines": 2 },
+      "metadataVisibleOnMobile": false
+    },
+    "instagramCarousel": {
+      "cards": 7,
+      "gap": 16,
+      "firstCardWidth": 189,
+      "scrollLeftAfterNext": 205,
+      "horizontalOverflow": false
+    }
+  },
+  "metalCoating": {
+    "heroCtas": [
+      { "text": "Explore Our Services", "width": 353, "height": 48 },
+      { "text": "Enquire About a Project", "width": 353, "height": 48 }
+    ],
+    "descriptionToFirstCta": 24,
+    "betweenCtas": 12,
+    "finishCardControls": {
+      "compare": { "width": 87, "height": 44 },
+      "save": { "width": 44, "height": 44 },
+      "enquire": { "width": 270, "height": 44 }
+    }
+  },
+  "productDetail": {
+    "ctas": [
+      { "text": "Enquire About Product", "width": 219, "height": 44 },
+      { "text": "Enquire About Product", "width": 353, "height": 48 },
+      { "text": "Request a Quote", "width": 353, "height": 48 },
+      { "text": "Back to Collection", "width": 353, "height": 48 }
+    ]
+  },
+  "navigation": {
+    "openMenu": { "width": 44, "height": 44 },
+    "closeMenu": { "width": 44, "height": 44 }
+  },
+  "footer": {
+    "viewOnGoogleMaps": { "width": 351, "height": 44 }
+  },
+  "desktop1280": {
+    "productCardOverlay": {
+      "wishlist": { "width": 36, "height": 36 },
+      "viewDetails": { "width": 214, "height": 36 },
+      "quickView": { "width": 36, "height": 36 },
+      "enquireNow": { "width": 116, "height": 40 }
+    },
+    "horizontalOverflow": false
+  },
+  "automatedAudit": {
+    "widths": [320, 360, 375, 390, 393, 430, 768, 1024, 1280, 1440],
+    "routes": 9,
+    "results": 90,
+    "horizontalOverflow": false,
+    "notes": "Remaining heading-clipped findings are font-metric false positives; heading-outside-viewport findings on finish/transformation names are intentional horizontal carousels."
+  }
+}

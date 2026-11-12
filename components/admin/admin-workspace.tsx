@@ -75,6 +75,7 @@ import {
   AdminListToolbar,
   AdminPagination,
 } from '@/components/admin/shared/admin-list-controls';
+import { AdminFormPanel } from '@/components/admin/shared/admin-form-panel';
 import {
   getAdminPageCount,
   getAdminPageSlice,
@@ -1822,12 +1823,43 @@ export function AdminWorkspace() {
       {/* CATEGORIES TAB */}
       {activeTab === 'categories' && (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="rounded-2xl border border-border bg-card/60 p-6 backdrop-blur-xl">
-            <h3 className="text-base font-semibold mb-4 flex items-center gap-2">
-              <Plus className="h-4 w-4 text-gold-deep" />
-              {editingId ? 'Edit Category' : 'Add Category'}
-            </h3>
-            <form onSubmit={handleCategorySubmit} className="space-y-4">
+          <AdminFormPanel
+            title={editingId ? 'Edit Category' : 'Add Category'}
+            icon={<Plus className="h-4 w-4 text-gold-deep" />}
+            formProps={{ onSubmit: handleCategorySubmit }}
+            footer={
+              <>
+                {editingId && (
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={resetForms}
+                    className="w-full sm:w-auto"
+                  >
+                    Cancel Edit
+                  </Button>
+                )}
+                <Button
+                  type="submit"
+                  disabled={
+                    loading ||
+                    uploading ||
+                    hierarchySupported === null ||
+                    (!editingId && !hierarchySupported)
+                  }
+                  className="w-full gold-button font-medium sm:w-auto sm:min-w-[10rem]"
+                >
+                  {loading ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : editingId ? (
+                    'Update Category'
+                  ) : (
+                    'Save Category'
+                  )}
+                </Button>
+              </>
+            }
+          >
               {hierarchySupported !== true && <p className="text-xs text-muted-foreground">
                 {hierarchySupported === false ? 'Hierarchy columns are unavailable. Existing category details can be edited; new categories and hierarchy controls require the approved schema.' : 'Checking category schema…'}
               </p>}
@@ -2063,16 +2095,7 @@ export function AdminWorkspace() {
                   <Label htmlFor="catFeat">Featured</Label>
                 </div>
               </div>
-              <Button type="submit" disabled={loading || uploading || hierarchySupported === null || (!editingId && !hierarchySupported)} className="w-full gold-button font-medium">
-                {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : editingId ? 'Update Category' : 'Save Category'}
-              </Button>
-              {editingId && (
-                <Button type="button" variant="ghost" onClick={resetForms} className="w-full">
-                  Cancel Edit
-                </Button>
-              )}
-            </form>
-          </div>
+          </AdminFormPanel>
 
           <div className="lg:col-span-2 rounded-2xl border border-border bg-card/60 p-6 backdrop-blur-xl">
             <h3 className="text-base font-semibold mb-4">Categories ({categories.length})</h3>
@@ -2294,12 +2317,38 @@ export function AdminWorkspace() {
       {/* PRODUCTS TAB (Complete 19-Field Coverage) */}
       {activeTab === 'products' && (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="rounded-2xl border border-border bg-card/60 p-6 backdrop-blur-xl">
-            <h3 className="text-base font-semibold mb-4 flex items-center gap-2">
-              <Plus className="h-4 w-4 text-gold-deep" />
-              {editingId ? 'Edit Product' : 'Add Product'}
-            </h3>
-            <form onSubmit={handleProductSubmit} className="space-y-4 max-h-[75vh] overflow-y-auto pr-1">
+          <AdminFormPanel
+            title={editingId ? 'Edit Product' : 'Add Product'}
+            icon={<Plus className="h-4 w-4 text-gold-deep" />}
+            formProps={{ onSubmit: handleProductSubmit }}
+            footer={
+              <>
+                {editingId && (
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={resetForms}
+                    className="w-full sm:w-auto"
+                  >
+                    Cancel Edit
+                  </Button>
+                )}
+                <Button
+                  type="submit"
+                  disabled={loading || uploading}
+                  className="w-full gold-button font-medium sm:w-auto sm:min-w-[10rem]"
+                >
+                  {loading ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : editingId ? (
+                    'Update Product'
+                  ) : (
+                    'Save Product'
+                  )}
+                </Button>
+              </>
+            }
+          >
               <div className="space-y-3">
                 <p className="text-xs font-bold uppercase tracking-wider text-gold-deep border-b border-border pb-1">1. Basic Information</p>
                 <div>
@@ -2571,16 +2620,7 @@ export function AdminWorkspace() {
                 </div>
               </div>
 
-              <Button type="submit" disabled={loading || uploading} className="w-full gold-button font-medium mt-4">
-                {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : editingId ? 'Update Product' : 'Save Product'}
-              </Button>
-              {editingId && (
-                <Button type="button" variant="ghost" onClick={resetForms} className="w-full">
-                  Cancel Edit
-                </Button>
-              )}
-            </form>
-          </div>
+          </AdminFormPanel>
 
           <div className="lg:col-span-2 rounded-2xl border border-border bg-card/60 p-6 backdrop-blur-xl">
             <h3 className="text-base font-semibold mb-4">Products ({products.length})</h3>
@@ -2801,12 +2841,38 @@ export function AdminWorkspace() {
       {/* SERVICES TAB */}
       {activeTab === 'services' && (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="rounded-2xl border border-border bg-card/60 p-6 backdrop-blur-xl">
-            <h3 className="text-base font-semibold mb-4 flex items-center gap-2">
-              <Plus className="h-4 w-4 text-gold-deep" />
-              {editingId ? 'Edit Service' : 'Add Service'}
-            </h3>
-            <form onSubmit={handleServiceSubmit} className="space-y-4 max-h-[75vh] overflow-y-auto pr-1">
+          <AdminFormPanel
+            title={editingId ? 'Edit Service' : 'Add Service'}
+            icon={<Plus className="h-4 w-4 text-gold-deep" />}
+            formProps={{ onSubmit: handleServiceSubmit }}
+            footer={
+              <>
+                {editingId && (
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={resetForms}
+                    className="w-full sm:w-auto"
+                  >
+                    Cancel Edit
+                  </Button>
+                )}
+                <Button
+                  type="submit"
+                  disabled={loading || uploading}
+                  className="w-full gold-button font-medium sm:w-auto sm:min-w-[10rem]"
+                >
+                  {loading ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : editingId ? (
+                    'Update Service'
+                  ) : (
+                    'Save Service'
+                  )}
+                </Button>
+              </>
+            }
+          >
               <div>
                 <Label>Service Name *</Label>
                 <Input required value={svcName} onChange={(e) => setSvcName(e.target.value)} placeholder="PU Brass Coating" />
@@ -3000,16 +3066,7 @@ export function AdminWorkspace() {
                   <Label htmlFor="sPub">Published</Label>
                 </div>
               </div>
-              <Button type="submit" disabled={loading || uploading} className="w-full gold-button font-medium">
-                {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : editingId ? 'Update Service' : 'Save Service'}
-              </Button>
-              {editingId && (
-                <Button type="button" variant="ghost" onClick={resetForms} className="w-full">
-                  Cancel Edit
-                </Button>
-              )}
-            </form>
-          </div>
+          </AdminFormPanel>
 
           <div className="lg:col-span-2 rounded-2xl border border-border bg-card/60 p-6 backdrop-blur-xl">
             <h3 className="text-base font-semibold mb-4">Services ({services.length})</h3>
@@ -3189,12 +3246,38 @@ export function AdminWorkspace() {
       {/* TESTIMONIALS TAB */}
       {activeTab === 'testimonials' && (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="rounded-2xl border border-border bg-card/60 p-6 backdrop-blur-xl">
-            <h3 className="text-base font-semibold mb-4 flex items-center gap-2">
-              <Plus className="h-4 w-4 text-gold-deep" />
-              {editingId ? 'Edit Testimonial' : 'Add Testimonial'}
-            </h3>
-            <form onSubmit={handleTestimonialSubmit} className="space-y-4">
+          <AdminFormPanel
+            title={editingId ? 'Edit Testimonial' : 'Add Testimonial'}
+            icon={<Plus className="h-4 w-4 text-gold-deep" />}
+            formProps={{ onSubmit: handleTestimonialSubmit }}
+            footer={
+              <>
+                {editingId && (
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={resetForms}
+                    className="w-full sm:w-auto"
+                  >
+                    Cancel Edit
+                  </Button>
+                )}
+                <Button
+                  type="submit"
+                  disabled={loading || uploading}
+                  className="w-full gold-button font-medium sm:w-auto sm:min-w-[10rem]"
+                >
+                  {loading ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : editingId ? (
+                    'Update Testimonial'
+                  ) : (
+                    'Save Testimonial'
+                  )}
+                </Button>
+              </>
+            }
+          >
               <div>
                 <Label>Client Name *</Label>
                 <Input required value={testName} onChange={(e) => setTestName(e.target.value)} placeholder="Rajesh Sharma" />
@@ -3273,16 +3356,7 @@ export function AdminWorkspace() {
                   <Label htmlFor="tPub">Published</Label>
                 </div>
               </div>
-              <Button type="submit" disabled={loading || uploading} className="w-full gold-button font-medium">
-                {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : editingId ? 'Update Testimonial' : 'Save Testimonial'}
-              </Button>
-              {editingId && (
-                <Button type="button" variant="ghost" onClick={resetForms} className="w-full">
-                  Cancel Edit
-                </Button>
-              )}
-            </form>
-          </div>
+          </AdminFormPanel>
 
           <div className="lg:col-span-2 rounded-2xl border border-border bg-card/60 p-6 backdrop-blur-xl">
             <h3 className="text-base font-semibold mb-4">Testimonials ({testimonials.length})</h3>
@@ -3422,12 +3496,38 @@ export function AdminWorkspace() {
       {/* FAQS TAB */}
       {activeTab === 'faqs' && (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="rounded-2xl border border-border bg-card/60 p-6 backdrop-blur-xl">
-            <h3 className="text-base font-semibold mb-4 flex items-center gap-2">
-              <Plus className="h-4 w-4 text-gold-deep" />
-              {editingId ? 'Edit FAQ' : 'Add FAQ'}
-            </h3>
-            <form onSubmit={handleFaqSubmit} className="space-y-4">
+          <AdminFormPanel
+            title={editingId ? 'Edit FAQ' : 'Add FAQ'}
+            icon={<Plus className="h-4 w-4 text-gold-deep" />}
+            formProps={{ onSubmit: handleFaqSubmit }}
+            footer={
+              <>
+                {editingId && (
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={resetForms}
+                    className="w-full sm:w-auto"
+                  >
+                    Cancel Edit
+                  </Button>
+                )}
+                <Button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full gold-button font-medium sm:w-auto sm:min-w-[10rem]"
+                >
+                  {loading ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : editingId ? (
+                    'Update FAQ'
+                  ) : (
+                    'Save FAQ'
+                  )}
+                </Button>
+              </>
+            }
+          >
               <div>
                 <Label>Question *</Label>
                 <Input required value={faqQ} onChange={(e) => setFaqQ(e.target.value)} placeholder="What is PU coating?" />
@@ -3450,16 +3550,7 @@ export function AdminWorkspace() {
                   <Label htmlFor="fPub">Published</Label>
                 </div>
               </div>
-              <Button type="submit" disabled={loading} className="w-full gold-button font-medium">
-                {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : editingId ? 'Update FAQ' : 'Save FAQ'}
-              </Button>
-              {editingId && (
-                <Button type="button" variant="ghost" onClick={resetForms} className="w-full">
-                  Cancel Edit
-                </Button>
-              )}
-            </form>
-          </div>
+          </AdminFormPanel>
 
           <div className="lg:col-span-2 rounded-2xl border border-border bg-card/60 p-6 backdrop-blur-xl">
             <h3 className="text-base font-semibold mb-4">FAQs ({faqs.length})</h3>
@@ -3588,12 +3679,24 @@ export function AdminWorkspace() {
       {/* SETTINGS TAB */}
       {activeTab === 'settings' && (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="rounded-2xl border border-border bg-card/60 p-6 backdrop-blur-xl">
-            <h3 className="text-base font-semibold mb-4 flex items-center gap-2">
-              <Plus className="h-4 w-4 text-gold-deep" />
-              Save Site Setting
-            </h3>
-            <form onSubmit={handleSettingSubmit} className="space-y-4">
+          <AdminFormPanel
+            title="Save Site Setting"
+            icon={<Plus className="h-4 w-4 text-gold-deep" />}
+            formProps={{ onSubmit: handleSettingSubmit }}
+            footer={
+              <Button
+                type="submit"
+                disabled={loading}
+                className="w-full gold-button font-medium sm:w-auto sm:min-w-[10rem]"
+              >
+                {loading ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  'Save Setting'
+                )}
+              </Button>
+            }
+          >
               <div>
                 <Label>Setting Key *</Label>
                 <Input required value={setKey} onChange={(e) => setSetKey(e.target.value)} placeholder="brandName" />
@@ -3602,11 +3705,7 @@ export function AdminWorkspace() {
                 <Label>Setting Value (JSON or Text) *</Label>
                 <Textarea required value={setValue} onChange={(e) => setSetValue(e.target.value)} placeholder='"RT METALS"' className="min-h-[100px]" />
               </div>
-              <Button type="submit" disabled={loading} className="w-full gold-button font-medium">
-                {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Save Setting'}
-              </Button>
-            </form>
-          </div>
+          </AdminFormPanel>
 
           <div className="lg:col-span-2 rounded-2xl border border-border bg-card/60 p-6 backdrop-blur-xl">
             <h3 className="text-base font-semibold mb-4">Site Settings ({settings.length})</h3>

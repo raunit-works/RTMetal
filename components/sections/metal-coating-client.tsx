@@ -15,8 +15,10 @@ import type { Service, InstagramPost, Category, MetalFinishCardData, BeforeAfter
 import { createInquiry } from '@/lib/supabase/inquiries';
 import { PrincipalServiceCards } from '@/components/sections/principal-service-cards';
 import { FinishCollection } from '@/components/sections/finish-collection';
+import { CategoryShowcase } from '@/components/categories/category-showcase';
+import { toCategoryShowcaseItems } from '@/lib/category-showcase';
 import { PRINCIPAL_SERVICE_GROUPS } from '@/lib/principal-service-groups';
-import { categoryHref, isCategoryInSection } from '@/lib/category-hierarchy';
+import { isCategoryInSection } from '@/lib/category-hierarchy';
 import { WorkflowSection } from '@/components/metal-coating/workflow/workflow-section';
 import { TransformationSection } from '@/components/metal-coating/transformations/transformation-section';
 
@@ -163,12 +165,12 @@ export function MetalCoatingClient({
               fabrication work and custom projects. Explore our services
               and finish samples, or share your requirements for a quotation.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4">
+            <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:gap-4">
               {/* Button 1 — Primary: warm-white bg, dark ink text, always visible */}
               <Button
                 asChild
                 size="lg"
-                className="rounded-full bg-white text-ink hover:bg-white/90 font-medium"
+                className="h-12 w-full rounded-full bg-white px-6 text-sm font-medium text-ink hover:bg-white/90 sm:h-11 sm:w-auto sm:px-8"
               >
                 <a href="#services">
                   Explore Our Services
@@ -179,7 +181,7 @@ export function MetalCoatingClient({
               <Button
                 asChild
                 size="lg"
-                className="rounded-full border border-white/30 bg-transparent text-white hover:border-white/50 hover:bg-white hover:text-ink font-medium"
+                className="h-12 w-full rounded-full border border-white/30 bg-transparent px-6 text-sm font-medium text-white hover:border-white/50 hover:bg-white hover:text-ink sm:h-11 sm:w-auto sm:px-8"
               >
                 <a href="#quote">
                   Enquire About a Project
@@ -316,67 +318,15 @@ export function MetalCoatingClient({
         );
         if (metalCategories.length === 0) return null;
         return (
-          <section id="collections" className="scroll-mt-24 py-10 sm:py-12 lg:py-14">
-            <div className="mx-auto max-w-7xl px-5 lg:px-10">
-              <SectionHeading
-                eyebrow="Metal Product Collections"
-                title="Browse our metalwork categories"
-                description="Explore decorative art, architectural details and custom metal products. Open a collection to view available designs and enquire about your requirements."
-              />
-              <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {metalCategories.map((category, i) => (
-                  <Reveal key={category.slug} delay={i * 0.1}>
-                    <Link
-                      href={categoryHref(category)}
-                      className="group relative block overflow-hidden rounded-2xl border border-border bg-background transition-all duration-500 hover:border-gold/40 hover:shadow-xl"
-                    >
-                      <div className="relative aspect-[4/3] overflow-hidden">
-                        {category.image && (
-                          <>
-                            <Image
-                              src={category.image}
-                              alt={category.name}
-                              fill
-                              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                              loading="lazy"
-                              className="object-cover transition-transform duration-700 group-hover:scale-105"
-                              onError={(event) => {
-                                event.currentTarget.style.display = 'none';
-                              }}
-                            />
-                          </>
-                        )}
-                        <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-ink/20 to-transparent" />
-                      </div>
-                      <div className="p-6">
-                        <h3 className="font-display text-xl font-medium sm:text-2xl">
-                          {category.name}
-                        </h3>
-                        {category.tagline && (
-                          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                            {category.tagline}
-                          </p>
-                        )}
-                        {category.description && (
-                          <p className="mt-3 text-sm leading-relaxed text-muted-foreground line-clamp-2">
-                            {category.description}
-                          </p>
-                        )}
-                        <div className="mt-4 flex items-center justify-between">
-                          <span className="text-xs font-medium text-gold">
-                            {category.productCount} piece{category.productCount !== 1 ? 's' : ''}
-                          </span>
-                          <span className="text-sm font-medium text-gold group-hover:underline">
-                            View Collection →
-                          </span>
-                        </div>
-                      </div>
-                    </Link>
-                  </Reveal>
-                ))}
-              </div>
-            </div>
-          </section>
+          <CategoryShowcase
+            id="collections"
+            className="scroll-mt-24"
+            eyebrow="Metal Product Collections"
+            title="Browse our metalwork categories"
+            description="Explore decorative art, architectural details and custom metal products. Open a collection to view available designs and enquire about your requirements."
+            items={toCategoryShowcaseItems(metalCategories)}
+            ctaLabel="View Collection"
+          />
         );
       })()}
 

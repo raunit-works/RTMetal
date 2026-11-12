@@ -32,9 +32,9 @@ export function AboutHero() {
               id="about-hero-heading"
               className="mt-6 max-w-[620px] font-display text-4xl font-medium leading-[1.04] tracking-tight text-charcoal sm:text-5xl lg:text-[3.75rem] xl:text-[4.1rem]"
             >
-              Transforming Ordinary Surfaces into{' '}
+              Crafting Metal Finishes.{' '}
               <span className="italic text-brass-rich">
-                Extraordinary Finishes.
+                Elevating Spaces.
               </span>
             </h1>
 

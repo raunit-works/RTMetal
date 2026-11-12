@@ -83,7 +83,7 @@ export function MetalCoatingShowcase({
                   asChild
                   size="lg"
                   className={cn(
-                    'rounded-full bg-white text-ink hover:bg-white/90 font-medium',
+                    'h-12 rounded-full bg-white text-ink hover:bg-white/90 font-medium sm:h-11',
                     'flex-1 sm:flex-initial min-w-[140px]'
                   )}
                 >
@@ -98,7 +98,7 @@ export function MetalCoatingShowcase({
                   asChild
                   size="lg"
                   className={cn(
-                    'rounded-full border border-white/30 bg-transparent text-white hover:border-white/50 hover:bg-white hover:text-ink font-medium',
+                    'h-12 rounded-full border border-white/30 bg-transparent text-white hover:border-white/50 hover:bg-white hover:text-ink font-medium sm:h-11',
                     'flex-1 sm:flex-initial min-w-[140px]'
                   )}
                 >

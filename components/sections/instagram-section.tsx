@@ -281,7 +281,7 @@ export function InstagramSection({
           >
             <div
               ref={trackRef}
-              className="flex gap-16 scroll-snap-x snap-mandatory pb-4"
+              className="flex gap-4 scroll-snap-x snap-mandatory pb-4"
               style={{ width: cardW > 0 ? REELS.length * (cardW + GAP) - GAP : 'auto' }}
             >
               {REELS.map((src, i) => (

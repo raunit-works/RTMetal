@@ -98,6 +98,9 @@ const config: Config = {
         tightest: '-0.04em',
         ultra: '0.3em',
       },
+      minHeight: ({ theme }) => ({
+        ...theme('spacing'),
+      }),
       keyframes: {
         'accordion-down': {
           from: { height: '0' },
