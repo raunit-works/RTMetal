@@ -150,7 +150,7 @@ function FooterLocationMap() {
         href={MAPS_URL}
         target="_blank"
         rel="noopener noreferrer"
-        className="group flex items-center justify-between gap-2 px-3 py-2.5 text-xs font-medium text-white transition-colors hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold"
+        className="group flex min-h-11 items-center justify-between gap-2 px-3 py-2.5 text-xs font-medium text-white transition-colors hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold"
       >
         <span className="flex items-center gap-2">
           <MapPin className="h-4 w-4 shrink-0 text-gold" />

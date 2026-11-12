@@ -184,7 +184,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
 
                 <div className="mt-6 flex items-baseline gap-4">
                   {isHomeDecorWhatsappVerified() && whatsappUrl ? (
-                    <Button asChild className="rounded-full bg-[#25D366] text-white hover:bg-[#25D366]/90">
+                    <Button asChild className="rounded-full bg-[#25D366] text-ink hover:bg-[#25D366]/90">
                       <a
                         href={whatsappUrl}
                         target="_blank"
@@ -196,7 +196,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
                   ) : (
                     <Button
                       disabled
-                      className="rounded-full bg-[#25D366]/20 text-white/40 cursor-not-allowed"
+                      className="cursor-not-allowed rounded-full border border-[#25D366]/25 bg-[#25D366]/10 text-muted-foreground disabled:opacity-100"
                     >
                       Enquire About Product
                     </Button>
@@ -288,7 +288,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
                     <Button
                       asChild
                       size="lg"
-                      className="flex-1 rounded-full bg-[#25D366] px-8 py-6 text-base font-semibold text-white shadow-lg transition-all hover:bg-[#25D366]/90"
+                      className="flex-1 rounded-full bg-[#25D366] px-8 py-6 text-base font-semibold text-ink shadow-lg transition-all hover:bg-[#25D366]/90"
                     >
                       <a
                         href={whatsappUrl}
@@ -303,9 +303,9 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
                     <Button
                       disabled
                       size="lg"
-                      className="flex-1 rounded-full bg-[#25D366]/20 text-white/40 cursor-not-allowed px-8 py-6 text-base font-semibold"
+                      className="flex-1 cursor-not-allowed rounded-full border border-[#25D366]/25 bg-[#25D366]/10 px-8 py-6 text-base font-semibold text-muted-foreground disabled:opacity-100"
                     >
-                      <MessageCircle className="mr-2 h-5 w-5" style={{ opacity: 0.5 }} />
+                      <MessageCircle className="mr-2 h-5 w-5" />
                       Enquire About Product
                     </Button>
                   )}

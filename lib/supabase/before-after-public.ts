@@ -176,6 +176,7 @@ export async function getPublishedBeforeAfterProjects(options: {
       .order('display_order', { ascending: true })
       .order('project_date', { ascending: false, nullsFirst: false })
       .order('created_at', { ascending: false })
+      .order('id', { ascending: true })
       .range(offset, offset + limit - 1);
 
     if (error) {

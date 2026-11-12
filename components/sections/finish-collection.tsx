@@ -513,7 +513,7 @@ function FinishCard({
           onClick={() => onCompare(finish.finId)}
           className="
             absolute left-3 top-3 z-10
-            inline-flex min-h-9 items-center
+            inline-flex min-h-11 items-center
             gap-1.5 rounded-md
             bg-black/60 px-2.5
             text-[11px] font-medium
@@ -547,7 +547,7 @@ function FinishCard({
           onClick={() => onSave(finish.finId)}
           className="
             absolute right-3 top-3 z-10
-            flex h-9 w-9 items-center
+            flex h-11 w-11 items-center
             justify-center rounded-md
             bg-black/60 text-white
             backdrop-blur-sm
@@ -654,7 +654,7 @@ function FinishCard({
             href="#quote"
             onClick={() => onEnquire(finish)}
             className="
-              group/cta flex min-h-10
+              group/cta flex min-h-11
               w-full items-center
               justify-center gap-2
               rounded-full
@@ -1396,7 +1396,7 @@ export function FinishCollection({
                         setModal('compare');
                       }}
                       className="
-                        rounded-full
+                        min-h-11 rounded-full
                         bg-[#8b672c]
                         px-4 py-2
                         text-xs font-semibold
@@ -1675,7 +1675,7 @@ export function FinishCollection({
               onClick={closeModal}
               aria-label="Close dialog"
               className="
-                flex h-10 w-10
+                flex h-11 w-11
                 shrink-0 items-center
                 justify-center rounded-full
                 border border-[#d8cfc2]
@@ -1767,7 +1767,7 @@ export function FinishCollection({
                   onClick={previousZoom}
                   aria-label="Previous finish image"
                   className="
-                    flex h-10 w-10
+                    flex h-11 w-11
                     items-center justify-center
                     rounded-full
                     border border-[#b9a58a]
@@ -1787,7 +1787,7 @@ export function FinishCollection({
                   onClick={nextZoom}
                   aria-label="Next finish image"
                   className="
-                    flex h-10 w-10
+                    flex h-11 w-11
                     items-center justify-center
                     rounded-full
                     bg-[#8b672c] text-white

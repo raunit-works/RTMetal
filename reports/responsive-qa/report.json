@@ -1,0 +1,5582 @@
+[
+  {
+    "width": 320,
+    "route": "/",
+    "url": "http://localhost:3000/",
+    "title": "RTMETALCOATING — Professional Metal Coating & RT HOME DECOR",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Abstract Continuous-Line Wall Sculpture",
+        "detail": "scroll=55 client=36"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Let's build something lasting.",
+        "detail": "scroll=116 client=113"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Abstract Continuous-Line Wall Sculpture",
+          "detail": "scroll=55 client=36"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Let's build something lasting.",
+          "detail": "scroll=116 client=113"
+        }
+      ],
+      "smallControls": 16,
+      "divisionTitles": [
+        {
+          "text": "Metal Coating for Every Industry",
+          "cardTop": 898,
+          "cardBottom": 1329,
+          "titleTop": 1003,
+          "titleBottom": 1063,
+          "topGap": 105,
+          "clipped": false
+        },
+        {
+          "text": "Metal Art & Decorative Interiors",
+          "cardTop": 1345,
+          "cardBottom": 1761,
+          "titleTop": 1435,
+          "titleBottom": 1495,
+          "topGap": 90,
+          "clipped": false
+        }
+      ],
+      "productTitles": [
+        {
+          "text": "Decorative Metal Ceiling Installation",
+          "lines": 2,
+          "titleBottom": 5394,
+          "buttonTop": 5192,
+          "gap": -201,
+          "buttonHeight": 44,
+          "buttonWidth": 44
+        },
+        {
+          "text": "Abstract Continuous-Line Wall Sculpture",
+          "lines": 2,
+          "titleBottom": 5394,
+          "buttonTop": 5192,
+          "gap": -201,
+          "buttonHeight": 44,
+          "buttonWidth": 44
+        },
+        {
+          "text": "Geometric Panel Partition",
+          "lines": 2,
+          "titleBottom": 5679,
+          "buttonTop": 5478,
+          "gap": -201,
+          "buttonHeight": 44,
+          "buttonWidth": 44
+        },
+        {
+          "text": "Wave Motif Decorative Mirror",
+          "lines": 2,
+          "titleBottom": 5679,
+          "buttonTop": 5478,
+          "gap": -201,
+          "buttonHeight": 44,
+          "buttonWidth": 44
+        }
+      ],
+      "metaVisibleOnMobile": true,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 320,
+    "route": "/about",
+    "url": "http://localhost:3000/about",
+    "title": "About RTMETALCOATING | Metal Finishing & RT HOME DECOR",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Our Vision and Mission",
+        "detail": "scroll=24 client=1"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Our Vision and Mission",
+          "detail": "scroll=24 client=1"
+        }
+      ],
+      "smallControls": 18,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 320,
+    "route": "/metal-coating",
+    "url": "http://localhost:3000/metal-coating",
+    "title": "Premium Metal & PU Coating Services | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Metal Coating & Finishing",
+        "detail": "scroll=99 client=94"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Rustic Iron Finish",
+        "detail": "top=4499 right=406"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Deep Blue Finish",
+        "detail": "top=4499 right=647"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Rose Gold Hairline",
+        "detail": "top=4499 right=913"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Rose Gold Mirror",
+        "detail": "top=4499 right=1151"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Graphite Mirror",
+        "detail": "top=4499 right=1390"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Satin Brass",
+        "detail": "top=4499 right=1599"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Graphite Hairline",
+        "detail": "top=4499 right=1897"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Gold Mirror",
+        "detail": "top=4499 right=2108"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Gold Matte",
+        "detail": "top=4499 right=2350"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Champagne Mirror",
+        "detail": "top=4499 right=2654"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Copper Antique Glossy",
+        "detail": "top=4499 right=2905"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Browse our metalwork categories",
+        "detail": "scroll=116 client=113"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Ganesh Murti Restoration & Polishing",
+        "detail": "top=6946 right=569"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Copper Pooja Utensil Set Restoration",
+        "detail": "top=6946 right=869"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Traditional Brass Five-Wick Temple Lamp Restoration",
+        "detail": "top=6946 right=1169"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Shri Swami Samarth Statue Restoration",
+        "detail": "top=6946 right=1469"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Copper Water Jug & Glass Set Restoration",
+        "detail": "top=6946 right=1769"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Metal Coating & Finishing",
+          "detail": "scroll=99 client=94"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Rustic Iron Finish",
+          "detail": "top=4499 right=406"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Deep Blue Finish",
+          "detail": "top=4499 right=647"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Rose Gold Hairline",
+          "detail": "top=4499 right=913"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Rose Gold Mirror",
+          "detail": "top=4499 right=1151"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Graphite Mirror",
+          "detail": "top=4499 right=1390"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Satin Brass",
+          "detail": "top=4499 right=1599"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Graphite Hairline",
+          "detail": "top=4499 right=1897"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Gold Mirror",
+          "detail": "top=4499 right=2108"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Gold Matte",
+          "detail": "top=4499 right=2350"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Champagne Mirror",
+          "detail": "top=4499 right=2654"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Copper Antique Glossy",
+          "detail": "top=4499 right=2905"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Browse our metalwork categories",
+          "detail": "scroll=116 client=113"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Ganesh Murti Restoration & Polishing",
+          "detail": "top=6946 right=569"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Copper Pooja Utensil Set Restoration",
+          "detail": "top=6946 right=869"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Traditional Brass Five-Wick Temple Lamp Restoration",
+          "detail": "top=6946 right=1169"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Shri Swami Samarth Statue Restoration",
+          "detail": "top=6946 right=1469"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Copper Water Jug & Glass Set Restoration",
+          "detail": "top=6946 right=1769"
+        }
+      ],
+      "smallControls": 20,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": [
+        {
+          "text": "Explore Our Services",
+          "height": 48,
+          "width": 280
+        },
+        {
+          "text": "Enquire About a Project",
+          "height": 48,
+          "width": 280
+        },
+        {
+          "text": "Enquire About Finishes",
+          "height": 48,
+          "width": 233
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 207
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 207
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 207
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 207
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 207
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 207
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 207
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 207
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 207
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 207
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 207
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 207
+        }
+      ]
+    }
+  },
+  {
+    "width": 320,
+    "route": "/home-decor",
+    "url": "http://localhost:3000/home-decor",
+    "title": "Home Decor & Lifestyle Collection | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Home Decor & Decorative Metalwork",
+        "detail": "scroll=146 client=141"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Home Decor & Decorative Metalwork",
+          "detail": "scroll=146 client=141"
+        }
+      ],
+      "smallControls": 12,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 320,
+    "route": "/before-after",
+    "url": "http://localhost:3000/before-after",
+    "title": "Before & After Transformations | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "See the Difference aFinish Makes",
+        "detail": "scroll=136 client=132"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "See the Difference aFinish Makes",
+          "detail": "scroll=136 client=132"
+        }
+      ],
+      "smallControls": 20,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 320,
+    "route": "/login",
+    "url": "http://localhost:3000/login",
+    "title": "Sign In | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 14,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 320,
+    "route": "/signup",
+    "url": "http://localhost:3000/signup",
+    "title": "Create Customer Account | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 14,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 320,
+    "route": "/account",
+    "url": "http://localhost:3000/login?redirectTo=/account",
+    "title": "Sign In | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 14,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 320,
+    "route": "/wishlist",
+    "url": "http://localhost:3000/login?redirectTo=/wishlist",
+    "title": "Sign In | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 14,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 360,
+    "route": "/",
+    "url": "http://localhost:3000/",
+    "title": "RTMETALCOATING — Professional Metal Coating & RT HOME DECOR",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 19,
+      "divisionTitles": [
+        {
+          "text": "Metal Coating for Every Industry",
+          "cardTop": 874,
+          "cardBottom": 1282,
+          "titleTop": 979,
+          "titleBottom": 1039,
+          "topGap": 105,
+          "clipped": false
+        },
+        {
+          "text": "Metal Art & Decorative Interiors",
+          "cardTop": 1298,
+          "cardBottom": 1691,
+          "titleTop": 1388,
+          "titleBottom": 1448,
+          "topGap": 90,
+          "clipped": false
+        }
+      ],
+      "productTitles": [
+        {
+          "text": "Decorative Metal Ceiling Installation",
+          "lines": 2,
+          "titleBottom": 5300,
+          "buttonTop": 5074,
+          "gap": -226,
+          "buttonHeight": 44,
+          "buttonWidth": 44
+        },
+        {
+          "text": "Abstract Continuous-Line Wall Sculpture",
+          "lines": 2,
+          "titleBottom": 5300,
+          "buttonTop": 5074,
+          "gap": -226,
+          "buttonHeight": 44,
+          "buttonWidth": 44
+        },
+        {
+          "text": "Geometric Panel Partition",
+          "lines": 2,
+          "titleBottom": 5611,
+          "buttonTop": 5384,
+          "gap": -226,
+          "buttonHeight": 44,
+          "buttonWidth": 44
+        },
+        {
+          "text": "Wave Motif Decorative Mirror",
+          "lines": 2,
+          "titleBottom": 5611,
+          "buttonTop": 5384,
+          "gap": -226,
+          "buttonHeight": 44,
+          "buttonWidth": 44
+        }
+      ],
+      "metaVisibleOnMobile": true,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 360,
+    "route": "/about",
+    "url": "http://localhost:3000/about",
+    "title": "About RTMETALCOATING | Metal Finishing & RT HOME DECOR",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Crafting Metal Finishes. Elevating Spaces.",
+        "detail": "scroll=115 client=112"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Our Vision and Mission",
+        "detail": "scroll=24 client=1"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Crafting Metal Finishes. Elevating Spaces.",
+          "detail": "scroll=115 client=112"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Our Vision and Mission",
+          "detail": "scroll=24 client=1"
+        }
+      ],
+      "smallControls": 19,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 360,
+    "route": "/metal-coating",
+    "url": "http://localhost:3000/metal-coating",
+    "title": "Premium Metal & PU Coating Services | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Metal Coating & Finishing",
+        "detail": "scroll=99 client=94"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Rustic Iron Finish",
+        "detail": "top=4398 right=441"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Deep Blue Finish",
+        "detail": "top=4398 right=716"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Rose Gold Hairline",
+        "detail": "top=4398 right=1018"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Rose Gold Mirror",
+        "detail": "top=4398 right=1291"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Graphite Mirror",
+        "detail": "top=4398 right=1564"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Satin Brass",
+        "detail": "top=4398 right=1808"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Graphite Hairline",
+        "detail": "top=4398 right=2141"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Gold Mirror",
+        "detail": "top=4398 right=2386"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Gold Matte",
+        "detail": "top=4398 right=2664"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Champagne Mirror",
+        "detail": "top=4398 right=3002"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Copper Antique Glossy",
+        "detail": "top=4398 right=3314"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Ganesh Murti Restoration & Polishing",
+        "detail": "top=6593 right=649"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Copper Pooja Utensil Set Restoration",
+        "detail": "top=6593 right=989"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Traditional Brass Five-Wick Temple Lamp Restoration",
+        "detail": "top=6593 right=1329"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Shri Swami Samarth Statue Restoration",
+        "detail": "top=6593 right=1669"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Copper Water Jug & Glass Set Restoration",
+        "detail": "top=6593 right=2009"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Metal Coating & Finishing",
+          "detail": "scroll=99 client=94"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Rustic Iron Finish",
+          "detail": "top=4398 right=441"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Deep Blue Finish",
+          "detail": "top=4398 right=716"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Rose Gold Hairline",
+          "detail": "top=4398 right=1018"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Rose Gold Mirror",
+          "detail": "top=4398 right=1291"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Graphite Mirror",
+          "detail": "top=4398 right=1564"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Satin Brass",
+          "detail": "top=4398 right=1808"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Graphite Hairline",
+          "detail": "top=4398 right=2141"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Gold Mirror",
+          "detail": "top=4398 right=2386"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Gold Matte",
+          "detail": "top=4398 right=2664"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Champagne Mirror",
+          "detail": "top=4398 right=3002"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Copper Antique Glossy",
+          "detail": "top=4398 right=3314"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Ganesh Murti Restoration & Polishing",
+          "detail": "top=6593 right=649"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Copper Pooja Utensil Set Restoration",
+          "detail": "top=6593 right=989"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Traditional Brass Five-Wick Temple Lamp Restoration",
+          "detail": "top=6593 right=1329"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Shri Swami Samarth Statue Restoration",
+          "detail": "top=6593 right=1669"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Copper Water Jug & Glass Set Restoration",
+          "detail": "top=6593 right=2009"
+        }
+      ],
+      "smallControls": 23,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": [
+        {
+          "text": "Explore Our Services",
+          "height": 48,
+          "width": 320
+        },
+        {
+          "text": "Enquire About a Project",
+          "height": 48,
+          "width": 320
+        },
+        {
+          "text": "Enquire About Finishes",
+          "height": 48,
+          "width": 233
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 241
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 241
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 241
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 241
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 241
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 241
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 241
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 241
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 241
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 241
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 241
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 241
+        }
+      ]
+    }
+  },
+  {
+    "width": 360,
+    "route": "/home-decor",
+    "url": "http://localhost:3000/home-decor",
+    "title": "Home Decor & Lifestyle Collection | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Home Decor & Decorative Metalwork",
+        "detail": "scroll=146 client=141"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Home Decor & Decorative Metalwork",
+          "detail": "scroll=146 client=141"
+        }
+      ],
+      "smallControls": 15,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 360,
+    "route": "/before-after",
+    "url": "http://localhost:3000/before-after",
+    "title": "Before & After Transformations | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "See the Difference aFinish Makes",
+        "detail": "scroll=92 client=88"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "See the Difference aFinish Makes",
+          "detail": "scroll=92 client=88"
+        }
+      ],
+      "smallControls": 23,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 360,
+    "route": "/login",
+    "url": "http://localhost:3000/login",
+    "title": "Sign In | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 17,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 360,
+    "route": "/signup",
+    "url": "http://localhost:3000/signup",
+    "title": "Create Customer Account | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 17,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 360,
+    "route": "/account",
+    "url": "http://localhost:3000/login?redirectTo=/account",
+    "title": "Sign In | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 17,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 360,
+    "route": "/wishlist",
+    "url": "http://localhost:3000/login?redirectTo=/wishlist",
+    "title": "Sign In | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 17,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 375,
+    "route": "/",
+    "url": "http://localhost:3000/",
+    "title": "RTMETALCOATING — Professional Metal Coating & RT HOME DECOR",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 20,
+      "divisionTitles": [
+        {
+          "text": "Metal Coating for Every Industry",
+          "cardTop": 878,
+          "cardBottom": 1272,
+          "titleTop": 968,
+          "titleBottom": 1028,
+          "topGap": 90,
+          "clipped": false
+        },
+        {
+          "text": "Metal Art & Decorative Interiors",
+          "cardTop": 1288,
+          "cardBottom": 1681,
+          "titleTop": 1378,
+          "titleBottom": 1438,
+          "topGap": 90,
+          "clipped": false
+        }
+      ],
+      "productTitles": [
+        {
+          "text": "Decorative Metal Ceiling Installation",
+          "lines": 2,
+          "titleBottom": 5290,
+          "buttonTop": 5055,
+          "gap": -236,
+          "buttonHeight": 44,
+          "buttonWidth": 44
+        },
+        {
+          "text": "Abstract Continuous-Line Wall Sculpture",
+          "lines": 2,
+          "titleBottom": 5290,
+          "buttonTop": 5055,
+          "gap": -236,
+          "buttonHeight": 44,
+          "buttonWidth": 44
+        },
+        {
+          "text": "Geometric Panel Partition",
+          "lines": 2,
+          "titleBottom": 5610,
+          "buttonTop": 5374,
+          "gap": -236,
+          "buttonHeight": 44,
+          "buttonWidth": 44
+        },
+        {
+          "text": "Wave Motif Decorative Mirror",
+          "lines": 2,
+          "titleBottom": 5610,
+          "buttonTop": 5374,
+          "gap": -236,
+          "buttonHeight": 44,
+          "buttonWidth": 44
+        }
+      ],
+      "metaVisibleOnMobile": true,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 375,
+    "route": "/about",
+    "url": "http://localhost:3000/about",
+    "title": "About RTMETALCOATING | Metal Finishing & RT HOME DECOR",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Crafting Metal Finishes. Elevating Spaces.",
+        "detail": "scroll=115 client=112"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Our Vision and Mission",
+        "detail": "scroll=24 client=1"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Crafting Metal Finishes. Elevating Spaces.",
+          "detail": "scroll=115 client=112"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Our Vision and Mission",
+          "detail": "scroll=24 client=1"
+        }
+      ],
+      "smallControls": 20,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 375,
+    "route": "/metal-coating",
+    "url": "http://localhost:3000/metal-coating",
+    "title": "Premium Metal & PU Coating Services | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Metal Coating & Finishing",
+        "detail": "scroll=99 client=94"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Rustic Iron Finish",
+        "detail": "top=4363 right=454"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Deep Blue Finish",
+        "detail": "top=4363 right=743"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Rose Gold Hairline",
+        "detail": "top=4363 right=1057"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Rose Gold Mirror",
+        "detail": "top=4363 right=1343"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Graphite Mirror",
+        "detail": "top=4363 right=1629"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Satin Brass",
+        "detail": "top=4363 right=1886"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Graphite Hairline",
+        "detail": "top=4363 right=2232"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Gold Mirror",
+        "detail": "top=4363 right=2491"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Gold Matte",
+        "detail": "top=4363 right=2781"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Champagne Mirror",
+        "detail": "top=4363 right=3133"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Copper Antique Glossy",
+        "detail": "top=4363 right=3458"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Ganesh Murti Restoration & Polishing",
+        "detail": "top=6524 right=679"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Copper Pooja Utensil Set Restoration",
+        "detail": "top=6524 right=1034"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Traditional Brass Five-Wick Temple Lamp Restoration",
+        "detail": "top=6524 right=1389"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Shri Swami Samarth Statue Restoration",
+        "detail": "top=6524 right=1744"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Copper Water Jug & Glass Set Restoration",
+        "detail": "top=6524 right=2099"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Metal Coating & Finishing",
+          "detail": "scroll=99 client=94"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Rustic Iron Finish",
+          "detail": "top=4363 right=454"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Deep Blue Finish",
+          "detail": "top=4363 right=743"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Rose Gold Hairline",
+          "detail": "top=4363 right=1057"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Rose Gold Mirror",
+          "detail": "top=4363 right=1343"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Graphite Mirror",
+          "detail": "top=4363 right=1629"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Satin Brass",
+          "detail": "top=4363 right=1886"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Graphite Hairline",
+          "detail": "top=4363 right=2232"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Gold Mirror",
+          "detail": "top=4363 right=2491"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Gold Matte",
+          "detail": "top=4363 right=2781"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Champagne Mirror",
+          "detail": "top=4363 right=3133"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Copper Antique Glossy",
+          "detail": "top=4363 right=3458"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Ganesh Murti Restoration & Polishing",
+          "detail": "top=6524 right=679"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Copper Pooja Utensil Set Restoration",
+          "detail": "top=6524 right=1034"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Traditional Brass Five-Wick Temple Lamp Restoration",
+          "detail": "top=6524 right=1389"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Shri Swami Samarth Statue Restoration",
+          "detail": "top=6524 right=1744"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Copper Water Jug & Glass Set Restoration",
+          "detail": "top=6524 right=2099"
+        }
+      ],
+      "smallControls": 26,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": [
+        {
+          "text": "Explore Our Services",
+          "height": 48,
+          "width": 335
+        },
+        {
+          "text": "Enquire About a Project",
+          "height": 48,
+          "width": 335
+        },
+        {
+          "text": "Enquire About Finishes",
+          "height": 48,
+          "width": 233
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 254
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 254
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 254
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 254
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 254
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 254
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 254
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 254
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 254
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 254
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 254
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 254
+        }
+      ]
+    }
+  },
+  {
+    "width": 375,
+    "route": "/home-decor",
+    "url": "http://localhost:3000/home-decor",
+    "title": "Home Decor & Lifestyle Collection | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Home Decor & Decorative Metalwork",
+        "detail": "scroll=146 client=141"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Home Decor & Decorative Metalwork",
+          "detail": "scroll=146 client=141"
+        }
+      ],
+      "smallControls": 16,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 375,
+    "route": "/before-after",
+    "url": "http://localhost:3000/before-after",
+    "title": "Before & After Transformations | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "See the Difference aFinish Makes",
+        "detail": "scroll=92 client=88"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "See the Difference aFinish Makes",
+          "detail": "scroll=92 client=88"
+        }
+      ],
+      "smallControls": 24,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 375,
+    "route": "/login",
+    "url": "http://localhost:3000/login",
+    "title": "Sign In | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 19,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 375,
+    "route": "/signup",
+    "url": "http://localhost:3000/signup",
+    "title": "Create Customer Account | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 18,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 375,
+    "route": "/account",
+    "url": "http://localhost:3000/login?redirectTo=/account",
+    "title": "Sign In | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 19,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 375,
+    "route": "/wishlist",
+    "url": "http://localhost:3000/login?redirectTo=/wishlist",
+    "title": "Sign In | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 19,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 390,
+    "route": "/",
+    "url": "http://localhost:3000/",
+    "title": "RTMETALCOATING — Professional Metal Coating & RT HOME DECOR",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 21,
+      "divisionTitles": [
+        {
+          "text": "Metal Coating for Every Industry",
+          "cardTop": 883,
+          "cardBottom": 1276,
+          "titleTop": 973,
+          "titleBottom": 1033,
+          "topGap": 90,
+          "clipped": false
+        },
+        {
+          "text": "Metal Art & Decorative Interiors",
+          "cardTop": 1292,
+          "cardBottom": 1685,
+          "titleTop": 1382,
+          "titleBottom": 1442,
+          "topGap": 90,
+          "clipped": false
+        }
+      ],
+      "productTitles": [
+        {
+          "text": "Decorative Metal Ceiling Installation",
+          "lines": 2,
+          "titleBottom": 5314,
+          "buttonTop": 5069,
+          "gap": -245,
+          "buttonHeight": 44,
+          "buttonWidth": 44
+        },
+        {
+          "text": "Abstract Continuous-Line Wall Sculpture",
+          "lines": 2,
+          "titleBottom": 5314,
+          "buttonTop": 5069,
+          "gap": -245,
+          "buttonHeight": 44,
+          "buttonWidth": 44
+        },
+        {
+          "text": "Geometric Panel Partition",
+          "lines": 2,
+          "titleBottom": 5643,
+          "buttonTop": 5398,
+          "gap": -245,
+          "buttonHeight": 44,
+          "buttonWidth": 44
+        },
+        {
+          "text": "Wave Motif Decorative Mirror",
+          "lines": 2,
+          "titleBottom": 5643,
+          "buttonTop": 5398,
+          "gap": -245,
+          "buttonHeight": 44,
+          "buttonWidth": 44
+        }
+      ],
+      "metaVisibleOnMobile": true,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 390,
+    "route": "/about",
+    "url": "http://localhost:3000/about",
+    "title": "About RTMETALCOATING | Metal Finishing & RT HOME DECOR",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Crafting Metal Finishes. Elevating Spaces.",
+        "detail": "scroll=115 client=112"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Our Vision and Mission",
+        "detail": "scroll=24 client=1"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Crafting Metal Finishes. Elevating Spaces.",
+          "detail": "scroll=115 client=112"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Our Vision and Mission",
+          "detail": "scroll=24 client=1"
+        }
+      ],
+      "smallControls": 22,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 390,
+    "route": "/metal-coating",
+    "url": "http://localhost:3000/metal-coating",
+    "title": "Premium Metal & PU Coating Services | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Metal Coating & Finishing",
+        "detail": "scroll=99 client=94"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Rustic Iron Finish",
+        "detail": "top=4372 right=467"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Deep Blue Finish",
+        "detail": "top=4372 right=769"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Rose Gold Hairline",
+        "detail": "top=4372 right=1096"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Rose Gold Mirror",
+        "detail": "top=4372 right=1395"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Graphite Mirror",
+        "detail": "top=4372 right=1694"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Satin Brass",
+        "detail": "top=4372 right=1965"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Graphite Hairline",
+        "detail": "top=4372 right=2323"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Gold Mirror",
+        "detail": "top=4372 right=2595"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Gold Matte",
+        "detail": "top=4372 right=2899"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Champagne Mirror",
+        "detail": "top=4372 right=3263"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Copper Antique Glossy",
+        "detail": "top=4372 right=3601"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Ganesh Murti Restoration & Polishing",
+        "detail": "top=6554 right=709"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Copper Pooja Utensil Set Restoration",
+        "detail": "top=6554 right=1079"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Traditional Brass Five-Wick Temple Lamp Restoration",
+        "detail": "top=6554 right=1449"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Shri Swami Samarth Statue Restoration",
+        "detail": "top=6554 right=1819"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Copper Water Jug & Glass Set Restoration",
+        "detail": "top=6554 right=2189"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Metal Coating & Finishing",
+          "detail": "scroll=99 client=94"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Rustic Iron Finish",
+          "detail": "top=4372 right=467"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Deep Blue Finish",
+          "detail": "top=4372 right=769"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Rose Gold Hairline",
+          "detail": "top=4372 right=1096"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Rose Gold Mirror",
+          "detail": "top=4372 right=1395"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Graphite Mirror",
+          "detail": "top=4372 right=1694"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Satin Brass",
+          "detail": "top=4372 right=1965"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Graphite Hairline",
+          "detail": "top=4372 right=2323"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Gold Mirror",
+          "detail": "top=4372 right=2595"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Gold Matte",
+          "detail": "top=4372 right=2899"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Champagne Mirror",
+          "detail": "top=4372 right=3263"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Copper Antique Glossy",
+          "detail": "top=4372 right=3601"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Ganesh Murti Restoration & Polishing",
+          "detail": "top=6554 right=709"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Copper Pooja Utensil Set Restoration",
+          "detail": "top=6554 right=1079"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Traditional Brass Five-Wick Temple Lamp Restoration",
+          "detail": "top=6554 right=1449"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Shri Swami Samarth Statue Restoration",
+          "detail": "top=6554 right=1819"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Copper Water Jug & Glass Set Restoration",
+          "detail": "top=6554 right=2189"
+        }
+      ],
+      "smallControls": 28,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": [
+        {
+          "text": "Explore Our Services",
+          "height": 48,
+          "width": 350
+        },
+        {
+          "text": "Enquire About a Project",
+          "height": 48,
+          "width": 350
+        },
+        {
+          "text": "Enquire About Finishes",
+          "height": 48,
+          "width": 233
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 268
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 268
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 268
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 268
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 268
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 268
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 268
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 268
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 268
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 268
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 268
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 268
+        }
+      ]
+    }
+  },
+  {
+    "width": 390,
+    "route": "/home-decor",
+    "url": "http://localhost:3000/home-decor",
+    "title": "Home Decor & Lifestyle Collection | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Home Decor & Decorative Metalwork",
+        "detail": "scroll=146 client=141"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Home Decor & Decorative Metalwork",
+          "detail": "scroll=146 client=141"
+        }
+      ],
+      "smallControls": 17,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 390,
+    "route": "/before-after",
+    "url": "http://localhost:3000/before-after",
+    "title": "Before & After Transformations | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "See the Difference aFinish Makes",
+        "detail": "scroll=92 client=88"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "See the Difference aFinish Makes",
+          "detail": "scroll=92 client=88"
+        }
+      ],
+      "smallControls": 25,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 390,
+    "route": "/login",
+    "url": "http://localhost:3000/login",
+    "title": "Sign In | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 20,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 390,
+    "route": "/signup",
+    "url": "http://localhost:3000/signup",
+    "title": "Create Customer Account | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 19,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 390,
+    "route": "/account",
+    "url": "http://localhost:3000/login?redirectTo=/account",
+    "title": "Sign In | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 20,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 390,
+    "route": "/wishlist",
+    "url": "http://localhost:3000/login?redirectTo=/wishlist",
+    "title": "Sign In | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 20,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 393,
+    "route": "/",
+    "url": "http://localhost:3000/",
+    "title": "RTMETALCOATING — Professional Metal Coating & RT HOME DECOR",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 21,
+      "divisionTitles": [
+        {
+          "text": "Metal Coating for Every Industry",
+          "cardTop": 884,
+          "cardBottom": 1277,
+          "titleTop": 974,
+          "titleBottom": 1034,
+          "topGap": 90,
+          "clipped": false
+        },
+        {
+          "text": "Metal Art & Decorative Interiors",
+          "cardTop": 1293,
+          "cardBottom": 1686,
+          "titleTop": 1383,
+          "titleBottom": 1443,
+          "topGap": 90,
+          "clipped": false
+        }
+      ],
+      "productTitles": [
+        {
+          "text": "Religious Metal Wall Artwork",
+          "lines": 2,
+          "titleBottom": 5323,
+          "buttonTop": 5076,
+          "gap": -247,
+          "buttonHeight": 44,
+          "buttonWidth": 44
+        },
+        {
+          "text": "Decorative Metal Ceiling Installation",
+          "lines": 2,
+          "titleBottom": 5323,
+          "buttonTop": 5076,
+          "gap": -247,
+          "buttonHeight": 44,
+          "buttonWidth": 44
+        },
+        {
+          "text": "Abstract Continuous-Line Wall Sculpture",
+          "lines": 2,
+          "titleBottom": 5654,
+          "buttonTop": 5407,
+          "gap": -247,
+          "buttonHeight": 44,
+          "buttonWidth": 44
+        },
+        {
+          "text": "Geometric Panel Partition",
+          "lines": 2,
+          "titleBottom": 5654,
+          "buttonTop": 5407,
+          "gap": -247,
+          "buttonHeight": 44,
+          "buttonWidth": 44
+        }
+      ],
+      "metaVisibleOnMobile": true,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 393,
+    "route": "/about",
+    "url": "http://localhost:3000/about",
+    "title": "About RTMETALCOATING | Metal Finishing & RT HOME DECOR",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Crafting Metal Finishes. Elevating Spaces.",
+        "detail": "scroll=115 client=112"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Our Vision and Mission",
+        "detail": "scroll=24 client=1"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Crafting Metal Finishes. Elevating Spaces.",
+          "detail": "scroll=115 client=112"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Our Vision and Mission",
+          "detail": "scroll=24 client=1"
+        }
+      ],
+      "smallControls": 22,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 393,
+    "route": "/metal-coating",
+    "url": "http://localhost:3000/metal-coating",
+    "title": "Premium Metal & PU Coating Services | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Metal Coating & Finishing",
+        "detail": "scroll=99 client=94"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Rustic Iron Finish",
+        "detail": "top=4385 right=469"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Deep Blue Finish",
+        "detail": "top=4385 right=774"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Rose Gold Hairline",
+        "detail": "top=4385 right=1104"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Rose Gold Mirror",
+        "detail": "top=4385 right=1405"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Graphite Mirror",
+        "detail": "top=4385 right=1707"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Satin Brass",
+        "detail": "top=4385 right=1980"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Graphite Hairline",
+        "detail": "top=4385 right=2342"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Gold Mirror",
+        "detail": "top=4385 right=2616"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Gold Matte",
+        "detail": "top=4385 right=2922"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Champagne Mirror",
+        "detail": "top=4385 right=3289"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Copper Antique Glossy",
+        "detail": "top=4385 right=3630"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Ganesh Murti Restoration & Polishing",
+        "detail": "top=6571 right=715"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Copper Pooja Utensil Set Restoration",
+        "detail": "top=6571 right=1088"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Traditional Brass Five-Wick Temple Lamp Restoration",
+        "detail": "top=6571 right=1461"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Shri Swami Samarth Statue Restoration",
+        "detail": "top=6571 right=1834"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Copper Water Jug & Glass Set Restoration",
+        "detail": "top=6571 right=2207"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Metal Coating & Finishing",
+          "detail": "scroll=99 client=94"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Rustic Iron Finish",
+          "detail": "top=4385 right=469"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Deep Blue Finish",
+          "detail": "top=4385 right=774"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Rose Gold Hairline",
+          "detail": "top=4385 right=1104"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Rose Gold Mirror",
+          "detail": "top=4385 right=1405"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Graphite Mirror",
+          "detail": "top=4385 right=1707"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Satin Brass",
+          "detail": "top=4385 right=1980"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Graphite Hairline",
+          "detail": "top=4385 right=2342"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Gold Mirror",
+          "detail": "top=4385 right=2616"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Gold Matte",
+          "detail": "top=4385 right=2922"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Champagne Mirror",
+          "detail": "top=4385 right=3289"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Copper Antique Glossy",
+          "detail": "top=4385 right=3630"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Ganesh Murti Restoration & Polishing",
+          "detail": "top=6571 right=715"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Copper Pooja Utensil Set Restoration",
+          "detail": "top=6571 right=1088"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Traditional Brass Five-Wick Temple Lamp Restoration",
+          "detail": "top=6571 right=1461"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Shri Swami Samarth Statue Restoration",
+          "detail": "top=6571 right=1834"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Copper Water Jug & Glass Set Restoration",
+          "detail": "top=6571 right=2207"
+        }
+      ],
+      "smallControls": 29,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": [
+        {
+          "text": "Explore Our Services",
+          "height": 48,
+          "width": 353
+        },
+        {
+          "text": "Enquire About a Project",
+          "height": 48,
+          "width": 353
+        },
+        {
+          "text": "Enquire About Finishes",
+          "height": 48,
+          "width": 233
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 270
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 270
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 270
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 270
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 270
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 270
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 270
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 270
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 270
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 270
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 270
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 270
+        }
+      ]
+    }
+  },
+  {
+    "width": 393,
+    "route": "/home-decor",
+    "url": "http://localhost:3000/home-decor",
+    "title": "Home Decor & Lifestyle Collection | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Home Decor & Decorative Metalwork",
+        "detail": "scroll=146 client=141"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Home Decor & Decorative Metalwork",
+          "detail": "scroll=146 client=141"
+        }
+      ],
+      "smallControls": 17,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 393,
+    "route": "/before-after",
+    "url": "http://localhost:3000/before-after",
+    "title": "Before & After Transformations | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "See the Difference aFinish Makes",
+        "detail": "scroll=92 client=88"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "See the Difference aFinish Makes",
+          "detail": "scroll=92 client=88"
+        }
+      ],
+      "smallControls": 25,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 393,
+    "route": "/login",
+    "url": "http://localhost:3000/login",
+    "title": "Sign In | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 20,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 393,
+    "route": "/signup",
+    "url": "http://localhost:3000/signup",
+    "title": "Create Customer Account | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 19,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 393,
+    "route": "/account",
+    "url": "http://localhost:3000/login?redirectTo=/account",
+    "title": "Sign In | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 20,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 393,
+    "route": "/wishlist",
+    "url": "http://localhost:3000/login?redirectTo=/wishlist",
+    "title": "Sign In | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 20,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 430,
+    "route": "/",
+    "url": "http://localhost:3000/",
+    "title": "RTMETALCOATING — Professional Metal Coating & RT HOME DECOR",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 22,
+      "divisionTitles": [
+        {
+          "text": "Metal Coating for Every Industry",
+          "cardTop": 895,
+          "cardBottom": 1258,
+          "titleTop": 985,
+          "titleBottom": 1015,
+          "topGap": 90,
+          "clipped": false
+        },
+        {
+          "text": "Metal Art & Decorative Interiors",
+          "cardTop": 1274,
+          "cardBottom": 1628,
+          "titleTop": 1378,
+          "titleBottom": 1408,
+          "topGap": 104,
+          "clipped": false
+        }
+      ],
+      "productTitles": [
+        {
+          "text": "Religious Metal Wall Artwork",
+          "lines": 2,
+          "titleBottom": 5344,
+          "buttonTop": 5074,
+          "gap": -270,
+          "buttonHeight": 44,
+          "buttonWidth": 44
+        },
+        {
+          "text": "Decorative Metal Ceiling Installation",
+          "lines": 2,
+          "titleBottom": 5344,
+          "buttonTop": 5074,
+          "gap": -270,
+          "buttonHeight": 44,
+          "buttonWidth": 44
+        },
+        {
+          "text": "Abstract Continuous-Line Wall Sculpture",
+          "lines": 2,
+          "titleBottom": 5698,
+          "buttonTop": 5428,
+          "gap": -270,
+          "buttonHeight": 44,
+          "buttonWidth": 44
+        },
+        {
+          "text": "Geometric Panel Partition",
+          "lines": 2,
+          "titleBottom": 5698,
+          "buttonTop": 5428,
+          "gap": -270,
+          "buttonHeight": 44,
+          "buttonWidth": 44
+        }
+      ],
+      "metaVisibleOnMobile": true,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 430,
+    "route": "/about",
+    "url": "http://localhost:3000/about",
+    "title": "About RTMETALCOATING | Metal Finishing & RT HOME DECOR",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Crafting Metal Finishes. Elevating Spaces.",
+        "detail": "scroll=115 client=112"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Our Vision and Mission",
+        "detail": "scroll=24 client=1"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Crafting Metal Finishes. Elevating Spaces.",
+          "detail": "scroll=115 client=112"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Our Vision and Mission",
+          "detail": "scroll=24 client=1"
+        }
+      ],
+      "smallControls": 24,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 430,
+    "route": "/metal-coating",
+    "url": "http://localhost:3000/metal-coating",
+    "title": "Premium Metal & PU Coating Services | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Metal Coating & Finishing",
+        "detail": "scroll=99 client=94"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Rustic Iron Finish",
+        "detail": "top=4418 right=502"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Deep Blue Finish",
+        "detail": "top=4418 right=838"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Rose Gold Hairline",
+        "detail": "top=4418 right=1200"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Rose Gold Mirror",
+        "detail": "top=4418 right=1534"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Graphite Mirror",
+        "detail": "top=4418 right=1868"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Satin Brass",
+        "detail": "top=4418 right=2173"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Graphite Hairline",
+        "detail": "top=4418 right=2567"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Gold Mirror",
+        "detail": "top=4418 right=2873"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Gold Matte",
+        "detail": "top=4418 right=3212"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Champagne Mirror",
+        "detail": "top=4418 right=3611"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Copper Antique Glossy",
+        "detail": "top=4418 right=3984"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Ganesh Murti Restoration & Polishing",
+        "detail": "top=6633 right=789"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Copper Pooja Utensil Set Restoration",
+        "detail": "top=6633 right=1199"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Traditional Brass Five-Wick Temple Lamp Restoration",
+        "detail": "top=6633 right=1609"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Shri Swami Samarth Statue Restoration",
+        "detail": "top=6633 right=2019"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Copper Water Jug & Glass Set Restoration",
+        "detail": "top=6633 right=2429"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Metal Coating & Finishing",
+          "detail": "scroll=99 client=94"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Rustic Iron Finish",
+          "detail": "top=4418 right=502"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Deep Blue Finish",
+          "detail": "top=4418 right=838"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Rose Gold Hairline",
+          "detail": "top=4418 right=1200"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Rose Gold Mirror",
+          "detail": "top=4418 right=1534"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Graphite Mirror",
+          "detail": "top=4418 right=1868"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Satin Brass",
+          "detail": "top=4418 right=2173"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Graphite Hairline",
+          "detail": "top=4418 right=2567"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Gold Mirror",
+          "detail": "top=4418 right=2873"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Gold Matte",
+          "detail": "top=4418 right=3212"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Champagne Mirror",
+          "detail": "top=4418 right=3611"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Copper Antique Glossy",
+          "detail": "top=4418 right=3984"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Ganesh Murti Restoration & Polishing",
+          "detail": "top=6633 right=789"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Copper Pooja Utensil Set Restoration",
+          "detail": "top=6633 right=1199"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Traditional Brass Five-Wick Temple Lamp Restoration",
+          "detail": "top=6633 right=1609"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Shri Swami Samarth Statue Restoration",
+          "detail": "top=6633 right=2019"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Copper Water Jug & Glass Set Restoration",
+          "detail": "top=6633 right=2429"
+        }
+      ],
+      "smallControls": 31,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": [
+        {
+          "text": "Explore Our Services",
+          "height": 48,
+          "width": 390
+        },
+        {
+          "text": "Enquire About a Project",
+          "height": 48,
+          "width": 390
+        },
+        {
+          "text": "Enquire About Finishes",
+          "height": 48,
+          "width": 233
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 302
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 302
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 302
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 302
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 302
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 302
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 302
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 302
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 302
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 302
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 302
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 302
+        }
+      ]
+    }
+  },
+  {
+    "width": 430,
+    "route": "/home-decor",
+    "url": "http://localhost:3000/home-decor",
+    "title": "Home Decor & Lifestyle Collection | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Home Decor & Decorative Metalwork",
+        "detail": "scroll=146 client=141"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Home Decor & Decorative Metalwork",
+          "detail": "scroll=146 client=141"
+        }
+      ],
+      "smallControls": 18,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 430,
+    "route": "/before-after",
+    "url": "http://localhost:3000/before-after",
+    "title": "Before & After Transformations | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "See the Difference aFinish Makes",
+        "detail": "scroll=92 client=88"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "See the Difference aFinish Makes",
+          "detail": "scroll=92 client=88"
+        }
+      ],
+      "smallControls": 29,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 430,
+    "route": "/login",
+    "url": "http://localhost:3000/login",
+    "title": "Sign In | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 21,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 430,
+    "route": "/signup",
+    "url": "http://localhost:3000/signup",
+    "title": "Create Customer Account | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 20,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 430,
+    "route": "/account",
+    "url": "http://localhost:3000/login?redirectTo=/account",
+    "title": "Sign In | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 21,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 430,
+    "route": "/wishlist",
+    "url": "http://localhost:3000/login?redirectTo=/wishlist",
+    "title": "Sign In | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 21,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 768,
+    "route": "/",
+    "url": "http://localhost:3000/",
+    "title": "RTMETALCOATING — Professional Metal Coating & RT HOME DECOR",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Metal Finishesfor a BetterTomorrow.",
+        "detail": "scroll=235 client=232"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Featured products",
+        "detail": "scroll=53 client=48"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Surface Finishing,  & Finishing",
+        "detail": "scroll=53 client=48"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Craftsmanship in Every Detail",
+        "detail": "scroll=53 client=48"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Let's start a conversation.",
+        "detail": "scroll=53 client=48"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Let's build something lasting.",
+        "detail": "scroll=53 client=48"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Metal Finishesfor a BetterTomorrow.",
+          "detail": "scroll=235 client=232"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Featured products",
+          "detail": "scroll=53 client=48"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Surface Finishing,  & Finishing",
+          "detail": "scroll=53 client=48"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Craftsmanship in Every Detail",
+          "detail": "scroll=53 client=48"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Let's start a conversation.",
+          "detail": "scroll=53 client=48"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Let's build something lasting.",
+          "detail": "scroll=53 client=48"
+        }
+      ],
+      "smallControls": 23,
+      "divisionTitles": [
+        {
+          "text": "Metal Coating for Every Industry",
+          "cardTop": 836,
+          "cardBottom": 1222,
+          "titleTop": 958,
+          "titleBottom": 994,
+          "topGap": 122,
+          "clipped": false
+        },
+        {
+          "text": "Metal Art & Decorative Interiors",
+          "cardTop": 1242,
+          "cardBottom": 1628,
+          "titleTop": 1364,
+          "titleBottom": 1400,
+          "topGap": 122,
+          "clipped": false
+        }
+      ],
+      "productTitles": [
+        {
+          "text": "Religious Metal Wall Artwork",
+          "lines": 1,
+          "titleBottom": 5951,
+          "buttonTop": 5487,
+          "gap": -463,
+          "buttonHeight": 36,
+          "buttonWidth": 36
+        },
+        {
+          "text": "Decorative Metal Ceiling Installation",
+          "lines": 2,
+          "titleBottom": 5970,
+          "buttonTop": 5487,
+          "gap": -482,
+          "buttonHeight": 36,
+          "buttonWidth": 36
+        },
+        {
+          "text": "Abstract Continuous-Line Wall Sculpture",
+          "lines": 2,
+          "titleBottom": 6508,
+          "buttonTop": 6026,
+          "gap": -482,
+          "buttonHeight": 36,
+          "buttonWidth": 36
+        },
+        {
+          "text": "Geometric Panel Partition",
+          "lines": 1,
+          "titleBottom": 6489,
+          "buttonTop": 6026,
+          "gap": -463,
+          "buttonHeight": 36,
+          "buttonWidth": 36
+        }
+      ],
+      "metaVisibleOnMobile": true,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 768,
+    "route": "/about",
+    "url": "http://localhost:3000/about",
+    "title": "About RTMETALCOATING | Metal Finishing & RT HOME DECOR",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Crafting Metal Finishes. Elevating Spaces.",
+        "detail": "scroll=101 client=96"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Our Vision and Mission",
+        "detail": "scroll=24 client=1"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Crafting Metal Finishes. Elevating Spaces.",
+          "detail": "scroll=101 client=96"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Our Vision and Mission",
+          "detail": "scroll=24 client=1"
+        }
+      ],
+      "smallControls": 25,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 768,
+    "route": "/metal-coating",
+    "url": "http://localhost:3000/metal-coating",
+    "title": "Premium Metal & PU Coating Services | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Metal Coating & Finishing",
+        "detail": "scroll=80 client=72"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Browse our metalwork categories",
+        "detail": "scroll=53 client=48"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Built for every sector.",
+        "detail": "scroll=53 client=48"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Copper Pooja Utensil Set Restoration",
+        "detail": "top=5216 right=1087"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Traditional Brass Five-Wick Temple Lamp Restoration",
+        "detail": "top=5216 right=1461"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Shri Swami Samarth Statue Restoration",
+        "detail": "top=5216 right=1835"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Copper Water Jug & Glass Set Restoration",
+        "detail": "top=5216 right=2209"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "A finish for every vision.",
+        "detail": "scroll=53 client=48"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Inside the workshop",
+        "detail": "scroll=53 client=48"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Tell us about your project.",
+        "detail": "scroll=53 client=48"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Explore the collection too.",
+        "detail": "scroll=53 client=48"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Metal Coating & Finishing",
+          "detail": "scroll=80 client=72"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Browse our metalwork categories",
+          "detail": "scroll=53 client=48"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Built for every sector.",
+          "detail": "scroll=53 client=48"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Copper Pooja Utensil Set Restoration",
+          "detail": "top=5216 right=1087"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Traditional Brass Five-Wick Temple Lamp Restoration",
+          "detail": "top=5216 right=1461"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Shri Swami Samarth Statue Restoration",
+          "detail": "top=5216 right=1835"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Copper Water Jug & Glass Set Restoration",
+          "detail": "top=5216 right=2209"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "A finish for every vision.",
+          "detail": "scroll=53 client=48"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Inside the workshop",
+          "detail": "scroll=53 client=48"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Tell us about your project.",
+          "detail": "scroll=53 client=48"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Explore the collection too.",
+          "detail": "scroll=53 client=48"
+        }
+      ],
+      "smallControls": 28,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": [
+        {
+          "text": "Explore Our Services",
+          "height": 44,
+          "width": 223
+        },
+        {
+          "text": "Enquire About a Project",
+          "height": 44,
+          "width": 244
+        },
+        {
+          "text": "Enquire About Finishes",
+          "height": 48,
+          "width": 233
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 314
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 314
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        }
+      ]
+    }
+  },
+  {
+    "width": 768,
+    "route": "/home-decor",
+    "url": "http://localhost:3000/home-decor",
+    "title": "Home Decor & Lifestyle Collection | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Home Decor & Decorative Metalwork",
+        "detail": "scroll=152 client=144"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Products in motion",
+        "detail": "scroll=53 client=48"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Let us help you choose.",
+        "detail": "scroll=53 client=48"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Home Decor & Decorative Metalwork",
+          "detail": "scroll=152 client=144"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Products in motion",
+          "detail": "scroll=53 client=48"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Let us help you choose.",
+          "detail": "scroll=53 client=48"
+        }
+      ],
+      "smallControls": 19,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 768,
+    "route": "/before-after",
+    "url": "http://localhost:3000/before-after",
+    "title": "Before & After Transformations | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "See the Difference aFinish Makes",
+        "detail": "scroll=95 client=90"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "See the Difference aFinish Makes",
+          "detail": "scroll=95 client=90"
+        }
+      ],
+      "smallControls": 27,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 768,
+    "route": "/login",
+    "url": "http://localhost:3000/login",
+    "title": "Sign In | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 22,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 768,
+    "route": "/signup",
+    "url": "http://localhost:3000/signup",
+    "title": "Create Customer Account | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 21,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 768,
+    "route": "/account",
+    "url": "http://localhost:3000/login?redirectTo=/account",
+    "title": "Sign In | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 22,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 768,
+    "route": "/wishlist",
+    "url": "http://localhost:3000/login?redirectTo=/wishlist",
+    "title": "Sign In | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 22,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 1024,
+    "route": "/",
+    "url": "http://localhost:3000/",
+    "title": "RTMETALCOATING — Professional Metal Coating & RT HOME DECOR",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Materials.Finishes.Possibilities.",
+        "detail": "scroll=127 client=120"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "The Difference Is in the Finish.",
+        "detail": "scroll=97 client=94"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Featured products",
+        "detail": "scroll=66 client=60"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Surface Finishing,  & Finishing",
+        "detail": "scroll=186 client=180"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Craftsmanship in Every Detail",
+        "detail": "scroll=66 client=60"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Let's start a conversation.",
+        "detail": "scroll=66 client=60"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Let's build something lasting.",
+        "detail": "scroll=66 client=60"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Materials.Finishes.Possibilities.",
+          "detail": "scroll=127 client=120"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "The Difference Is in the Finish.",
+          "detail": "scroll=97 client=94"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Featured products",
+          "detail": "scroll=66 client=60"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Surface Finishing,  & Finishing",
+          "detail": "scroll=186 client=180"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Craftsmanship in Every Detail",
+          "detail": "scroll=66 client=60"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Let's start a conversation.",
+          "detail": "scroll=66 client=60"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Let's build something lasting.",
+          "detail": "scroll=66 client=60"
+        }
+      ],
+      "smallControls": 14,
+      "divisionTitles": [
+        {
+          "text": "Metal Coating for Every Industry",
+          "cardTop": 857,
+          "cardBottom": 1291,
+          "titleTop": 979,
+          "titleBottom": 1059,
+          "topGap": 122,
+          "clipped": false
+        },
+        {
+          "text": "Metal Art & Decorative Interiors",
+          "cardTop": 857,
+          "cardBottom": 1291,
+          "titleTop": 979,
+          "titleBottom": 1059,
+          "topGap": 122,
+          "clipped": false
+        }
+      ],
+      "productTitles": [
+        {
+          "text": "Contemporary Symbolic Wall Panel",
+          "lines": 3,
+          "titleBottom": 3891,
+          "buttonTop": 3557,
+          "gap": -334,
+          "buttonHeight": 36,
+          "buttonWidth": 36
+        },
+        {
+          "text": "Religious Metal Wall Artwork",
+          "lines": 3,
+          "titleBottom": 3891,
+          "buttonTop": 3557,
+          "gap": -334,
+          "buttonHeight": 36,
+          "buttonWidth": 36
+        },
+        {
+          "text": "Decorative Metal Ceiling Installation",
+          "lines": 3,
+          "titleBottom": 3891,
+          "buttonTop": 3557,
+          "gap": -334,
+          "buttonHeight": 36,
+          "buttonWidth": 36
+        },
+        {
+          "text": "Abstract Continuous-Line Wall Sculpture",
+          "lines": 4,
+          "titleBottom": 3911,
+          "buttonTop": 3557,
+          "gap": -353,
+          "buttonHeight": 36,
+          "buttonWidth": 36
+        }
+      ],
+      "metaVisibleOnMobile": true,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 1024,
+    "route": "/about",
+    "url": "http://localhost:3000/about",
+    "title": "About RTMETALCOATING | Metal Finishing & RT HOME DECOR",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Crafting Metal Finishes. Elevating Spaces.",
+        "detail": "scroll=306 client=300"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "About RTMETALCOATING.",
+        "detail": "scroll=88 client=80"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Our Vision and Mission",
+        "detail": "scroll=24 client=1"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "From Preparation to a Refined Finish.",
+        "detail": "scroll=53 client=48"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Two Specialised Divisions. One Shared Expertise.",
+        "detail": "scroll=101 client=96"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Why Choose RTMETALCOATING?",
+        "detail": "scroll=53 client=48"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Have a Project or Product Requirement?",
+        "detail": "scroll=53 client=48"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Crafting Metal Finishes. Elevating Spaces.",
+          "detail": "scroll=306 client=300"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "About RTMETALCOATING.",
+          "detail": "scroll=88 client=80"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Our Vision and Mission",
+          "detail": "scroll=24 client=1"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "From Preparation to a Refined Finish.",
+          "detail": "scroll=53 client=48"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Two Specialised Divisions. One Shared Expertise.",
+          "detail": "scroll=101 client=96"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Why Choose RTMETALCOATING?",
+          "detail": "scroll=53 client=48"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Have a Project or Product Requirement?",
+          "detail": "scroll=53 client=48"
+        }
+      ],
+      "smallControls": 18,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 1024,
+    "route": "/metal-coating",
+    "url": "http://localhost:3000/metal-coating",
+    "title": "Premium Metal & PU Coating Services | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Metal Coating & Finishing",
+        "detail": "scroll=202 client=192"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Metal Coating & Finishing",
+        "detail": "scroll=45 client=40"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Finish Selectionsfor Designers& Architects",
+        "detail": "scroll=142 client=139"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Browse our metalwork categories",
+        "detail": "scroll=126 client=120"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Built for every sector.",
+        "detail": "scroll=66 client=60"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "See the transformation.",
+        "detail": "scroll=49 client=46"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Copper Pooja Utensil Set Restoration",
+        "detail": "top=4693 right=1082"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Traditional Brass Five-Wick Temple Lamp Restoration",
+        "detail": "top=4691 right=1445"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Shri Swami Samarth Statue Restoration",
+        "detail": "top=4692 right=1809"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Copper Water Jug & Glass Set Restoration",
+        "detail": "top=4693 right=2175"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "From Requirement to a Premium Finish.",
+        "detail": "scroll=49 client=46"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "A finish for every vision.",
+        "detail": "scroll=66 client=60"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Inside the workshop",
+        "detail": "scroll=66 client=60"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Tell us about your project.",
+        "detail": "scroll=66 client=60"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Explore the collection too.",
+        "detail": "scroll=66 client=60"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Metal Coating & Finishing",
+          "detail": "scroll=202 client=192"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Metal Coating & Finishing",
+          "detail": "scroll=45 client=40"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Finish Selectionsfor Designers& Architects",
+          "detail": "scroll=142 client=139"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Browse our metalwork categories",
+          "detail": "scroll=126 client=120"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Built for every sector.",
+          "detail": "scroll=66 client=60"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "See the transformation.",
+          "detail": "scroll=49 client=46"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Copper Pooja Utensil Set Restoration",
+          "detail": "top=4693 right=1082"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Traditional Brass Five-Wick Temple Lamp Restoration",
+          "detail": "top=4691 right=1445"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Shri Swami Samarth Statue Restoration",
+          "detail": "top=4692 right=1809"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Copper Water Jug & Glass Set Restoration",
+          "detail": "top=4693 right=2175"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "From Requirement to a Premium Finish.",
+          "detail": "scroll=49 client=46"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "A finish for every vision.",
+          "detail": "scroll=66 client=60"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Inside the workshop",
+          "detail": "scroll=66 client=60"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Tell us about your project.",
+          "detail": "scroll=66 client=60"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Explore the collection too.",
+          "detail": "scroll=66 client=60"
+        }
+      ],
+      "smallControls": 20,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": [
+        {
+          "text": "Explore Our Services",
+          "height": 44,
+          "width": 223
+        },
+        {
+          "text": "Enquire About a Project",
+          "height": 44,
+          "width": 244
+        },
+        {
+          "text": "Enquire About Finishes",
+          "height": 48,
+          "width": 233
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 54,
+          "width": 161
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 54,
+          "width": 161
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 54,
+          "width": 161
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 54,
+          "width": 161
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 54,
+          "width": 161
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 54,
+          "width": 161
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        }
+      ]
+    }
+  },
+  {
+    "width": 1024,
+    "route": "/home-decor",
+    "url": "http://localhost:3000/home-decor",
+    "title": "Home Decor & Lifestyle Collection | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Home Decor & Decorative Metalwork",
+        "detail": "scroll=202 client=192"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Products in motion",
+        "detail": "scroll=66 client=60"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Let us help you choose.",
+        "detail": "scroll=66 client=60"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Home Decor & Decorative Metalwork",
+          "detail": "scroll=202 client=192"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Products in motion",
+          "detail": "scroll=66 client=60"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Let us help you choose.",
+          "detail": "scroll=66 client=60"
+        }
+      ],
+      "smallControls": 12,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 1024,
+    "route": "/before-after",
+    "url": "http://localhost:3000/before-after",
+    "title": "Before & After Transformations | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "See the Difference aFinish Makes",
+        "detail": "scroll=127 client=120"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "See the Difference aFinish Makes",
+          "detail": "scroll=127 client=120"
+        }
+      ],
+      "smallControls": 25,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 1024,
+    "route": "/login",
+    "url": "http://localhost:3000/login",
+    "title": "Sign In | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 15,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 1024,
+    "route": "/signup",
+    "url": "http://localhost:3000/signup",
+    "title": "Create Customer Account | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 14,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 1024,
+    "route": "/account",
+    "url": "http://localhost:3000/login?redirectTo=/account",
+    "title": "Sign In | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 15,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 1024,
+    "route": "/wishlist",
+    "url": "http://localhost:3000/login?redirectTo=/wishlist",
+    "title": "Sign In | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 15,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 1280,
+    "route": "/",
+    "url": "http://localhost:3000/",
+    "title": "RTMETALCOATING — Professional Metal Coating & RT HOME DECOR",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Materials.Finishes.Possibilities.",
+        "detail": "scroll=127 client=120"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "The Difference Is in the Finish.",
+        "detail": "scroll=121 client=118"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Featured products",
+        "detail": "scroll=66 client=60"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Surface Finishing,  & Finishing",
+        "detail": "scroll=186 client=180"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Craftsmanship in Every Detail",
+        "detail": "scroll=66 client=60"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Let's start a conversation.",
+        "detail": "scroll=66 client=60"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Let's build something lasting.",
+        "detail": "scroll=66 client=60"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Materials.Finishes.Possibilities.",
+          "detail": "scroll=127 client=120"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "The Difference Is in the Finish.",
+          "detail": "scroll=121 client=118"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Featured products",
+          "detail": "scroll=66 client=60"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Surface Finishing,  & Finishing",
+          "detail": "scroll=186 client=180"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Craftsmanship in Every Detail",
+          "detail": "scroll=66 client=60"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Let's start a conversation.",
+          "detail": "scroll=66 client=60"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Let's build something lasting.",
+          "detail": "scroll=66 client=60"
+        }
+      ],
+      "smallControls": 17,
+      "divisionTitles": [
+        {
+          "text": "Metal Coating for Every Industry",
+          "cardTop": 857,
+          "cardBottom": 1275,
+          "titleTop": 1002,
+          "titleBottom": 1042,
+          "topGap": 146,
+          "clipped": false
+        },
+        {
+          "text": "Metal Art & Decorative Interiors",
+          "cardTop": 857,
+          "cardBottom": 1275,
+          "titleTop": 1002,
+          "titleBottom": 1042,
+          "topGap": 146,
+          "clipped": false
+        }
+      ],
+      "productTitles": [
+        {
+          "text": "Contemporary Symbolic Wall Panel",
+          "lines": 2,
+          "titleBottom": 3987,
+          "buttonTop": 3592,
+          "gap": -395,
+          "buttonHeight": 36,
+          "buttonWidth": 36
+        },
+        {
+          "text": "Religious Metal Wall Artwork",
+          "lines": 2,
+          "titleBottom": 3987,
+          "buttonTop": 3592,
+          "gap": -395,
+          "buttonHeight": 36,
+          "buttonWidth": 36
+        },
+        {
+          "text": "Decorative Metal Ceiling Installation",
+          "lines": 2,
+          "titleBottom": 3987,
+          "buttonTop": 3592,
+          "gap": -395,
+          "buttonHeight": 36,
+          "buttonWidth": 36
+        },
+        {
+          "text": "Abstract Continuous-Line Wall Sculpture",
+          "lines": 2,
+          "titleBottom": 3987,
+          "buttonTop": 3592,
+          "gap": -395,
+          "buttonHeight": 36,
+          "buttonWidth": 36
+        }
+      ],
+      "metaVisibleOnMobile": true,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 1280,
+    "route": "/about",
+    "url": "http://localhost:3000/about",
+    "title": "About RTMETALCOATING | Metal Finishing & RT HOME DECOR",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Crafting Metal Finishes. Elevating Spaces.",
+        "detail": "scroll=269 client=262"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "About RTMETALCOATING.",
+        "detail": "scroll=88 client=80"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Our Vision and Mission",
+        "detail": "scroll=24 client=1"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "From Preparation to a Refined Finish.",
+        "detail": "scroll=53 client=48"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Two Specialised Divisions. One Shared Expertise.",
+        "detail": "scroll=101 client=96"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Why Choose RTMETALCOATING?",
+        "detail": "scroll=53 client=48"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Have a Project or Product Requirement?",
+        "detail": "scroll=53 client=48"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Crafting Metal Finishes. Elevating Spaces.",
+          "detail": "scroll=269 client=262"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "About RTMETALCOATING.",
+          "detail": "scroll=88 client=80"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Our Vision and Mission",
+          "detail": "scroll=24 client=1"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "From Preparation to a Refined Finish.",
+          "detail": "scroll=53 client=48"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Two Specialised Divisions. One Shared Expertise.",
+          "detail": "scroll=101 client=96"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Why Choose RTMETALCOATING?",
+          "detail": "scroll=53 client=48"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Have a Project or Product Requirement?",
+          "detail": "scroll=53 client=48"
+        }
+      ],
+      "smallControls": 19,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 1280,
+    "route": "/metal-coating",
+    "url": "http://localhost:3000/metal-coating",
+    "title": "Premium Metal & PU Coating Services | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Metal Coating & Finishing",
+        "detail": "scroll=106 client=96"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Metal Coating & Finishing",
+        "detail": "scroll=45 client=40"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Finish Selectionsfor Designers& Architects",
+        "detail": "scroll=177 client=174"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Browse our metalwork categories",
+        "detail": "scroll=126 client=120"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Built for every sector.",
+        "detail": "scroll=66 client=60"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "See the transformation.",
+        "detail": "scroll=59 client=56"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Traditional Brass Five-Wick Temple Lamp Restoration",
+        "detail": "top=4637 right=1613"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Shri Swami Samarth Statue Restoration",
+        "detail": "top=4637 right=2021"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Copper Water Jug & Glass Set Restoration",
+        "detail": "top=4637 right=2429"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "From Requirement to a Premium Finish.",
+        "detail": "scroll=59 client=56"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "A finish for every vision.",
+        "detail": "scroll=66 client=60"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Inside the workshop",
+        "detail": "scroll=66 client=60"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Tell us about your project.",
+        "detail": "scroll=66 client=60"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Explore the collection too.",
+        "detail": "scroll=66 client=60"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Metal Coating & Finishing",
+          "detail": "scroll=106 client=96"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Metal Coating & Finishing",
+          "detail": "scroll=45 client=40"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Finish Selectionsfor Designers& Architects",
+          "detail": "scroll=177 client=174"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Browse our metalwork categories",
+          "detail": "scroll=126 client=120"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Built for every sector.",
+          "detail": "scroll=66 client=60"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "See the transformation.",
+          "detail": "scroll=59 client=56"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Traditional Brass Five-Wick Temple Lamp Restoration",
+          "detail": "top=4637 right=1613"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Shri Swami Samarth Statue Restoration",
+          "detail": "top=4637 right=2021"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Copper Water Jug & Glass Set Restoration",
+          "detail": "top=4637 right=2429"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "From Requirement to a Premium Finish.",
+          "detail": "scroll=59 client=56"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "A finish for every vision.",
+          "detail": "scroll=66 client=60"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Inside the workshop",
+          "detail": "scroll=66 client=60"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Tell us about your project.",
+          "detail": "scroll=66 client=60"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Explore the collection too.",
+          "detail": "scroll=66 client=60"
+        }
+      ],
+      "smallControls": 27,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": [
+        {
+          "text": "Explore Our Services",
+          "height": 44,
+          "width": 223
+        },
+        {
+          "text": "Enquire About a Project",
+          "height": 44,
+          "width": 244
+        },
+        {
+          "text": "Enquire About Finishes",
+          "height": 48,
+          "width": 233
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 207
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 207
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 207
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 207
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 207
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 207
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        }
+      ]
+    }
+  },
+  {
+    "width": 1280,
+    "route": "/home-decor",
+    "url": "http://localhost:3000/home-decor",
+    "title": "Home Decor & Lifestyle Collection | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Home Decor & Decorative Metalwork",
+        "detail": "scroll=202 client=192"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Products in motion",
+        "detail": "scroll=66 client=60"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Let us help you choose.",
+        "detail": "scroll=66 client=60"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Home Decor & Decorative Metalwork",
+          "detail": "scroll=202 client=192"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Products in motion",
+          "detail": "scroll=66 client=60"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Let us help you choose.",
+          "detail": "scroll=66 client=60"
+        }
+      ],
+      "smallControls": 15,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 1280,
+    "route": "/before-after",
+    "url": "http://localhost:3000/before-after",
+    "title": "Before & After Transformations | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "See the Difference aFinish Makes",
+        "detail": "scroll=159 client=151"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "See the Difference aFinish Makes",
+          "detail": "scroll=159 client=151"
+        }
+      ],
+      "smallControls": 29,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 1280,
+    "route": "/login",
+    "url": "http://localhost:3000/login",
+    "title": "Sign In | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 18,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 1280,
+    "route": "/signup",
+    "url": "http://localhost:3000/signup",
+    "title": "Create Customer Account | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 17,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 1280,
+    "route": "/account",
+    "url": "http://localhost:3000/login?redirectTo=/account",
+    "title": "Sign In | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 18,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 1280,
+    "route": "/wishlist",
+    "url": "http://localhost:3000/login?redirectTo=/wishlist",
+    "title": "Sign In | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 18,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 1440,
+    "route": "/",
+    "url": "http://localhost:3000/",
+    "title": "RTMETALCOATING — Professional Metal Coating & RT HOME DECOR",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Materials.Finishes.Possibilities.",
+        "detail": "scroll=127 client=120"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "The Difference Is in the Finish.",
+        "detail": "scroll=136 client=133"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Featured products",
+        "detail": "scroll=66 client=60"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Surface Finishing,  & Finishing",
+        "detail": "scroll=186 client=180"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Craftsmanship in Every Detail",
+        "detail": "scroll=66 client=60"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Let's start a conversation.",
+        "detail": "scroll=66 client=60"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Let's build something lasting.",
+        "detail": "scroll=66 client=60"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Materials.Finishes.Possibilities.",
+          "detail": "scroll=127 client=120"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "The Difference Is in the Finish.",
+          "detail": "scroll=136 client=133"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Featured products",
+          "detail": "scroll=66 client=60"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Surface Finishing,  & Finishing",
+          "detail": "scroll=186 client=180"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Craftsmanship in Every Detail",
+          "detail": "scroll=66 client=60"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Let's start a conversation.",
+          "detail": "scroll=66 client=60"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Let's build something lasting.",
+          "detail": "scroll=66 client=60"
+        }
+      ],
+      "smallControls": 17,
+      "divisionTitles": [
+        {
+          "text": "Metal Coating for Every Industry",
+          "cardTop": 857,
+          "cardBottom": 1275,
+          "titleTop": 1002,
+          "titleBottom": 1042,
+          "topGap": 146,
+          "clipped": false
+        },
+        {
+          "text": "Metal Art & Decorative Interiors",
+          "cardTop": 857,
+          "cardBottom": 1275,
+          "titleTop": 1002,
+          "titleBottom": 1042,
+          "topGap": 146,
+          "clipped": false
+        }
+      ],
+      "productTitles": [
+        {
+          "text": "Lotus-Inspired Metal Sculpture",
+          "lines": 2,
+          "titleBottom": 4047,
+          "buttonTop": 3652,
+          "gap": -395,
+          "buttonHeight": 36,
+          "buttonWidth": 36
+        },
+        {
+          "text": "Contemporary Symbolic Wall Panel",
+          "lines": 2,
+          "titleBottom": 4047,
+          "buttonTop": 3652,
+          "gap": -395,
+          "buttonHeight": 36,
+          "buttonWidth": 36
+        },
+        {
+          "text": "Religious Metal Wall Artwork",
+          "lines": 2,
+          "titleBottom": 4047,
+          "buttonTop": 3652,
+          "gap": -395,
+          "buttonHeight": 36,
+          "buttonWidth": 36
+        },
+        {
+          "text": "Decorative Metal Ceiling Installation",
+          "lines": 2,
+          "titleBottom": 4047,
+          "buttonTop": 3652,
+          "gap": -395,
+          "buttonHeight": 36,
+          "buttonWidth": 36
+        }
+      ],
+      "metaVisibleOnMobile": true,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 1440,
+    "route": "/about",
+    "url": "http://localhost:3000/about",
+    "title": "About RTMETALCOATING | Metal Finishing & RT HOME DECOR",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Crafting Metal Finishes. Elevating Spaces.",
+        "detail": "scroll=203 client=197"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "About RTMETALCOATING.",
+        "detail": "scroll=88 client=80"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Our Vision and Mission",
+        "detail": "scroll=24 client=1"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "From Preparation to a Refined Finish.",
+        "detail": "scroll=53 client=48"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Two Specialised Divisions. One Shared Expertise.",
+        "detail": "scroll=101 client=96"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Why Choose RTMETALCOATING?",
+        "detail": "scroll=53 client=48"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Have a Project or Product Requirement?",
+        "detail": "scroll=53 client=48"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Crafting Metal Finishes. Elevating Spaces.",
+          "detail": "scroll=203 client=197"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "About RTMETALCOATING.",
+          "detail": "scroll=88 client=80"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Our Vision and Mission",
+          "detail": "scroll=24 client=1"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "From Preparation to a Refined Finish.",
+          "detail": "scroll=53 client=48"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Two Specialised Divisions. One Shared Expertise.",
+          "detail": "scroll=101 client=96"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Why Choose RTMETALCOATING?",
+          "detail": "scroll=53 client=48"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Have a Project or Product Requirement?",
+          "detail": "scroll=53 client=48"
+        }
+      ],
+      "smallControls": 19,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 1440,
+    "route": "/metal-coating",
+    "url": "http://localhost:3000/metal-coating",
+    "title": "Premium Metal & PU Coating Services | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Metal Coating & Finishing",
+        "detail": "scroll=106 client=96"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Metal Coating & Finishing",
+        "detail": "scroll=45 client=40"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Finish Selectionsfor Designers& Architects",
+        "detail": "scroll=193 client=189"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Browse our metalwork categories",
+        "detail": "scroll=126 client=120"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Built for every sector.",
+        "detail": "scroll=66 client=60"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "See the transformation.",
+        "detail": "scroll=59 client=56"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Traditional Brass Five-Wick Temple Lamp Restoration",
+        "detail": "top=4634 right=1693"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Shri Swami Samarth Statue Restoration",
+        "detail": "top=4634 right=2101"
+      },
+      {
+        "type": "heading-outside-viewport",
+        "text": "Copper Water Jug & Glass Set Restoration",
+        "detail": "top=4634 right=2509"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "From Requirement to a Premium Finish.",
+        "detail": "scroll=59 client=56"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "A finish for every vision.",
+        "detail": "scroll=66 client=60"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Inside the workshop",
+        "detail": "scroll=66 client=60"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Tell us about your project.",
+        "detail": "scroll=66 client=60"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Explore the collection too.",
+        "detail": "scroll=66 client=60"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Metal Coating & Finishing",
+          "detail": "scroll=106 client=96"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Metal Coating & Finishing",
+          "detail": "scroll=45 client=40"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Finish Selectionsfor Designers& Architects",
+          "detail": "scroll=193 client=189"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Browse our metalwork categories",
+          "detail": "scroll=126 client=120"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Built for every sector.",
+          "detail": "scroll=66 client=60"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "See the transformation.",
+          "detail": "scroll=59 client=56"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Traditional Brass Five-Wick Temple Lamp Restoration",
+          "detail": "top=4634 right=1693"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Shri Swami Samarth Statue Restoration",
+          "detail": "top=4634 right=2101"
+        },
+        {
+          "type": "heading-outside-viewport",
+          "text": "Copper Water Jug & Glass Set Restoration",
+          "detail": "top=4634 right=2509"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "From Requirement to a Premium Finish.",
+          "detail": "scroll=59 client=56"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "A finish for every vision.",
+          "detail": "scroll=66 client=60"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Inside the workshop",
+          "detail": "scroll=66 client=60"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Tell us about your project.",
+          "detail": "scroll=66 client=60"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Explore the collection too.",
+          "detail": "scroll=66 client=60"
+        }
+      ],
+      "smallControls": 27,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": [
+        {
+          "text": "Explore Our Services",
+          "height": 44,
+          "width": 223
+        },
+        {
+          "text": "Enquire About a Project",
+          "height": 44,
+          "width": 244
+        },
+        {
+          "text": "Enquire About Finishes",
+          "height": 48,
+          "width": 233
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 242
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 242
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 242
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 242
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 242
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 44,
+          "width": 242
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        },
+        {
+          "text": "Enquire about this finish",
+          "height": 0,
+          "width": 0
+        }
+      ]
+    }
+  },
+  {
+    "width": 1440,
+    "route": "/home-decor",
+    "url": "http://localhost:3000/home-decor",
+    "title": "Home Decor & Lifestyle Collection | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "Home Decor & Decorative Metalwork",
+        "detail": "scroll=202 client=192"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Products in motion",
+        "detail": "scroll=66 client=60"
+      },
+      {
+        "type": "heading-clipped",
+        "text": "Let us help you choose.",
+        "detail": "scroll=66 client=60"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "Home Decor & Decorative Metalwork",
+          "detail": "scroll=202 client=192"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Products in motion",
+          "detail": "scroll=66 client=60"
+        },
+        {
+          "type": "heading-clipped",
+          "text": "Let us help you choose.",
+          "detail": "scroll=66 client=60"
+        }
+      ],
+      "smallControls": 15,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 1440,
+    "route": "/before-after",
+    "url": "http://localhost:3000/before-after",
+    "title": "Before & After Transformations | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [
+      {
+        "type": "heading-clipped",
+        "text": "See the Difference aFinish Makes",
+        "detail": "scroll=179 client=169"
+      }
+    ],
+    "metrics": {
+      "overflowX": false,
+      "issues": [
+        {
+          "type": "heading-clipped",
+          "text": "See the Difference aFinish Makes",
+          "detail": "scroll=179 client=169"
+        }
+      ],
+      "smallControls": 29,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 1440,
+    "route": "/login",
+    "url": "http://localhost:3000/login",
+    "title": "Sign In | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 18,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 1440,
+    "route": "/signup",
+    "url": "http://localhost:3000/signup",
+    "title": "Create Customer Account | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 17,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 1440,
+    "route": "/account",
+    "url": "http://localhost:3000/login?redirectTo=/account",
+    "title": "Sign In | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 18,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  },
+  {
+    "width": 1440,
+    "route": "/wishlist",
+    "url": "http://localhost:3000/login?redirectTo=/wishlist",
+    "title": "Sign In | RTMETALCOATING | RTMETALCOATING",
+    "overflowX": false,
+    "issues": [],
+    "metrics": {
+      "overflowX": false,
+      "issues": [],
+      "smallControls": 18,
+      "divisionTitles": [],
+      "productTitles": [],
+      "metaVisibleOnMobile": false,
+      "heroCtaButtons": []
+    }
+  }
+]

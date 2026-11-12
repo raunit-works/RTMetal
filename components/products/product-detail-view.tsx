@@ -114,7 +114,7 @@ export function ProductDetailView({ product, division, relatedProducts = [] }: P
 
                 <div className="mt-6 flex items-baseline gap-4">
                   {whatsappUrl ? (
-                    <Button asChild className="rounded-full bg-[#25D366] text-white hover:bg-[#25D366]/90">
+                    <Button asChild className="h-11 rounded-full bg-[#25D366] px-5 text-ink hover:bg-[#25D366]/90">
                       <a
                         href={whatsappUrl}
                         target="_blank"
@@ -127,9 +127,9 @@ export function ProductDetailView({ product, division, relatedProducts = [] }: P
                   ) : (
                     <Button
                       disabled
-                      className="rounded-full bg-[#25D366]/20 text-white/40 cursor-not-allowed"
+                      className="h-11 cursor-not-allowed rounded-full border border-[#25D366]/25 bg-[#25D366]/10 px-5 text-muted-foreground disabled:opacity-100"
                     >
-                      <MessageCircle className="mr-2 h-5 w-5" style={{ opacity: 0.5 }} />
+                      <MessageCircle className="mr-2 h-5 w-5" />
                       Enquire About Product
                     </Button>
                   )}
@@ -205,7 +205,7 @@ export function ProductDetailView({ product, division, relatedProducts = [] }: P
                     <Button
                       asChild
                       size="lg"
-                      className="flex-1 rounded-full bg-[#25D366] px-8 py-6 text-base font-semibold text-white shadow-lg transition-all hover:bg-[#25D366]/90"
+                      className="h-12 rounded-full bg-[#25D366] px-8 text-base font-semibold text-ink shadow-lg transition-all hover:bg-[#25D366]/90 sm:flex-1"
                     >
                       <a
                         href={whatsappUrl}
@@ -220,14 +220,14 @@ export function ProductDetailView({ product, division, relatedProducts = [] }: P
                     <Button
                       disabled
                       size="lg"
-                      className="flex-1 rounded-full bg-[#25D366]/20 text-white/40 cursor-not-allowed px-8 py-6 text-base font-semibold"
+                      className="h-12 cursor-not-allowed rounded-full border border-[#25D366]/25 bg-[#25D366]/10 px-8 text-base font-semibold text-muted-foreground disabled:opacity-100 sm:flex-1"
                     >
-                      <MessageCircle className="mr-2 h-5 w-5" style={{ opacity: 0.5 }} />
+                      <MessageCircle className="mr-2 h-5 w-5" />
                       Enquire About Product
                     </Button>
                   )}
 
-                  <Button asChild size="lg" className="rounded-full px-6 py-6">
+                  <Button asChild size="lg" className="h-12 rounded-full px-6">
                     <Link href={division === 'home_decor' ? '/#contact' : '/metal-coating#quote'}>
                       Request a Quote
                       <ArrowRight className="ml-2 h-4 w-4" />
@@ -238,7 +238,7 @@ export function ProductDetailView({ product, division, relatedProducts = [] }: P
                     asChild
                     size="lg"
                     variant="outline"
-                    className="rounded-full px-6 py-6"
+                    className="h-12 rounded-full px-6"
                   >
                     <Link href={division === 'home_decor' ? '/home-decor' : '/metal-coating'}>
                       <ArrowLeft className="mr-2 h-4 w-4" />

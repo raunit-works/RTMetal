@@ -1,0 +1,102 @@
+[
+  {
+    "width": 390,
+    "name": "metal-quote-whatsapp",
+    "focused": false,
+    "normal": {
+      "text": "Chat on WhatsApp",
+      "color": "rgba(255, 255, 255, 0.7)",
+      "effectiveBackground": "rgb(15, 15, 15)",
+      "gradient": false,
+      "contrast": 9.56,
+      "opacity": "1",
+      "visibility": "visible",
+      "focusVisible": false,
+      "boxShadow": "none",
+      "outline": "none 3px rgba(255, 255, 255, 0.7)",
+      "disabled": true,
+      "ariaLabel": null,
+      "title": "WhatsApp contact is not configured yet. Please use the quote form above."
+    },
+    "hover": {
+      "text": "Chat on WhatsApp",
+      "color": "rgba(255, 255, 255, 0.7)",
+      "effectiveBackground": "rgb(15, 15, 15)",
+      "gradient": false,
+      "contrast": 9.56,
+      "opacity": "1",
+      "visibility": "visible",
+      "focusVisible": false,
+      "boxShadow": "none",
+      "outline": "none 3px rgba(255, 255, 255, 0.7)",
+      "disabled": true,
+      "ariaLabel": null,
+      "title": "WhatsApp contact is not configured yet. Please use the quote form above."
+    },
+    "focus": {
+      "text": "Chat on WhatsApp",
+      "color": "rgba(255, 255, 255, 0.7)",
+      "effectiveBackground": "rgb(15, 15, 15)",
+      "gradient": false,
+      "contrast": 9.56,
+      "opacity": "1",
+      "visibility": "visible",
+      "focusVisible": false,
+      "boxShadow": "none",
+      "outline": "none 3px rgba(255, 255, 255, 0.7)",
+      "disabled": true,
+      "ariaLabel": null,
+      "title": "WhatsApp contact is not configured yet. Please use the quote form above."
+    }
+  },
+  {
+    "width": 1280,
+    "name": "metal-quote-whatsapp",
+    "focused": false,
+    "normal": {
+      "text": "Chat on WhatsApp",
+      "color": "rgba(255, 255, 255, 0.7)",
+      "effectiveBackground": "rgb(15, 15, 15)",
+      "gradient": false,
+      "contrast": 9.56,
+      "opacity": "1",
+      "visibility": "visible",
+      "focusVisible": false,
+      "boxShadow": "none",
+      "outline": "none 3px rgba(255, 255, 255, 0.7)",
+      "disabled": true,
+      "ariaLabel": null,
+      "title": "WhatsApp contact is not configured yet. Please use the quote form above."
+    },
+    "hover": {
+      "text": "Chat on WhatsApp",
+      "color": "rgba(255, 255, 255, 0.7)",
+      "effectiveBackground": "rgb(15, 15, 15)",
+      "gradient": false,
+      "contrast": 9.56,
+      "opacity": "1",
+      "visibility": "visible",
+      "focusVisible": false,
+      "boxShadow": "none",
+      "outline": "none 3px rgba(255, 255, 255, 0.7)",
+      "disabled": true,
+      "ariaLabel": null,
+      "title": "WhatsApp contact is not configured yet. Please use the quote form above."
+    },
+    "focus": {
+      "text": "Chat on WhatsApp",
+      "color": "rgba(255, 255, 255, 0.7)",
+      "effectiveBackground": "rgb(15, 15, 15)",
+      "gradient": false,
+      "contrast": 9.56,
+      "opacity": "1",
+      "visibility": "visible",
+      "focusVisible": false,
+      "boxShadow": "none",
+      "outline": "none 3px rgba(255, 255, 255, 0.7)",
+      "disabled": true,
+      "ariaLabel": null,
+      "title": "WhatsApp contact is not configured yet. Please use the quote form above."
+    }
+  }
+]

@@ -46,8 +46,8 @@ export function ProductCard({ product, division = 'home_decor' }: ProductCardPro
 
   return (
     <>
-      <div className="group relative">
-        <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-muted">
+      <div className="group relative flex h-full flex-col">
+        <div className="relative aspect-[4/5] shrink-0 overflow-hidden rounded-2xl bg-muted">
           <Image
             src={product.image}
             alt={product.name}
@@ -73,7 +73,7 @@ export function ProductCard({ product, division = 'home_decor' }: ProductCardPro
             onClick={handleWishlistToggle}
             disabled={isPending}
             aria-label={isSaved ? 'Remove from wishlist' : 'Add to wishlist'}
-            className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/80 text-ink backdrop-blur-md transition-all hover:bg-white disabled:opacity-50"
+            className="absolute right-3 top-3 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white/80 text-ink backdrop-blur-md transition-all hover:bg-white disabled:opacity-50 sm:h-9 sm:w-9"
           >
             {isPending ? (
               <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
@@ -87,18 +87,18 @@ export function ProductCard({ product, division = 'home_decor' }: ProductCardPro
             )}
           </button>
 
-<div className="absolute inset-x-3 bottom-3 flex translate-y-3 gap-2 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+<div className="absolute inset-x-3 bottom-3 flex translate-y-0 gap-2 opacity-100 transition-all duration-500 sm:translate-y-3 sm:opacity-0 sm:group-hover:translate-y-0 sm:group-hover:opacity-100 sm:group-focus-within:translate-y-0 sm:group-focus-within:opacity-100">
             <Button
               asChild
               size="sm"
-              className="flex-1 rounded-full bg-ink/90 text-white backdrop-blur-md hover:bg-ink"
+              className="h-11 flex-1 rounded-full bg-ink/90 text-white backdrop-blur-md hover:bg-ink sm:h-9"
             >
               <Link href={productDetailLink}>View Details</Link>
             </Button>
             <Button
               size="sm"
               variant="outline"
-              className="rounded-full bg-white/80 px-3 text-ink backdrop-blur-md hover:bg-white"
+              className="h-11 w-11 shrink-0 rounded-full bg-white/80 px-0 text-ink backdrop-blur-md hover:bg-white sm:h-9 sm:w-9"
               onClick={() => setQuickView(true)}
               aria-label="Quick view"
             >
@@ -107,23 +107,26 @@ export function ProductCard({ product, division = 'home_decor' }: ProductCardPro
           </div>
         </div>
 
-        <div className="mt-4 flex items-start justify-between gap-2">
-<div>
-            <Link href={productDetailLink}>
-              <h3 className="text-sm font-semibold leading-snug transition-colors hover:text-gold-deep">
+        <div className="mt-3 flex flex-1 flex-col gap-3 sm:mt-4 sm:flex-row sm:items-start sm:justify-between sm:gap-2">
+          <div className="min-w-0 sm:flex-1">
+            <Link href={productDetailLink} className="block">
+              <h3 className="line-clamp-2 min-h-[2.8em] text-[13px] font-semibold leading-[1.4] transition-colors hover:text-gold-deep sm:line-clamp-none sm:min-h-0 sm:text-sm sm:leading-snug">
                 {product.name}
               </h3>
             </Link>
-            <div className="mt-1 flex items-center gap-1">
+            <div className="mt-1 hidden items-center gap-1 sm:flex">
               <Star className="h-3 w-3 fill-gold text-gold" />
               <span className="text-xs text-muted-foreground">
                 {product.rating} Â· {product.category.replace('-', ' ')}
               </span>
             </div>
           </div>
-          <div className="text-right">
+          <div className="mt-auto w-full sm:mt-0 sm:w-auto sm:shrink-0 sm:text-right">
             {productWhatsAppUrl ? (
-              <Button asChild className="rounded-full bg-[#25D366] text-white hover:bg-[#25D366]/90">
+              <Button
+                asChild
+                className="h-auto min-h-[44px] w-full rounded-full bg-[#25D366] px-4 text-sm text-ink hover:bg-[#25D366]/90 sm:h-10 sm:min-h-0 sm:w-auto"
+              >
                 <a
                   href={productWhatsAppUrl}
                   target="_blank"
@@ -135,7 +138,7 @@ export function ProductCard({ product, division = 'home_decor' }: ProductCardPro
             ) : (
               <Button
                 disabled
-                className="rounded-full bg-[#25D366]/20 text-white/40 cursor-not-allowed"
+                className="h-auto min-h-[44px] w-full cursor-not-allowed rounded-full border border-[#25D366]/25 bg-[#25D366]/10 px-4 text-sm text-muted-foreground disabled:opacity-100 sm:h-10 sm:min-h-0 sm:w-auto"
               >
                 Enquire Now
               </Button>
@@ -309,7 +312,7 @@ function QuickViewModal({
           {/* â”€â”€ Close button â”€â”€ */}
           <button
             onClick={onClose}
-            className="absolute right-4 top-4 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-background/90 shadow-lg ring-1 ring-border/50 backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-muted"
+            className="absolute right-4 top-4 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-background/90 shadow-lg ring-1 ring-border/50 backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-muted"
             aria-label="Close quick view"
           >
             <X className="h-[15px] w-[15px] text-foreground" />
@@ -473,7 +476,7 @@ function QuickViewModal({
                   <Button
                     asChild
                     size="lg"
-                    className="w-full rounded-full bg-[#25D366] text-white shadow-sm hover:bg-[#22c15e] focus-visible:ring-[#25D366]/50"
+                    className="w-full rounded-full bg-[#25D366] text-ink shadow-sm hover:bg-[#22c15e] focus-visible:ring-[#25D366]/50"
                   >
                     <a
                       href={quickViewWhatsAppUrl}
@@ -488,9 +491,9 @@ function QuickViewModal({
                   <Button
                     disabled
                     size="lg"
-                    className="w-full rounded-full bg-[#25D366]/20 text-white/40 cursor-not-allowed"
+                    className="w-full cursor-not-allowed rounded-full border border-[#25D366]/25 bg-[#25D366]/10 text-muted-foreground disabled:opacity-100"
                   >
-                    <MessageCircle className="mr-2 h-4 w-4" style={{ opacity: 0.5 }} />
+                    <MessageCircle className="mr-2 h-4 w-4" />
                     Enquire via WhatsApp
                   </Button>
                 )}

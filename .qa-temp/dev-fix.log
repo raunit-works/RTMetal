@@ -1,0 +1,26 @@
+
+> nextjs@0.1.0 dev
+> next dev
+
+  ▲ Next.js 13.5.1
+  - Local:        http://localhost:3000
+  - Environments: .env.development.local, .env.local
+
+ ✓ Ready in 3.2s
+ ✓ Compiled /middleware in 863ms (113 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Serializing big strings (114kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
+<w> [webpack.cache.PackFileCacheStrategy] Serializing big strings (271kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
+ ○ compiling /about/page ...
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+ ✓ Compiled /about/page in 8s (1707 modules)
+ ✓ Compiled in 1934ms (817 modules)
+ ✓ Compiled /page in 1394ms (1849 modules)
+[Supabase Info] "faqs" table query returned 0 rows.
+[Supabase Info] "testimonials" table query returned 0 rows.
+ ✓ Compiled /metal-coating/page in 797ms (1944 modules)
+ ✓ Compiled /home-decor/category/[slug]/page in 461ms (1968 modules)
+ ✓ Compiled /home-decor/page in 490ms (1968 modules)
+[Supabase Info] "faqs" table query returned 0 rows.
+[Supabase Info] "testimonials" table query returned 0 rows.

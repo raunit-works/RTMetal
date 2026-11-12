@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import * as React from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -8,7 +7,8 @@ import { createSupabaseBrowserClient } from '@/lib/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { LogIn, Loader2, AlertCircle, ArrowLeft } from 'lucide-react';
+import { AuthBranding } from '@/components/auth/auth-branding';
+import { LogIn, Loader2, AlertCircle } from 'lucide-react';
 
 function LoginForm() {
   const router = useRouter();
@@ -129,27 +129,10 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen pt-24 pb-16 flex flex-col justify-center px-4 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <Link
-          href="/"
-          className="inline-flex items-center text-xs font-medium text-muted-foreground hover:text-foreground mb-6 transition-colors"
-        >
-          <ArrowLeft className="mr-1.5 h-3.5 w-3.5" />
-          Back to home
-        </Link>
-        <div className="flex items-center justify-center gap-2.5">
-          <span className="relative h-12 w-36 overflow-hidden block inline">
-            <Image
-              src="/brand/rt-logo.png"
-              alt="RTMETALCOATING"
-              fill
-              sizes="144px"
-              className="object-contain"
-            />
-          </span>
-        </div>
-        <h2 className="mt-4 text-center text-xl font-semibold tracking-tight">
+        <AuthBranding backHref="/" backLabel="Back to home" />
+        <h1 className="mt-4 text-center text-xl font-semibold tracking-tight">
           Sign in to your account
-        </h2>
+        </h1>
         <p className="mt-1 text-center text-sm text-muted-foreground">
           Enter your credentials to access your account profile
         </p>

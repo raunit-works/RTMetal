@@ -897,7 +897,7 @@ export function Navbar() {
 
           {/* ── MOBILE HAMBURGER ── */}
           <button
-            className="flex h-10 w-10 items-center justify-center rounded-full lg:hidden"
+            className="flex h-11 w-11 items-center justify-center rounded-full lg:hidden"
             style={{
               border: '1px solid rgba(255,255,255,0.30)',
               color: HDR.ivory,
@@ -952,7 +952,7 @@ export function Navbar() {
                   />
                 </span>
                 <button
-                  className="flex h-10 w-10 items-center justify-center rounded-full"
+                  className="flex h-11 w-11 items-center justify-center rounded-full"
                   style={{
                     border: `1px solid ${HDR.ddBorder}`,
                     color: HDR.mobileText,

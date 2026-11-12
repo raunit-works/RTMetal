@@ -55,7 +55,7 @@ export function ServiceEnquiryCTA({ service }: ServiceEnquiryCTAProps) {
               <button
                 type="button"
                 disabled
-                className="inline-flex h-12 cursor-not-allowed items-center justify-center gap-2 rounded-full border border-white/10 px-6 text-sm font-medium text-white/40"
+                className="inline-flex h-12 cursor-not-allowed items-center justify-center gap-2 rounded-full border border-white/20 px-6 text-sm font-medium text-white/70"
               >
                 <MessageCircle className="h-4 w-4" aria-hidden="true" />
                 WhatsApp Enquiry

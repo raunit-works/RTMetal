@@ -281,7 +281,7 @@ export function InstagramSection({
           >
             <div
               ref={trackRef}
-              className="flex gap-16 scroll-snap-x snap-mandatory pb-4"
+              className="flex gap-4 scroll-snap-x snap-mandatory pb-4"
               style={{ width: cardW > 0 ? REELS.length * (cardW + GAP) - GAP : 'auto' }}
             >
               {REELS.map((src, i) => (
@@ -319,7 +319,7 @@ export function InstagramSection({
             href={INSTAGRAM_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-[#c9a96e] bg-transparent px-8 py-3 text-sm font-semibold text-[#c9a96e] transition-all duration-300 hover:bg-[#c9a96e] hover:text-[#0e0c0a]"
+            className="inline-flex items-center gap-2 rounded-full border border-[#c9a96e] bg-transparent px-8 py-3 text-sm font-semibold text-[#8a6414] transition-all duration-300 hover:bg-[#c9a96e] hover:text-[#0e0c0a]"
           >
             <Instagram className="h-4 w-4" />
             Follow Our Work on Instagram

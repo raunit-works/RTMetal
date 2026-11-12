@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import {
   getServicesAsync,
-  getProcessSteps,
   getInstagramPosts,
   getIndustriesServed,
   getPublicCatalogAsync,
@@ -10,6 +9,7 @@ import { MetalCoatingClient } from '@/components/sections/metal-coating-client';
 import { isCategoryInSection } from '@/lib/category-hierarchy';
 import { getSiteUrlForPath } from '@/lib/site-url';
 import { getPublishedMetalFinishes } from '@/lib/supabase/metal-finishes-public';
+import { getPublishedBeforeAfterProjects } from '@/lib/supabase/before-after-public';
 
 export const revalidate = 0;
 
@@ -31,7 +31,6 @@ export const metadata: Metadata = {
 
 export default async function MetalCoatingPage() {
   const services = await getServicesAsync({ allowStaticFallback: false });
-  const processSteps = getProcessSteps();
   const instagramPosts = getInstagramPosts();
   const industriesServed = getIndustriesServed();
   const { categories } = await getPublicCatalogAsync();
@@ -39,15 +38,17 @@ export default async function MetalCoatingPage() {
     isCategoryInSection(category, 'metal_services')
   );
   const finishes = await getPublishedMetalFinishes();
+  const beforeAfter = await getPublishedBeforeAfterProjects({ limit: 9 });
 
   return (
     <MetalCoatingClient
       services={services}
-      processSteps={processSteps}
       instagramPosts={instagramPosts}
       industriesServed={industriesServed}
       categories={metalCategories}
       finishes={finishes}
+      beforeAfterProjects={beforeAfter.projects}
+      beforeAfterAvailable={beforeAfter.available}
     />
   );
 }

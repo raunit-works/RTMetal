@@ -1,0 +1,12 @@
+
+> nextjs@0.1.0 start
+> next start -p 3100
+
+  ▲ Next.js 13.5.1
+  - Local:        http://localhost:3100
+
+ ✓ Ready in 347ms
+[Supabase Info] "testimonials" table query returned 0 rows.
+[Supabase Info] "faqs" table query returned 0 rows.
+[Supabase Info] "faqs" table query returned 0 rows.
+[Supabase Info] "testimonials" table query returned 0 rows.
