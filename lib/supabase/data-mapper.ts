@@ -21,6 +21,12 @@ import type {
   FAQItem,
   IconType,
 } from '../types';
+import {
+  getDefaultVariant,
+  getVariantPrimaryImage,
+  type ProductVariantsSnapshot,
+} from './product-variants';
+import { normalizeProductFeatures } from '../product-details/features';
 
 const ICON_MAP: Record<string, LucideIcon> = {
   Lamp,
@@ -79,6 +85,8 @@ export interface DatabaseProductRow {
   badge: string | null;
   description: string;
   is_published: boolean;
+  is_pinned: boolean;
+  pinned_at: string | null;
   categories?: { slug: string; name: string } | { slug: string; name: string }[] | null;
   sku?: string | null;
   sub_category?: string | null;
@@ -88,9 +96,10 @@ export interface DatabaseProductRow {
   dimensions?: string | null;
   weight?: string | null;
   stock_status?: string | null;
-  features?: string[] | null;
+  features?: string[] | string | null;
   care_instructions?: string | null;
   is_featured?: boolean | null;
+  is_archived?: boolean | null;
   display_order?: number | null;
   product_images?: DatabaseProductImageRow[] | null;
 }
@@ -212,17 +221,44 @@ export function mapProductRow(
     dimensions: row.dimensions || undefined,
     weight: row.weight || undefined,
     stockStatus: row.stock_status || undefined,
-    features: Array.isArray(row.features) ? row.features : [],
+    features: normalizeProductFeatures(row.features),
     careInstructions: row.care_instructions || undefined,
     isFeatured: Boolean(row.is_featured),
     isPublished: row.is_published != null ? Boolean(row.is_published) : true,
+    isPinned: Boolean(row.is_pinned),
+    pinnedAt: row.pinned_at ?? null,
     displayOrder: row.display_order != null ? Number(row.display_order) : 0,
     images: mappedImages,
   };
 }
 
-export function mapServiceRow(row: DatabaseServiceRow): Service {
+/**
+ * Attach public variant data to an already-mapped product.
+ *
+ * A product with no active variants is returned unchanged, which keeps every
+ * legacy product and every environment where the additive migration has not
+ * been applied on the exact existing code path.
+ */
+export function withVariants(
+  product: Product,
+  snapshot?: ProductVariantsSnapshot
+): Product {
+  const activeVariants = (snapshot?.variants ?? []).filter((variant) => variant.isActive);
+  if (activeVariants.length === 0) return product;
+
+  const defaultVariant = getDefaultVariant(activeVariants);
+  const cardImage = getVariantPrimaryImage(defaultVariant);
+
   return {
+    ...product,
+    options: snapshot?.options ?? [],
+    variants: activeVariants,
+    hasVariants: true,
+    cardImage: cardImage || product.image,
+  };
+}
+
+export function mapServiceRow(row: DatabaseServiceRow): Service {  return {
     id: row.id,
     slug: row.slug,
     name: row.name,

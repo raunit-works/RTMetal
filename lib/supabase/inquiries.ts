@@ -3,13 +3,14 @@ import type { Inquiry, InquiryStatus, InquiryType, InquiryDivision } from '../ty
 
 export interface CreateInquiryPayload {
   name: string;
-  email: string;
-  phone?: string;
+  email?: string | null;
+  phone: string;
   message: string;
   inquiry_type: InquiryType;
   division: InquiryDivision;
   product_id?: string;
   service_id?: string;
+  variant_id?: string;
 }
 
 export function mapInquiryRow(row: any): Inquiry {
@@ -17,7 +18,7 @@ export function mapInquiryRow(row: any): Inquiry {
     id: row.id,
     userId: row.user_id,
     name: row.name,
-    email: row.email,
+    email: row.email ?? null,
     phone: row.phone,
     message: row.message,
     inquiryType: row.inquiry_type as InquiryType,
@@ -26,6 +27,9 @@ export function mapInquiryRow(row: any): Inquiry {
     serviceId: row.service_id,
     productNameSnapshot: row.product_name_snapshot,
     serviceNameSnapshot: row.service_name_snapshot,
+    variantId: row.variant_id,
+    variantNameSnapshot: row.variant_name_snapshot,
+    variantSkuSnapshot: row.variant_sku_snapshot,
     status: row.status as InquiryStatus,
     adminNotes: row.admin_notes,
     createdAt: row.created_at,

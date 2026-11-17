@@ -311,6 +311,7 @@ test.describe('Task 3: Lightbox Interactions', () => {
 
       // Fill form
       await page.locator('#quote input[placeholder*="Your name"]').fill('Test User');
+      await page.locator('#quote input[placeholder*="Mobile number"]').fill('+91 98765 43210');
       await page.locator('#quote input[placeholder*="Email address"]').fill('test@example.com');
       await page.locator('#quote textarea[placeholder*="Project details"]').fill(
         'Test project details',
@@ -328,6 +329,7 @@ test.describe('Task 3: Lightbox Interactions', () => {
       expect((payload as { division?: string }).division).toBe('metal_coating');
       expect((payload as { inquiry_type?: string }).inquiry_type).toBe('service');
       expect((payload as { name?: string }).name).toBe('Test User');
+      expect((payload as { phone?: string }).phone).toBe('+91 98765 43210');
       expect((payload as { email?: string }).email).toBe('test@example.com');
       expect((payload as { message?: string }).message).toContain('Test project details');
 

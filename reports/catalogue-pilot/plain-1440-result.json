@@ -1,0 +1,156 @@
+{
+  "viewport": 1440,
+  "products": [
+    {
+      "name": "QA Pilot - Plain Showpiece",
+      "cardCount": 1,
+      "cardHref": "/home-decor/qa-pilot-plain-showpiece",
+      "chips": [],
+      "cardImage": {
+        "src": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794863808608-akip1vm.webp&w=384&q=75",
+        "naturalWidth": 359,
+        "naturalHeight": 449,
+        "complete": true,
+        "http": {
+          "status": 200,
+          "contentType": "image/jpeg"
+        }
+      },
+      "enquireHref": "/?product=ff9d095d-d952-449c-ab2f-40785758f136&productName=QA+Pilot+-+Plain+Showpiece#contact",
+      "detail": {
+        "url": "http://localhost:3000/home-decor/qa-pilot-plain-showpiece",
+        "h1": "QA Pilot - Plain Showpiece",
+        "variantSelectorCount": 0,
+        "chips": [
+          {
+            "id": "415771bf-6a5c-4201-a15a-3bc80dfb3e62",
+            "sku": null,
+            "finish": "Gold Finish",
+            "pressed": "true"
+          },
+          {
+            "id": "28cc4c07-264b-44ec-9e1e-59564070bd82",
+            "sku": null,
+            "finish": "Silver Mirror Finish",
+            "pressed": "false"
+          },
+          {
+            "id": "f4f8596a-0e00-4f1c-affe-5aa7ac045dee",
+            "sku": null,
+            "finish": "Antique Bronze Finish",
+            "pressed": "false"
+          },
+          {
+            "id": "dadabd6b-5e73-43fa-b103-0644c67dbc63",
+            "sku": null,
+            "finish": "Black Finish",
+            "pressed": "false"
+          },
+          {
+            "id": "240e9e7d-3b7a-41a2-84c6-cd24d48a31f9",
+            "sku": "ASHOK-STG-GLD",
+            "finish": "Gold",
+            "pressed": "true"
+          },
+          {
+            "id": "e6bd5992-e884-4363-ae64-a0bf2e05d589",
+            "sku": "ASHOK-STG-SLV",
+            "finish": "Silver",
+            "pressed": "false"
+          },
+          {
+            "id": "fef5d23d-cc28-44d9-b94c-11155c21272d",
+            "sku": "ASHOK-STG-BRZ",
+            "finish": "Antique Bronze",
+            "pressed": "false"
+          }
+        ],
+        "images": [
+          {
+            "src": "http://localhost:3000/_next/image?url=%2Fbrand%2Frt-logo.png&w=256&q=75",
+            "naturalWidth": 256,
+            "naturalHeight": 128,
+            "complete": true,
+            "http": {
+              "status": 200,
+              "contentType": "image/png"
+            }
+          },
+          {
+            "src": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794863808608-akip1vm.webp&w=1920&q=75",
+            "naturalWidth": 675,
+            "naturalHeight": 843,
+            "complete": true,
+            "http": {
+              "status": 200,
+              "contentType": "image/jpeg"
+            }
+          },
+          {
+            "src": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794863808608-akip1vm.webp&w=750&q=75",
+            "naturalWidth": 720,
+            "naturalHeight": 900,
+            "complete": true,
+            "http": {
+              "status": 200,
+              "contentType": "image/jpeg"
+            }
+          },
+          {
+            "src": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794865536509-e9pw4xn.webp&w=384&q=75",
+            "naturalWidth": 359,
+            "naturalHeight": 449,
+            "complete": true,
+            "http": {
+              "status": 200,
+              "contentType": "image/jpeg"
+            }
+          },
+          {
+            "src": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794846519714-2c06iep.webp&w=384&q=75",
+            "naturalWidth": 359,
+            "naturalHeight": 179,
+            "complete": true,
+            "http": {
+              "status": 200,
+              "contentType": "image/jpeg"
+            }
+          },
+          {
+            "src": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794846519714-2c06iep.webp&w=16&q=75",
+            "naturalWidth": 16,
+            "naturalHeight": 8,
+            "complete": true,
+            "http": {
+              "status": 200,
+              "contentType": "image/jpeg"
+            }
+          },
+          {
+            "src": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794846541192-h22fabc.webp&w=16&q=75",
+            "naturalWidth": 16,
+            "naturalHeight": 8,
+            "complete": true,
+            "http": {
+              "status": 200,
+              "contentType": "image/jpeg"
+            }
+          },
+          {
+            "src": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794846558459-v7scoel.webp&w=16&q=75",
+            "naturalWidth": 16,
+            "naturalHeight": 8,
+            "complete": true,
+            "http": {
+              "status": 200,
+              "contentType": "image/jpeg"
+            }
+          }
+        ],
+        "enquireHref": "/?product=dfafb3c8-1f84-4fca-923e-f5c7fca88ef2&productName=QA+Pilot+-+Single+Finish+Showpiece#contact"
+      }
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": []
+}

@@ -1,0 +1,53 @@
+{
+  "viewport": 1440,
+  "products": [
+    {
+      "name": "QA Pilot - Single Finish Showpiece",
+      "cardCount": 1,
+      "cardHref": "/home-decor/qa-pilot-single-finish-showpiece",
+      "chips": [],
+      "cardImage": {
+        "src": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794895019813-o8im4mm.webp&w=384&q=75",
+        "naturalWidth": 359,
+        "naturalHeight": 449,
+        "complete": true,
+        "http": {
+          "status": 200,
+          "contentType": "image/jpeg"
+        }
+      },
+      "enquireHref": "/?product=dfafb3c8-1f84-4fca-923e-f5c7fca88ef2&productName=QA+Pilot+-+Single+Finish+Showpiece&variant=c49ae7fb-229b-46cc-9195-fbc6137df362&finish=Antique+Brass&sku=QA-PILOT-B01#contact",
+      "detail": {
+        "url": "http://localhost:3000/home-decor/qa-pilot-single-finish-showpiece?variant=c49ae7fb-229b-46cc-9195-fbc6137df362",
+        "h1": "QA Pilot - Single Finish Showpiece",
+        "variantSelectorCount": 1,
+        "chips": [
+          {
+            "label": "Antique Brass",
+            "checked": "true",
+            "title": "Antique Brass",
+            "img": null
+          }
+        ],
+        "finishText": "Antique Brass",
+        "skuText": "· SKU: QA-PILOT-B01",
+        "quoteHref": "/?product=dfafb3c8-1f84-4fca-923e-f5c7fca88ef2&productName=QA+Pilot+-+Single+Finish+Showpiece&variant=c49ae7fb-229b-46cc-9195-fbc6137df362&finish=Antique+Brass&sku=QA-PILOT-B01#contact",
+        "images": [
+          {
+            "src": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794895019813-o8im4mm.webp&w=750&q=75",
+            "naturalWidth": 720,
+            "naturalHeight": 900,
+            "complete": true,
+            "http": {
+              "status": 200,
+              "contentType": "image/jpeg"
+            }
+          }
+        ],
+        "whatsappHref": null
+      }
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": []
+}

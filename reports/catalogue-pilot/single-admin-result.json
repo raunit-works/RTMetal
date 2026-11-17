@@ -1,0 +1,36 @@
+{
+  "before": [],
+  "toggleWasChecked": false,
+  "initialRowCountAfterEnable": 1,
+  "afterFill": [
+    {
+      "name": "Antique Brass",
+      "sku": "QA-PILOT-B01",
+      "stock": "4",
+      "active": true,
+      "isDefault": true,
+      "imageCount": 1,
+      "images": [
+        "https://rbucefvtkiohmaugvkyz.supabase.co/storage/v1/object/public/catalog-images/uploads/1794895019813-o8im4mm.webp"
+      ]
+    }
+  ],
+  "uploadErrorText": 0,
+  "defaultChecked": true,
+  "activeChecked": true,
+  "saveMessage": "Product, finishes and gallery saved successfully.",
+  "afterReopen": [
+    {
+      "name": "Antique Brass",
+      "sku": "QA-PILOT-B01",
+      "stock": "4",
+      "active": true,
+      "isDefault": true,
+      "imageCount": 1,
+      "images": [
+        "https://rbucefvtkiohmaugvkyz.supabase.co/storage/v1/object/public/catalog-images/uploads/1794895019813-o8im4mm.webp"
+      ]
+    }
+  ],
+  "reopenEnabled": true
+}

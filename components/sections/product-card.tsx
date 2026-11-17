@@ -4,13 +4,23 @@ import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Heart, Eye, Star, X, MessageCircle, ArrowRight, Loader2 } from 'lucide-react';
+import { Heart, Eye, Star, X, MessageCircle, ArrowRight, Loader2, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import type { Product, ProductImage } from '@/lib/types';
+import type { Product, ProductImage, ProductOptionValue } from '@/lib/types';
 import { getProductGalleryImages, sortGalleryImages } from '@/lib/supabase/product-gallery';
+import { getDefaultVariant, getVariantPrimaryImage, sortProductVariants } from '@/lib/supabase/product-variants';
+import {
+  buildProductEnquiryHref,
+  buildProductEnquiryMessage,
+} from '@/lib/product-variants/enquiry';
+import {
+  getCompactFinishLabel,
+  getFinishSwatchVisual,
+} from '@/lib/product-variants/swatch';
+import { normalizeImageSrc } from '@/lib/utils';
 
-import { getHomeDecorWhatsAppLink, isHomeDecorWhatsappVerified, getMetalCoatingWhatsAppLink } from '@/lib/site';
+import { getHomeDecorWhatsAppLink, getMetalCoatingWhatsAppLink } from '@/lib/site';
 
 import { useWishlist } from '@/components/providers/wishlist-provider';
 
@@ -19,17 +29,102 @@ interface ProductCardProps {
   division?: 'home_decor' | 'metal_services';
 }
 
+function FinishSwatchPreview({
+  finishName,
+  value,
+}: {
+  finishName: string;
+  value?: ProductOptionValue;
+}) {
+  const visual = getFinishSwatchVisual(finishName, value);
+
+  if (visual.imageUrl) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={visual.imageUrl}
+        alt=""
+        aria-hidden="true"
+        loading="lazy"
+        className="h-full w-full rounded-full object-cover"
+      />
+    );
+  }
+
+  return (
+    <span
+      aria-hidden="true"
+      className="block h-full w-full rounded-full"
+      style={{ background: visual.background }}
+    />
+  );
+}
+
 export function ProductCard({ product, division = 'home_decor' }: ProductCardProps) {
   const [quickView, setQuickView] = useState(false);
   const [isPending, setIsPending] = useState(false);
   const { isInWishlist, toggleItem } = useWishlist();
+  // Only the customer's explicit choice is stored. The effective selection is
+  // derived, so the configured default finish is active on the first render
+  // and a stale id from a previous product can never be reused.
+  const [chosenVariantId, setChosenVariantId] = useState<string | undefined>(undefined);
+
+  const activeVariants = useMemo(
+    () => sortProductVariants((product.variants ?? []).filter((variant) => variant.isActive)),
+    [product.variants]
+  );
+  const defaultVariant = useMemo(
+    () => getDefaultVariant(activeVariants),
+    [activeVariants]
+  );
+  const selectedVariant = useMemo(() => {
+    const chosen = chosenVariantId
+      ? activeVariants.find((variant) => variant.id === chosenVariantId)
+      : undefined;
+    return chosen ?? defaultVariant;
+  }, [chosenVariantId, activeVariants, defaultVariant]);
+
+  const finishOption = useMemo(
+    () =>
+      (product.options ?? []).find((option) => option.slug === 'finish') ??
+      (product.options ?? [])[0],
+    [product.options]
+  );
+  const finishValuesByVariantId = useMemo(() => {
+    const values = new Map<string, ProductOptionValue>();
+    for (const variant of activeVariants) {
+      const value = finishOption?.values.find(
+        (optionValue) => optionValue.id === variant.optionValueId
+      );
+      if (value) values.set(variant.id, value);
+    }
+    return values;
+  }, [activeVariants, finishOption]);
 
   const productSlug = product.slug || product.id;
   const isSaved = isInWishlist(product.id) || (product.slug ? isInWishlist(product.slug) : false);
   const productDetailLink = division === 'metal_services' ? `/metal-coating/product/${productSlug}` : `/home-decor/${productSlug}`;
+  const enquiryWhatsAppMessage = useMemo(
+    () => buildProductEnquiryMessage(product.name, selectedVariant),
+    [product.name, selectedVariant]
+  );
+  const productEnquiryHref = useMemo(
+    () =>
+      buildProductEnquiryHref({
+        division: division === 'metal_services' ? 'metal_services' : 'home_decor',
+        productId: product.id,
+        productName: product.name,
+        variantId: selectedVariant?.id,
+        finishName: selectedVariant?.finishName,
+        sku: selectedVariant?.sku,
+      }),
+    [division, product.id, product.name, selectedVariant]
+  );
+  const productImageFallback = normalizeImageSrc(product.image) || '/images/placeholder.png';
+
   const productWhatsAppUrl = division === 'metal_services'
-    ? getMetalCoatingWhatsAppLink(`Hello RTMETALCOATING, I am interested in ${product.name}. Please share more details.`)
-    : getHomeDecorWhatsAppLink(`Hello RTMETALCOATING, I am interested in ${product.name}. Please share more details.`);
+    ? getMetalCoatingWhatsAppLink(enquiryWhatsAppMessage)
+    : getHomeDecorWhatsAppLink(enquiryWhatsAppMessage);
 
   const handleWishlistToggle = async (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -46,16 +141,21 @@ export function ProductCard({ product, division = 'home_decor' }: ProductCardPro
 
   return (
     <>
-      <div className="group relative flex h-full flex-col">
+      <div
+        className="group relative flex h-full flex-col"
+        data-testid="product-card"
+        data-product-id={product.id}
+      >
         <div className="relative aspect-[4/5] shrink-0 overflow-hidden rounded-2xl bg-muted">
           <Image
-            src={product.image}
+            src={normalizeImageSrc(
+              getVariantPrimaryImage(selectedVariant) || product.cardImage || product.image
+            ) || productImageFallback}
             alt={product.name}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
             className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
           />
-
           {product.badge && (
             <span
               className={cn(
@@ -87,7 +187,7 @@ export function ProductCard({ product, division = 'home_decor' }: ProductCardPro
             )}
           </button>
 
-<div className="absolute inset-x-3 bottom-3 flex translate-y-0 gap-2 opacity-100 transition-all duration-500 sm:translate-y-3 sm:opacity-0 sm:group-hover:translate-y-0 sm:group-hover:opacity-100 sm:group-focus-within:translate-y-0 sm:group-focus-within:opacity-100">
+          <div className="absolute inset-x-3 bottom-3 flex translate-y-0 gap-2 opacity-100 transition-all duration-500 sm:translate-y-3 sm:opacity-0 sm:group-hover:translate-y-0 sm:group-hover:opacity-100 sm:group-focus-within:translate-y-0 sm:group-focus-within:opacity-100">
             <Button
               asChild
               size="sm"
@@ -107,8 +207,8 @@ export function ProductCard({ product, division = 'home_decor' }: ProductCardPro
           </div>
         </div>
 
-        <div className="mt-3 flex flex-1 flex-col gap-3 sm:mt-4 sm:flex-row sm:items-start sm:justify-between sm:gap-2">
-          <div className="min-w-0 sm:flex-1">
+        <div className="mt-3 flex flex-1 flex-col gap-3 sm:mt-4 sm:flex-row sm:flex-wrap sm:items-start sm:justify-between sm:gap-2">
+          <div className="order-1 min-w-0 sm:flex-1 sm:basis-0">
             <Link href={productDetailLink} className="block">
               <h3 className="line-clamp-2 min-h-[2.8em] text-[13px] font-semibold leading-[1.4] transition-colors hover:text-gold-deep sm:line-clamp-none sm:min-h-0 sm:text-sm sm:leading-snug">
                 {product.name}
@@ -116,38 +216,134 @@ export function ProductCard({ product, division = 'home_decor' }: ProductCardPro
             </Link>
             <div className="mt-1 hidden items-center gap-1 sm:flex">
               <Star className="h-3 w-3 fill-gold text-gold" />
-              <span className="text-xs text-muted-foreground">
-                {product.rating} Â· {product.category.replace('-', ' ')}
-              </span>
             </div>
           </div>
-          <div className="mt-auto w-full sm:mt-0 sm:w-auto sm:shrink-0 sm:text-right">
-            {productWhatsAppUrl ? (
+          {activeVariants.length >= 2 && (
+            <div className="order-2 w-full min-w-0 sm:order-3 sm:basis-full">
+                <div className="flex min-w-0 items-center justify-between gap-2">
+                  <span className="shrink-0 text-[10px] font-semibold uppercase tracking-[0.16em] text-gold-deep">
+                    Finish
+                  </span>
+                  <span
+                    data-testid="selected-finish-name"
+                    aria-live="polite"
+                    className="min-w-0 truncate text-right text-[10px] font-medium text-muted-foreground"
+                  >
+                    {selectedVariant?.finishName}
+                  </span>
+                </div>
+
+                <div
+                  role="group"
+                  aria-label={`Select a finish for ${product.name}`}
+                  data-testid="finish-swatches"
+                  className="mt-1.5 flex w-full touch-pan-x flex-row flex-nowrap items-start gap-2.5 overflow-x-auto overflow-y-hidden overscroll-x-contain py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                >
+                  {activeVariants.map((variant, index) => {
+                    const value = finishValuesByVariantId.get(variant.id);
+                    const finishName =
+                      value?.name || variant.finishName || `Finish ${index + 1}`;
+                    const compactLabel = getCompactFinishLabel(finishName);
+                    const isSelected = selectedVariant?.id === variant.id;
+                    const isAvailable =
+                      variant.availability !== 'out_of_stock' &&
+                      variant.stockQuantity !== 0;
+                    const variantImage = normalizeImageSrc(getVariantPrimaryImage(variant));
+
+                    return (
+                      <button
+                        key={variant.id}
+                        type="button"
+                        aria-pressed={isSelected}
+                        aria-label={`${finishName}${isAvailable ? '' : ' (unavailable)'}`}
+                        title={finishName}
+                        data-variant-id={variant.id}
+                        data-variant-sku={variant.sku ?? undefined}
+                        data-variant-finish={finishName}
+                        data-variant-image={variantImage ?? undefined}
+                        data-variant-available={isAvailable}
+                        onClick={() => setChosenVariantId(variant.id)}
+                        className={cn(
+                          'group/finish flex w-12 shrink-0 flex-col items-center gap-1 rounded-md py-0.5 text-center transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+                          isAvailable ? 'opacity-100' : 'opacity-50'
+                        )}
+                      >
+                        <span
+                          className={cn(
+                            'relative flex h-[25px] w-[25px] items-center justify-center rounded-full border transition-transform duration-200',
+                            isSelected
+                              ? 'border-gold-deep ring-2 ring-gold/45 ring-offset-1 ring-offset-background'
+                              : 'border-border/80 group-hover/finish:scale-105 group-focus-visible/finish:scale-105'
+                          )}
+                        >
+                          <span className="absolute inset-[2px] overflow-hidden rounded-full">
+                            <FinishSwatchPreview finishName={finishName} value={value} />
+                          </span>
+                          {!isAvailable && (
+                            <span
+                              aria-hidden="true"
+                              className="absolute inset-[2px] rounded-full bg-background/45"
+                            />
+                          )}
+                          {isSelected && (
+                            <Check
+                              aria-hidden="true"
+                              strokeWidth={3}
+                              className="relative z-10 h-3 w-3 text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]"
+                            />
+                          )}
+                        </span>
+                        <span
+                          className={cn(
+                            'w-full truncate text-[10px] leading-none',
+                            isSelected
+                              ? 'font-semibold text-foreground'
+                              : 'font-medium text-muted-foreground'
+                          )}
+                        >
+                          {compactLabel}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          <div className="order-3 mt-auto w-full sm:order-2 sm:mt-0 sm:w-auto sm:shrink-0 sm:text-right">
+            <div className="flex items-center justify-end gap-2">
+              {productWhatsAppUrl && (
+                <Button
+                  asChild
+                  variant="outline"
+                  size="icon"
+                  className="h-10 w-10 rounded-full border-[#25D366]/40 text-[#25D366]"
+                >
+                  <a
+                    href={productWhatsAppUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Enquire on WhatsApp"
+                    title="Enquire on WhatsApp"
+                  >
+                    <MessageCircle className="h-4 w-4" />
+                  </a>
+                </Button>
+              )}
               <Button
                 asChild
-                className="h-auto min-h-[44px] w-full rounded-full bg-[#25D366] px-4 text-sm text-ink hover:bg-[#25D366]/90 sm:h-10 sm:min-h-0 sm:w-auto"
+                className="h-auto min-h-[44px] w-full rounded-full px-4 text-sm sm:h-10 sm:min-h-0 sm:w-auto"
               >
-                <a
-                  href={productWhatsAppUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <Link href={productEnquiryHref}>
                   Enquire Now
-                </a>
+                  <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                </Link>
               </Button>
-            ) : (
-              <Button
-                disabled
-                className="h-auto min-h-[44px] w-full cursor-not-allowed rounded-full border border-[#25D366]/25 bg-[#25D366]/10 px-4 text-sm text-muted-foreground disabled:opacity-100 sm:h-10 sm:min-h-0 sm:w-auto"
-              >
-                Enquire Now
-              </Button>
-            )}
+            </div>
           </div>
         </div>
       </div>
 
-<AnimatePresence>
+      <AnimatePresence>
         {quickView && (
           <QuickViewModal product={product} division={division} onClose={() => setQuickView(false)} />
         )}
@@ -177,6 +373,11 @@ function QuickViewModal({
   const quickViewWhatsAppUrl = division === 'metal_services'
     ? getMetalCoatingWhatsAppLink(whatsappMsg)
     : getHomeDecorWhatsAppLink(whatsappMsg);
+  const quickViewEnquiryHref = buildProductEnquiryHref({
+    division: division === 'metal_services' ? 'metal_services' : 'home_decor',
+    productId: product.id,
+    productName: product.name,
+  });
 
   const productIdRef = useRef(product.id);
   const requestIdRef = useRef(0);
@@ -186,21 +387,29 @@ function QuickViewModal({
   const [selectedImage, setSelectedImage] = useState<ProductImage | null>(null);
 
   const buildGalleryItems = useMemo(() => {
+    const mainImageUrl = product.cardImage || product.image;
     const mainImage: ProductImage = {
       id: `${product.id}::main`,
       productId: product.id,
-      imageUrl: product.image,
+      imageUrl: mainImageUrl,
       altText: product.name,
       sortOrder: -1,
       isPrimary: true,
     };
 
     const additionalImages = (product.images ?? galleryImages).filter(
-      (image) => Boolean(image.imageUrl) && image.imageUrl !== product.image
+      (image) => Boolean(image.imageUrl) && image.imageUrl !== mainImageUrl
     );
 
     return sortGalleryImages([mainImage, ...additionalImages]);
-  }, [product.id, product.image, product.name, product.images, galleryImages]);
+  }, [
+    product.id,
+    product.cardImage,
+    product.image,
+    product.name,
+    product.images,
+    galleryImages,
+  ]);
 
   const additionalImages = buildGalleryItems.slice(1);
 
@@ -305,7 +514,7 @@ function QuickViewModal({
           role="dialog"
           aria-modal="true"
           aria-label={`Quick view: ${product.name}`}
-  /* Stop click from bubbling through to the backdrop */
+          /* Stop click from bubbling through to the backdrop */
           onClick={(e) => e.stopPropagation()}
           className="relative w-full max-w-3xl max-h-[90dvh] overflow-y-auto rounded-3xl bg-background shadow-[0_40px_100px_-10px_rgba(0,0,0,0.4)] ring-1 ring-border/30"
         >
@@ -322,7 +531,7 @@ function QuickViewModal({
             {/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Left â€” Large Product Image â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
             <div className="relative min-h-[260px] sm:min-h-[500px]">
               <Image
-                src={selectedImage?.imageUrl ?? product.image}
+                src={normalizeImageSrc(selectedImage?.imageUrl ?? (product.cardImage || product.image)) || '/images/placeholder.png'}
                 alt={selectedImage?.altText ?? product.name}
                 fill
                 sizes="(max-width: 1024px) 100vw, 640px"
@@ -456,7 +665,7 @@ function QuickViewModal({
                           )}
                         >
                           <Image
-                            src={image.imageUrl}
+                            src={normalizeImageSrc(image.imageUrl) || '/images/placeholder.png'}
                             alt={image.altText || `Image ${index + 1} of ${product.name}`}
                             fill
                             sizes="(max-width: 768px) 80px, (max-width: 1024px) 120px, 150px"
@@ -472,11 +681,23 @@ function QuickViewModal({
 
               {/* â”€â”€ Action buttons â”€â”€ */}
               <div className="flex flex-col gap-3">
+                <Button
+                  asChild
+                  size="lg"
+                  className="w-full rounded-full"
+                >
+                  <Link href={quickViewEnquiryHref} onClick={onClose}>
+                    Enquire Now
+                    <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                  </Link>
+                </Button>
+
                 {quickViewWhatsAppUrl ? (
                   <Button
                     asChild
+                    variant="outline"
                     size="lg"
-                    className="w-full rounded-full bg-[#25D366] text-ink shadow-sm hover:bg-[#22c15e] focus-visible:ring-[#25D366]/50"
+                    className="w-full rounded-full border-[#25D366]/40 text-[#25D366]"
                   >
                     <a
                       href={quickViewWhatsAppUrl}
@@ -487,18 +708,9 @@ function QuickViewModal({
                       Enquire via WhatsApp
                     </a>
                   </Button>
-                ) : (
-                  <Button
-                    disabled
-                    size="lg"
-                    className="w-full cursor-not-allowed rounded-full border border-[#25D366]/25 bg-[#25D366]/10 text-muted-foreground disabled:opacity-100"
-                  >
-                    <MessageCircle className="mr-2 h-4 w-4" />
-                    Enquire via WhatsApp
-                  </Button>
-                )}
+                ) : null}
 
-<Button
+                <Button
                   asChild
                   variant="outline"
                   size="lg"

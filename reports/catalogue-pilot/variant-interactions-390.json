@@ -1,0 +1,177 @@
+{
+  "width": 390,
+  "products": [
+    {
+      "name": "QA Pilot - Long Finish Name Showpiece",
+      "cardCount": 1,
+      "chipCount": 2,
+      "layout": {
+        "cardWidth": 167,
+        "cardRight": 187,
+        "chips": [
+          {
+            "finish": "Hand-Patinated Antique Bronze with Satin Highlight",
+            "pressed": "true",
+            "width": 167,
+            "right": 187,
+            "overflowsCard": false,
+            "labelClipped": false
+          },
+          {
+            "finish": "Mirror-Polished Antique Brass with Hand-Brushed Edge",
+            "pressed": "false",
+            "width": 167,
+            "right": 187,
+            "overflowsCard": false,
+            "labelClipped": false
+          }
+        ],
+        "pageScrollWidth": 390,
+        "pageClientWidth": 390
+      },
+      "initialSelected": "Hand-Patinated Antique Bronze with Satin Highlight",
+      "selectionSequence": [
+        {
+          "clicked": "Hand-Patinated Antique Bronze with Satin Highlight",
+          "variantId": "536ee9d9-4489-48b5-a31e-c660b261a8c3",
+          "pressed": true,
+          "selectedAnywhere": 1,
+          "imageSrc": "/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794895286626-7vn061e.webp&w=3840&q=75",
+          "enquireHref": "/?product=c4be9a2d-d8c4-4bfa-abaa-cbc6cea15cfc&productName=QA+Pilot+-+Long+Finish+Name+Showpiece&variant=536ee9d9-4489-48b5-a31e-c660b261a8c3&finish=Hand-Patinated+Antique+Bronze+with+Satin+Highlight&sku=QA-PILOT-C01#contact"
+        },
+        {
+          "clicked": "Mirror-Polished Antique Brass with Hand-Brushed Edge",
+          "variantId": "e69cc9b5-eb6f-4eb1-8299-f12ce36c5835",
+          "pressed": true,
+          "selectedAnywhere": 1,
+          "imageSrc": "/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794895288105-wfcpu34.webp&w=3840&q=75",
+          "enquireHref": "/?product=c4be9a2d-d8c4-4bfa-abaa-cbc6cea15cfc&productName=QA+Pilot+-+Long+Finish+Name+Showpiece&variant=e69cc9b5-eb6f-4eb1-8299-f12ce36c5835&finish=Mirror-Polished+Antique+Brass+with+Hand-Brushed+Edge&sku=QA-PILOT-C02#contact"
+        }
+      ],
+      "detail": {
+        "h1": "QA Pilot - Long Finish Name Showpiece",
+        "radios": 2,
+        "initialFinish": "Hand-Patinated Antique Bronze with Satin Highlight",
+        "sequence": [
+          {
+            "clicked": "Hand-Patinated Antique Bronze with Satin Highlight",
+            "checked": true,
+            "checkedCount": 1,
+            "finishText": "Hand-Patinated Antique Bronze with Satin Highlight",
+            "skuText": "· SKU: QA-PILOT-C01",
+            "imageSrc": "/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794895286626-7vn061e.webp&w=3840&q=75",
+            "quoteHref": "/?product=c4be9a2d-d8c4-4bfa-abaa-cbc6cea15cfc&productName=QA+Pilot+-+Long+Finish+Name+Showpiece&variant=536ee9d9-4489-48b5-a31e-c660b261a8c3&finish=Hand-Patinated+Antique+Bronze+with+Satin+Highlight&sku=QA-PILOT-C01#contact"
+          },
+          {
+            "clicked": "Mirror-Polished Antique Brass with Hand-Brushed Edge",
+            "checked": true,
+            "checkedCount": 1,
+            "finishText": "Mirror-Polished Antique Brass with Hand-Brushed Edge",
+            "skuText": "· SKU: QA-PILOT-C02",
+            "imageSrc": "/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794895288105-wfcpu34.webp&w=3840&q=75",
+            "quoteHref": "/?product=c4be9a2d-d8c4-4bfa-abaa-cbc6cea15cfc&productName=QA+Pilot+-+Long+Finish+Name+Showpiece&variant=e69cc9b5-eb6f-4eb1-8299-f12ce36c5835&finish=Mirror-Polished+Antique+Brass+with+Hand-Brushed+Edge&sku=QA-PILOT-C02#contact"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Ashok Stambh – Premium Decorative Showpiece",
+      "cardCount": 1,
+      "chipCount": 3,
+      "layout": {
+        "cardWidth": 167,
+        "cardRight": 187,
+        "chips": [
+          {
+            "finish": "Gold",
+            "pressed": "true",
+            "width": 64,
+            "right": 84,
+            "overflowsCard": false,
+            "labelClipped": false
+          },
+          {
+            "finish": "Silver",
+            "pressed": "false",
+            "width": 69,
+            "right": 158,
+            "overflowsCard": false,
+            "labelClipped": false
+          },
+          {
+            "finish": "Antique Bronze",
+            "pressed": "false",
+            "width": 119,
+            "right": 139,
+            "overflowsCard": false,
+            "labelClipped": false
+          }
+        ],
+        "pageScrollWidth": 390,
+        "pageClientWidth": 390
+      },
+      "initialSelected": "Gold",
+      "selectionSequence": [
+        {
+          "clicked": "Gold",
+          "variantId": "240e9e7d-3b7a-41a2-84c6-cd24d48a31f9",
+          "pressed": true,
+          "selectedAnywhere": 1,
+          "imageSrc": "/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794806565920-vrpjo4v.webp&w=3840&q=75",
+          "enquireHref": "/?product=e01e4bdc-89a8-46f7-beef-8ab4a3be6779&productName=Ashok+Stambh+%E2%80%93+Premium+Decorative+Showpiece&variant=240e9e7d-3b7a-41a2-84c6-cd24d48a31f9&finish=Gold&sku=ASHOK-STG-GLD#contact"
+        },
+        {
+          "clicked": "Silver",
+          "variantId": "e6bd5992-e884-4363-ae64-a0bf2e05d589",
+          "pressed": true,
+          "selectedAnywhere": 1,
+          "imageSrc": "/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794806592114-jw6j928.webp&w=3840&q=75",
+          "enquireHref": "/?product=e01e4bdc-89a8-46f7-beef-8ab4a3be6779&productName=Ashok+Stambh+%E2%80%93+Premium+Decorative+Showpiece&variant=e6bd5992-e884-4363-ae64-a0bf2e05d589&finish=Silver&sku=ASHOK-STG-SLV#contact"
+        },
+        {
+          "clicked": "Antique Bronze",
+          "variantId": "fef5d23d-cc28-44d9-b94c-11155c21272d",
+          "pressed": true,
+          "selectedAnywhere": 1,
+          "imageSrc": "/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794806792198-yxvvnzi.webp&w=3840&q=75",
+          "enquireHref": "/?product=e01e4bdc-89a8-46f7-beef-8ab4a3be6779&productName=Ashok+Stambh+%E2%80%93+Premium+Decorative+Showpiece&variant=fef5d23d-cc28-44d9-b94c-11155c21272d&finish=Antique+Bronze&sku=ASHOK-STG-BRZ#contact"
+        }
+      ],
+      "detail": {
+        "h1": "Ashok Stambh – Premium Decorative Showpiece",
+        "radios": 3,
+        "initialFinish": "Gold",
+        "sequence": [
+          {
+            "clicked": "Gold",
+            "checked": true,
+            "checkedCount": 1,
+            "finishText": "Gold",
+            "skuText": "· SKU: ASHOK-STG-GLD",
+            "imageSrc": "/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794806565920-vrpjo4v.webp&w=3840&q=75",
+            "quoteHref": "/?product=e01e4bdc-89a8-46f7-beef-8ab4a3be6779&productName=Ashok+Stambh+%E2%80%93+Premium+Decorative+Showpiece&variant=240e9e7d-3b7a-41a2-84c6-cd24d48a31f9&finish=Gold&sku=ASHOK-STG-GLD#contact"
+          },
+          {
+            "clicked": "Silver",
+            "checked": true,
+            "checkedCount": 1,
+            "finishText": "Silver",
+            "skuText": "· SKU: ASHOK-STG-SLV",
+            "imageSrc": "/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794806592114-jw6j928.webp&w=3840&q=75",
+            "quoteHref": "/?product=e01e4bdc-89a8-46f7-beef-8ab4a3be6779&productName=Ashok+Stambh+%E2%80%93+Premium+Decorative+Showpiece&variant=e6bd5992-e884-4363-ae64-a0bf2e05d589&finish=Silver&sku=ASHOK-STG-SLV#contact"
+          },
+          {
+            "clicked": "Antique Bronze",
+            "checked": true,
+            "checkedCount": 1,
+            "finishText": "Antique Bronze",
+            "skuText": "· SKU: ASHOK-STG-BRZ",
+            "imageSrc": "/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794806792198-yxvvnzi.webp&w=3840&q=75",
+            "quoteHref": "/?product=e01e4bdc-89a8-46f7-beef-8ab4a3be6779&productName=Ashok+Stambh+%E2%80%93+Premium+Decorative+Showpiece&variant=fef5d23d-cc28-44d9-b94c-11155c21272d&finish=Antique+Bronze&sku=ASHOK-STG-BRZ#contact"
+          }
+        ]
+      }
+    }
+  ],
+  "consoleErrors": []
+}

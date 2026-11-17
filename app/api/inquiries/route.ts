@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import { createSupabaseServerClient } from '@/lib/supabase/server';
+import { validateEnquiryIdentity } from '@/lib/enquiry/validation';
 
 const UUID_REGEX = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
-const EMAIL_REGEX = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 
 export async function POST(request: Request) {
   try {
@@ -17,25 +17,32 @@ export async function POST(request: Request) {
     const rawType = typeof body.inquiry_type === 'string' ? body.inquiry_type.trim() : 'general';
     const rawProductId = typeof body.product_id === 'string' ? body.product_id.trim() : null;
     const rawServiceId = typeof body.service_id === 'string' ? body.service_id.trim() : null;
+    const rawVariantId = typeof body.variant_id === 'string' ? body.variant_id.trim() : null;
 
     // 2. Server-side Input Validation
-    if (!rawName || rawName.length < 2 || rawName.length > 100) {
+    const identity = validateEnquiryIdentity({
+      name: rawName,
+      phone: rawPhone,
+      email: rawEmail,
+    });
+
+    if (identity.errors.name) {
       return NextResponse.json(
-        { success: false, message: 'Please provide a valid name (2 to 100 characters).' },
+        { success: false, message: identity.errors.name },
         { status: 400 }
       );
     }
 
-    if (!rawEmail || !EMAIL_REGEX.test(rawEmail) || rawEmail.length > 255) {
+    if (identity.errors.phone) {
       return NextResponse.json(
-        { success: false, message: 'Please provide a valid email address.' },
+        { success: false, message: identity.errors.phone },
         { status: 400 }
       );
     }
 
-    if (rawPhone && rawPhone.length > 20) {
+    if (identity.errors.email) {
       return NextResponse.json(
-        { success: false, message: 'Phone number exceeds maximum length.' },
+        { success: false, message: identity.errors.email },
         { status: 400 }
       );
     }
@@ -119,6 +126,64 @@ export async function POST(request: Request) {
       productNameSnapshot = product.name;
     }
 
+    // 4b. Variant Lookup & Server Snapshot Generation
+    let validVariantId: string | null = null;
+    let variantNameSnapshot: string | null = null;
+    let variantSkuSnapshot: string | null = null;
+
+    if (rawVariantId) {
+      if (!UUID_REGEX.test(rawVariantId)) {
+        return NextResponse.json(
+          { success: false, message: 'Invalid finish ID format.' },
+          { status: 400 }
+        );
+      }
+
+      if (!validProductId) {
+        return NextResponse.json(
+          { success: false, message: 'A selected finish must reference a product.' },
+          { status: 400 }
+        );
+      }
+
+      const { data: variant, error: variantErr } = await supabase
+        .from('product_variants')
+        .select('id, product_id, sku, is_active')
+        .eq('id', rawVariantId)
+        .maybeSingle();
+
+      if (
+        variantErr ||
+        !variant ||
+        !variant.is_active ||
+        variant.product_id !== validProductId
+      ) {
+        return NextResponse.json(
+          { success: false, message: 'Referenced finish not found or unavailable.' },
+          { status: 400 }
+        );
+      }
+
+      validVariantId = variant.id;
+      variantSkuSnapshot = variant.sku || null;
+
+      const { data: variantOptionLink } = await supabase
+        .from('product_variant_options')
+        .select('option_value_id')
+        .eq('variant_id', validVariantId)
+        .limit(1)
+        .maybeSingle();
+
+      if (variantOptionLink?.option_value_id) {
+        const { data: optionValue } = await supabase
+          .from('product_option_values')
+          .select('name')
+          .eq('id', variantOptionLink.option_value_id)
+          .maybeSingle();
+        variantNameSnapshot = optionValue?.name || null;
+      }
+    }
+
     // 5. Service Lookup & Server Snapshot Generation
     let validServiceId: string | null = null;
     let serviceNameSnapshot: string | null = null;
@@ -149,23 +214,32 @@ export async function POST(request: Request) {
     }
 
     // 6. Secure Database Insertion (Enforcing forced server values)
-    const { error: insertErr } = await supabase.from('inquiries').insert([
-      {
-        user_id: userId,
-        name: rawName,
-        email: rawEmail,
-        phone: rawPhone || null,
-        message: rawMessage,
-        inquiry_type: rawType,
-        division: rawDivision,
-        product_id: validProductId,
-        service_id: validServiceId,
-        product_name_snapshot: productNameSnapshot,
-        service_name_snapshot: serviceNameSnapshot,
-        status: 'new',
-        admin_notes: null,
-      },
-    ]);
+    const insertPayload: Record<string, unknown> = {
+      user_id: userId,
+      name: identity.name,
+      email: identity.email,
+      phone: identity.phone,
+      message: rawMessage,
+      inquiry_type: rawType,
+      division: rawDivision,
+      product_id: validProductId,
+      service_id: validServiceId,
+      product_name_snapshot: productNameSnapshot,
+      service_name_snapshot: serviceNameSnapshot,
+      status: 'new',
+      admin_notes: null,
+    };
+
+    // Variant columns are additive. Only send them when a validated finish is
+    // present so legacy deployments keep accepting enquiries before the
+    // variant migration has been applied.
+    if (validVariantId) {
+      insertPayload.variant_id = validVariantId;
+      insertPayload.variant_name_snapshot = variantNameSnapshot;
+      insertPayload.variant_sku_snapshot = variantSkuSnapshot;
+    }
+
+    const { error: insertErr } = await supabase.from('inquiries').insert([insertPayload]);
 
     if (insertErr) {
       console.error('[API Error] Inquiry insert failed:', insertErr.message);

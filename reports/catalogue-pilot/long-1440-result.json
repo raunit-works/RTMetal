@@ -1,0 +1,74 @@
+{
+  "viewport": 1440,
+  "products": [
+    {
+      "name": "QA Pilot - Long Finish Name Showpiece",
+      "cardCount": 1,
+      "cardHref": "/home-decor/qa-pilot-long-finish-name-showpiece",
+      "chips": [
+        {
+          "id": "536ee9d9-4489-48b5-a31e-c660b261a8c3",
+          "sku": "QA-PILOT-C01",
+          "finish": "Hand-Patinated Antique Bronze with Satin Highlight",
+          "pressed": "true",
+          "available": "true"
+        },
+        {
+          "id": "e69cc9b5-eb6f-4eb1-8299-f12ce36c5835",
+          "sku": "QA-PILOT-C02",
+          "finish": "Mirror-Polished Antique Brass with Hand-Brushed Edge",
+          "pressed": "false",
+          "available": "true"
+        }
+      ],
+      "cardImage": {
+        "src": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794895286626-7vn061e.webp&w=384&q=75",
+        "naturalWidth": 359,
+        "naturalHeight": 449,
+        "complete": true,
+        "http": {
+          "status": 200,
+          "contentType": "image/jpeg"
+        }
+      },
+      "enquireHref": "/?product=c4be9a2d-d8c4-4bfa-abaa-cbc6cea15cfc&productName=QA+Pilot+-+Long+Finish+Name+Showpiece&variant=536ee9d9-4489-48b5-a31e-c660b261a8c3&finish=Hand-Patinated+Antique+Bronze+with+Satin+Highlight&sku=QA-PILOT-C01#contact",
+      "detail": {
+        "url": "http://localhost:3000/home-decor/qa-pilot-long-finish-name-showpiece?variant=536ee9d9-4489-48b5-a31e-c660b261a8c3",
+        "h1": "QA Pilot - Long Finish Name Showpiece",
+        "variantSelectorCount": 1,
+        "chips": [
+          {
+            "label": "Hand-Patinated Antique Bronze with Satin Highlight",
+            "checked": "true",
+            "title": "Hand-Patinated Antique Bronze with Satin Highlight",
+            "img": null
+          },
+          {
+            "label": "Mirror-Polished Antique Brass with Hand-Brushed Edge",
+            "checked": "false",
+            "title": "Mirror-Polished Antique Brass with Hand-Brushed Edge",
+            "img": null
+          }
+        ],
+        "finishText": "Hand-Patinated Antique Bronze with Satin Highlight",
+        "skuText": "· SKU: QA-PILOT-C01",
+        "quoteHref": "/?product=c4be9a2d-d8c4-4bfa-abaa-cbc6cea15cfc&productName=QA+Pilot+-+Long+Finish+Name+Showpiece&variant=536ee9d9-4489-48b5-a31e-c660b261a8c3&finish=Hand-Patinated+Antique+Bronze+with+Satin+Highlight&sku=QA-PILOT-C01#contact",
+        "images": [
+          {
+            "src": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794895286626-7vn061e.webp&w=750&q=75",
+            "naturalWidth": 720,
+            "naturalHeight": 900,
+            "complete": true,
+            "http": {
+              "status": 200,
+              "contentType": "image/jpeg"
+            }
+          }
+        ],
+        "whatsappHref": null
+      }
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": []
+}

@@ -31,12 +31,14 @@ import {
   mapServiceRow,
   mapTestimonialRow,
   mapFAQRow,
+  withVariants,
   DatabaseCategoryRow,
   DatabaseProductRow,
   DatabaseServiceRow,
   DatabaseTestimonialRow,
   DatabaseFAQRow,
 } from './supabase/data-mapper';
+import { getPublicVariantsForProducts } from './supabase/product-variants';
 
 // ============================================================================
 // SYNCHRONOUS DATA ACCESS API (Preserves exact backwards compatibility)
@@ -191,7 +193,11 @@ export async function getProductsAsync(
       return [];
     }
 
-    return data.map((row) => mapProductRow(row as unknown as DatabaseProductRow));
+    const mapped = data.map((row) => mapProductRow(row as unknown as DatabaseProductRow));
+    const variantsByProduct = await getPublicVariantsForProducts(
+      mapped.map((product) => product.id)
+    );
+    return mapped.map((product) => withVariants(product, variantsByProduct.get(product.id)));
   } catch (err) {
     return handleFailure('getProductsAsync', err, products, allowStaticFallback);
   }
@@ -227,7 +233,9 @@ export async function getProductBySlugAsync(slug: string, options: GetProductsOp
       return undefined;
     }
 
-    return mapProductRow(data as unknown as DatabaseProductRow);
+    const mapped = mapProductRow(data as unknown as DatabaseProductRow);
+    const variantsByProduct = await getPublicVariantsForProducts([mapped.id]);
+    return withVariants(mapped, variantsByProduct.get(mapped.id));
   } catch (err) {
     return handleFailure(`getProductBySlugAsync(${slug})`, err, getProductBySlug(slug), options.allowStaticFallback ?? true);
   }

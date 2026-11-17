@@ -1,0 +1,17 @@
+{
+  "enquireHref": "/?product=c4be9a2d-d8c4-4bfa-abaa-cbc6cea15cfc&productName=QA+Pilot+-+Long+Finish+Name+Showpiece&variant=e69cc9b5-eb6f-4eb1-8299-f12ce36c5835&finish=Mirror-Polished+Antique+Brass+with+Hand-Brushed+Edge&sku=QA-PILOT-C02#contact",
+  "prefilledMessage": "Hello RTMETALCOATING, I am interested in QA Pilot - Long Finish Name Showpiece · Finish: Mirror-Polished Antique Brass with Hand-Brushed Edge · SKU: QA-PILOT-C02. Please share availability and a quotation.",
+  "submitStatus": 201,
+  "submitBody": {
+    "success": true,
+    "message": "Enquiry submitted successfully"
+  },
+  "successBannerVisible": 1,
+  "leadCountBefore": 1,
+  "leadText": "QA TEST - Catalogue Pilot NEW Home Decor Product Inquiry Email: qa.test+rtmetal@example.com Date: 17/11/2026, 11:50:51 Delete Lead Referenced Context: Product — \"QA Pilot - Long Finish Name Showpiece\" · Finish — \"Mirror-Polished Antique Brass with Hand-Brushed Edge\" (SKU: QA-PILOT-C02) Customer Message: Hello RTMETALCOATING, I am interested in QA Pilot - Long Finish Name Showpiece · Finish: Mirror-Polished Antique Brass with Hand-Brushed Edge · SKU: QA-PILOT-C02. Please share availability and a quotation. Update Status New Contacted In Progress Converted Closed Internal Admin Notes Add Notes No internal notes added yet.",
+  "deleteStatus": 204,
+  "deleteUrl": "https://rbucefvtkiohmaugvkyz.supabase.co/rest/v1/inquiries?id=eq.d97808c2-40e3-4f5c-9fa3-796418a7b775",
+  "deleteDialogAccepted": true,
+  "leadCountAfter": 1,
+  "deleteSuccessBanner": 1
+}
