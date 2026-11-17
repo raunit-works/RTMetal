@@ -26,6 +26,55 @@ export interface ProductImage {
   isPrimary: boolean;
 }
 
+export type SwatchType = 'solid' | 'dual' | 'image';
+
+export interface ProductOptionValue {
+  id: string;
+  optionId: string;
+  name: string;
+  swatchType: SwatchType;
+  swatchColor?: string;
+  swatchColorSecondary?: string;
+  swatchImageUrl?: string;
+  displayOrder: number;
+}
+
+export interface ProductOption {
+  id: string;
+  productId: string;
+  name: string;
+  slug: string;
+  displayOrder: number;
+  values: ProductOptionValue[];
+}
+
+export interface ProductVariantImage {
+  id: string;
+  variantId: string;
+  imageUrl: string;
+  altText?: string;
+  sortOrder: number;
+  isPrimary: boolean;
+}
+
+export type VariantAvailability = 'in_stock' | 'made_to_order' | 'out_of_stock';
+
+export interface ProductVariant {
+  id: string;
+  productId: string;
+  sku?: string;
+  price: number | null;
+  stockQuantity: number | null;
+  availability: VariantAvailability;
+  isActive: boolean;
+  isDefault: boolean;
+  displayOrder: number;
+  optionId?: string;
+  optionValueId?: string;
+  finishName: string;
+  images: ProductVariantImage[];
+}
+
 export interface Product {
   id: string;
   slug: string;
@@ -49,8 +98,14 @@ export interface Product {
   careInstructions?: string;
   isFeatured?: boolean;
   isPublished?: boolean;
+  isPinned?: boolean;
+  pinnedAt?: string | null;
   displayOrder?: number;
   images?: ProductImage[];
+  options?: ProductOption[];
+  variants?: ProductVariant[];
+  hasVariants?: boolean;
+  cardImage?: string;
 }
 
 export interface Service {
@@ -151,7 +206,7 @@ export interface Inquiry {
   id: string;
   userId?: string | null;
   name: string;
-  email: string;
+  email: string | null;
   phone?: string | null;
   message: string;
   inquiryType: InquiryType;
@@ -160,6 +215,9 @@ export interface Inquiry {
   serviceId?: string | null;
   productNameSnapshot?: string | null;
   serviceNameSnapshot?: string | null;
+  variantId?: string | null;
+  variantNameSnapshot?: string | null;
+  variantSkuSnapshot?: string | null;
   status: InquiryStatus;
   adminNotes?: string | null;
   createdAt: string;

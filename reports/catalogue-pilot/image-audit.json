@@ -1,0 +1,213 @@
+{
+  "products": [
+    {
+      "key": "plain",
+      "name": "QA Pilot - Plain Showpiece",
+      "card": [
+        {
+          "finish": null,
+          "src": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794863808608-akip1vm.webp&w=384&q=75",
+          "naturalWidth": 359,
+          "naturalHeight": 449,
+          "http": {
+            "url": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794863808608-akip1vm.webp&w=384&q=75",
+            "status": 200,
+            "contentType": "image/jpeg"
+          }
+        }
+      ],
+      "detail": [
+        {
+          "finish": null,
+          "src": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794863808608-akip1vm.webp&w=750&q=75",
+          "naturalWidth": 720,
+          "naturalHeight": 900,
+          "http": {
+            "url": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794863808608-akip1vm.webp&w=750&q=75",
+            "status": 200,
+            "contentType": "image/jpeg"
+          },
+          "thumbnailCount": 0
+        }
+      ]
+    },
+    {
+      "key": "single",
+      "name": "QA Pilot - Single Finish Showpiece",
+      "card": [
+        {
+          "finish": null,
+          "src": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794895019813-o8im4mm.webp&w=384&q=75",
+          "naturalWidth": 359,
+          "naturalHeight": 449,
+          "http": {
+            "url": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794895019813-o8im4mm.webp&w=384&q=75",
+            "status": 200,
+            "contentType": "image/jpeg"
+          }
+        }
+      ],
+      "detail": [
+        {
+          "finish": "Antique Brass",
+          "src": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794895019813-o8im4mm.webp&w=750&q=75",
+          "naturalWidth": 720,
+          "naturalHeight": 900,
+          "http": {
+            "url": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794895019813-o8im4mm.webp&w=750&q=75",
+            "status": 200,
+            "contentType": "image/jpeg"
+          },
+          "thumbnailCount": 0
+        }
+      ]
+    },
+    {
+      "key": "long",
+      "name": "QA Pilot - Long Finish Name Showpiece",
+      "card": [
+        {
+          "finish": "Hand-Patinated Antique Bronze with Satin Highlight",
+          "src": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794895286626-7vn061e.webp&w=384&q=75",
+          "naturalWidth": 359,
+          "naturalHeight": 449,
+          "http": {
+            "url": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794895286626-7vn061e.webp&w=384&q=75",
+            "status": 200,
+            "contentType": "image/jpeg"
+          }
+        },
+        {
+          "finish": "Mirror-Polished Antique Brass with Hand-Brushed Edge",
+          "src": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794895288105-wfcpu34.webp&w=384&q=75",
+          "naturalWidth": 359,
+          "naturalHeight": 449,
+          "http": {
+            "url": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794895288105-wfcpu34.webp&w=384&q=75",
+            "status": 200,
+            "contentType": "image/jpeg"
+          }
+        }
+      ],
+      "detail": [
+        {
+          "finish": "Hand-Patinated Antique Bronze with Satin Highlight",
+          "src": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794895286626-7vn061e.webp&w=750&q=75",
+          "naturalWidth": 720,
+          "naturalHeight": 900,
+          "http": {
+            "url": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794895286626-7vn061e.webp&w=750&q=75",
+            "status": 200,
+            "contentType": "image/jpeg"
+          },
+          "thumbnailCount": 0
+        },
+        {
+          "finish": "Mirror-Polished Antique Brass with Hand-Brushed Edge",
+          "src": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794895288105-wfcpu34.webp&w=750&q=75",
+          "naturalWidth": 720,
+          "naturalHeight": 900,
+          "http": {
+            "url": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794895288105-wfcpu34.webp&w=750&q=75",
+            "status": 200,
+            "contentType": "image/jpeg"
+          },
+          "thumbnailCount": 0
+        }
+      ]
+    },
+    {
+      "key": "ashok",
+      "name": "Ashok Stambh – Premium Decorative Showpiece",
+      "card": [
+        {
+          "finish": "Gold",
+          "src": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794806565920-vrpjo4v.webp&w=384&q=75",
+          "naturalWidth": 359,
+          "naturalHeight": 539,
+          "http": {
+            "url": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794806565920-vrpjo4v.webp&w=384&q=75",
+            "status": 200,
+            "contentType": "image/jpeg"
+          }
+        },
+        {
+          "finish": "Silver",
+          "src": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794806592114-jw6j928.webp&w=384&q=75",
+          "naturalWidth": 359,
+          "naturalHeight": 539,
+          "http": {
+            "url": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794806592114-jw6j928.webp&w=384&q=75",
+            "status": 200,
+            "contentType": "image/jpeg"
+          }
+        },
+        {
+          "finish": "Antique Bronze",
+          "src": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794806792198-yxvvnzi.webp&w=384&q=75",
+          "naturalWidth": 359,
+          "naturalHeight": 539,
+          "http": {
+            "url": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794806792198-yxvvnzi.webp&w=384&q=75",
+            "status": 200,
+            "contentType": "image/jpeg"
+          }
+        }
+      ],
+      "detail": [
+        {
+          "finish": "Gold",
+          "src": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794806565920-vrpjo4v.webp&w=750&q=75",
+          "naturalWidth": 720,
+          "naturalHeight": 1080,
+          "http": {
+            "url": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794806565920-vrpjo4v.webp&w=750&q=75",
+            "status": 200,
+            "contentType": "image/jpeg"
+          },
+          "thumbnailCount": 0
+        },
+        {
+          "finish": "Silver",
+          "src": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794806592114-jw6j928.webp&w=750&q=75",
+          "naturalWidth": 720,
+          "naturalHeight": 1080,
+          "http": {
+            "url": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794806592114-jw6j928.webp&w=750&q=75",
+            "status": 200,
+            "contentType": "image/jpeg"
+          },
+          "thumbnailCount": 0
+        },
+        {
+          "finish": "Antique Bronze",
+          "src": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794806792198-yxvvnzi.webp&w=750&q=75",
+          "naturalWidth": 720,
+          "naturalHeight": 1080,
+          "http": {
+            "url": "http://localhost:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794806792198-yxvvnzi.webp&w=750&q=75",
+            "status": 200,
+            "contentType": "image/jpeg"
+          },
+          "thumbnailCount": 0
+        }
+      ]
+    }
+  ],
+  "gallery": [
+    {
+      "url": "https://rbucefvtkiohmaugvkyz.supabase.co/storage/v1/object/public/catalog-images/uploads/1794895284638-8ouyqck.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 6412
+    },
+    {
+      "url": "https://rbucefvtkiohmaugvkyz.supabase.co/storage/v1/object/public/catalog-images/uploads/1794895284618-dxjgn65.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 8172
+    }
+  ],
+  "consoleErrors": [],
+  "nextImageErrors": []
+}

@@ -415,10 +415,10 @@ export function Navbar() {
                   <Link
                     ref={isServices ? servicesTriggerRef : undefined}
                     href={link.href}
-                    className="rt-nav-link group flex items-center gap-1 whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium"
+                    className="rt-nav-link group flex items-center gap-1 whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold"
                     style={{
                       color: isActive(link.href) ? HDR.ivory : HDR.textMuted,
-                      opacity: isActive(link.href) ? 1 : 0.85,
+                      opacity: isActive(link.href) ? 1 : 0.40,
                       transition: 'color 200ms ease, opacity 200ms ease',
                     }}
                     onMouseEnter={(e) => {
@@ -942,7 +942,7 @@ export function Navbar() {
                 className="flex items-center justify-between px-6 py-5"
                 style={{ borderBottom: `1px solid ${HDR.ddBorder}` }}
               >
-                <span className="relative h-10 w-20 overflow-hidden block inline">
+                <span className="relative block h-10 w-20 overflow-hidden">
                   <Image
                     src="/brand/rt-logo.png"
                     alt="RTMETALCOATING"

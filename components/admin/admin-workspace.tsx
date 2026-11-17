@@ -32,6 +32,7 @@ import {
   SlidersHorizontal,
   ChevronUp,
   ChevronDown,
+  Pin,
 } from 'lucide-react';
 import {
   uploadCatalogImage,
@@ -45,6 +46,8 @@ import {
   createProductAdmin,
   updateProductAdmin,
   deleteProductAdmin,
+  setProductPinnedAdmin,
+  softDeleteProduct,
   getServicesAdmin,
   createServiceAdmin,
   updateServiceAdmin,
@@ -76,6 +79,10 @@ import {
   AdminPagination,
 } from '@/components/admin/shared/admin-list-controls';
 import { AdminFormPanel } from '@/components/admin/shared/admin-form-panel';
+import {
+  ProductVariantsEditor,
+  type ProductVariantsEditorHandle,
+} from '@/components/admin/products/product-variants-editor';
 import {
   getAdminPageCount,
   getAdminPageSlice,
@@ -133,6 +140,21 @@ import {
 
 const ADMIN_LIST_PAGE_SIZE = 8;
 
+/**
+ * Reads the main section of the category embedded on a product row. The embed
+ * is resolved by the products query itself, so the section is known even when
+ * the shared category list has not finished loading yet.
+ */
+function readEmbeddedMainSection(value: unknown): string | null | undefined {
+  if (!value || typeof value !== 'object') return undefined;
+  if (Array.isArray(value)) {
+    const first = value[0];
+    if (!first || typeof first !== 'object') return undefined;
+    return (first as { main_section?: string | null }).main_section;
+  }
+  return (value as { main_section?: string | null }).main_section;
+}
+
 export function AdminWorkspace() {
   const [activeTab, setActiveTab] = React.useState<
     | 'categories'
@@ -169,11 +191,13 @@ export function AdminWorkspace() {
 
   // Edit Mode state
   const [editingId, setEditingId] = React.useState<string | null>(null);
+  const variantsEditorRef = React.useRef<ProductVariantsEditorHandle | null>(null);
 
   // ==================================================
   // CATEGORIES STATE
   // ==================================================
   const [categories, setCategories] = React.useState<any[]>([]);
+  const [categoriesLoaded, setCategoriesLoaded] = React.useState(false);
   const [catName, setCatName] = React.useState('');
   const [catSlug, setCatSlug] = React.useState('');
   const [catTagline, setCatTagline] = React.useState('');
@@ -212,6 +236,7 @@ export function AdminWorkspace() {
   const [prodIsFeatured, setProdIsFeatured] = React.useState(false);
   const [prodOrder, setProdOrder] = React.useState('0');
   const [prodGalleryImages, setProdGalleryImages] = React.useState<ProductImage[]>([]);
+  const [pinningProductId, setPinningProductId] = React.useState<string | null>(null);
 
   // ==================================================
   // SERVICES STATE
@@ -369,6 +394,17 @@ export function AdminWorkspace() {
   const mappedCategories = React.useMemo(() => categories.map((row) => mapCategoryRow(row)), [categories]);
   const validCategories = getValidCategories(mappedCategories, false);
   const productCategoryOptions = validCategories.filter((category) => (category.mainSection || '') === prodSection);
+  const resolveProductMainSection = (product: {
+    category_id?: string | null;
+    categories?: unknown;
+  }): MainSection | '' => {
+    const embedded = readEmbeddedMainSection(product.categories);
+    const fallback = mappedCategories.find(
+      (category) => category.id === product.category_id
+    )?.mainSection;
+    const raw = embedded ?? fallback;
+    return raw === 'home_decor' || raw === 'metal_services' ? raw : '';
+  };
   const editedCategory = mappedCategories.find((category) => category.id === editingId);
   const excludedParents = editedCategory ? getDescendantSlugs(mappedCategories, editedCategory.slug) : new Set<string>();
   const parentOptions = validCategories.filter((category) =>
@@ -465,6 +501,12 @@ export function AdminWorkspace() {
 
   React.useEffect(() => {
     if (activeTab !== 'products') return;
+    // The product form can only offer a valid category once the shared
+    // category list is available, so wait for it before listing products.
+    if (!categoriesLoaded) {
+      setProductListLoading(true);
+      return;
+    }
     const requestId = ++productListRequestRef.current;
 
     setProductListLoading(true);
@@ -499,6 +541,7 @@ export function AdminWorkspace() {
       });
   }, [
     activeTab,
+    categoriesLoaded,
     debouncedProdListSearch,
     prodListSection,
     prodListCategory,
@@ -648,6 +691,8 @@ export function AdminWorkspace() {
         inquiry.message,
         inquiry.productNameSnapshot,
         inquiry.serviceNameSnapshot,
+        inquiry.variantNameSnapshot,
+        inquiry.variantSkuSnapshot,
         inquiry.adminNotes,
       ]);
       return divisionMatch && statusMatch && searchMatch;
@@ -816,6 +861,7 @@ export function AdminWorkspace() {
       setMessage({ type: 'error', text: err.message || 'Failed to load catalog data' });
       return loadedRelationships;
     } finally {
+      setCategoriesLoaded(true);
       setLoading(false);
     }
   }, []);
@@ -1261,6 +1307,7 @@ export function AdminWorkspace() {
 
   // Reset Forms
   const resetForms = () => {
+    variantsEditorRef.current?.reset();
     clearUploadState();
     galleryBaselineRef.current = [];
     galleryLoadedProductIdRef.current = null;
@@ -1395,7 +1442,17 @@ export function AdminWorkspace() {
   const handleProductSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (loading || uploading) return;
-    if (!prodName || !prodSlug || !prodCatId) return;
+
+    const missing: string[] = [];
+    if (!prodName) missing.push('Product Name');
+    if (!prodSlug) missing.push('Slug');
+    if (!prodCatId) missing.push('Category');
+
+    if (missing.length > 0) {
+      setMessage({ type: 'error', text: `Required fields missing: ${missing.join(', ')}` });
+      return;
+    }
+
     if (!productCategoryOptions.some((category) => category.id === prodCatId)) {
       setMessage({ type: 'error', text: 'Choose a valid category in the selected main section.' });
       return;
@@ -1409,9 +1466,20 @@ export function AdminWorkspace() {
       return;
     }
 
+    const variantValidation = variantsEditorRef.current?.validate();
+    if (variantValidation?.banner) {
+      setMessage({ type: 'error', text: `Product finishes: ${variantValidation.banner}` });
+      return;
+    }
+
     setLoading(true);
     try {
-      const featArr = prodFeatures ? prodFeatures.split('\\n').filter(Boolean) : [];
+      const featArr = prodFeatures
+        ? prodFeatures
+            .split(/\r?\n/)
+            .map((feature) => feature.trim())
+            .filter(Boolean)
+        : [];
       const payload = {
         category_id: prodCatId,
         name: prodName,
@@ -1438,6 +1506,7 @@ export function AdminWorkspace() {
 
       if (editingId) {
         await updateProductAdmin(editingId, payload, prodSection || null);
+        const variantFailures = (await variantsEditorRef.current?.sync(editingId)) ?? [];
 
         const result = await syncProductGalleryImages(
           editingId,
@@ -1466,10 +1535,16 @@ export function AdminWorkspace() {
                   missing.length === 1 ? ' was' : 's were'
                 } not found in the refreshed gallery. Retry before leaving this product.`,
               });
+            } else if (variantFailures.length > 0) {
+              await loadAllData();
+              setMessage({
+                type: 'error',
+                text: `Product details and gallery were saved, but the finishes need attention: ${variantFailures[0]} Reopen this product to retry.`,
+              });
             } else {
               resetForms();
               await loadAllData();
-              setMessage({ type: 'success', text: 'Product and gallery saved successfully.' });
+              setMessage({ type: 'success', text: 'Product, finishes and gallery saved successfully.' });
             }
           } catch (verificationError: any) {
             await loadAllData();
@@ -1484,8 +1559,12 @@ export function AdminWorkspace() {
       } else {
         const newProduct = await createProductAdmin(payload, prodSection || null);
 
-        // The product now exists. Keep the form pointed at it so any gallery
-        // failure retries through the update path instead of creating a duplicate.
+        // The product now exists. Persist finishes before pointing the form at
+        // it, so the editor does not race its initial load against the save.
+        const variantFailures = (await variantsEditorRef.current?.sync(newProduct.id)) ?? [];
+
+        // Keep the form pointed at the product so any gallery failure retries
+        // through the update path instead of creating a duplicate.
         setEditingId(newProduct.id);
         galleryLoadedProductIdRef.current = newProduct.id;
 
@@ -1516,10 +1595,16 @@ export function AdminWorkspace() {
                   missing.length === 1 ? ' was' : 's were'
                 } not found in the refreshed gallery. Retry before leaving this product.`,
               });
+            } else if (variantFailures.length > 0) {
+              await loadAllData();
+              setMessage({
+                type: 'error',
+                text: `Product and gallery were created, but the finishes need attention: ${variantFailures[0]} Reopen this product to retry.`,
+              });
             } else {
               resetForms();
               await loadAllData();
-              setMessage({ type: 'success', text: 'Product and gallery created successfully.' });
+              setMessage({ type: 'success', text: 'Product, finishes and gallery created successfully.' });
             }
           } catch (verificationError: any) {
             await loadAllData();
@@ -1766,10 +1851,11 @@ export function AdminWorkspace() {
     <div className="mt-8 space-y-6">
       {message && (
         <div
+          data-testid="admin-message"
           className={`flex items-center gap-3 rounded-xl border p-4 text-sm ${message.type === 'success'
             ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-400'
             : 'border-destructive/30 bg-destructive/10 text-destructive'
-            }`}
+          }`}
         >
           {message.type === 'success' ? <CheckCircle2 className="h-5 w-5 shrink-0" /> : <AlertCircle className="h-5 w-5 shrink-0" />}
           <span>{message.text}</span>
@@ -2327,7 +2413,15 @@ export function AdminWorkspace() {
                   <Button
                     type="button"
                     variant="outline"
-                    onClick={resetForms}
+                    onClick={() => {
+                      if (
+                        variantsEditorRef.current?.isDirty() &&
+                        !window.confirm('Discard unsaved product finishes?')
+                      ) {
+                        return;
+                      }
+                      resetForms();
+                    }}
                     className="w-full sm:w-auto"
                   >
                     Cancel Edit
@@ -2349,6 +2443,12 @@ export function AdminWorkspace() {
               </>
             }
           >
+              <span
+                data-testid="product-editing-id"
+                data-editing-id={editingId ?? ''}
+                className="hidden"
+                aria-hidden="true"
+              />
               <div className="space-y-3">
                 <p className="text-xs font-bold uppercase tracking-wider text-gold-deep border-b border-border pb-1">1. Basic Information</p>
                 <div>
@@ -2595,8 +2695,13 @@ export function AdminWorkspace() {
                 </div>
               </div>
 
+              <ProductVariantsEditor
+                ref={variantsEditorRef}
+                productId={editingId}
+              />
+
               <div className="space-y-3 pt-2">
-                <p className="text-xs font-bold uppercase tracking-wider text-gold-deep border-b border-border pb-1">7. Publishing & Sorting</p>
+                <p className="text-xs font-bold uppercase tracking-wider text-gold-deep border-b border-border pb-1">8. Publishing & Sorting</p>
 
                 <div className="grid grid-cols-2 gap-2">
                   <div>
@@ -2742,7 +2847,13 @@ export function AdminWorkspace() {
             ) : (
               <div className="space-y-3">
                 {pagedProducts.map((p) => (
-                  <div key={p.id} className="flex items-center justify-between rounded-xl border border-border/60 bg-background/40 p-4">
+                  <div
+                    key={p.id}
+                    data-testid="admin-product-row"
+                    data-product-id={p.id}
+                    data-product-sku={p.sku || ''}
+                    className="flex items-center justify-between rounded-xl border border-border/60 bg-background/40 p-4"
+                  >
                     <div className="flex items-center gap-3">
                       {p.image && (
                         <div className="h-14 w-14 shrink-0 overflow-hidden rounded-lg border border-border">
@@ -2757,6 +2868,12 @@ export function AdminWorkspace() {
                             {p.is_published ? 'Published' : 'Draft'}
                           </span>
                           {p.is_featured && <span className="text-[10px] bg-gold/20 text-gold-deep px-2 py-0.5 rounded-full font-bold">Featured</span>}
+                          {p.is_pinned && (
+                            <span className="inline-flex items-center gap-1 rounded-full bg-gold/20 px-2 py-0.5 text-[10px] font-bold text-gold-deep">
+                              <Pin className="h-3 w-3" aria-hidden="true" />
+                              Pinned
+                            </span>
+                          )}
                         </div>
                         <p className="text-xs text-muted-foreground mt-0.5">
                           slug: {p.slug}{p.sku ? ` • SKU: ${p.sku}` : ''}
@@ -2773,6 +2890,59 @@ export function AdminWorkspace() {
                       <Button
                         variant="ghost"
                         size="sm"
+                        aria-label={
+                          p.is_pinned
+                            ? `Unpin product: ${p.name}`
+                            : `Pin product to top: ${p.name}`
+                        }
+                        title={p.is_pinned ? 'Unpin product' : 'Pin product to top'}
+                        aria-pressed={Boolean(p.is_pinned)}
+                        data-testid="toggle-pin-product"
+                        disabled={pinningProductId === p.id}
+                        onClick={() => {
+                          const nextPinned = !p.is_pinned;
+                          setMessage(null);
+                          setPinningProductId(p.id);
+                          setProductPinnedAdmin(p.id, nextPinned)
+                            .then(() => loadAllData())
+                            .then(() => {
+                              setMessage({
+                                type: 'success',
+                                text: nextPinned
+                                  ? `${p.name} pinned to the top of the product list.`
+                                  : `${p.name} unpinned and returned to its normal position.`,
+                              });
+                            })
+                            .catch((error: unknown) => {
+                              setMessage({
+                                type: 'error',
+                                text:
+                                  error instanceof Error
+                                    ? error.message
+                                    : 'The pinned state could not be updated.',
+                              });
+                            })
+                            .finally(() => setPinningProductId(null));
+                        }}
+                        className={
+                          p.is_pinned
+                            ? 'bg-gold/10 text-gold-deep hover:bg-gold/20'
+                            : 'text-muted-foreground hover:text-gold-deep'
+                        }
+                      >
+                        {pinningProductId === p.id ? (
+                          <Loader2 className="h-4 w-4 animate-spin" />
+                        ) : p.is_pinned ? (
+                          <Pin className="h-4 w-4 fill-current" />
+                        ) : (
+                          <Pin className="h-4 w-4" />
+                        )}
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        aria-label={`${p.is_published ? 'Unpublish' : 'Publish'} product: ${p.name}`}
+                        data-testid="toggle-publish-product"
                         onClick={() => {
                           updateProductAdmin(p.id, { is_published: !p.is_published }).then(loadAllData);
                         }}
@@ -2782,14 +2952,23 @@ export function AdminWorkspace() {
                       <Button
                         variant="ghost"
                         size="sm"
+                        aria-label={`Edit product: ${p.name}`}
+                        data-testid="edit-product-button"
                         onClick={() => {
+                          if (
+                            editingId !== p.id &&
+                            variantsEditorRef.current?.isDirty() &&
+                            !window.confirm('Discard unsaved product finishes?')
+                          ) {
+                            return;
+                          }
                           clearUploadState();
                           setEditingId(p.id);
                           setProdName(p.name);
                           setProdSlug(p.slug);
                           setProdSku(p.sku || '');
                           setProdCatId(p.category_id);
-                          setProdSection(mappedCategories.find((category) => category.id === p.category_id)?.mainSection || '');
+                          setProdSection(resolveProductMainSection(p));
                           setProdSubCat(p.sub_category || '');
                           setProdImage(p.image || '');
                           setProdBadge(p.badge || '');
@@ -2813,9 +2992,11 @@ export function AdminWorkspace() {
                       <Button
                         variant="ghost"
                         size="sm"
+                        aria-label={`Archive product: ${p.name}`}
+                        data-testid="archive-product-button"
                         onClick={() => {
-                          if (confirm('Delete product?')) {
-                            deleteProductAdmin(p.id).then(loadAllData);
+                          if (confirm('Archive product? This will hide it from the public catalogue but retain all records.')) {
+                            softDeleteProduct(p.id).then(loadAllData);
                           }
                         }}
                         className="text-destructive hover:bg-destructive/10"
@@ -3886,7 +4067,16 @@ export function AdminWorkspace() {
                             </span>
                           </div>
                           <div className="mt-1.5 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
-                            <span>Email: <a href={`mailto:${inq.email}`} className="text-foreground hover:underline">{inq.email}</a></span>
+                            <span>
+                              Email:{' '}
+                              {inq.email ? (
+                                <a href={`mailto:${inq.email}`} className="text-foreground hover:underline">
+                                  {inq.email}
+                                </a>
+                              ) : (
+                                <span className="text-muted-foreground">Not provided</span>
+                              )}
+                            </span>
                             {inq.phone && <span>Phone: <a href={`tel:${inq.phone}`} className="text-foreground hover:underline">{inq.phone}</a></span>}
                             <span>Date: {new Date(inq.createdAt).toLocaleString()}</span>
                           </div>
@@ -3913,12 +4103,21 @@ export function AdminWorkspace() {
                       </div>
 
                       {/* Snapshots info if present */}
-                      {(inq.productNameSnapshot || inq.serviceNameSnapshot) && (
+                      {(inq.productNameSnapshot ||
+                        inq.serviceNameSnapshot ||
+                        inq.variantNameSnapshot) && (
                         <div className="rounded-xl border border-gold/20 bg-gold/5 p-3 text-xs text-foreground/90 flex items-center gap-2">
                           <Tag className="h-3.5 w-3.5 text-gold-deep shrink-0" />
                           <span>
                             <strong>Referenced Context:</strong>{' '}
                             {inq.productNameSnapshot ? `Product — "${inq.productNameSnapshot}"` : `Service — "${inq.serviceNameSnapshot}"`}
+                            {inq.variantNameSnapshot
+                              ? ` · Finish — "${inq.variantNameSnapshot}"${
+                                  inq.variantSkuSnapshot
+                                    ? ` (SKU: ${inq.variantSkuSnapshot})`
+                                    : ''
+                                }`
+                              : ''}
                           </span>
                         </div>
                       )}

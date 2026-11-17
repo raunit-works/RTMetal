@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { MessageCircle, Mail, MapPin, Phone, Send, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
@@ -12,12 +12,20 @@ import { Reveal } from '@/components/motion/reveal';
 import { SectionHeading } from '@/components/sections/section-heading';
 import { whatsappLink, EMAIL, PHONE_DISPLAY, isHomeDecorWhatsappVerified, isEmailVerified, isPhoneVerified, getMetalCoatingWhatsAppLink } from '@/lib/site';
 import { createInquiry } from '@/lib/supabase/inquiries';
+import {
+  validateEnquiryIdentity,
+  type EnquiryIdentityErrors,
+} from '@/lib/enquiry/validation';
 
 export function ContactSection() {
   const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
+  const [fieldErrors, setFieldErrors] = useState<EnquiryIdentityErrors>({});
   const [interest, setInterest] = useState('Home Decor & Lifestyle Products');
   const [message, setMessage] = useState('');
+  const [productId, setProductId] = useState<string | undefined>(undefined);
+  const [variantId, setVariantId] = useState<string | undefined>(undefined);
 
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -37,12 +45,48 @@ export function ContactSection() {
       ? homeDecorWhatsAppUrl
       : null;
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const productParam = params.get('product');
+    const variantParam = params.get('variant');
+    const productName = params.get('productName');
+    const finish = params.get('finish');
+    const sku = params.get('sku');
+
+    if (!productParam && !variantParam) return;
+
+    const uuidPattern =
+      /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
+
+    if (productParam && uuidPattern.test(productParam)) {
+      setProductId(productParam);
+    }
+    if (variantParam && uuidPattern.test(variantParam)) {
+      setVariantId(variantParam);
+    }
+
+    const details: string[] = [];
+    if (productName) details.push(productName);
+    if (finish) details.push(`Finish: ${finish}`);
+    if (sku) details.push(`SKU: ${sku}`);
+
+    if (details.length > 0) {
+      setMessage(
+        `Hello RTMETALCOATING, I am interested in ${details.join(' · ')}. Please share availability and a quotation.`
+      );
+    }
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (submitting) return;
 
-    setSubmitting(true);
+    const identity = validateEnquiryIdentity({ name, phone, email });
+    setFieldErrors(identity.errors);
     setErrorMessage(null);
+    if (!identity.isValid) return;
+
+    setSubmitting(true);
 
     let division: 'home_decor' | 'metal_coating' = 'home_decor';
     let inquiry_type: 'general' | 'product' | 'service' = 'general';
@@ -62,11 +106,18 @@ export function ContactSection() {
     }
 
     const res = await createInquiry({
-      name,
-      email,
+      name: identity.name,
+      phone: identity.phone,
+      email: identity.email,
       message,
       division,
       inquiry_type,
+      ...(interest === 'Home Decor & Lifestyle Products' && productId
+        ? { product_id: productId }
+        : {}),
+      ...(interest === 'Home Decor & Lifestyle Products' && variantId
+        ? { variant_id: variantId }
+        : {}),
     });
 
     setSubmitting(false);
@@ -74,8 +125,12 @@ export function ContactSection() {
     if (res.success) {
       setSubmitted(true);
       setName('');
+      setPhone('');
       setEmail('');
+      setFieldErrors({});
       setMessage('');
+      setProductId(undefined);
+      setVariantId(undefined);
       setTimeout(() => setSubmitted(false), 5000);
     } else {
       setErrorMessage(res.message);
@@ -247,29 +302,74 @@ export function ContactSection() {
 
               <div className="grid gap-5 sm:grid-cols-2">
                 <div>
-                  <label className="mb-2 block text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                    Name
+                  <label
+                    htmlFor="contact-name"
+                    className="mb-2 block text-xs font-medium uppercase tracking-wider text-muted-foreground"
+                  >
+                    Name *
                   </label>
                   <Input
+                    id="contact-name"
                     placeholder="Your name"
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     disabled={submitting}
+                    aria-invalid={Boolean(fieldErrors.name)}
+                    aria-describedby={fieldErrors.name ? 'contact-name-error' : undefined}
                   />
+                  {fieldErrors.name && (
+                    <p id="contact-name-error" role="alert" className="mt-1.5 text-xs text-destructive">
+                      {fieldErrors.name}
+                    </p>
+                  )}
                 </div>
                 <div>
-                  <label className="mb-2 block text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                    Email
+                  <label
+                    htmlFor="contact-phone"
+                    className="mb-2 block text-xs font-medium uppercase tracking-wider text-muted-foreground"
+                  >
+                    Mobile Number *
                   </label>
                   <Input
+                    id="contact-phone"
+                    type="tel"
+                    placeholder="+91 98765 43210"
+                    required
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    disabled={submitting}
+                    aria-invalid={Boolean(fieldErrors.phone)}
+                    aria-describedby={fieldErrors.phone ? 'contact-phone-error' : undefined}
+                  />
+                  {fieldErrors.phone && (
+                    <p id="contact-phone-error" role="alert" className="mt-1.5 text-xs text-destructive">
+                      {fieldErrors.phone}
+                    </p>
+                  )}
+                </div>
+                <div className="sm:col-span-2">
+                  <label
+                    htmlFor="contact-email"
+                    className="mb-2 block text-xs font-medium uppercase tracking-wider text-muted-foreground"
+                  >
+                    Email (optional)
+                  </label>
+                  <Input
+                    id="contact-email"
                     type="email"
                     placeholder="you@email.com"
-                    required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     disabled={submitting}
+                    aria-invalid={Boolean(fieldErrors.email)}
+                    aria-describedby={fieldErrors.email ? 'contact-email-error' : undefined}
                   />
+                  {fieldErrors.email && (
+                    <p id="contact-email-error" role="alert" className="mt-1.5 text-xs text-destructive">
+                      {fieldErrors.email}
+                    </p>
+                  )}
                 </div>
               </div>
               <div className="mt-5">

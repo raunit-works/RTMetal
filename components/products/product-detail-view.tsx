@@ -2,14 +2,24 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { MessageCircle, ArrowLeft, ArrowRight, Check, Info } from 'lucide-react';
+import { ArrowLeft, Check, Info } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ProductCard } from '@/components/sections/product-card';
 import { Reveal, StaggerGroup, StaggerItem } from '@/components/motion/reveal';
 import { SectionHeading } from '@/components/sections/section-heading';
 import { CtaBanner } from '@/components/sections/cta-banner';
-import { ProductImageGallery } from '@/components/sections/product-image-gallery';
-import { getHomeDecorWhatsAppLink, getMetalCoatingWhatsAppLink } from '@/lib/site';
+import { ProductVariantProvider } from '@/components/products/product-variant-provider';
+import { VariantImageGallery } from '@/components/products/variant-image-gallery';
+import { ProductVariantSelector } from '@/components/products/product-variant-selector';
+import {
+  VariantAvailabilityRow,
+  VariantFinishValue,
+  VariantSku,
+} from '@/components/products/product-variant-meta';
+import {
+  VariantQuoteButton,
+  VariantWhatsAppButton,
+} from '@/components/products/product-variant-enquiry';
 import type { Product } from '@/lib/types';
 
 interface ProductDetailViewProps {
@@ -31,13 +41,9 @@ function hasMeaningfulValue(value?: string): value is string {
 }
 
 export function ProductDetailView({ product, division, relatedProducts = [] }: ProductDetailViewProps) {
-  const whatsappMessage = `Hello RTMETALCOATING, I am interested in ${product.name}. Please share availability and a quotation.`;
-  const whatsappUrl = division === 'home_decor'
-    ? getHomeDecorWhatsAppLink(whatsappMessage)
-    : getMetalCoatingWhatsAppLink(whatsappMessage);
-
   const hasExtendedSpecs =
     product.sku ||
+    product.hasVariants ||
     hasMeaningfulValue(product.material) ||
     hasMeaningfulValue(product.colorFinish) ||
     hasMeaningfulValue(product.dimensions) ||
@@ -46,7 +52,7 @@ export function ProductDetailView({ product, division, relatedProducts = [] }: P
     hasMeaningfulValue(product.careInstructions);
 
   return (
-    <>
+    <ProductVariantProvider product={product}>
       {/* Header Banner */}
       <section className="relative overflow-hidden bg-ink pt-32 text-white sm:pt-40">
         <div className="pointer-events-none absolute inset-0 opacity-20">
@@ -85,12 +91,7 @@ export function ProductDetailView({ product, division, relatedProducts = [] }: P
             {/* Image Gallery Column */}
             <div className="lg:col-span-6">
               <Reveal>
-                <ProductImageGallery
-                  mainImage={product.image}
-                  productName={product.name}
-                  badge={product.badge}
-                  images={product.images}
-                />
+                <VariantImageGallery />
               </Reveal>
             </div>
 
@@ -101,43 +102,40 @@ export function ProductDetailView({ product, division, relatedProducts = [] }: P
                   <p className="text-xs font-semibold uppercase tracking-ultra text-gold-deep">
                     {product.category}
                   </p>
-                  {product.sku && (
-                    <span className="text-xs text-muted-foreground">
-                      · SKU: {product.sku}
-                    </span>
-                  )}
+                  <VariantSku fallback={product.sku} />
                 </div>
 
                 <h1 className="mt-3 font-display text-4xl font-medium leading-tight tracking-tight sm:text-5xl lg:text-6xl">
                   {product.name}
                 </h1>
 
+                <ProductVariantSelector />
+
                 <div className="mt-6 flex items-baseline gap-4">
-                  {whatsappUrl ? (
-                    <Button asChild className="h-11 rounded-full bg-[#25D366] px-5 text-ink hover:bg-[#25D366]/90">
-                      <a
-                        href={whatsappUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <MessageCircle className="mr-2 h-5 w-5" />
-                        Enquire About Product
-                      </a>
-                    </Button>
-                  ) : (
-                    <Button
-                      disabled
-                      className="h-11 cursor-not-allowed rounded-full border border-[#25D366]/25 bg-[#25D366]/10 px-5 text-muted-foreground disabled:opacity-100"
-                    >
-                      <MessageCircle className="mr-2 h-5 w-5" />
-                      Enquire About Product
-                    </Button>
-                  )}
+                  <VariantWhatsAppButton
+                    division={division}
+                    className="h-11 rounded-full px-5"
+                  />
                 </div>
 
-                <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-                  {product.description}
-                </p>
+                {hasMeaningfulValue(product.shortDescription) && (
+                  <p className="mt-6 text-base leading-relaxed text-foreground/80">
+                    {product.shortDescription}
+                  </p>
+                )}
+
+                {hasMeaningfulValue(product.description) &&
+                  product.description.trim() !==
+                    (product.shortDescription ?? '').trim() && (
+                    <div className="mt-8">
+                      <h2 className="text-xs font-semibold uppercase tracking-wider text-gold-deep">
+                        Product Description
+                      </h2>
+                      <p className="mt-3 whitespace-pre-line text-base leading-relaxed text-muted-foreground">
+                        {product.description}
+                      </p>
+                    </div>
+                  )}
 
                 {/* Extended Product Specifications (if available) */}
                 {hasExtendedSpecs && (
@@ -152,10 +150,10 @@ export function ProductDetailView({ product, division, relatedProducts = [] }: P
                         <span className="font-medium">{product.material}</span>
                       </div>
                     )}
-                    {hasMeaningfulValue(product.colorFinish) && (
+                    {(hasMeaningfulValue(product.colorFinish) || product.hasVariants) && (
                       <div className="flex justify-between border-b border-border/40 pb-1.5">
                         <span className="text-muted-foreground">Color / Finish:</span>
-                        <span className="font-medium">{product.colorFinish}</span>
+                        <VariantFinishValue fallback={product.colorFinish} />
                       </div>
                     )}
                     {hasMeaningfulValue(product.dimensions) && (
@@ -170,13 +168,8 @@ export function ProductDetailView({ product, division, relatedProducts = [] }: P
                         <span className="font-medium">{product.weight}</span>
                       </div>
                     )}
-                    {hasMeaningfulValue(product.stockStatus) && (
-                      <div className="flex justify-between border-b border-border/40 pb-1.5">
-                        <span className="text-muted-foreground">Availability:</span>
-                        <span className="font-medium capitalize">
-                          {product.stockStatus.replace('_', ' ')}
-                        </span>
-                      </div>
+                    {(hasMeaningfulValue(product.stockStatus) || product.hasVariants) && (
+                      <VariantAvailabilityRow fallback={product.stockStatus} />
                     )}
                     {hasMeaningfulValue(product.careInstructions) && (
                       <div className="pt-1">
@@ -189,50 +182,37 @@ export function ProductDetailView({ product, division, relatedProducts = [] }: P
 
                 {/* Features Highlights */}
                 {product.features && product.features.length > 0 ? (
-                  <div className="mt-8 space-y-3 border-y border-border py-6">
-                    {product.features.map((feat, idx) => (
-                      <div key={idx} className="flex items-center gap-3 text-sm text-foreground/80">
-                        <Check className="h-4 w-4 text-gold shrink-0" />
-                        <span>{feat}</span>
-                      </div>
-                    ))}
+                  <div className="mt-8 border-y border-border py-6">
+                    <h2 className="text-xs font-semibold uppercase tracking-wider text-gold-deep">
+                      Product Features
+                    </h2>
+                    <ul className="mt-4 space-y-3">
+                      {product.features.map((feat, idx) => (
+                        <li
+                          key={`${feat}-${idx}`}
+                          className="flex items-start gap-3 text-sm leading-relaxed text-foreground/80"
+                        >
+                          <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
+                          <span>{feat}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 ) : null}
 
                 {/* Direct WhatsApp Enquiry CTA */}
                 <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center">
-                  {whatsappUrl ? (
-                    <Button
-                      asChild
-                      size="lg"
-                      className="h-12 rounded-full bg-[#25D366] px-8 text-base font-semibold text-ink shadow-lg transition-all hover:bg-[#25D366]/90 sm:flex-1"
-                    >
-                      <a
-                        href={whatsappUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <MessageCircle className="mr-2 h-5 w-5" />
-                        Enquire About Product
-                      </a>
-                    </Button>
-                  ) : (
-                    <Button
-                      disabled
-                      size="lg"
-                      className="h-12 cursor-not-allowed rounded-full border border-[#25D366]/25 bg-[#25D366]/10 px-8 text-base font-semibold text-muted-foreground disabled:opacity-100 sm:flex-1"
-                    >
-                      <MessageCircle className="mr-2 h-5 w-5" />
-                      Enquire About Product
-                    </Button>
-                  )}
+                  <VariantWhatsAppButton
+                    division={division}
+                    size="lg"
+                    showIcon
+                    className="h-12 rounded-full px-8 text-base font-semibold shadow-lg sm:flex-1"
+                  />
 
-                  <Button asChild size="lg" className="h-12 rounded-full px-6">
-                    <Link href={division === 'home_decor' ? '/#contact' : '/metal-coating#quote'}>
-                      Request a Quote
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
+                  <VariantQuoteButton
+                    division={division}
+                    className="h-12 rounded-full px-6"
+                  />
 
                   <Button
                     asChild
@@ -291,6 +271,6 @@ export function ProductDetailView({ product, division, relatedProducts = [] }: P
         }}
         variant="dark"
       />
-    </>
+    </ProductVariantProvider>
   );
 }

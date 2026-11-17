@@ -11,6 +11,7 @@ import {
 import type { MainSection } from '../types';
 import { normalizeAdminSearch } from '../admin/list-utils';
 import { isMetalFinishSchemaMissingError } from './metal-finishes-shared';
+import { isVariantSchemaMissingError } from './product-variants';
 
 // ==================================================
 // IMAGE STORAGE UPLOADER
@@ -157,6 +158,25 @@ export async function deleteCatalogImageIfUnreferenced(
       }
       if ((result.count ?? 0) > 0) return false;
     }
+
+    const [variantImageRows, variantSwatchRows] = await Promise.all([
+      supabase
+        .from('product_variant_images')
+        .select('id', { count: 'exact', head: true })
+        .eq('image_url', publicUrl),
+      supabase
+        .from('product_option_values')
+        .select('id', { count: 'exact', head: true })
+        .eq('swatch_image_url', publicUrl),
+    ]);
+
+    for (const result of [variantImageRows, variantSwatchRows]) {
+      if (result.error) {
+        if (isVariantSchemaMissingError(result.error)) continue;
+        return false;
+      }
+      if ((result.count ?? 0) > 0) return false;
+    }
     if (settings.error) return false;
     if (
       (settings.data ?? []).some((row) =>
@@ -281,15 +301,23 @@ export async function getProductsAdmin() {
   const supabase = createSupabaseBrowserClient();
   const { data, error } = await supabase
     .from('products')
-    .select('*, categories(name, slug), product_images(*)')
-    .order('created_at', { ascending: false });
+    .select('*, categories(name, slug, main_section), product_images(*)')
+    .order('is_pinned', { ascending: false })
+    .order('pinned_at', { ascending: false, nullsFirst: false })
+    .order('created_at', { ascending: false })
+    .order('id', { ascending: true });
   if (error) throw error;
   return data || [];
 }
 
 export type AdminProductDivision = 'all' | 'home_decor' | 'metal_services' | 'legacy';
 export type AdminProductStatus = 'all' | 'published' | 'draft';
-export type AdminProductSort = 'newest' | 'order' | 'name' | 'sku';
+export type AdminProductSort =
+  | 'newest'
+  | 'order'
+  | 'name'
+  | 'sku'
+  | 'pinned';
 
 export interface AdminProductQuery {
   search?: string;
@@ -368,7 +396,7 @@ export async function getProductsAdminPage(
 
   let query = supabase
     .from('products')
-    .select('*, categories(name, slug), product_images(*)', { count: 'exact' });
+    .select('*, categories(name, slug, main_section), product_images(*)', { count: 'exact' });
 
   if (legacyDivision && divisionCategoryIds) {
     const clauses = ['category_id.is.null'];
@@ -402,6 +430,12 @@ export async function getProductsAdminPage(
     query = query.or(clauses.join(','));
   }
 
+  // Pinned products are grouped before every normal sort and before the range
+  // pagination below, so they never fall onto a later page.
+  query = query
+    .order('is_pinned', { ascending: false })
+    .order('pinned_at', { ascending: false, nullsFirst: false });
+
   switch (filters.sort) {
     case 'name':
       query = query.order('name', { ascending: true });
@@ -414,10 +448,15 @@ export async function getProductsAdminPage(
         .order('display_order', { ascending: true })
         .order('created_at', { ascending: false });
       break;
+    case 'pinned':
+      query = query.order('created_at', { ascending: false });
+      break;
     default:
       query = query.order('created_at', { ascending: false });
       break;
   }
+
+  query = query.order('id', { ascending: true });
 
   const { data, error, count } = await query.range(offset, offset + pageSize - 1);
   if (error) throw error;
@@ -655,9 +694,35 @@ export async function updateProductAdmin(
   return data;
 }
 
+export async function setProductPinnedAdmin(id: string, isPinned: boolean) {
+  if (!id) throw new Error('A product ID is required to change its pinned state.');
+  const supabase = createSupabaseBrowserClient();
+  const { data, error } = await supabase
+    .from('products')
+    .update({
+      is_pinned: isPinned,
+      pinned_at: isPinned ? new Date().toISOString() : null,
+      updated_at: new Date().toISOString(),
+    })
+    .eq('id', id)
+    .select('id, is_pinned, pinned_at')
+    .single();
+  if (error) throw error;
+  return data;
+}
+
 export async function deleteProductAdmin(id: string) {
   const supabase = createSupabaseBrowserClient();
   const { error } = await supabase.from('products').delete().eq('id', id);
+  if (error) throw error;
+}
+
+export async function softDeleteProduct(id: string) {
+  const supabase = createSupabaseBrowserClient();
+  const { error } = await supabase
+    .from('products')
+    .update({ is_archived: true, updated_at: new Date().toISOString() })
+    .eq('id', id);
   if (error) throw error;
 }
 

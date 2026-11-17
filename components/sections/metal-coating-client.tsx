@@ -13,6 +13,10 @@ import { getMetalCoatingWhatsAppLink } from '@/lib/site';
 import { resolveIcon } from '@/lib/icons';
 import type { Service, InstagramPost, Category, MetalFinishCardData, BeforeAfterProject } from '@/lib/types';
 import { createInquiry } from '@/lib/supabase/inquiries';
+import {
+  validateEnquiryIdentity,
+  type EnquiryIdentityErrors,
+} from '@/lib/enquiry/validation';
 import { PrincipalServiceCards } from '@/components/sections/principal-service-cards';
 import { FinishCollection } from '@/components/sections/finish-collection';
 import { CategoryShowcase } from '@/components/categories/category-showcase';
@@ -46,6 +50,7 @@ export function MetalCoatingClient({
   const [quotePhone, setQuotePhone] = useState('');
   const [quoteMessage, setQuoteMessage] = useState('');
   const [quoteFinishRef, setQuoteFinishRef] = useState('');
+  const [quoteFieldErrors, setQuoteFieldErrors] = useState<EnquiryIdentityErrors>({});
 
   const [quoteSubmitting, setQuoteSubmitting] = useState(false);
   const [quoteSubmitted, setQuoteSubmitted] = useState(false);
@@ -98,13 +103,21 @@ export function MetalCoatingClient({
     e.preventDefault();
     if (quoteSubmitting) return;
 
-    setQuoteSubmitting(true);
+    const identity = validateEnquiryIdentity({
+      name: quoteName,
+      phone: quotePhone,
+      email: quoteEmail,
+    });
+    setQuoteFieldErrors(identity.errors);
     setQuoteError(null);
+    if (!identity.isValid) return;
+
+    setQuoteSubmitting(true);
 
     const res = await createInquiry({
-      name: quoteName,
-      email: quoteEmail,
-      phone: quotePhone || undefined,
+      name: identity.name,
+      phone: identity.phone,
+      email: identity.email,
       message:
         quoteMessage +
         (quoteFinishRef ? `\nFinish reference (FIN ID): ${quoteFinishRef}` : ''),
@@ -121,6 +134,7 @@ export function MetalCoatingClient({
       setQuoteEmail('');
       setQuotePhone('');
       setQuoteFinishRef('');
+      setQuoteFieldErrors({});
 
       const selectedService = quoteServiceId
         ? services.find((service) => service.id === quoteServiceId)
@@ -433,35 +447,63 @@ export function MetalCoatingClient({
               )}
 
               <div className="grid gap-4 sm:grid-cols-2">
-                <input
-                  required
-                  value={quoteName}
-                  onChange={(e) => setQuoteName(e.target.value)}
-                  disabled={quoteSubmitting}
-                  placeholder="Your name *"
-                  className="h-12 rounded-full border border-white/15 bg-white/5 px-5 text-sm text-white placeholder:text-white/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
-                />
-                <input
-                  type="email"
-                  required
-                  value={quoteEmail}
-                  onChange={(e) => setQuoteEmail(e.target.value)}
-                  disabled={quoteSubmitting}
-                  placeholder="Email address *"
-                  className="h-12 rounded-full border border-white/15 bg-white/5 px-5 text-sm text-white placeholder:text-white/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
-                />
-                <input
-                  value={quotePhone}
-                  onChange={(e) => setQuotePhone(e.target.value)}
-                  disabled={quoteSubmitting}
-                  placeholder="Phone number (optional)"
-                  className="h-12 rounded-full border border-white/15 bg-white/5 px-5 text-sm text-white placeholder:text-white/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold sm:col-span-2"
-                />
+                <div>
+                  <input
+                    required
+                    value={quoteName}
+                    onChange={(e) => setQuoteName(e.target.value)}
+                    disabled={quoteSubmitting}
+                    placeholder="Your name *"
+                    aria-label="Name (required)"
+                    aria-invalid={Boolean(quoteFieldErrors.name)}
+                    className="h-12 w-full rounded-full border border-white/15 bg-white/5 px-5 text-sm text-white placeholder:text-white/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+                  />
+                  {quoteFieldErrors.name && (
+                    <p role="alert" className="mt-1.5 text-xs text-destructive-foreground">
+                      {quoteFieldErrors.name}
+                    </p>
+                  )}
+                </div>
+                <div>
+                  <input
+                    type="tel"
+                    required
+                    value={quotePhone}
+                    onChange={(e) => setQuotePhone(e.target.value)}
+                    disabled={quoteSubmitting}
+                    placeholder="Mobile number *"
+                    aria-label="Mobile number (required)"
+                    aria-invalid={Boolean(quoteFieldErrors.phone)}
+                    className="h-12 w-full rounded-full border border-white/15 bg-white/5 px-5 text-sm text-white placeholder:text-white/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+                  />
+                  {quoteFieldErrors.phone && (
+                    <p role="alert" className="mt-1.5 text-xs text-destructive-foreground">
+                      {quoteFieldErrors.phone}
+                    </p>
+                  )}
+                </div>
+                <div className="sm:col-span-2">
+                  <input
+                    type="email"
+                    value={quoteEmail}
+                    onChange={(e) => setQuoteEmail(e.target.value)}
+                    disabled={quoteSubmitting}
+                    placeholder="Email address (optional)"
+                    aria-label="Email address (optional)"
+                    aria-invalid={Boolean(quoteFieldErrors.email)}
+                    className="h-12 w-full rounded-full border border-white/15 bg-white/5 px-5 text-sm text-white placeholder:text-white/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+                  />
+                  {quoteFieldErrors.email && (
+                    <p role="alert" className="mt-1.5 text-xs text-destructive-foreground">
+                      {quoteFieldErrors.email}
+                    </p>
+                  )}
+                </div>
                 <input
                   value={quoteFinishRef}
                   onChange={(e) => setQuoteFinishRef(e.target.value)}
                   disabled={quoteSubmitting}
-                  placeholder="Finish reference (FIN ID) — optional"
+                  placeholder="Finish reference (FIN ID) - optional"
                   className="h-12 rounded-full border border-white/15 bg-white/5 px-5 text-sm text-white placeholder:text-white/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold sm:col-span-2"
                 />
                 <textarea
@@ -470,7 +512,7 @@ export function MetalCoatingClient({
                   value={quoteMessage}
                   onChange={(e) => setQuoteMessage(e.target.value)}
                   disabled={quoteSubmitting}
-                  placeholder="Project details — material, finish, quantity, timeline *"
+                  placeholder="Project details - material, finish, quantity, timeline *"
                   className="rounded-2xl border border-white/15 bg-white/5 px-5 py-3 text-sm text-white placeholder:text-white/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold sm:col-span-2"
                 />
               </div>

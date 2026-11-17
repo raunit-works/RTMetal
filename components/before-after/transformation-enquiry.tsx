@@ -13,6 +13,10 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { createInquiry } from '@/lib/supabase/inquiries';
+import {
+  validateEnquiryIdentity,
+  type EnquiryIdentityErrors,
+} from '@/lib/enquiry/validation';
 import { getMetalCoatingWhatsAppLink } from '@/lib/site';
 
 export function TransformationEnquiry({
@@ -36,6 +40,7 @@ export function TransformationEnquiry({
   const [submitting, setSubmitting] = React.useState(false);
   const [submitted, setSubmitted] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = React.useState<EnquiryIdentityErrors>({});
 
   const whatsappUrl = getMetalCoatingWhatsAppLink(
     projectTitle
@@ -47,13 +52,17 @@ export function TransformationEnquiry({
     event.preventDefault();
     if (submitting) return;
 
-    setSubmitting(true);
+    const identity = validateEnquiryIdentity({ name, phone, email });
+    setFieldErrors(identity.errors);
     setError(null);
+    if (!identity.isValid) return;
+
+    setSubmitting(true);
 
     const result = await createInquiry({
-      name,
-      email,
-      phone: phone.trim() || undefined,
+      name: identity.name,
+      phone: identity.phone,
+      email: identity.email,
       message,
       inquiry_type: 'service',
       division: 'metal_coating',
@@ -67,6 +76,7 @@ export function TransformationEnquiry({
       setName('');
       setEmail('');
       setPhone('');
+      setFieldErrors({});
       setMessage(defaultMessage);
     } else {
       setError(result.message);
@@ -157,7 +167,7 @@ export function TransformationEnquiry({
             <form onSubmit={handleSubmit} className="grid gap-4 sm:grid-cols-2">
               <div className="space-y-1.5">
                 <Label htmlFor="project-enquiry-name" className="text-[#E8E6E1]">
-                  Name
+                  Name <span className="text-[#D8A548]">*</span>
                 </Label>
                 <Input
                   id="project-enquiry-name"
@@ -167,42 +177,63 @@ export function TransformationEnquiry({
                   minLength={2}
                   maxLength={100}
                   autoComplete="name"
+                  aria-invalid={Boolean(fieldErrors.name)}
+                  aria-describedby={fieldErrors.name ? 'project-enquiry-name-error' : undefined}
                   className="border-white/15 bg-white/[0.04] text-[#F7F4EF] placeholder:text-[#77756F]"
                   placeholder="Your name"
                 />
+                {fieldErrors.name && (
+                  <p id="project-enquiry-name-error" role="alert" className="text-xs text-[#E09A8F]">
+                    {fieldErrors.name}
+                  </p>
+                )}
               </div>
 
               <div className="space-y-1.5">
-                <Label htmlFor="project-enquiry-email" className="text-[#E8E6E1]">
-                  Email
-                </Label>
-                <Input
-                  id="project-enquiry-email"
-                  type="email"
-                  value={email}
-                  onChange={(event) => setEmail(event.currentTarget.value)}
-                  required
-                  maxLength={255}
-                  autoComplete="email"
-                  className="border-white/15 bg-white/[0.04] text-[#F7F4EF] placeholder:text-[#77756F]"
-                  placeholder="you@example.com"
-                />
-              </div>
-
-              <div className="space-y-1.5 sm:col-span-2">
                 <Label htmlFor="project-enquiry-phone" className="text-[#E8E6E1]">
-                  Phone <span className="text-[#8F8D87]">(optional)</span>
+                  Mobile Number <span className="text-[#D8A548]">*</span>
                 </Label>
                 <Input
                   id="project-enquiry-phone"
                   type="tel"
                   value={phone}
                   onChange={(event) => setPhone(event.currentTarget.value)}
-                  maxLength={20}
+                  required
+                  maxLength={30}
                   autoComplete="tel"
+                  aria-invalid={Boolean(fieldErrors.phone)}
+                  aria-describedby={fieldErrors.phone ? 'project-enquiry-phone-error' : undefined}
                   className="border-white/15 bg-white/[0.04] text-[#F7F4EF] placeholder:text-[#77756F]"
-                  placeholder="+91"
+                  placeholder="+91 98765 43210"
                 />
+                {fieldErrors.phone && (
+                  <p id="project-enquiry-phone-error" role="alert" className="text-xs text-[#E09A8F]">
+                    {fieldErrors.phone}
+                  </p>
+                )}
+              </div>
+
+              <div className="space-y-1.5 sm:col-span-2">
+                <Label htmlFor="project-enquiry-email" className="text-[#E8E6E1]">
+                  Email <span className="text-[#8F8D87]">(optional)</span>
+                </Label>
+                <Input
+                  id="project-enquiry-email"
+                  type="email"
+                  value={email}
+                  onChange={(event) => setEmail(event.currentTarget.value)}
+                  maxLength={255}
+                  autoComplete="email"
+                  aria-invalid={Boolean(fieldErrors.email)}
+                  aria-describedby={fieldErrors.email ? 'project-enquiry-email-error' : undefined}
+                  className="border-white/15 bg-white/[0.04] text-[#F7F4EF] placeholder:text-[#77756F]"
+                  placeholder="you@example.com"
+                />
+                {fieldErrors.email && (
+                  <p id="project-enquiry-email-error" role="alert" className="text-xs text-[#E09A8F]">
+                    {fieldErrors.email}
+                  </p>
+                )}
               </div>
 
               <div className="space-y-1.5 sm:col-span-2">

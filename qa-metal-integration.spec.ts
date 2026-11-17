@@ -53,7 +53,15 @@ test.describe('Metal division integration journey', () => {
     });
     const collections = page.locator('#collections');
     await expect(collections).toBeInViewport();
-    await expect(collections).toContainText(/2\s*pieces/);
+    // The collection strip is a carousel, so the old "N pieces" count text no
+    // longer exists. Assert the published metal collections themselves: there
+    // are two of them, and they are reachable from this section.
+    const collectionLinks = collections.locator(
+      'a[href^="/metal-coating/category/"]'
+    );
+    await expect(collectionLinks).toHaveCount(2);
+    await expect(collections).toContainText('Art Work');
+    await expect(collections).toContainText('Name Plates & Signage');
 
     const artWorkLink = collections.locator(
       'a[href="/metal-coating/category/art-work"]'

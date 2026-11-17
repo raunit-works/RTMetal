@@ -1,0 +1,84 @@
+{
+  "existingMatches": 0,
+  "galleryAfterUpload": {
+    "count": 2,
+    "srcs": [
+      "https://rbucefvtkiohmaugvkyz.supabase.co/storage/v1/object/public/catalog-images/uploads/1794895284638-8ouyqck.webp",
+      "https://rbucefvtkiohmaugvkyz.supabase.co/storage/v1/object/public/catalog-images/uploads/1794895284618-dxjgn65.webp"
+    ]
+  },
+  "initialVariantRowCount": 1,
+  "variantOneDefault": true,
+  "variantRowCountAfterAdd": 2,
+  "beforeSave": {
+    "variants": [
+      {
+        "name": "Hand-Patinated Antique Bronze with Satin Highlight",
+        "sku": "QA-PILOT-C01",
+        "stock": "2",
+        "isDefault": true,
+        "imageCount": 1,
+        "images": [
+          "https://rbucefvtkiohmaugvkyz.supabase.co/storage/v1/object/public/catalog-images/uploads/1794895286626-7vn061e.webp"
+        ]
+      },
+      {
+        "name": "Mirror-Polished Antique Brass with Hand-Brushed Edge",
+        "sku": "QA-PILOT-C02",
+        "stock": "1",
+        "isDefault": false,
+        "imageCount": 1,
+        "images": [
+          "https://rbucefvtkiohmaugvkyz.supabase.co/storage/v1/object/public/catalog-images/uploads/1794895288105-wfcpu34.webp"
+        ]
+      }
+    ],
+    "gallery": {
+      "count": 2,
+      "srcs": [
+        "https://rbucefvtkiohmaugvkyz.supabase.co/storage/v1/object/public/catalog-images/uploads/1794895284638-8ouyqck.webp",
+        "https://rbucefvtkiohmaugvkyz.supabase.co/storage/v1/object/public/catalog-images/uploads/1794895284618-dxjgn65.webp"
+      ]
+    },
+    "slug": "qa-pilot-long-finish-name-showpiece",
+    "published": false,
+    "uploadErrorCount": 0
+  },
+  "saveMessage": "2 gallery images optimized and uploaded.",
+  "createdRowCount": 1,
+  "createdProductId": "c4be9a2d-d8c4-4bfa-abaa-cbc6cea15cfc",
+  "afterReopen": {
+    "variants": [
+      {
+        "name": "Hand-Patinated Antique Bronze with Satin Highlight",
+        "sku": "QA-PILOT-C01",
+        "stock": "2",
+        "isDefault": true,
+        "imageCount": 1,
+        "images": [
+          "https://rbucefvtkiohmaugvkyz.supabase.co/storage/v1/object/public/catalog-images/uploads/1794895286626-7vn061e.webp"
+        ]
+      },
+      {
+        "name": "Mirror-Polished Antique Brass with Hand-Brushed Edge",
+        "sku": "QA-PILOT-C02",
+        "stock": "1",
+        "isDefault": false,
+        "imageCount": 1,
+        "images": [
+          "https://rbucefvtkiohmaugvkyz.supabase.co/storage/v1/object/public/catalog-images/uploads/1794895288105-wfcpu34.webp"
+        ]
+      }
+    ],
+    "gallery": {
+      "count": 2,
+      "srcs": [
+        "https://rbucefvtkiohmaugvkyz.supabase.co/storage/v1/object/public/catalog-images/uploads/1794895284638-8ouyqck.webp",
+        "https://rbucefvtkiohmaugvkyz.supabase.co/storage/v1/object/public/catalog-images/uploads/1794895284618-dxjgn65.webp"
+      ]
+    },
+    "enabled": true,
+    "published": false,
+    "mainImage": "https://rbucefvtkiohmaugvkyz.supabase.co/storage/v1/object/public/catalog-images/uploads/1794895282070-ish9oc8.webp"
+  }
+}

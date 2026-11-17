@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import type { ProductImage } from '@/lib/types';
 
@@ -9,6 +9,7 @@ interface ProductImageGalleryProps {
   productName: string;
   badge?: string;
   images?: ProductImage[];
+  resetKey?: string;
 }
 
 interface GalleryEntry {
@@ -21,6 +22,7 @@ export function ProductImageGallery({
   productName,
   badge,
   images = [],
+  resetKey,
 }: ProductImageGalleryProps) {
   const orderedImages = [...images].sort((a, b) => {
     if (a.sortOrder !== b.sortOrder) return a.sortOrder - b.sortOrder;
@@ -43,6 +45,10 @@ export function ProductImageGallery({
   const [selectedUrl, setSelectedUrl] = useState<string>(allImageUrls[0]?.url ?? '');
   const selectedImage =
     allImageUrls.find((item) => item.url === selectedUrl) ?? allImageUrls[0];
+
+  useEffect(() => {
+    setSelectedUrl(mainImage?.trim() ?? '');
+  }, [resetKey, mainImage]);
 
   return (
     <div className="space-y-4">

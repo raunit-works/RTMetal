@@ -1,0 +1,48 @@
+{
+  "actions": [
+    {
+      "sku": "QA-PILOT-PLAIN",
+      "id": "ff9d095d-d952-449c-ab2f-40785758f136",
+      "wasPublished": false,
+      "nowDraft": true,
+      "afterText": "QA Pilot - Plain Showpiece Draft slug: qa-pilot-plain-showpiece • SKU: QA-PILOT-PLAIN ID: ff9d095d-d952-449c-ab2f-40785758f136 Stock: in_stock • Material: Antique Gold • Order: 0"
+    },
+    {
+      "sku": "QA-PILOT-SINGLE",
+      "id": "dfafb3c8-1f84-4fca-923e-f5c7fca88ef2",
+      "wasPublished": false,
+      "nowDraft": true,
+      "afterText": "QA Pilot - Single Finish Showpiece Draft Featured slug: qa-pilot-single-finish-showpiece • SKU: QA-PILOT-SINGLE ID: dfafb3c8-1f84-4fca-923e-f5c7fca88ef2 Stock: in_stock • Material: Antique Brass • Order: 0"
+    },
+    {
+      "sku": "QA-PILOT-LONG",
+      "id": "c4be9a2d-d8c4-4bfa-abaa-cbc6cea15cfc",
+      "wasPublished": false,
+      "nowDraft": true,
+      "afterText": "QA Pilot - Long Finish Name Showpiece Draft slug: qa-pilot-long-finish-name-showpiece • SKU: QA-PILOT-LONG ID: c4be9a2d-d8c4-4bfa-abaa-cbc6cea15cfc Stock: in_stock • Material: Brass • Order: 0"
+    }
+  ],
+  "refreshed": [
+    {
+      "sku": "QA-PILOT-PLAIN",
+      "count": 1,
+      "text": "QA Pilot - Plain Showpiece Draft slug: qa-pilot-plain-showpiece • SKU: QA-PILOT-PLAIN ID: ff9d095d-d952-449c-ab2f-40785758f136 Stock: in_stock • Material: Antique Gold • Order: 0"
+    },
+    {
+      "sku": "QA-PILOT-SINGLE",
+      "count": 1,
+      "text": "QA Pilot - Single Finish Showpiece Draft Featured slug: qa-pilot-single-finish-showpiece • SKU: QA-PILOT-SINGLE ID: dfafb3c8-1f84-4fca-923e-f5c7fca88ef2 Stock: in_stock • Material: Antique Brass • Order: 0"
+    },
+    {
+      "sku": "QA-PILOT-LONG",
+      "count": 1,
+      "text": "QA Pilot - Long Finish Name Showpiece Draft slug: qa-pilot-long-finish-name-showpiece • SKU: QA-PILOT-LONG ID: c4be9a2d-d8c4-4bfa-abaa-cbc6cea15cfc Stock: in_stock • Material: Brass • Order: 0"
+    }
+  ],
+  "publicVisibility": {
+    "QA Pilot - Plain Showpiece": 0,
+    "QA Pilot - Single Finish Showpiece": 0,
+    "QA Pilot - Long Finish Name Showpiece": 0
+  },
+  "ashokStillVisible": 1
+}
