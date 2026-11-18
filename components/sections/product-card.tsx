@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Heart, Eye, Star, X, MessageCircle, ArrowRight, Loader2, Check } from 'lucide-react';
+import { Heart, Eye, Star, X, ArrowRight, Loader2, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import type { Product, ProductImage, ProductOptionValue } from '@/lib/types';
@@ -12,7 +12,7 @@ import { getProductGalleryImages, sortGalleryImages } from '@/lib/supabase/produ
 import { getDefaultVariant, getVariantPrimaryImage, sortProductVariants } from '@/lib/supabase/product-variants';
 import {
   buildProductEnquiryHref,
-  buildProductEnquiryMessage,
+  buildRichProductEnquiryMessage,
 } from '@/lib/product-variants/enquiry';
 import {
   getCompactFinishLabel,
@@ -20,8 +20,7 @@ import {
 } from '@/lib/product-variants/swatch';
 import { normalizeImageSrc } from '@/lib/utils';
 
-import { getHomeDecorWhatsAppLink, getMetalCoatingWhatsAppLink } from '@/lib/site';
-
+import { WhatsAppEnquiryButton } from '@/components/enquiry/whatsapp-enquiry-button';
 import { useWishlist } from '@/components/providers/wishlist-provider';
 
 interface ProductCardProps {
@@ -63,7 +62,12 @@ function FinishSwatchPreview({
 export function ProductCard({ product, division = 'home_decor' }: ProductCardProps) {
   const [quickView, setQuickView] = useState(false);
   const [isPending, setIsPending] = useState(false);
+  const [origin, setOrigin] = useState('');
   const { isInWishlist, toggleItem } = useWishlist();
+
+  useEffect(() => {
+    setOrigin(window.location.origin);
+  }, []);
   // Only the customer's explicit choice is stored. The effective selection is
   // derived, so the configured default finish is active on the first render
   // and a stale id from a previous product can never be reused.
@@ -104,10 +108,16 @@ export function ProductCard({ product, division = 'home_decor' }: ProductCardPro
   const productSlug = product.slug || product.id;
   const isSaved = isInWishlist(product.id) || (product.slug ? isInWishlist(product.slug) : false);
   const productDetailLink = division === 'metal_services' ? `/metal-coating/product/${productSlug}` : `/home-decor/${productSlug}`;
-  const enquiryWhatsAppMessage = useMemo(
-    () => buildProductEnquiryMessage(product.name, selectedVariant),
-    [product.name, selectedVariant]
-  );
+  const enquiryWhatsAppMessage = useMemo(() => {
+    const productUrl = origin ? `${origin}${productDetailLink}` : productDetailLink;
+    return buildRichProductEnquiryMessage({
+      division: division === 'metal_services' ? 'metal_services' : 'home_decor',
+      productName: product.name,
+      category: product.category,
+      variant: selectedVariant,
+      productUrl,
+    });
+  }, [division, origin, product.category, product.name, productDetailLink, selectedVariant]);
   const productEnquiryHref = useMemo(
     () =>
       buildProductEnquiryHref({
@@ -121,10 +131,6 @@ export function ProductCard({ product, division = 'home_decor' }: ProductCardPro
     [division, product.id, product.name, selectedVariant]
   );
   const productImageFallback = normalizeImageSrc(product.image) || '/images/placeholder.png';
-
-  const productWhatsAppUrl = division === 'metal_services'
-    ? getMetalCoatingWhatsAppLink(enquiryWhatsAppMessage)
-    : getHomeDecorWhatsAppLink(enquiryWhatsAppMessage);
 
   const handleWishlistToggle = async (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -153,7 +159,8 @@ export function ProductCard({ product, division = 'home_decor' }: ProductCardPro
             ) || productImageFallback}
             alt={product.name}
             fill
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            sizes="(max-width: 1024px) 50vw, 25vw"
+            quality={70}
             className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
           />
           {product.badge && (
@@ -311,24 +318,16 @@ export function ProductCard({ product, division = 'home_decor' }: ProductCardPro
             )}
           <div className="order-3 mt-auto w-full sm:order-2 sm:mt-0 sm:w-auto sm:shrink-0 sm:text-right">
             <div className="flex items-center justify-end gap-2">
-              {productWhatsAppUrl && (
-                <Button
-                  asChild
-                  variant="outline"
-                  size="icon"
-                  className="h-10 w-10 rounded-full border-[#25D366]/40 text-[#25D366]"
-                >
-                  <a
-                    href={productWhatsAppUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Enquire on WhatsApp"
-                    title="Enquire on WhatsApp"
-                  >
-                    <MessageCircle className="h-4 w-4" />
-                  </a>
-                </Button>
-              )}
+              <WhatsAppEnquiryButton
+                mode={division}
+                message={enquiryWhatsAppMessage}
+                variant="outline"
+                size="icon"
+                className="h-10 w-10 rounded-full border-[#25D366]/40 text-[#25D366]"
+                ariaLabel="Enquire on WhatsApp"
+                title="Enquire on WhatsApp"
+                showIcon
+              />
               <Button
                 asChild
                 className="h-auto min-h-[44px] w-full rounded-full px-4 text-sm sm:h-10 sm:min-h-0 sm:w-auto"
@@ -369,10 +368,19 @@ function QuickViewModal({
 }) {
   const productSlug = product.slug || product.id;
   const productDetailLink = division === 'metal_services' ? `/metal-coating/product/${productSlug}` : `/home-decor/${productSlug}`;
-  const whatsappMsg = `Hello RTMETALCOATING, I am interested in ${product.name}. Please share more details.`;
-  const quickViewWhatsAppUrl = division === 'metal_services'
-    ? getMetalCoatingWhatsAppLink(whatsappMsg)
-    : getHomeDecorWhatsAppLink(whatsappMsg);
+  const [origin, setOrigin] = useState('');
+  useEffect(() => {
+    setOrigin(window.location.origin);
+  }, []);
+  const quickViewWhatsAppMessage = useMemo(() => {
+    const productUrl = origin ? `${origin}${productDetailLink}` : productDetailLink;
+    return buildRichProductEnquiryMessage({
+      division: division === 'metal_services' ? 'metal_services' : 'home_decor',
+      productName: product.name,
+      category: product.category,
+      productUrl,
+    });
+  }, [division, origin, product.category, product.name, productDetailLink]);
   const quickViewEnquiryHref = buildProductEnquiryHref({
     division: division === 'metal_services' ? 'metal_services' : 'home_decor',
     productId: product.id,
@@ -692,23 +700,15 @@ function QuickViewModal({
                   </Link>
                 </Button>
 
-                {quickViewWhatsAppUrl ? (
-                  <Button
-                    asChild
-                    variant="outline"
-                    size="lg"
-                    className="w-full rounded-full border-[#25D366]/40 text-[#25D366]"
-                  >
-                    <a
-                      href={quickViewWhatsAppUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <MessageCircle className="mr-2 h-4 w-4" />
-                      Enquire via WhatsApp
-                    </a>
-                  </Button>
-                ) : null}
+                <WhatsAppEnquiryButton
+                  mode={division}
+                  message={quickViewWhatsAppMessage}
+                  label="Enquire via WhatsApp"
+                  variant="outline"
+                  size="lg"
+                  showIcon
+                  className="w-full rounded-full border-[#25D366]/40 text-[#25D366]"
+                />
 
                 <Button
                   asChild

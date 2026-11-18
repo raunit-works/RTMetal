@@ -1,0 +1,26 @@
+{
+  "baseURL": "http://localhost:3012",
+  "targetName": "Ashok Stambh",
+  "startedAt": "2026-11-17T14:01:54.226Z",
+  "productId": "e01e4bdc-89a8-46f7-beef-8ab4a3be6779",
+  "productSku": "",
+  "preExistingPin": false,
+  "beforeFirst": {
+    "id": "119477bf-a9cb-4811-898e-2704b220e683",
+    "name": "Colourful Standing Devotional Idol"
+  },
+  "targetVisiblePublicly": true,
+  "adminPinConfirmed": true,
+  "afterFirst": {
+    "id": "e01e4bdc-89a8-46f7-beef-8ab4a3be6779",
+    "name": "Ashok Stambh – Premium Decorative Showpiece"
+  },
+  "publicFirstAfterPin": true,
+  "unpinned": true,
+  "afterRestoreFirst": {
+    "id": "119477bf-a9cb-4811-898e-2704b220e683",
+    "name": "Colourful Standing Devotional Idol"
+  },
+  "restored": true,
+  "finishedAt": "2026-11-17T14:02:07.485Z"
+}

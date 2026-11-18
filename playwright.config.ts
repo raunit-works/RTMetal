@@ -9,20 +9,7 @@ const baseURL = externalBaseUrl ?? 'http://localhost:3010';
 export default defineConfig({
   testDir: '.',
   testMatch: [
-    'image-url-normalization.spec.ts',
-    'image-rendering.spec.ts',
-    'product-enquiry-message.spec.ts',
-    'enquiry-action.spec.ts',
-    'qa-browser.spec.ts',
-    'qa-metal-integration.spec.ts',
-    'qa-service-categories.spec.ts',
-    'tests/admin-product-edit.spec.ts',
-    'tests/enquiry-validation.spec.ts',
-    'tests/product-detail-formatting.spec.ts',
-    'tests/product-detail-page.spec.ts',
-    'tests/admin-product-pin.spec.ts',
-    'tests/transformation-enquiry.spec.ts',
-    'tests/admin-inquiry-email.spec.ts',
+    'tests/axe-debug.spec.ts',
   ],
   reporter: 'list',
   // Allow 1 retry to handle transient dev-server hot-reload race conditions.

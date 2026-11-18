@@ -188,8 +188,10 @@ export interface SiteSettings {
   };
   whatsapp: {
     homeDecor: string;
+    homeDecorSecondary: string;
     metalCoating: string;
     homeDecorVerified: boolean;
+    homeDecorSecondaryVerified: boolean;
     metalCoatingVerified: boolean;
   };
   contactAvailability?: {

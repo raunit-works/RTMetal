@@ -142,7 +142,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
       {/* Main Product Showcase Section */}
       <section className="py-12 sm:py-20">
         <div className="mx-auto max-w-7xl px-5 lg:px-10">
-          <ProductVariantProvider product={product}>
+          <ProductVariantProvider product={product} division="home_decor" categoryName={category?.name}>
             <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             {/* Image Gallery Column */}
             <div className="lg:col-span-6">
@@ -161,7 +161,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
                   <VariantSku fallback={product.sku} />
                 </div>
 
-                <h1 className="mt-3 font-display text-4xl font-medium leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+                <h1 className="type-product-title mt-3">
                   {product.name}
                 </h1>
 

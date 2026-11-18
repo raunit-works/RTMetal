@@ -221,6 +221,17 @@ export function getServiceQuoteHref(service: Service): string {
   return `/metal-coating?service=${encodeURIComponent(service.slug)}#quote`;
 }
 
-export function getServiceWhatsAppMessage(service: Service): string {
-  return `Hello RTMETALCOATING, I am interested in ${service.name}. I would like to discuss my requirements and request a quotation.`;
+export function getServiceWhatsAppMessage(
+  service: Service,
+  serviceUrl?: string,
+): string {
+  const link = serviceUrl || `/metal-coating/${service.slug}`;
+  return [
+    `Hello, I am interested in your ${service.name}.`,
+    '',
+    'Service category: Metal Coating & Finishing',
+    `Service Link: ${link}`,
+    '',
+    'Please share the service details, quotation and further information.',
+  ].join('\n');
 }

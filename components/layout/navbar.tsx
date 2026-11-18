@@ -5,15 +5,14 @@ import * as React from 'react';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Menu, X, ChevronDown, MessageCircle, User, LogOut, LogIn, Shield, Heart } from 'lucide-react';
+import { Menu, X, ChevronDown, User, LogOut, LogIn, Shield, Heart } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { getCategoriesAsync, getServices, getServicesAsync, isSupabaseAuthoritative } from '@/lib/data-access';
 import { categoryHref, getCategoryPath, isCategoryInSection } from '@/lib/category-hierarchy';
-import { whatsappLink, isHomeDecorWhatsappVerified, getMetalCoatingWhatsAppLink, isMetalCoatingWhatsappVerified } from '@/lib/site';
+import { WhatsAppEnquiryButton } from '@/components/enquiry/whatsapp-enquiry-button';
 import { resolveIcon } from '@/lib/icons';
 import { Wrench } from 'lucide-react';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { createSupabaseBrowserClient } from '@/lib/supabase/client';
 import { useWishlist } from '@/components/providers/wishlist-provider';
 import type { Category, Service } from '@/lib/types';
@@ -78,17 +77,17 @@ export function Navbar() {
     isSupabaseAuthoritative() ? [] : curatedServices,
   );
   const [configuredCategories, setConfiguredCategories] = React.useState<Category[]>([]);
-  const homeDecorWhatsAppUrl = whatsappLink(
-    "Hello RTMETALCOATING, I'd like to enquire about your services.",
-  );
-  const metalCoatingWhatsAppUrl = getMetalCoatingWhatsAppLink(
-    "Hello RTMETALCOATING, I'd like to enquire about metal coating services.",
-  );
-  const navWhatsAppUrl = pathname.startsWith('/metal-coating')
-    ? metalCoatingWhatsAppUrl
+  const navWhatsAppMode = pathname.startsWith('/metal-coating')
+    ? 'metal_services'
     : pathname.startsWith('/home-decor')
-      ? homeDecorWhatsAppUrl
-      : null;
+      ? 'home_decor'
+      : 'general';
+  const navWhatsAppMessage =
+    navWhatsAppMode === 'metal_services'
+      ? "Hello RTMETALCOATING, I'd like to enquire about metal services and request a quotation."
+      : navWhatsAppMode === 'home_decor'
+        ? "Hello RTMETALCOATING, I'd like to enquire about your Home Decor products."
+        : "Hello RTMETALCOATING, I'd like to enquire about your products and services.";
   const categories = configuredCategories.filter((category) => isCategoryInSection(category, 'home_decor'));
   const metalCategories = configuredCategories.filter((category) => isCategoryInSection(category, 'metal_services'));
 
@@ -117,7 +116,9 @@ export function Navbar() {
   React.useEffect(() => {
     let cancelled = false;
 
-    getCategoriesAsync({ allowStaticFallback: false }).then((items) => {
+    // Navigation only needs category counts. Using the lightweight counts query
+    // avoids downloading the entire product catalogue, images and variants.
+    getCategoriesAsync({ allowStaticFallback: false, lightweightCounts: true }).then((items) => {
       if (!cancelled) setConfiguredCategories(items);
     });
 
@@ -652,86 +653,30 @@ export function Navbar() {
           {/* ── DESKTOP CTA BUTTONS ── */}
           <div className="hidden items-center lg:flex" style={{ gap: '12px' }}>
             {/* WhatsApp */}
-            {navWhatsAppUrl ? (
-              <a
-                href={navWhatsAppUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rt-wa-btn inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-                style={{
-                  height: '36px',
-                  paddingLeft: '20px',
-                  paddingRight: '20px',
-                  background: 'transparent',
-                  border: '1px solid rgba(255,255,255,0.28)',
-                  color: HDR.ivory,
-                  transition: 'background 200ms ease, border-color 200ms ease',
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.08)';
-                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.45)';
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = 'transparent';
-                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.28)';
-                }}
-              >
-                <MessageCircle className="mr-2 h-4 w-4" style={{ color: HDR.ivory }} />
-                WhatsApp
-              </a>
-            ) : (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <button
-                    className="rt-wa-btn inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-                    style={{
-                      height: '36px',
-                      paddingLeft: '20px',
-                      paddingRight: '20px',
-                      background: 'transparent',
-                      border: '1px solid rgba(255,255,255,0.28)',
-                      color: HDR.ivory,
-                      transition: 'background 200ms ease, border-color 200ms ease',
-                    }}
-                    onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.08)';
-                      (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.45)';
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLElement).style.background = 'transparent';
-                      (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.28)';
-                    }}
-                  >
-                    <MessageCircle className="mr-2 h-4 w-4" style={{ color: HDR.ivory }} />
-                    WhatsApp
-                  </button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent side="bottom">
-                  {metalCoatingWhatsAppUrl ? (
-                    <DropdownMenuItem
-                      onClick={() => window.open(metalCoatingWhatsAppUrl, '_blank', 'noopener,noreferrer')}
-                    >
-                      Metal Coating Enquiry
-                    </DropdownMenuItem>
-                  ) : (
-                    <DropdownMenuItem disabled>
-                      Metal Coating Enquiry
-                    </DropdownMenuItem>
-                  )}
-                  {homeDecorWhatsAppUrl ? (
-                    <DropdownMenuItem
-                      onClick={() => window.open(homeDecorWhatsAppUrl, '_blank', 'noopener,noreferrer')}
-                    >
-                      RT HOME DECOR Support
-                    </DropdownMenuItem>
-                  ) : (
-                    <DropdownMenuItem disabled>
-                      RT HOME DECOR Support
-                    </DropdownMenuItem>
-                  )}
-                </DropdownMenuContent>
-              </DropdownMenu>
-            )}
+            <WhatsAppEnquiryButton
+              mode={navWhatsAppMode}
+              message={navWhatsAppMessage}
+              label="WhatsApp"
+              showIcon
+              className="rt-wa-btn inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+              style={{
+                height: '36px',
+                paddingLeft: '20px',
+                paddingRight: '20px',
+                background: 'transparent',
+                border: '1px solid rgba(255,255,255,0.28)',
+                color: HDR.ivory,
+                transition: 'background 200ms ease, border-color 200ms ease',
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.08)';
+                (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.45)';
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.background = 'transparent';
+                (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.28)';
+              }}
+            />
 
             {/* Sign In / User Menu */}
             {user ? (
@@ -1133,73 +1078,20 @@ export function Navbar() {
 
               {/* Mobile drawer footer */}
               <div className="p-6" style={{ borderTop: `1px solid ${HDR.ddBorder}` }}>
-                {navWhatsAppUrl ? (
-                  <a
-                    href={navWhatsAppUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => setMobileOpen(false)}
-                    className="flex w-full items-center justify-center rounded-full text-sm font-medium"
-                    style={{
-                      height: '44px',
-                      background: 'rgba(255,255,255,0.08)',
-                      border: `1px solid rgba(255,255,255,0.15)`,
-                      color: HDR.mobileText,
-                      transition: 'background 200ms ease',
-                    }}
-                  >
-                    <MessageCircle className="mr-2 h-4 w-4" />
-                    Chat on WhatsApp
-                  </a>
-                ) : (
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <button
-                        className="flex w-full items-center justify-center rounded-full text-sm font-medium"
-                        style={{
-                          height: '44px',
-                          background: 'rgba(255,255,255,0.08)',
-                          border: `1px solid rgba(255,255,255,0.15)`,
-                          color: HDR.mobileText,
-                          transition: 'background 200ms ease',
-                        }}
-                      >
-                        <MessageCircle className="mr-2 h-4 w-4" />
-                        WhatsApp
-                      </button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent side="bottom">
-                      {metalCoatingWhatsAppUrl ? (
-                        <DropdownMenuItem
-                          onClick={() => {
-                            setMobileOpen(false);
-                            window.open(metalCoatingWhatsAppUrl, '_blank', 'noopener,noreferrer');
-                          }}
-                        >
-                          Metal Coating Enquiry
-                        </DropdownMenuItem>
-                      ) : (
-                        <DropdownMenuItem disabled>
-                          Metal Coating Enquiry
-                        </DropdownMenuItem>
-                      )}
-                      {homeDecorWhatsAppUrl ? (
-                        <DropdownMenuItem
-                          onClick={() => {
-                            setMobileOpen(false);
-                            window.open(homeDecorWhatsAppUrl, '_blank', 'noopener,noreferrer');
-                          }}
-                        >
-                          RT HOME DECOR Support
-                        </DropdownMenuItem>
-                      ) : (
-                        <DropdownMenuItem disabled>
-                          RT HOME DECOR Support
-                        </DropdownMenuItem>
-                      )}
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                )}
+                <WhatsAppEnquiryButton
+                  mode={navWhatsAppMode}
+                  message={navWhatsAppMessage}
+                  label="Chat on WhatsApp"
+                  showIcon
+                  className="flex w-full items-center justify-center rounded-full text-sm font-medium"
+                  style={{
+                    height: '44px',
+                    background: 'rgba(255,255,255,0.08)',
+                    border: `1px solid rgba(255,255,255,0.15)`,
+                    color: HDR.mobileText,
+                    transition: 'background 200ms ease',
+                  }}
+                />
               </div>
             </motion.div>
           </>

@@ -1,10 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, MessageCircle } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useProductVariantContext } from '@/components/products/product-variant-provider';
-import { getHomeDecorWhatsAppLink, getMetalCoatingWhatsAppLink } from '@/lib/site';
+import { WhatsAppEnquiryButton } from '@/components/enquiry/whatsapp-enquiry-button';
 import {
   buildProductEnquiryHref,
   type EnquiryDivision,
@@ -46,37 +46,18 @@ export function VariantWhatsAppButton({
   showIcon = false,
 }: EnquiryButtonProps) {
   const { enquiryMessage, isUnavailable } = useProductVariantContext();
-  const href =
-    division === 'home_decor'
-      ? getHomeDecorWhatsAppLink(enquiryMessage)
-      : getMetalCoatingWhatsAppLink(enquiryMessage);
-
   const buttonLabel = isUnavailable ? 'Ask About Availability' : label;
 
-  if (!href) {
-    return (
-      <Button
-        disabled
-        size={size}
-        className={`cursor-not-allowed border border-[#25D366]/25 bg-[#25D366]/10 text-muted-foreground disabled:opacity-100 ${className ?? ''}`}
-      >
-        {showIcon && <MessageCircle className="mr-2 h-5 w-5" />}
-        {buttonLabel}
-      </Button>
-    );
-  }
-
   return (
-    <Button
-      asChild
+    <WhatsAppEnquiryButton
+      mode={division}
+      message={enquiryMessage}
+      label={buttonLabel}
       size={size}
+      showIcon={showIcon}
       className={`bg-[#25D366] text-ink hover:bg-[#25D366]/90 ${className ?? ''}`}
-    >
-      <a href={href} target="_blank" rel="noopener noreferrer">
-        {showIcon && <MessageCircle className="mr-2 h-5 w-5" />}
-        {buttonLabel}
-      </a>
-    </Button>
+      ariaLabel={buttonLabel}
+    />
   );
 }
 

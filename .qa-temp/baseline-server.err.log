@@ -1,0 +1,174 @@
+
+ ⚠ metadata.metadataBase is not set for resolving social open graph or twitter images, using "http://localhost:3011". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+Warning: For production Image Optimization with Next.js, the optional 'sharp' package is strongly recommended. Run 'npm i sharp', and Next.js will use it automatically for Image Optimization.
+Read more: https://nextjs.org/docs/messages/sharp-missing-in-production
+Error: Cannot find module './chunks/vendor-chunks/next.js'
+Require stack:
+- D:\Client Project\RT METAL\project\.next\server\webpack-runtime.js
+- D:\Client Project\RT METAL\project\.next\server\pages\_document.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\require.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\next-server.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\next.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\lib\start-server.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\cli\next-start.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\lib\commands.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\bin\next
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1456:15)
+    at D:\Client Project\RT METAL\project\node_modules\next\dist\server\require-hook.js:54:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)
+    at Module._load (node:internal/modules/cjs/loader:1242:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1556:12)
+    at mod.require (D:\Client Project\RT METAL\project\node_modules\next\dist\server\require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at t.f.require (D:\Client Project\RT METAL\project\.next\server\webpack-runtime.js:1:1430) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\Client Project\\RT METAL\\project\\.next\\server\\webpack-runtime.js',
+    'D:\\Client Project\\RT METAL\\project\\.next\\server\\pages\\_document.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\next-server.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\next.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\cli\\next-start.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\lib\\commands.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\bin\\next'
+  ]
+}
+Error: Cannot find module './chunks/vendor-chunks/next.js'
+Require stack:
+- D:\Client Project\RT METAL\project\.next\server\webpack-runtime.js
+- D:\Client Project\RT METAL\project\.next\server\pages\_document.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\require.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\next-server.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\next.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\lib\start-server.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\cli\next-start.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\lib\commands.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\bin\next
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1456:15)
+    at D:\Client Project\RT METAL\project\node_modules\next\dist\server\require-hook.js:54:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)
+    at Module._load (node:internal/modules/cjs/loader:1242:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1556:12)
+    at mod.require (D:\Client Project\RT METAL\project\node_modules\next\dist\server\require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at t.f.require (D:\Client Project\RT METAL\project\.next\server\webpack-runtime.js:1:1430) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\Client Project\\RT METAL\\project\\.next\\server\\webpack-runtime.js',
+    'D:\\Client Project\\RT METAL\\project\\.next\\server\\pages\\_document.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\next-server.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\next.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\cli\\next-start.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\lib\\commands.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\bin\\next'
+  ]
+}
+Error: Cannot find module './chunks/vendor-chunks/next.js'
+Require stack:
+- D:\Client Project\RT METAL\project\.next\server\webpack-runtime.js
+- D:\Client Project\RT METAL\project\.next\server\pages\_document.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\require.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\next-server.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\next.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\lib\start-server.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\cli\next-start.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\lib\commands.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\bin\next
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1456:15)
+    at D:\Client Project\RT METAL\project\node_modules\next\dist\server\require-hook.js:54:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)
+    at Module._load (node:internal/modules/cjs/loader:1242:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1556:12)
+    at mod.require (D:\Client Project\RT METAL\project\node_modules\next\dist\server\require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at t.f.require (D:\Client Project\RT METAL\project\.next\server\webpack-runtime.js:1:1430) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\Client Project\\RT METAL\\project\\.next\\server\\webpack-runtime.js',
+    'D:\\Client Project\\RT METAL\\project\\.next\\server\\pages\\_document.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\next-server.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\next.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\cli\\next-start.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\lib\\commands.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\bin\\next'
+  ]
+}
+Error: Cannot find module './chunks/vendor-chunks/next.js'
+Require stack:
+- D:\Client Project\RT METAL\project\.next\server\webpack-runtime.js
+- D:\Client Project\RT METAL\project\.next\server\pages\_document.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\require.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\next-server.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\next.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\lib\start-server.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\cli\next-start.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\lib\commands.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\bin\next
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1456:15)
+    at D:\Client Project\RT METAL\project\node_modules\next\dist\server\require-hook.js:54:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)
+    at Module._load (node:internal/modules/cjs/loader:1242:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1556:12)
+    at mod.require (D:\Client Project\RT METAL\project\node_modules\next\dist\server\require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at t.f.require (D:\Client Project\RT METAL\project\.next\server\webpack-runtime.js:1:1430) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\Client Project\\RT METAL\\project\\.next\\server\\webpack-runtime.js',
+    'D:\\Client Project\\RT METAL\\project\\.next\\server\\pages\\_document.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\next-server.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\next.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\cli\\next-start.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\lib\\commands.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\bin\\next'
+  ]
+}
+Error: Cannot find module './chunks/vendor-chunks/next.js'
+Require stack:
+- D:\Client Project\RT METAL\project\.next\server\webpack-runtime.js
+- D:\Client Project\RT METAL\project\.next\server\pages\_document.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\require.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\next-server.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\next.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\lib\start-server.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\cli\next-start.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\lib\commands.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\bin\next
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1456:15)
+    at D:\Client Project\RT METAL\project\node_modules\next\dist\server\require-hook.js:54:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)
+    at Module._load (node:internal/modules/cjs/loader:1242:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1556:12)
+    at mod.require (D:\Client Project\RT METAL\project\node_modules\next\dist\server\require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at t.f.require (D:\Client Project\RT METAL\project\.next\server\webpack-runtime.js:1:1430) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\Client Project\\RT METAL\\project\\.next\\server\\webpack-runtime.js',
+    'D:\\Client Project\\RT METAL\\project\\.next\\server\\pages\\_document.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\next-server.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\next.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\cli\\next-start.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\lib\\commands.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\bin\\next'
+  ]
+}

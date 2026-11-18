@@ -8,6 +8,7 @@ import {
   getServiceWhatsAppMessage,
 } from '@/lib/metal-service-content';
 import { resolveIcon } from '@/lib/icons';
+import { getSiteUrlForPath } from '@/lib/site-url';
 import type { Service } from '@/lib/types';
 
 interface ServiceHeroProps {
@@ -16,8 +17,9 @@ interface ServiceHeroProps {
 
 export function ServiceHero({ service }: ServiceHeroProps) {
   const quoteHref = getServiceQuoteHref(service);
+  const servicePath = `/metal-coating/${service.slug}`;
   const whatsappUrl = getMetalCoatingWhatsAppLink(
-    getServiceWhatsAppMessage(service)
+    getServiceWhatsAppMessage(service, getSiteUrlForPath(servicePath) ?? servicePath)
   );
   const ServiceIcon = resolveIcon(service.icon, Wrench);
 

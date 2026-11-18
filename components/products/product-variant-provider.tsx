@@ -5,6 +5,10 @@ import {
   getDefaultVariant,
   getVariantPrimaryImage,
 } from '@/lib/supabase/product-variants';
+import {
+  buildRichProductEnquiryMessage,
+  type EnquiryDivision,
+} from '@/lib/product-variants/enquiry';
 import type {
   Product,
   ProductImage,
@@ -77,11 +81,21 @@ function toProductImages(product: Product, variant: ProductVariant | undefined):
 
 export function ProductVariantProvider({
   product,
+  division = 'home_decor',
+  categoryName,
   children,
 }: {
   product: Product;
+  division?: EnquiryDivision;
+  categoryName?: string;
   children: React.ReactNode;
 }) {
+  const [origin, setOrigin] = React.useState('');
+
+  React.useEffect(() => {
+    setOrigin(window.location.origin);
+  }, []);
+
   const variants = React.useMemo(
     () => (product.variants ?? []).filter((variant) => variant.isActive),
     [product.variants]
@@ -171,22 +185,34 @@ export function ProductVariantProvider({
   const galleryImages = toProductImages(product, selectedVariant);
 
   const enquiryMessage = React.useMemo(() => {
-    const parts = [`Hello RTMETALCOATING, I am interested in ${product.name}`];
-    if (selectedFinishName) parts.push(`Finish: ${selectedFinishName}`);
-    if (selectedVariant?.sku) parts.push(`SKU: ${selectedVariant.sku}`);
-    parts.push(`Product ID: ${product.id}`);
-    if (selectedVariant) parts.push(`Variant ID: ${selectedVariant.id}`);
+    const productPath =
+      division === 'metal_services'
+        ? `/metal-coating/product/${product.slug || product.id}`
+        : `/home-decor/${product.slug || product.id}`;
+    const productUrl = origin ? `${origin}${productPath}` : productPath;
+
+    const message = buildRichProductEnquiryMessage({
+      division,
+      productName: product.name,
+      category: categoryName || product.category,
+      variant: selectedVariant,
+      productUrl,
+    });
+
     if (isUnavailable) {
-      parts.push('I understand this finish is currently unavailable and would like the next available option.');
+      return `${message}\n\nI understand this finish is currently unavailable and would like the next available option.`;
     }
-    parts.push('Please share availability and a quotation.');
-    return parts.join('. ');
+    return message;
   }, [
+    categoryName,
+    division,
+    isUnavailable,
+    origin,
+    product.category,
     product.id,
     product.name,
-    selectedFinishName,
+    product.slug,
     selectedVariant,
-    isUnavailable,
   ]);
 
   const selectVariant = React.useCallback((variantId: string) => {

@@ -1,0 +1,75 @@
+
+ ⚠ metadata.metadataBase is not set for resolving social open graph or twitter images, using "http://localhost:3012". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+Warning: For production Image Optimization with Next.js, the optional 'sharp' package is strongly recommended. Run 'npm i sharp', and Next.js will use it automatically for Image Optimization.
+Read more: https://nextjs.org/docs/messages/sharp-missing-in-production
+TypeError [ERR_INVALID_STATE]: Invalid state: ReadableStream is already closed
+    at ReadableByteStreamController.enqueue (node:internal/webstreams/readablestream:1183:13)
+    at Ae (D:\Client Project\RT METAL\project\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:1:254629)
+    at Ie (D:\Client Project\RT METAL\project\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:1:254104)
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at Timeout._onTimeout (D:\Client Project\RT METAL\project\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:1:265484)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7) {
+  code: 'ERR_INVALID_STATE'
+}
+TypeError [ERR_INVALID_STATE]: Invalid state: ReadableStream is already closed
+    at ReadableByteStreamController.enqueue (node:internal/webstreams/readablestream:1183:13)
+    at Ae (D:\Client Project\RT METAL\project\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:1:254629)
+    at Ie (D:\Client Project\RT METAL\project\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:1:254104)
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at Timeout._onTimeout (D:\Client Project\RT METAL\project\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:1:265484)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7) {
+  code: 'ERR_INVALID_STATE'
+}
+TypeError [ERR_INVALID_STATE]: Invalid state: ReadableStream is already closed
+    at ReadableByteStreamController.enqueue (node:internal/webstreams/readablestream:1183:13)
+    at Ae (D:\Client Project\RT METAL\project\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:1:254629)
+    at Ie (D:\Client Project\RT METAL\project\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:1:254104)
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at Timeout._onTimeout (D:\Client Project\RT METAL\project\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:1:265484)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7) {
+  code: 'ERR_INVALID_STATE'
+}
+TypeError [ERR_INVALID_STATE]: Invalid state: ReadableStream is already closed
+    at ReadableByteStreamController.enqueue (node:internal/webstreams/readablestream:1183:13)
+    at Ae (D:\Client Project\RT METAL\project\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:1:254629)
+    at Ie (D:\Client Project\RT METAL\project\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:1:254104)
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at Timeout._onTimeout (D:\Client Project\RT METAL\project\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:1:265484)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7) {
+  code: 'ERR_INVALID_STATE'
+}
+TypeError [ERR_INVALID_STATE]: Invalid state: ReadableStream is already closed
+    at ReadableByteStreamController.enqueue (node:internal/webstreams/readablestream:1183:13)
+    at Ae (D:\Client Project\RT METAL\project\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:1:254629)
+    at Ie (D:\Client Project\RT METAL\project\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:1:254104)
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at Timeout._onTimeout (D:\Client Project\RT METAL\project\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:1:265484)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7) {
+  code: 'ERR_INVALID_STATE'
+}
+TypeError [ERR_INVALID_STATE]: Invalid state: ReadableStream is already closed
+    at ReadableByteStreamController.enqueue (node:internal/webstreams/readablestream:1183:13)
+    at Ae (D:\Client Project\RT METAL\project\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:1:254629)
+    at Ie (D:\Client Project\RT METAL\project\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:1:254104)
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at Timeout._onTimeout (D:\Client Project\RT METAL\project\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:1:265484)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7) {
+  code: 'ERR_INVALID_STATE'
+}
+TypeError [ERR_INVALID_STATE]: Invalid state: ReadableStream is already closed
+    at ReadableByteStreamController.enqueue (node:internal/webstreams/readablestream:1183:13)
+    at i (D:\Client Project\RT METAL\project\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:1:239891)
+    at Ae (D:\Client Project\RT METAL\project\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:1:254472)
+    at Ie (D:\Client Project\RT METAL\project\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:1:254104)
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at Timeout._onTimeout (D:\Client Project\RT METAL\project\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:1:265484)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7) {
+  code: 'ERR_INVALID_STATE'
+}

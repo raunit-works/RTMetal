@@ -126,7 +126,7 @@ export function Hero() {
           initial={initial}
           animate={variant}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-6 flex items-center justify-center gap-2 text-[10px] font-semibold uppercase tracking-[0.25em] text-[#c9a96e]"
+          className="type-eyebrow mb-6 flex items-center justify-center gap-2 text-[#c9a96e]"
         >
           <span className="inline-block h-px w-6 bg-[#c9a96e]" aria-hidden="true" />
           RT Metals / Metal Finishing &amp; Decorative Solutions
@@ -136,7 +136,7 @@ export function Hero() {
           initial={initial}
           animate={variant}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-          className="font-display text-[clamp(2rem,9vw,4.4rem)] font-medium leading-[1.12] tracking-tight text-white"
+          className="type-hero text-white"
         >
           Metal Finishes
           <br />

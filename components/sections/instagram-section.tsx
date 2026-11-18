@@ -7,13 +7,13 @@ import { SectionHeading } from '@/components/sections/section-heading';
 import { cn } from '@/lib/utils';
 
 const REELS = [
-  '/videos/instagram/reel-01.mp4',
-  '/videos/instagram/reel-02.mp4',
-  '/videos/instagram/reel-03.mp4',
-  '/videos/instagram/reel-04.mp4',
-  '/videos/instagram/reel-05.mp4',
-  '/videos/instagram/reel-06.mp4',
-  '/videos/instagram/reel-07.mp4',
+  { src: '/videos/instagram/reel-01.mp4', poster: '/videos/instagram/poster-01.jpg' },
+  { src: '/videos/instagram/reel-02.mp4', poster: '/videos/instagram/poster-02.jpg' },
+  { src: '/videos/instagram/reel-03.mp4', poster: '/videos/instagram/poster-03.jpg' },
+  { src: '/videos/instagram/reel-04.mp4', poster: '/videos/instagram/poster-04.jpg' },
+  { src: '/videos/instagram/reel-05.mp4', poster: '/videos/instagram/poster-05.jpg' },
+  { src: '/videos/instagram/reel-06.mp4', poster: '/videos/instagram/poster-06.jpg' },
+  { src: '/videos/instagram/reel-07.mp4', poster: '/videos/instagram/poster-07.jpg' },
 ];
 
 const CAPTIONS = [
@@ -36,6 +36,7 @@ const MAX_CARD_W = 210;
 
 function ReelCard({
   src,
+  poster,
   caption,
   index,
   isActive,
@@ -45,6 +46,7 @@ function ReelCard({
   onToggleMute,
 }: {
   src: string;
+  poster: string;
   caption: string;
   index: number;
   isActive: boolean;
@@ -85,16 +87,27 @@ function ReelCard({
           isActive ? 'ring-2 ring-[#c9a96e]/70' : ''
         )}
       >
-        <video
-          ref={videoRef}
-          src={src}
-          playsInline
-          loop
-          muted={isMuted}
-          className="h-full w-full object-cover"
-          preload="metadata"
-          aria-label={`Reel ${index + 1}`}
-        />
+        {isActive ? (
+          <video
+            ref={videoRef}
+            src={src}
+            poster={poster}
+            playsInline
+            loop
+            muted={isMuted}
+            className="h-full w-full object-cover"
+            preload="none"
+            aria-label={`Reel ${index + 1}`}
+          />
+        ) : (
+          <img
+            src={poster}
+            alt=""
+            loading="lazy"
+            decoding="async"
+            className="h-full w-full object-cover"
+          />
+        )}
         {isActive && (
           <button
             type="button"
@@ -284,10 +297,11 @@ export function InstagramSection({
               className="flex gap-4 scroll-snap-x snap-mandatory pb-4"
               style={{ width: cardW > 0 ? REELS.length * (cardW + GAP) - GAP : 'auto' }}
             >
-              {REELS.map((src, i) => (
+              {REELS.map((reel, i) => (
                 <ReelCard
-                  key={src}
-                  src={src}
+                  key={reel.src}
+                  src={reel.src}
+                  poster={reel.poster}
                   caption={CAPTIONS[i]}
                   index={i}
                   isActive={i === activeIndex && isVisible && !tabHidden}

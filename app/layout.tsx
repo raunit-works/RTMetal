@@ -9,45 +9,31 @@ import { getSiteUrl } from '@/lib/site-url';
 
 // Fonts served from public/fonts/ to avoid build-time Google Fonts network
 // requests that caused ETIMEDOUT failures on Netlify (fonts.gstatic.com).
+// Only the weights the design system actually uses are declared. Every extra
+// entry becomes a preloaded woff2 request, so unused weights were removed.
 const cormorant = localFont({
   src: [
-    { path: '../public/fonts/cormorant-garamond-latin-300-normal.woff2', weight: '300', style: 'normal' },
     { path: '../public/fonts/cormorant-garamond-latin-400-normal.woff2', weight: '400', style: 'normal' },
     { path: '../public/fonts/cormorant-garamond-latin-500-normal.woff2', weight: '500', style: 'normal' },
     { path: '../public/fonts/cormorant-garamond-latin-600-normal.woff2', weight: '600', style: 'normal' },
-    { path: '../public/fonts/cormorant-garamond-latin-700-normal.woff2', weight: '700', style: 'normal' },
-    { path: '../public/fonts/cormorant-garamond-latin-300-italic.woff2', weight: '300', style: 'italic' },
     { path: '../public/fonts/cormorant-garamond-latin-400-italic.woff2', weight: '400', style: 'italic' },
     { path: '../public/fonts/cormorant-garamond-latin-500-italic.woff2', weight: '500', style: 'italic' },
-    { path: '../public/fonts/cormorant-garamond-latin-600-italic.woff2', weight: '600', style: 'italic' },
-    { path: '../public/fonts/cormorant-garamond-latin-700-italic.woff2', weight: '700', style: 'italic' },
   ],
   variable: '--font-display',
   display: 'swap',
+  preload: true,
 });
 
 const manrope = localFont({
   src: [
-    { path: '../public/fonts/manrope-latin-300-normal.woff2', weight: '300', style: 'normal' },
     { path: '../public/fonts/manrope-latin-400-normal.woff2', weight: '400', style: 'normal' },
     { path: '../public/fonts/manrope-latin-500-normal.woff2', weight: '500', style: 'normal' },
     { path: '../public/fonts/manrope-latin-600-normal.woff2', weight: '600', style: 'normal' },
     { path: '../public/fonts/manrope-latin-700-normal.woff2', weight: '700', style: 'normal' },
-    { path: '../public/fonts/manrope-latin-800-normal.woff2', weight: '800', style: 'normal' },
   ],
   variable: '--font-sans',
   display: 'swap',
-});
-
-const spaceGrotesk = localFont({
-  src: [
-    { path: '../public/fonts/space-grotesk-latin-400-normal.woff2', weight: '400', style: 'normal' },
-    { path: '../public/fonts/space-grotesk-latin-500-normal.woff2', weight: '500', style: 'normal' },
-    { path: '../public/fonts/space-grotesk-latin-600-normal.woff2', weight: '600', style: 'normal' },
-    { path: '../public/fonts/space-grotesk-latin-700-normal.woff2', weight: '700', style: 'normal' },
-  ],
-  variable: '--font-label',
-  display: 'swap',
+  preload: true,
 });
 
 const siteUrl = getSiteUrl();
@@ -102,7 +88,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${manrope.variable} ${cormorant.variable} ${spaceGrotesk.variable}`}>
+    <html lang="en" className={`${manrope.variable} ${cormorant.variable}`}>
       <body className="min-h-screen bg-background font-sans text-foreground antialiased">
         <WishlistProvider>
           <ScrollProgress />

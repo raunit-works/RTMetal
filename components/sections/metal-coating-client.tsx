@@ -10,6 +10,7 @@ import { SectionHeading } from '@/components/sections/section-heading';
 import { InstagramSection } from '@/components/sections/instagram-section';
 import { CtaBanner } from '@/components/sections/cta-banner';
 import { getMetalCoatingWhatsAppLink } from '@/lib/site';
+import { getServiceWhatsAppMessage } from '@/lib/metal-service-content';
 import { resolveIcon } from '@/lib/icons';
 import type { Service, InstagramPost, Category, MetalFinishCardData, BeforeAfterProject } from '@/lib/types';
 import { createInquiry } from '@/lib/supabase/inquiries';
@@ -56,8 +57,22 @@ export function MetalCoatingClient({
   const [quoteSubmitted, setQuoteSubmitted] = useState(false);
   const [quoteError, setQuoteError] = useState<string | null>(null);
   const [quoteServiceId, setQuoteServiceId] = useState<string | undefined>(undefined);
+  const [origin, setOrigin] = useState('');
+
+  useEffect(() => {
+    setOrigin(window.location.origin);
+  }, []);
+
+  const metalPageUrl = origin ? `${origin}/metal-coating` : '/metal-coating';
   const metalCoatingWhatsAppUrl = getMetalCoatingWhatsAppLink(
-    "Hello RTMETALCOATING, I'd like a quote for metal coating services."
+    [
+      'Hello, I am interested in your Metal Coating & Finishing services.',
+      '',
+      'Service category: Metal Coating & Finishing',
+      `Service Link: ${metalPageUrl}`,
+      '',
+      'Please share the service details, quotation and further information.',
+    ].join('\n')
   );
 
   // Service detail pages link here with ?service=<slug>#quote. Prefill the
@@ -281,8 +296,11 @@ export function MetalCoatingClient({
                         </Link>
                         <div className="mt-6 border-t border-border/60 pt-4">
                           {(() => {
+                            const serviceUrl = origin
+                              ? `${origin}/metal-coating/${svc.slug}`
+                              : `/metal-coating/${svc.slug}`;
                             const serviceWhatsAppUrl = getMetalCoatingWhatsAppLink(
-                              `Hello RTMETALCOATING, I am interested in ${svc.name}. I would like to discuss my coating requirement.`
+                              getServiceWhatsAppMessage(svc, serviceUrl)
                             );
                             return serviceWhatsAppUrl ? (
                               <Button

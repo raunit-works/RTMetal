@@ -27,6 +27,61 @@ export function buildProductEnquiryMessage(
 
 export type EnquiryDivision = 'home_decor' | 'metal_services';
 
+/**
+ * Turns a category slug into a readable label without inventing a new name.
+ * Values that are already human-readable are kept as supplied.
+ */
+export function formatCategoryLabel(category: string): string {
+  const trimmed = category.trim();
+  if (!trimmed) return '';
+  if (/\s/.test(trimmed)) return trimmed;
+  return trimmed
+    .split('-')
+    .filter(Boolean)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
+
+export interface RichProductEnquiryInput {
+  division: EnquiryDivision;
+  productName: string;
+  category?: string | null;
+  variant?: EnquiryVariant | null;
+  productUrl?: string | null;
+}
+
+/**
+ * Structured, variant-aware WhatsApp message used by all public product
+ * enquiry actions. It includes the actual product, category, selected finish,
+ * selected SKU and product link, and omits finish/SKU when no variant applies.
+ */
+export function buildRichProductEnquiryMessage({
+  division,
+  productName,
+  category,
+  variant,
+  productUrl,
+}: RichProductEnquiryInput): string {
+  const finishName = variant?.finishName?.trim() ?? '';
+  const sku = variant?.sku?.trim() ?? '';
+  const categoryLabel = formatCategoryLabel(category ?? '');
+  const productLabel = division === 'home_decor' ? 'Home Decor' : 'Metal';
+
+  const lines = [
+    `Hello, I am interested in the following ${productLabel} product:`,
+    '',
+    `Product: ${productName}`,
+  ];
+
+  if (categoryLabel) lines.push(`Category: ${categoryLabel}`);
+  if (finishName) lines.push(`Selected Finish: ${finishName}`);
+  if (sku) lines.push(`SKU: ${sku}`);
+  if (productUrl) lines.push(`Product Link: ${productUrl}`);
+
+  lines.push('', 'Please share the details and pricing.');
+  return lines.join('\n');
+}
+
 export interface ProductEnquiryHrefInput {
   division: EnquiryDivision;
   productId: string;
