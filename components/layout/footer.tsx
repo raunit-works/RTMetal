@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
   Instagram,
-  MessageCircle,
   Mail,
   MapPin,
   Phone,
@@ -18,19 +17,13 @@ import {
   INSTAGRAM_URL,
   EMAIL,
   PHONE_DISPLAY,
-  whatsappLink,
   isEmailVerified,
   isPhoneVerified,
   getBusinessAddress,
-  getMetalCoatingWhatsAppLink,
 } from '@/lib/site';
 
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+import { WhatsAppEnquiryButton } from '@/components/enquiry/whatsapp-enquiry-button';
+import { DeferredMap } from '@/components/layout/deferred-map';
 
 // Exact Google Maps listing supplied for the Mumbai metalwork location.
 const MAPS_URL =
@@ -135,16 +128,11 @@ function FooterLocationMap() {
         </p>
       </div>
 
-      <div className="overflow-hidden border-y border-white/10 bg-[#242424]">
-        <iframe
-          title="RT Metal Coating location in Mumbai"
-          src={MAP_EMBED_URL}
-          className="block h-[165px] w-full border-0 lg:h-[140px]"
-          loading="lazy"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allowFullScreen
-        />
-      </div>
+      <DeferredMap
+        title="RT Metal Coating location in Mumbai"
+        src={MAP_EMBED_URL}
+        className="h-[165px] w-full overflow-hidden border-y border-white/10 bg-[#242424] lg:h-[140px]"
+      />
 
       <a
         href={MAPS_URL}
@@ -172,19 +160,16 @@ export function Footer() {
 
   const isMetalPage = pathname.startsWith('/metal-coating');
   const isHomeDecorPage = pathname.startsWith('/home-decor');
-
-  const homeDecorWhatsAppUrl = whatsappLink(
-    'Hello RTMETALCOATING.'
-  );
-
-  const metalCoatingWhatsAppUrl =
-    getMetalCoatingWhatsAppLink(
-      'Hello RTMETALCOATING, I would like to enquire about metal coating services.'
-    );
-
-  const footerWhatsAppUrl = isMetalPage
-    ? metalCoatingWhatsAppUrl
-    : homeDecorWhatsAppUrl;
+  const footerWhatsAppMode = isMetalPage
+    ? 'metal_services'
+    : isHomeDecorPage
+      ? 'home_decor'
+      : 'general';
+  const footerWhatsAppMessage = isMetalPage
+    ? "Hello RTMETALCOATING, I'd like to enquire about metal services and request a quotation."
+    : isHomeDecorPage
+      ? "Hello RTMETALCOATING, I'd like to enquire about your Home Decor products."
+      : "Hello RTMETALCOATING, I'd like to enquire about your products and services.";
 
   return (
     <footer className="relative overflow-hidden bg-ink text-white/80">
@@ -259,73 +244,16 @@ export function Footer() {
                 <Instagram className="h-5 w-5" />
               </a>
 
-              {isMetalPage || isHomeDecorPage ? (
-                footerWhatsAppUrl ? (
-                  <a
-                    href={footerWhatsAppUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="WhatsApp"
-                    className={socialClass}
-                  >
-                    <MessageCircle className="h-5 w-5" />
-                  </a>
-                ) : (
-                  <button
-                    type="button"
-                    disabled
-                    aria-label="WhatsApp contact pending"
-                    title="WhatsApp contact pending client approval"
-                    className={disabledSocialClass}
-                  >
-                    <MessageCircle className="h-5 w-5" />
-                  </button>
-                )
-              ) : (
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <button
-                      type="button"
-                      className={socialClass}
-                      aria-label="Choose WhatsApp contact"
-                    >
-                      <MessageCircle className="h-5 w-5" />
-                    </button>
-                  </DropdownMenuTrigger>
-
-                  <DropdownMenuContent side="top" align="start">
-                    <DropdownMenuItem
-                      disabled={!metalCoatingWhatsAppUrl}
-                      onClick={() => {
-                        if (metalCoatingWhatsAppUrl) {
-                          window.open(
-                            metalCoatingWhatsAppUrl,
-                            '_blank',
-                            'noopener,noreferrer'
-                          );
-                        }
-                      }}
-                    >
-                      Metal Coating Enquiry
-                    </DropdownMenuItem>
-
-                    <DropdownMenuItem
-                      disabled={!homeDecorWhatsAppUrl}
-                      onClick={() => {
-                        if (homeDecorWhatsAppUrl) {
-                          window.open(
-                            homeDecorWhatsAppUrl,
-                            '_blank',
-                            'noopener,noreferrer'
-                          );
-                        }
-                      }}
-                    >
-                      RT HOME DECOR Support
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              )}
+              <WhatsAppEnquiryButton
+                mode={footerWhatsAppMode}
+                message={footerWhatsAppMessage}
+                size="icon"
+                variant="ghost"
+                className={socialClass}
+                iconClassName="h-5 w-5"
+                ariaLabel="WhatsApp"
+                title="Chat on WhatsApp"
+              />
 
               {isEmailVerified() ? (
                 <a
@@ -399,7 +327,7 @@ export function Footer() {
                       <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
                       <span className="min-w-0 break-words leading-relaxed text-white/70">
                         {getBusinessAddress() ||
-                          'Business address pending client approval'}
+                          'Compound No. 194, 6th Lane, Kumbharwada, Near Trimbak Parshuram Street, Near Public Toilet, Mumbai, Maharashtra – 400004, India.'}
                       </span>
                     </li>
 

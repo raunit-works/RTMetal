@@ -1,0 +1,709 @@
+{
+  "generatedAt": "2026-11-17T18:59:34.327Z",
+  "baseUrl": "http://localhost:3011",
+  "viewports": [
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "name": "mobile",
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "routes": [
+    {
+      "name": "home",
+      "path": "/"
+    },
+    {
+      "name": "home-decor",
+      "path": "/home-decor"
+    },
+    {
+      "name": "metal-coating",
+      "path": "/metal-coating"
+    },
+    {
+      "name": "product-detail",
+      "path": "/home-decor/ashok-stambh-premium-decorative-showpiece"
+    }
+  ],
+  "note": "No Lighthouse dependency is installed. Measurements use Chromium CDP + PerformanceObserver on an empty browser cache per route.",
+  "results": [
+    {
+      "viewport": "desktop",
+      "route": "home",
+      "path": "/",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "elapsedMs": 10328,
+      "ttfbMs": 2117.6,
+      "domContentLoadedMs": 2710.1,
+      "loadEventMs": 2781.5,
+      "fcpMs": 2616,
+      "lcpMs": 2616,
+      "lcpElement": "img.object-cover.object-position-center",
+      "cls": 0,
+      "longTasks": 0,
+      "longTaskMs": 0,
+      "documentTransferBytes": 67311,
+      "documentEncodedBytes": 67011,
+      "totalTransferBytes": 1105162,
+      "resourceCount": 56,
+      "resourceInitiators": {
+        "link": 5,
+        "script": 20,
+        "css": 7,
+        "img": 15,
+        "fetch": 9
+      },
+      "fromCacheCount": 0,
+      "byType": {
+        "Document": {
+          "count": 1,
+          "bytes": 67623,
+          "statuses": {
+            "200": 1
+          }
+        },
+        "Image": {
+          "count": 18,
+          "bytes": 565004,
+          "statuses": {
+            "200": 18
+          }
+        },
+        "Stylesheet": {
+          "count": 1,
+          "bytes": 24849,
+          "statuses": {
+            "200": 1
+          }
+        },
+        "Script": {
+          "count": 21,
+          "bytes": 294237,
+          "statuses": {
+            "200": 21
+          }
+        },
+        "Font": {
+          "count": 7,
+          "bytes": 128484,
+          "statuses": {
+            "200": 7
+          }
+        },
+        "Fetch": {
+          "count": 9,
+          "bytes": 24965,
+          "statuses": {
+            "200": 9
+          }
+        },
+        "Preflight": {
+          "count": 3,
+          "bytes": 0,
+          "statuses": {
+            "200": 3
+          }
+        }
+      },
+      "jsHeap": {
+        "usedJSHeapSize": 10600000,
+        "totalJSHeapSize": 14300000
+      }
+    },
+    {
+      "viewport": "desktop",
+      "route": "home-decor",
+      "path": "/home-decor",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "elapsedMs": 5266,
+      "ttfbMs": 1010.5,
+      "domContentLoadedMs": 1068.1,
+      "loadEventMs": 1277.6,
+      "fcpMs": 1192,
+      "lcpMs": 1192,
+      "lcpElement": "img.object-cover",
+      "cls": 0,
+      "longTasks": 1,
+      "longTaskMs": 90,
+      "documentTransferBytes": 61346,
+      "documentEncodedBytes": 61046,
+      "totalTransferBytes": 1118686,
+      "resourceCount": 72,
+      "resourceInitiators": {
+        "link": 4,
+        "script": 21,
+        "css": 4,
+        "img": 28,
+        "fetch": 15
+      },
+      "fromCacheCount": 0,
+      "byType": {
+        "Document": {
+          "count": 1,
+          "bytes": 61574,
+          "statuses": {
+            "200": 1
+          }
+        },
+        "Image": {
+          "count": 30,
+          "bytes": 650204,
+          "statuses": {
+            "200": 30
+          }
+        },
+        "Stylesheet": {
+          "count": 1,
+          "bytes": 24849,
+          "statuses": {
+            "200": 1
+          }
+        },
+        "Script": {
+          "count": 22,
+          "bytes": 287035,
+          "statuses": {
+            "200": 22
+          }
+        },
+        "Font": {
+          "count": 4,
+          "bytes": 66836,
+          "statuses": {
+            "200": 4
+          }
+        },
+        "Fetch": {
+          "count": 15,
+          "bytes": 28188,
+          "statuses": {
+            "200": 15
+          }
+        },
+        "Preflight": {
+          "count": 3,
+          "bytes": 0,
+          "statuses": {
+            "200": 3
+          }
+        }
+      },
+      "jsHeap": {
+        "usedJSHeapSize": 14300000,
+        "totalJSHeapSize": 26000000
+      }
+    },
+    {
+      "viewport": "desktop",
+      "route": "metal-coating",
+      "path": "/metal-coating",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "elapsedMs": 5432,
+      "ttfbMs": 853.4,
+      "domContentLoadedMs": 885.3,
+      "loadEventMs": 1140.2,
+      "fcpMs": 1048,
+      "lcpMs": 1048,
+      "lcpElement": "img.object-cover",
+      "cls": 0,
+      "longTasks": 0,
+      "longTaskMs": 0,
+      "documentTransferBytes": 37211,
+      "documentEncodedBytes": 36911,
+      "totalTransferBytes": 1290110,
+      "resourceCount": 60,
+      "resourceInitiators": {
+        "link": 8,
+        "script": 21,
+        "css": 6,
+        "img": 16,
+        "fetch": 9
+      },
+      "fromCacheCount": 0,
+      "byType": {
+        "Document": {
+          "count": 1,
+          "bytes": 37412,
+          "statuses": {
+            "200": 1
+          }
+        },
+        "Image": {
+          "count": 22,
+          "bytes": 790370,
+          "statuses": {
+            "200": 22
+          }
+        },
+        "Stylesheet": {
+          "count": 1,
+          "bytes": 24849,
+          "statuses": {
+            "200": 1
+          }
+        },
+        "Script": {
+          "count": 22,
+          "bytes": 298289,
+          "statuses": {
+            "200": 22
+          }
+        },
+        "Font": {
+          "count": 6,
+          "bytes": 114236,
+          "statuses": {
+            "200": 6
+          }
+        },
+        "Fetch": {
+          "count": 9,
+          "bytes": 24954,
+          "statuses": {
+            "200": 9
+          }
+        },
+        "Preflight": {
+          "count": 3,
+          "bytes": 0,
+          "statuses": {
+            "200": 3
+          }
+        }
+      },
+      "jsHeap": {
+        "usedJSHeapSize": 11200000,
+        "totalJSHeapSize": 15200000
+      }
+    },
+    {
+      "viewport": "desktop",
+      "route": "product-detail",
+      "path": "/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "elapsedMs": 4926,
+      "ttfbMs": 791.7,
+      "domContentLoadedMs": 924.5,
+      "loadEventMs": 1023.8,
+      "fcpMs": 960,
+      "lcpMs": 960,
+      "lcpElement": "img.object-cover.blur-sm",
+      "cls": 0,
+      "longTasks": 0,
+      "longTaskMs": 0,
+      "documentTransferBytes": 28018,
+      "documentEncodedBytes": 27718,
+      "totalTransferBytes": 739722,
+      "resourceCount": 42,
+      "resourceInitiators": {
+        "link": 5,
+        "script": 20,
+        "css": 4,
+        "img": 4,
+        "fetch": 9
+      },
+      "fromCacheCount": 0,
+      "byType": {
+        "Document": {
+          "count": 1,
+          "bytes": 28340,
+          "statuses": {
+            "200": 1
+          }
+        },
+        "Image": {
+          "count": 7,
+          "bytes": 313957,
+          "statuses": {
+            "200": 7
+          }
+        },
+        "Stylesheet": {
+          "count": 1,
+          "bytes": 24849,
+          "statuses": {
+            "200": 1
+          }
+        },
+        "Script": {
+          "count": 21,
+          "bytes": 281235,
+          "statuses": {
+            "200": 21
+          }
+        },
+        "Font": {
+          "count": 4,
+          "bytes": 66836,
+          "statuses": {
+            "200": 4
+          }
+        },
+        "Fetch": {
+          "count": 9,
+          "bytes": 24505,
+          "statuses": {
+            "200": 9
+          }
+        },
+        "Preflight": {
+          "count": 3,
+          "bytes": 0,
+          "statuses": {
+            "200": 3
+          }
+        }
+      },
+      "jsHeap": {
+        "usedJSHeapSize": 10000000,
+        "totalJSHeapSize": 12700000
+      }
+    },
+    {
+      "viewport": "mobile",
+      "route": "home",
+      "path": "/",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "elapsedMs": 4676,
+      "ttfbMs": 501,
+      "domContentLoadedMs": 546.1,
+      "loadEventMs": 778.4,
+      "fcpMs": 668,
+      "lcpMs": 668,
+      "lcpElement": "img.object-cover.object-position-center",
+      "cls": 0,
+      "longTasks": 1,
+      "longTaskMs": 97,
+      "documentTransferBytes": 67311,
+      "documentEncodedBytes": 67011,
+      "totalTransferBytes": 1453430,
+      "resourceCount": 43,
+      "resourceInitiators": {
+        "link": 4,
+        "script": 18,
+        "css": 7,
+        "img": 8,
+        "fetch": 6
+      },
+      "fromCacheCount": 0,
+      "byType": {
+        "Document": {
+          "count": 1,
+          "bytes": 67623,
+          "statuses": {
+            "200": 1
+          }
+        },
+        "Image": {
+          "count": 10,
+          "bytes": 932667,
+          "statuses": {
+            "200": 10
+          }
+        },
+        "Stylesheet": {
+          "count": 1,
+          "bytes": 24849,
+          "statuses": {
+            "200": 1
+          }
+        },
+        "Script": {
+          "count": 19,
+          "bytes": 288039,
+          "statuses": {
+            "200": 19
+          }
+        },
+        "Font": {
+          "count": 7,
+          "bytes": 128484,
+          "statuses": {
+            "200": 7
+          }
+        },
+        "Fetch": {
+          "count": 6,
+          "bytes": 11768,
+          "statuses": {
+            "200": 6
+          }
+        },
+        "Preflight": {
+          "count": 3,
+          "bytes": 0,
+          "statuses": {
+            "200": 3
+          }
+        }
+      },
+      "jsHeap": {
+        "usedJSHeapSize": 11200000,
+        "totalJSHeapSize": 15200000
+      }
+    },
+    {
+      "viewport": "mobile",
+      "route": "home-decor",
+      "path": "/home-decor",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "elapsedMs": 4896,
+      "ttfbMs": 700.3,
+      "domContentLoadedMs": 936,
+      "loadEventMs": 972.4,
+      "fcpMs": 856,
+      "lcpMs": 856,
+      "lcpElement": "img.object-cover",
+      "cls": 0,
+      "longTasks": 0,
+      "longTaskMs": 0,
+      "documentTransferBytes": 61346,
+      "documentEncodedBytes": 61046,
+      "totalTransferBytes": 1210460,
+      "resourceCount": 54,
+      "resourceInitiators": {
+        "link": 4,
+        "script": 19,
+        "css": 4,
+        "img": 18,
+        "fetch": 9
+      },
+      "fromCacheCount": 0,
+      "byType": {
+        "Document": {
+          "count": 1,
+          "bytes": 61574,
+          "statuses": {
+            "200": 1
+          }
+        },
+        "Image": {
+          "count": 20,
+          "bytes": 762941,
+          "statuses": {
+            "200": 20
+          }
+        },
+        "Stylesheet": {
+          "count": 1,
+          "bytes": 24849,
+          "statuses": {
+            "200": 1
+          }
+        },
+        "Script": {
+          "count": 20,
+          "bytes": 280837,
+          "statuses": {
+            "200": 20
+          }
+        },
+        "Font": {
+          "count": 4,
+          "bytes": 66836,
+          "statuses": {
+            "200": 4
+          }
+        },
+        "Fetch": {
+          "count": 9,
+          "bytes": 13423,
+          "statuses": {
+            "200": 9
+          }
+        },
+        "Preflight": {
+          "count": 3,
+          "bytes": 0,
+          "statuses": {
+            "200": 3
+          }
+        }
+      },
+      "jsHeap": {
+        "usedJSHeapSize": 11200000,
+        "totalJSHeapSize": 23100000
+      }
+    },
+    {
+      "viewport": "mobile",
+      "route": "metal-coating",
+      "path": "/metal-coating",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "elapsedMs": 4919,
+      "ttfbMs": 774.7,
+      "domContentLoadedMs": 818.3,
+      "loadEventMs": 1043.9,
+      "fcpMs": 928,
+      "lcpMs": 928,
+      "lcpElement": "img.object-cover",
+      "cls": 0,
+      "longTasks": 0,
+      "longTaskMs": 0,
+      "documentTransferBytes": 37211,
+      "documentEncodedBytes": 36911,
+      "totalTransferBytes": 1211522,
+      "resourceCount": 43,
+      "resourceInitiators": {
+        "link": 8,
+        "script": 19,
+        "css": 6,
+        "img": 6,
+        "fetch": 4
+      },
+      "fromCacheCount": 0,
+      "byType": {
+        "Document": {
+          "count": 1,
+          "bytes": 37412,
+          "statuses": {
+            "200": 1
+          }
+        },
+        "Image": {
+          "count": 12,
+          "bytes": 732145,
+          "statuses": {
+            "200": 12
+          }
+        },
+        "Stylesheet": {
+          "count": 1,
+          "bytes": 24849,
+          "statuses": {
+            "200": 1
+          }
+        },
+        "Script": {
+          "count": 20,
+          "bytes": 292091,
+          "statuses": {
+            "200": 20
+          }
+        },
+        "Font": {
+          "count": 6,
+          "bytes": 114236,
+          "statuses": {
+            "200": 6
+          }
+        },
+        "Fetch": {
+          "count": 4,
+          "bytes": 10789,
+          "statuses": {
+            "200": 4
+          }
+        },
+        "Preflight": {
+          "count": 3,
+          "bytes": 0,
+          "statuses": {
+            "200": 3
+          }
+        }
+      },
+      "jsHeap": {
+        "usedJSHeapSize": 10600000,
+        "totalJSHeapSize": 15200000
+      }
+    },
+    {
+      "viewport": "mobile",
+      "route": "product-detail",
+      "path": "/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "elapsedMs": 4769,
+      "ttfbMs": 677.7,
+      "domContentLoadedMs": 740.6,
+      "loadEventMs": 891.6,
+      "fcpMs": 808,
+      "lcpMs": 968,
+      "lcpElement": "img.object-cover.transition-all",
+      "cls": 0,
+      "longTasks": 0,
+      "longTaskMs": 0,
+      "documentTransferBytes": 28018,
+      "documentEncodedBytes": 27718,
+      "totalTransferBytes": 860917,
+      "resourceCount": 36,
+      "resourceInitiators": {
+        "link": 5,
+        "script": 18,
+        "css": 4,
+        "img": 4,
+        "fetch": 5
+      },
+      "fromCacheCount": 0,
+      "byType": {
+        "Document": {
+          "count": 1,
+          "bytes": 28340,
+          "statuses": {
+            "200": 1
+          }
+        },
+        "Image": {
+          "count": 7,
+          "bytes": 454584,
+          "statuses": {
+            "200": 7
+          }
+        },
+        "Stylesheet": {
+          "count": 1,
+          "bytes": 24849,
+          "statuses": {
+            "200": 1
+          }
+        },
+        "Script": {
+          "count": 19,
+          "bytes": 275037,
+          "statuses": {
+            "200": 19
+          }
+        },
+        "Font": {
+          "count": 4,
+          "bytes": 66836,
+          "statuses": {
+            "200": 4
+          }
+        },
+        "Fetch": {
+          "count": 5,
+          "bytes": 11271,
+          "statuses": {
+            "200": 5
+          }
+        },
+        "Preflight": {
+          "count": 3,
+          "bytes": 0,
+          "statuses": {
+            "200": 3
+          }
+        }
+      },
+      "jsHeap": {
+        "usedJSHeapSize": 10000000,
+        "totalJSHeapSize": 11900000
+      }
+    }
+  ]
+}

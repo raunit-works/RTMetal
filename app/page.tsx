@@ -9,6 +9,7 @@ import { Testimonials } from '@/components/sections/home/testimonials';
 import { FAQ } from '@/components/sections/home/faq';
 import { ContactSection } from '@/components/sections/home/contact';
 import { InstagramSection } from '@/components/sections/instagram-section';
+import type { Metadata } from 'next';
 import { CtaBanner } from '@/components/sections/cta-banner';
 import {
   getPublicCatalogAsync,
@@ -17,8 +18,55 @@ import {
   getFAQsAsync,
   getInstagramPosts,
 } from '@/lib/data-access';
+import { getSiteUrlForPath } from '@/lib/site-url';
 
 export const revalidate = 0;
+
+const canonicalUrl = getSiteUrlForPath('/');
+
+const pageTitle = 'RTMETALCOATING — Premium Metal Coating & RT HOME DECOR';
+const pageDescription =
+  'RTMETALCOATING offers premium metal coating, PU coating, and decorative finishing services alongside the RT HOME DECOR collection of luxury home decor and lifestyle products. Request a quotation for your project.';
+
+export const metadata: Metadata = {
+  title: {
+    absolute: pageTitle,
+    template: '%s | RTMETALCOATING',
+  },
+  description: pageDescription,
+  keywords: [
+    'RTMETALCOATING',
+    'RT HOME DECOR',
+    'Metal Coating Services',
+    'PU Coating',
+    'Home Decor',
+    'Lifestyle Products',
+    'Custom Metal Finishes',
+    'Decorative Finishing',
+  ],
+  authors: [{ name: 'RTMETALCOATING' }],
+  creator: 'RTMETALCOATING',
+  publisher: 'RTMETALCOATING',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  alternates: canonicalUrl ? { canonical: canonicalUrl } : undefined,
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: canonicalUrl || undefined,
+    siteName: 'RTMETALCOATING',
+    title: pageTitle,
+    description: pageDescription,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: pageTitle,
+    description: pageDescription,
+  },
+};
 
 export default async function Home() {
   const [catalog, testimonials, faqs, services] = await Promise.all([

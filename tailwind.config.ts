@@ -92,7 +92,8 @@ const config: Config = {
       fontFamily: {
         sans: ['var(--font-sans)', 'Manrope', 'system-ui', 'sans-serif'],
         display: ['var(--font-display)', 'Cormorant Garamond', 'Georgia', 'serif'],
-        label: ['var(--font-label)', 'Space Grotesk', 'system-ui', 'sans-serif'],
+        // Label/eyebrow role is functional, so it uses the body family.
+        label: ['var(--font-sans)', 'Manrope', 'system-ui', 'sans-serif'],
       },
       letterSpacing: {
         tightest: '-0.04em',

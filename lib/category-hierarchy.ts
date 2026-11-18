@@ -48,7 +48,14 @@ export function isCategoryInSection(category: Category, section: MainSection): b
   return category.mainSection === section || (!category.mainSection && section === 'home_decor');
 }
 
-export function filterCategoryProducts(products: Product[], categories: Category[], slug?: string): Product[] {
+/** Minimal product shape required for publication + category filtering. */
+export type ProductCategoryRef = Pick<Product, 'id' | 'category' | 'isPublished'>;
+
+export function filterCategoryProducts<T extends ProductCategoryRef>(
+  products: T[],
+  categories: Category[],
+  slug?: string,
+): T[] {
   const valid = getValidCategories(categories);
   const allowed = slug ? getDescendantSlugs(valid, slug) : new Set(valid.map((c) => c.slug));
   const seen = new Set<string>();

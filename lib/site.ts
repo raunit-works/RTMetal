@@ -4,7 +4,7 @@ export const siteSettings: SiteSettings = {
   brandName: 'RTMETALCOATING',
   tagline: 'Professional Metal Coating & Decorative Finishing Services · RT HOME DECOR',
   contact: {
-    email: 'studio@aurumandco.com',
+    email: 'rtmetalservice@gmail.com',
     phone: '+917666067782',
     phoneDisplay: '+91 76660 67782',
     address:
@@ -18,10 +18,15 @@ export const siteSettings: SiteSettings = {
     instagramUrl: 'https://www.instagram.com/rtmetalcoating/',
   },
   whatsapp: {
-    homeDecor: '919999999999',
-    metalCoating: '918888888888',
-    homeDecorVerified: false,
-    metalCoatingVerified: false,
+    // Central WhatsApp contact configuration. Phone numbers are stored in
+    // international format without a leading "+" so they can be used directly
+    // in wa.me links. Do not add contact numbers anywhere else.
+    homeDecor: '917977314013',
+    homeDecorSecondary: '919082867541',
+    metalCoating: '917666067782',
+    homeDecorVerified: true,
+    homeDecorSecondaryVerified: true,
+    metalCoatingVerified: true,
   },
   contactAvailability: {
     days: 'Monday to Saturday',
@@ -73,6 +78,16 @@ export function isHomeDecorWhatsappVerified(): boolean {
 }
 
 /**
+ * Secondary Home Decor WhatsApp contact verification.
+ */
+export function isHomeDecorSecondaryWhatsappVerified(): boolean {
+  return Boolean(
+    siteSettings.whatsapp.homeDecorSecondaryVerified &&
+    !isPlaceholderPhone(siteSettings.whatsapp.homeDecorSecondary),
+  );
+}
+
+/**
  * Metal Coating WhatsApp is clickable only when explicitly verified.
  */
 export function isMetalCoatingWhatsappVerified(): boolean {
@@ -109,10 +124,114 @@ export function getWhatsAppLink(
   if (!number || !isVerified || isPlaceholderPhone(number)) {
     return null;
   }
+  return buildWhatsAppUrl(number, message);
+}
+
+/**
+ * Builds a wa.me link and encodes the prefilled message safely. The phone
+ * number path must contain digits only (no leading "+").
+ */
+export function buildWhatsAppUrl(number: string, message: string): string {
   return `https://wa.me/${normalizePhoneForWhatsApp(number)}?text=${encodeURIComponent(message)}`;
 }
 
-// Division 1: Home Decor & Lifestyle Products WhatsApp helper
+export type WhatsAppDivision = 'home_decor' | 'metal_services';
+export type WhatsAppContactMode = WhatsAppDivision | 'general';
+
+export interface WhatsAppContact {
+  id: string;
+  label: string;
+  number: string;
+  display: string;
+  url: string;
+}
+
+function makeContact(
+  id: string,
+  label: string,
+  number: string,
+  display: string,
+  message: string,
+): WhatsAppContact {
+  return {
+    id,
+    label,
+    number,
+    display,
+    url: buildWhatsAppUrl(number, message),
+  };
+}
+
+/**
+ * Both Home Decor WhatsApp contacts, primary first. The second number is a
+ * deliberate alternative, never a random fallback.
+ */
+export function getHomeDecorWhatsAppContacts(message: string): WhatsAppContact[] {
+  const contacts: WhatsAppContact[] = [];
+  const { homeDecor, homeDecorSecondary } = siteSettings.whatsapp;
+
+  if (
+    siteSettings.whatsapp.homeDecorVerified &&
+    !isPlaceholderPhone(homeDecor)
+  ) {
+    contacts.push(
+      makeContact('home-decor-1', 'Home Decor Contact 1', homeDecor, '+91 7977314013', message),
+    );
+  }
+
+  if (
+    siteSettings.whatsapp.homeDecorSecondaryVerified &&
+    !isPlaceholderPhone(homeDecorSecondary)
+  ) {
+    contacts.push(
+      makeContact(
+        'home-decor-2',
+        'Home Decor Contact 2',
+        homeDecorSecondary,
+        '+91 9082867541',
+        message,
+      ),
+    );
+  }
+
+  return contacts;
+}
+
+export function getMetalCoatingWhatsAppContact(message: string): WhatsAppContact | null {
+  const { metalCoating, metalCoatingVerified } = siteSettings.whatsapp;
+  if (!metalCoatingVerified || isPlaceholderPhone(metalCoating)) return null;
+
+  return makeContact(
+    'metal-services',
+    'Metal Services',
+    metalCoating,
+    '+91 7666067782',
+    message,
+  );
+}
+
+/**
+ * Contact options for a chooser. Home Decor always exposes both supplied
+ * numbers. General pages expose a department/contact chooser that includes
+ * Metal Services and both Home Decor contacts.
+ */
+export function getWhatsAppContactOptions(
+  mode: WhatsAppContactMode,
+  message: string,
+): WhatsAppContact[] {
+  const metal = getMetalCoatingWhatsAppContact(message);
+  const homeDecor = getHomeDecorWhatsAppContacts(message);
+
+  if (mode === 'metal_services') {
+    return metal ? [metal] : [];
+  }
+  if (mode === 'home_decor') {
+    return homeDecor;
+  }
+  return [...(metal ? [metal] : []), ...homeDecor];
+}
+
+// Division 1: Home Decor & Lifestyle Products WhatsApp helper (primary contact)
 export function getHomeDecorWhatsAppLink(message: string): string | null {
   return getWhatsAppLink('home_decor', message);
 }

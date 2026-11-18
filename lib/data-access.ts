@@ -23,6 +23,7 @@ import type {
 } from './types';
 import { createSupabaseClient } from './supabase/client';
 import { filterCategoryProducts, getDescendantSlugs, getValidCategories, isCategoryInSection } from './category-hierarchy';
+import type { ProductCategoryRef } from './category-hierarchy';
 import { selectRelatedMetalCategories } from './service-categories';
 import { getServiceCategoryLinksForService } from './supabase/service-categories';
 import {
@@ -182,7 +183,12 @@ export async function getProductsAsync(
       .from('products')
       .select('*, categories(slug, name), product_images(*)')
       .eq('is_published', true)
-      .order('created_at', { ascending: false });
+      // Pinned-first ordering is applied in the database before the result can
+      // be paginated anywhere downstream. The final id order is deterministic.
+      .order('is_pinned', { ascending: false })
+      .order('pinned_at', { ascending: false, nullsFirst: false })
+      .order('created_at', { ascending: false })
+      .order('id', { ascending: true });
 
     if (error) {
       return handleFailure('getProductsAsync', error.message, products, allowStaticFallback);
@@ -256,6 +262,42 @@ export async function getProductsByCategoryAsync(categorySlug: string): Promise<
 export interface GetCategoriesOptions {
   allowStaticFallback?: boolean;
   products?: Product[];
+  /**
+   * When set, category counts are calculated from a minimal id/slug query
+   * instead of loading the full catalogue with images and variant data.
+   * Used by navigation, which only needs the counts.
+   */
+  lightweightCounts?: boolean;
+}
+
+/**
+ * Minimal published-product rows (id, category slug) for category counts.
+ * Avoids transferring product images, options and variants to the client.
+ */
+export async function getPublishedProductCategoryRefsAsync(): Promise<ProductCategoryRef[]> {
+  const supabase = createSupabaseClient();
+  const { data, error } = await supabase
+    .from('products')
+    .select('id, is_published, categories(slug)')
+    .eq('is_published', true);
+
+  if (error) {
+    console.error('[Supabase Error] getPublishedProductCategoryRefsAsync failed:', error.message);
+    return [];
+  }
+
+  return (data ?? []).map((row) => {
+    const typed = row as unknown as {
+      id: string;
+      is_published?: boolean | null;
+      categories?: { slug?: string | null } | null;
+    };
+    return {
+      id: typed.id,
+      category: typed.categories?.slug ?? '',
+      isPublished: typed.is_published !== false,
+    };
+  });
 }
 
 export async function getCategoriesAsync(
@@ -279,7 +321,11 @@ export async function getCategoriesAsync(
       return [];
     }
 
-    const allProducts = options.products ?? await getProductsAsync({ allowStaticFallback });
+    const allProducts: ProductCategoryRef[] =
+      options.products ??
+      (options.lightweightCounts
+        ? await getPublishedProductCategoryRefsAsync()
+        : await getProductsAsync({ allowStaticFallback }));
     const mapped = getValidCategories(data
       .map((row) => mapCategoryRow(row as DatabaseCategoryRow)));
     const publishedProducts = filterCategoryProducts(allProducts, mapped);

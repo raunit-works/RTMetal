@@ -5,6 +5,7 @@ import {
   getServiceQuoteHref,
   getServiceWhatsAppMessage,
 } from '@/lib/metal-service-content';
+import { getSiteUrlForPath } from '@/lib/site-url';
 import type { Service } from '@/lib/types';
 
 interface ServiceEnquiryCTAProps {
@@ -13,8 +14,9 @@ interface ServiceEnquiryCTAProps {
 
 export function ServiceEnquiryCTA({ service }: ServiceEnquiryCTAProps) {
   const quoteHref = getServiceQuoteHref(service);
+  const servicePath = `/metal-coating/${service.slug}`;
   const whatsappUrl = getMetalCoatingWhatsAppLink(
-    getServiceWhatsAppMessage(service)
+    getServiceWhatsAppMessage(service, getSiteUrlForPath(servicePath) ?? servicePath)
   );
 
   return (

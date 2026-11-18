@@ -81,6 +81,7 @@ export default async function MetalProductDetailPage({ params }: { params: { slu
     <ProductDetailView
       product={product}
       division="metal_services"
+      categoryName={category.name}
       relatedProducts={relatedProducts}
     />
   );

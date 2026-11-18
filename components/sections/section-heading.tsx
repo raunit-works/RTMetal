@@ -30,7 +30,7 @@ export function SectionHeading({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-4 text-xs font-medium uppercase tracking-ultra text-gold-deep"
+          className="type-eyebrow mb-4 text-gold-deep"
         >
           {eyebrow}
         </motion.p>
@@ -40,7 +40,7 @@ export function SectionHeading({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className="font-display text-4xl font-medium leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl"
+        className="type-h2"
       >
         {title}
       </motion.h2>
@@ -51,7 +51,7 @@ export function SectionHeading({
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.1 }}
           className={cn(
-            'mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg',
+            'type-intro mt-5 text-muted-foreground',
             align === 'center' ? 'mx-auto max-w-xl' : 'max-w-xl'
           )}
         >

@@ -3,14 +3,14 @@
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { MessageCircle, Mail, MapPin, Phone, Send, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Mail, MapPin, Phone, Send, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Reveal } from '@/components/motion/reveal';
 import { SectionHeading } from '@/components/sections/section-heading';
-import { whatsappLink, EMAIL, PHONE_DISPLAY, isHomeDecorWhatsappVerified, isEmailVerified, isPhoneVerified, getMetalCoatingWhatsAppLink } from '@/lib/site';
+import { EMAIL, PHONE_DISPLAY, isEmailVerified, isPhoneVerified } from '@/lib/site';
+import { WhatsAppEnquiryButton } from '@/components/enquiry/whatsapp-enquiry-button';
 import { createInquiry } from '@/lib/supabase/inquiries';
 import {
   validateEnquiryIdentity,
@@ -31,19 +31,18 @@ export function ContactSection() {
   const [submitted, setSubmitted] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const pathname = usePathname();
-  const homeDecorWhatsAppUrl = whatsappLink(
-    "Hello RTMETALCOATING, I'd like to discuss a project.",
-  );
-  const metalCoatingWhatsAppUrl = getMetalCoatingWhatsAppLink(
-    "Hello RTMETALCOATING, I'd like to enquire about metal coating services.",
-  );
   const isMetalCoatingPage = pathname.startsWith('/metal-coating');
   const isHomeDecorPage = pathname.startsWith('/home-decor');
-  const contactWhatsAppUrl = isMetalCoatingPage
-    ? metalCoatingWhatsAppUrl
+  const contactWhatsAppMode = isMetalCoatingPage
+    ? 'metal_services'
     : isHomeDecorPage
-      ? homeDecorWhatsAppUrl
-      : null;
+      ? 'home_decor'
+      : 'general';
+  const contactWhatsAppMessage = isMetalCoatingPage
+    ? "Hello RTMETALCOATING, I'd like to enquire about metal services and request a quotation."
+    : isHomeDecorPage
+      ? "Hello RTMETALCOATING, I'd like to discuss a Home Decor product."
+      : "Hello RTMETALCOATING, I'd like to discuss a project.";
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -167,7 +166,7 @@ export function ContactSection() {
                     <p className="text-xs uppercase tracking-wider text-gold/90 font-medium">
                       Studio
                     </p>
-                    <p className="mt-1 text-sm text-white/90">Studio 12, Design District, Mumbai, India</p>
+                    <p className="mt-1 text-sm text-white/90">Compound No. 194, 6th Lane, Kumbharwada, Near Trimbak Parshuram Street, Near Public Toilet, Mumbai, Maharashtra – 400004, India.</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-4">
@@ -215,69 +214,14 @@ export function ContactSection() {
                   </div>
                 </li>
               </ul>
-              {isMetalCoatingPage || isHomeDecorPage ? (
-                contactWhatsAppUrl ? (
-                  <Button
-                    asChild
-                    size="lg"
-                    className="w-full rounded-full bg-[#25D366] text-ink hover:bg-[#25D366]/90"
-                  >
-                    <a
-                      href={contactWhatsAppUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <MessageCircle className="mr-2 h-4 w-4" />
-                      Chat on WhatsApp
-                    </a>
-                  </Button>
-                ) : (
-                  <Button
-                    disabled
-                    size="lg"
-                    className="w-full cursor-not-allowed rounded-full border border-[#25D366]/25 bg-[#25D366]/10 text-white/70 disabled:opacity-100"
-                  >
-                    <MessageCircle className="mr-2 h-4 w-4" />
-                    Chat on WhatsApp
-                  </Button>
-                )
-              ) : (
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button
-                      size="lg"
-                      className="w-full rounded-full bg-[#25D366] text-ink hover:bg-[#25D366]/90"
-                    >
-                      <MessageCircle className="mr-2 h-4 w-4" />
-                      Chat on WhatsApp
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent side="bottom">
-                    {metalCoatingWhatsAppUrl ? (
-                      <DropdownMenuItem
-                        onClick={() => window.open(metalCoatingWhatsAppUrl, '_blank', 'noopener,noreferrer')}
-                      >
-                        Metal Coating Enquiry
-                      </DropdownMenuItem>
-                    ) : (
-                      <DropdownMenuItem disabled>
-                        Metal Coating Enquiry
-                      </DropdownMenuItem>
-                    )}
-                    {homeDecorWhatsAppUrl ? (
-                      <DropdownMenuItem
-                        onClick={() => window.open(homeDecorWhatsAppUrl, '_blank', 'noopener,noreferrer')}
-                      >
-                        RT HOME DECOR Support
-                      </DropdownMenuItem>
-                    ) : (
-                      <DropdownMenuItem disabled>
-                        RT HOME DECOR Support
-                      </DropdownMenuItem>
-                    )}
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              )}
+              <WhatsAppEnquiryButton
+                mode={contactWhatsAppMode}
+                message={contactWhatsAppMessage}
+                label="Chat on WhatsApp"
+                showIcon
+                size="lg"
+                className="w-full rounded-full bg-[#25D366] text-ink hover:bg-[#25D366]/90"
+              />
             </div>
           </Reveal>
 

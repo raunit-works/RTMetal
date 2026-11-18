@@ -25,6 +25,7 @@ import type { Product } from '@/lib/types';
 interface ProductDetailViewProps {
   product: Product;
   division: 'home_decor' | 'metal_services';
+  categoryName?: string;
   relatedProducts?: Product[];
 }
 
@@ -40,7 +41,7 @@ function hasMeaningfulValue(value?: string): value is string {
   );
 }
 
-export function ProductDetailView({ product, division, relatedProducts = [] }: ProductDetailViewProps) {
+export function ProductDetailView({ product, division, categoryName, relatedProducts = [] }: ProductDetailViewProps) {
   const hasExtendedSpecs =
     product.sku ||
     product.hasVariants ||
@@ -52,7 +53,7 @@ export function ProductDetailView({ product, division, relatedProducts = [] }: P
     hasMeaningfulValue(product.careInstructions);
 
   return (
-    <ProductVariantProvider product={product}>
+    <ProductVariantProvider product={product} division={division} categoryName={categoryName}>
       {/* Header Banner */}
       <section className="relative overflow-hidden bg-ink pt-32 text-white sm:pt-40">
         <div className="pointer-events-none absolute inset-0 opacity-20">
@@ -105,7 +106,7 @@ export function ProductDetailView({ product, division, relatedProducts = [] }: P
                   <VariantSku fallback={product.sku} />
                 </div>
 
-                <h1 className="mt-3 font-display text-4xl font-medium leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+                <h1 className="type-product-title mt-3">
                   {product.name}
                 </h1>
 

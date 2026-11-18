@@ -13,6 +13,7 @@ import { CtaBanner } from '@/components/sections/cta-banner';
 import type { Category, Product, InstagramPost, MainSection } from '@/lib/types';
 import { categoryHref, filterCategoryProducts, getCategoryPath } from '@/lib/category-hierarchy';
 import { toCategoryShowcaseItems } from '@/lib/category-showcase';
+import { sortCollectionProducts } from '@/lib/catalog/collection-order';
 
 const sortOptions = [
   { value: 'featured', label: 'Featured' },
@@ -40,10 +41,7 @@ export function HomeDecorCatalog({
 
   const filtered = useMemo(() => {
     const list = filterCategoryProducts(products, categories, activeCategory);
-
-    const sorted = [...list];
-    if (sortBy === 'rating') sorted.sort((a, b) => b.rating - a.rating);
-    return sorted;
+    return sortCollectionProducts(list, sortBy === 'rating' ? 'rating' : 'featured');
   }, [activeCategory, sortBy, products, categories]);
 
   return (
