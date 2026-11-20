@@ -58,7 +58,7 @@ export function TransformationPreviewCard({
         <div className="flex items-center justify-between gap-3">
           <ComparisonBadge verified={verified} />
           {project.reference && (
-            <span className="shrink-0 whitespace-nowrap text-[9px] font-semibold uppercase tracking-[0.08em] text-[#A49C8D]">
+            <span className="shrink-0 whitespace-nowrap text-[9px] font-semibold uppercase tracking-[0.08em] text-brass-deep">
               {project.reference}
             </span>
           )}

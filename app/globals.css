@@ -320,6 +320,42 @@
   width: 10px;
 }
 
+/* Metal products showcase: viewport / horizontal track / responsive slide widths */
+.metal-products-carousel {
+  overflow: hidden;
+}
+
+.metal-products-carousel .metal-products-track {
+  margin-left: 0;
+  gap: 12px;
+}
+
+.metal-products-carousel .metal-products-slide {
+  flex: 0 0 calc((100% - 12px) / 1.5);
+  min-width: 0;
+  padding-left: 0;
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .metal-products-carousel .metal-products-track {
+    gap: 16px;
+  }
+
+  .metal-products-carousel .metal-products-slide {
+    flex: 0 0 calc((100% - 32px) / 3);
+  }
+}
+
+@media (min-width: 1200px) {
+  .metal-products-carousel .metal-products-track {
+    gap: 20px;
+  }
+
+  .metal-products-carousel .metal-products-slide {
+    flex: 0 0 calc((100% - 60px) / 4);
+  }
+}
+
 /* Instagram reels carousel: thin, draggable horizontal scrollbar */
 .instagram-reel-scroll {
   scrollbar-width: thin;
@@ -362,7 +398,10 @@
 
 
 
-html,
-body {
+html {
   overflow-x: clip;
+}
+
+body {
+  overflow-x: hidden;
 }

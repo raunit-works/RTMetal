@@ -1038,7 +1038,7 @@ export function FinishCollection({
                   className="
                     text-[10px] font-semibold
                     uppercase tracking-[0.26em]
-                    text-[#d8b875]
+                    text-brass-deep
                     sm:text-[11px]
                   "
                 >
@@ -1211,7 +1211,7 @@ export function FinishCollection({
                   mt-4 inline-flex
                   items-center gap-2
                   text-xs font-medium
-                  text-[#d8b875]
+                  text-brass-deep
                   underline-offset-4
                   hover:underline
                 "
@@ -1272,10 +1272,10 @@ export function FinishCollection({
                     className="
                       text-[10px] font-semibold
                       uppercase tracking-[0.2em]
-                      text-[#9a7139]
-                    "
-                  >
-                    Finish Library
+                    text-brass-deep
+                  "
+                >
+                  Finish Library
                   </p>
 
                   <h3
@@ -1457,8 +1457,8 @@ export function FinishCollection({
                         }
                         className={
                           safePage === index
-                            ? 'h-2.5 w-2.5 rounded-full bg-[#bd8b32]'
-                            : 'h-2.5 w-2.5 rounded-full bg-[#beb7ae] hover:bg-[#8b672c]'
+                            ? 'h-6 w-6 rounded-full bg-[#bd8b32]'
+                            : 'h-6 w-6 rounded-full bg-[#beb7ae] hover:bg-[#8b672c]'
                         }
                       />
                     )
@@ -1573,15 +1573,15 @@ export function FinishCollection({
                           scrollToMobileCard(index)
                         }
                         className="
-                          flex h-5 w-3
+                          flex h-6 w-6
                           items-center justify-center
                         "
                       >
                         <span
                           className={
                             mobileIndex === index
-                              ? 'h-2 w-2 rounded-full bg-[#b9882c]'
-                              : 'h-2 w-2 rounded-full bg-[#bbb5ad]'
+                              ? 'h-3 w-3 rounded-full bg-[#b9882c]'
+                              : 'h-3 w-3 rounded-full bg-[#bbb5ad]'
                           }
                         />
                       </button>
@@ -1652,7 +1652,7 @@ export function FinishCollection({
                 className="
                   text-[10px] font-semibold
                   uppercase tracking-[0.2em]
-                  text-[#9a7139]
+                  text-brass-deep
                 "
               >
                 Metal Finish Library
@@ -1709,7 +1709,7 @@ export function FinishCollection({
 
               {(zoomGalleryLoading || zoomAdditionalImages.length > 0) && (
                 <div className="mt-3">
-                  <p className="text-[10px] font-medium uppercase tracking-[0.16em] text-[#9a7139]">
+                  <p className="text-[10px] font-medium uppercase tracking-[0.16em] text-brass-deep">
                     {zoomGalleryLoading
                       ? 'Loading additional views…'
                       : `${zoomAdditionalImages.length} additional view${

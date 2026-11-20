@@ -70,8 +70,8 @@ function StepPill({
       className={cn(
         'inline-flex items-center rounded-full border px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em]',
         highlighted
-          ? 'border-[#C18B2F]/40 bg-[#C18B2F]/10 text-[#9A6B1F]'
-          : 'border-[#EAE4DA] bg-[#F7F0E3] text-[#8A6A35]',
+          ? 'border-[#C18B2F]/40 bg-[#C18B2F]/10 text-[#4a443a]'
+          : 'border-[#EAE4DA] bg-[#F7F0E3] text-[#4a443a]',
         className
       )}
     >
@@ -94,7 +94,7 @@ function IconCircle({
       className={cn(
         'flex h-16 w-16 shrink-0 items-center justify-center rounded-full border transition-colors',
         highlighted
-          ? 'border-[#C18B2F] bg-[#C18B2F] text-white ring-4 ring-[#C18B2F]/10'
+          ? 'border-[#C18B2F] bg-[#C18B2F] text-[#171717] ring-4 ring-[#C18B2F]/10'
           : 'border-[#C18B2F]/40 bg-white text-[#B27B25]',
         className
       )}

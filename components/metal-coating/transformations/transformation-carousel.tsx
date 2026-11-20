@@ -116,7 +116,7 @@ export function TransformationCarousel({
 
       {showControls && (
         <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#8A8478]" aria-live="polite">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#4a443a]" aria-live="polite">
             {String(range.start).padStart(2, '0')}
             {range.end > range.start ? `–${String(range.end).padStart(2, '0')}` : ''}
             <span className="mx-1.5 text-[#C9C1B2]">/</span>

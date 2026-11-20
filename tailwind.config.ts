@@ -58,7 +58,7 @@ const config: Config = {
         gold: {
           DEFAULT: 'hsl(38 60% 55%)',
           light: 'hsl(42 75% 70%)',
-          deep: 'hsl(38 55% 42%)',
+          deep: 'hsl(38 55% 35%)',
         },
         ink: {
           DEFAULT: 'hsl(0 0% 6%)',

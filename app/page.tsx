@@ -5,6 +5,7 @@ import { BeforeAfterSection } from '@/components/sections/home/before-after';
 import { OurProcess } from '@/components/sections/home/our-process';
 import { FeaturedProducts } from '@/components/sections/home/featured-products';
 import { MetalCoatingShowcase } from '@/components/sections/home/metal-coating-showcase';
+import { MetalProductsShowcase } from '@/components/sections/home/metal-products-showcase';
 import { Testimonials } from '@/components/sections/home/testimonials';
 import { FAQ } from '@/components/sections/home/faq';
 import { ContactSection } from '@/components/sections/home/contact';
@@ -89,6 +90,10 @@ export default async function Home() {
       <OurProcess />
       <FeaturedProducts products={catalog.products} categories={catalog.categories} />
       <MetalCoatingShowcase services={services} />
+      <MetalProductsShowcase
+        products={catalog.products}
+        categories={catalog.categories}
+      />
       <InstagramSection
         posts={instagramPosts}
         eyebrow="OUR WORK IN MOTION"

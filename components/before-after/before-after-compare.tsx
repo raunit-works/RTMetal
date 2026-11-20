@@ -159,7 +159,7 @@ export function BeforeAfterCompare({
           <span className="pointer-events-none absolute left-3 top-3 z-20 rounded-full bg-white/90 px-3 py-1.5 text-[9px] font-semibold uppercase tracking-[0.12em] text-[#171717] shadow-sm backdrop-blur-sm sm:left-4 sm:top-4">
             {beforeLabel}
           </span>
-          <span className="pointer-events-none absolute right-3 top-3 z-20 rounded-full bg-[#C18B2F] px-3 py-1.5 text-[9px] font-semibold uppercase tracking-[0.12em] text-white shadow-sm sm:right-4 sm:top-4">
+          <span className="pointer-events-none absolute right-3 top-3 z-20 rounded-full bg-[#C18B2F] px-3 py-1.5 text-[9px] font-semibold uppercase tracking-[0.12em] text-[#171717] shadow-sm sm:right-4 sm:top-4">
             {afterLabel}
           </span>
 

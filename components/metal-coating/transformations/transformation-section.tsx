@@ -43,7 +43,7 @@ function EmptyState({
       <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
         <a
           href="#quote"
-          className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#C18B2F] px-6 py-2.5 text-xs font-semibold uppercase tracking-[0.12em] text-white transition-colors hover:bg-[#A97825] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C18B2F]"
+          className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#C18B2F] px-6 py-2.5 text-xs font-semibold uppercase tracking-[0.12em] text-[#171717] transition-colors hover:bg-[#A97825] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C18B2F]"
         >
           Request a Quotation
         </a>
@@ -113,7 +113,7 @@ export function TransformationSection({
 
               <div className="mt-8 flex flex-col items-center gap-4 border-t border-[#EAE4DA] pt-6 sm:flex-row sm:justify-between">
                 {hasIllustrative && (
-                  <p className="max-w-xl text-[11px] leading-relaxed text-[#8A8478]">
+                  <p className="max-w-xl text-[11px] leading-relaxed text-[#4a443a]">
                     Illustrative comparisons show surface appearance only and are
                     not presented as documented before-and-after case studies.
                   </p>
