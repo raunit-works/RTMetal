@@ -111,14 +111,13 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
       {/* Header Banner */}
       <section className="relative overflow-hidden bg-ink pt-32 text-white sm:pt-40">
         <div className="pointer-events-none absolute inset-0 opacity-20">
-          <Image
-            src={product.image}
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover blur-sm"
-          />
+        <Image
+          src={product.image}
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover blur-sm"
+        />
         </div>
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-ink/80 to-ink/40" />
 
@@ -274,7 +273,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
                 ) : null}
 
                 {/* Direct WhatsApp Enquiry CTA */}
-                <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+                <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center">
                   <VariantWhatsAppButton
                     division="home_decor"
                     size="lg"

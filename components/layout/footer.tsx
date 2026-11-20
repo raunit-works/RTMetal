@@ -342,7 +342,7 @@ export function Footer() {
                           {PHONE_DISPLAY}
                         </a>
                       ) : (
-                        <span className="min-w-0 break-words text-white/40">
+                        <span className="min-w-0 break-words text-white/60">
                           {PHONE_DISPLAY}
                         </span>
                       )}
@@ -359,7 +359,7 @@ export function Footer() {
                           {EMAIL}
                         </a>
                       ) : (
-                        <span className="min-w-0 break-all text-white/40">
+                        <span className="min-w-0 break-all text-white/60">
                           {EMAIL}
                         </span>
                       )}

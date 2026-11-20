@@ -153,7 +153,7 @@ export function MaterialsShowcase() {
               ))}
             </div>
             {/* Scroll hint for mobile */}
-            <p className="text-center text-[10px] font-medium uppercase tracking-[0.2em] text-white/40 mt-2 lg:hidden">
+            <p className="text-center text-[10px] font-medium uppercase tracking-[0.2em] text-white/60 mt-2 lg:hidden">
               Scroll horizontally to explore all materials
             </p>
           </div>

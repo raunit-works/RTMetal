@@ -60,8 +60,8 @@ export function AboutBusinessDivisions() {
         </Reveal>
 
         <div className="mt-10 grid gap-5 xl:grid-cols-2">
-          <Reveal className="h-full">
-            <article className="h-full overflow-hidden rounded-3xl bg-charcoal text-white shadow-[0_24px_60px_-36px_rgba(23,23,23,0.7)] ring-1 ring-black/10">
+          <Reveal className="h-full min-w-0">
+            <article style={{ width: '100%', minWidth: 0 }} className="h-full overflow-hidden rounded-3xl bg-charcoal text-white shadow-[0_24px_60px_-36px_rgba(23,23,23,0.7)] ring-1 ring-black/10">
               <div className="grid h-full sm:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)]">
                 <div className="relative min-h-[220px] sm:min-h-full">
                   <Image
@@ -152,8 +152,8 @@ export function AboutBusinessDivisions() {
             </article>
           </Reveal>
 
-          <Reveal className="h-full" delay={0.08}>
-            <article className="h-full overflow-hidden rounded-3xl border border-parchment bg-champagne/80 text-charcoal shadow-[0_24px_60px_-40px_rgba(23,23,23,0.5)]">
+          <Reveal className="h-full min-w-0" delay={0.08}>
+            <article style={{ width: '100%', minWidth: 0 }} className="h-full overflow-hidden rounded-3xl border border-parchment bg-champagne/80 text-charcoal shadow-[0_24px_60px_-40px_rgba(23,23,23,0.5)]">
               <div className="grid h-full sm:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)]">
                 <div className="relative min-h-[220px] sm:min-h-full">
                   <Image

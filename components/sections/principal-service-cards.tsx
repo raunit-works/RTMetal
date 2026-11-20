@@ -327,7 +327,7 @@ export function PrincipalServiceCards({
             <p
               className="
                 text-[11px] font-semibold uppercase
-                tracking-[0.2em] text-gold-deep
+                tracking-[0.2em] text-brass-deep
               "
             >
               Our Metal Coating Services

@@ -1,0 +1,346 @@
+  ▲ Next.js 13.5.1
+  - Local:        http://localhost:3010
+
+ ✓ Ready in 1102ms
+Error [EvalError]: Code generation from strings disallowed for this context
+    at <unknown> (file://D:\Client Project\RT METAL\project\.next\server\middleware.js:30)
+    at (middleware)/./node_modules/next/dist/build/webpack/loaders/next-middleware-loader.js?absolutePagePath=D%3A%5CClient%20Project%5CRT%20METAL%5Cproject%5Cmiddleware.ts&page=%2Fmiddleware&rootDir=D%3A%5CClient%20Project%5CRT%20METAL%5Cproject&matchers=&preferredRegion=&middlewareConfig=e30%3D! (file://D:\Client Project\RT METAL\project\.next\server\middleware.js:30:1)
+    at __webpack_require__ (file://D:\Client Project\RT METAL\project\.next\server\edge-runtime-webpack.js:37:33)
+    at __webpack_exec__ (file://D:\Client Project\RT METAL\project\.next\server\middleware.js:1048:48)
+    at <unknown> (file://D:\Client Project\RT METAL\project\.next\server\middleware.js:1049:37)
+    at webpackJsonpCallback (file://D:\Client Project\RT METAL\project\.next\server\edge-runtime-webpack.js:1128:39)
+    at <unknown> (file://D:\Client Project\RT METAL\project\.next\server\middleware.js:10:61)
+    at Script.runInContext (node:vm:149:12)
+    at runInContext (node:vm:301:6)
+    at evaluateInContext (file://D:\Client Project\RT METAL\project\node_modules\next\dist\server\web\sandbox\context.js:357:38)
+    at getRuntimeContext (file://D:\Client Project\RT METAL\project\node_modules\next\dist\server\web\sandbox\sandbox.js:67:9)
+Error: Cannot find module 'D:\Client Project\RT METAL\project\.next\server\pages\_error.js'
+Require stack:
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\require.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\next-server.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\next.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\lib\start-server.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\cli\next-start.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\lib\commands.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\bin\next
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1456:15)
+    at D:\Client Project\RT METAL\project\node_modules\next\dist\server\require-hook.js:54:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)
+    at Module._load (node:internal/modules/cjs/loader:1242:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1556:12)
+    at mod.require (D:\Client Project\RT METAL\project\node_modules\next\dist\server\require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (D:\Client Project\RT METAL\project\node_modules\next\dist\server\require.js:109:84) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\next-server.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\next.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\cli\\next-start.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\lib\\commands.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\bin\\next'
+  ]
+}
+Error: Cannot find module 'D:\Client Project\RT METAL\project\.next\server\app\_not-found.js'
+Require stack:
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\require.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\next-server.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\next.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\lib\start-server.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\cli\next-start.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\lib\commands.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\bin\next
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1456:15)
+    at D:\Client Project\RT METAL\project\node_modules\next\dist\server\require-hook.js:54:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)
+    at Module._load (node:internal/modules/cjs/loader:1242:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1556:12)
+    at mod.require (D:\Client Project\RT METAL\project\node_modules\next\dist\server\require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (D:\Client Project\RT METAL\project\node_modules\next\dist\server\require.js:109:84) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\next-server.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\next.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\cli\\next-start.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\lib\\commands.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\bin\\next'
+  ]
+}
+Error [EvalError]: Code generation from strings disallowed for this context
+    at <unknown> (file://D:\Client Project\RT METAL\project\.next\server\middleware.js:30)
+    at (middleware)/./node_modules/next/dist/build/webpack/loaders/next-middleware-loader.js?absolutePagePath=D%3A%5CClient%20Project%5CRT%20METAL%5Cproject%5Cmiddleware.ts&page=%2Fmiddleware&rootDir=D%3A%5CClient%20Project%5CRT%20METAL%5Cproject&matchers=&preferredRegion=&middlewareConfig=e30%3D! (file://D:\Client Project\RT METAL\project\.next\server\middleware.js:30:1)
+    at __webpack_require__ (file://D:\Client Project\RT METAL\project\.next\server\edge-runtime-webpack.js:37:33)
+    at __webpack_exec__ (file://D:\Client Project\RT METAL\project\.next\server\middleware.js:1048:48)
+    at <unknown> (file://D:\Client Project\RT METAL\project\.next\server\middleware.js:1049:37)
+    at webpackJsonpCallback (file://D:\Client Project\RT METAL\project\.next\server\edge-runtime-webpack.js:1128:39)
+    at <unknown> (file://D:\Client Project\RT METAL\project\.next\server\middleware.js:10:61)
+    at Script.runInContext (node:vm:149:12)
+    at runInContext (node:vm:301:6)
+    at evaluateInContext (file://D:\Client Project\RT METAL\project\node_modules\next\dist\server\web\sandbox\context.js:357:38)
+    at getRuntimeContext (file://D:\Client Project\RT METAL\project\node_modules\next\dist\server\web\sandbox\sandbox.js:67:9)
+Error: Cannot find module 'D:\Client Project\RT METAL\project\.next\server\pages\_error.js'
+Require stack:
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\require.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\next-server.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\next.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\lib\start-server.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\cli\next-start.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\lib\commands.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\bin\next
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1456:15)
+    at D:\Client Project\RT METAL\project\node_modules\next\dist\server\require-hook.js:54:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)
+    at Module._load (node:internal/modules/cjs/loader:1242:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1556:12)
+    at mod.require (D:\Client Project\RT METAL\project\node_modules\next\dist\server\require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (D:\Client Project\RT METAL\project\node_modules\next\dist\server\require.js:109:84) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\next-server.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\next.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\cli\\next-start.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\lib\\commands.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\bin\\next'
+  ]
+}
+Error: Cannot find module 'D:\Client Project\RT METAL\project\.next\server\app\_not-found.js'
+Require stack:
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\require.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\next-server.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\next.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\lib\start-server.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\cli\next-start.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\lib\commands.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\bin\next
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1456:15)
+    at D:\Client Project\RT METAL\project\node_modules\next\dist\server\require-hook.js:54:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)
+    at Module._load (node:internal/modules/cjs/loader:1242:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1556:12)
+    at mod.require (D:\Client Project\RT METAL\project\node_modules\next\dist\server\require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (D:\Client Project\RT METAL\project\node_modules\next\dist\server\require.js:109:84) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\next-server.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\next.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\cli\\next-start.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\lib\\commands.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\bin\\next'
+  ]
+}
+Error [EvalError]: Code generation from strings disallowed for this context
+    at <unknown> (file://D:\Client Project\RT METAL\project\.next\server\middleware.js:30)
+    at (middleware)/./node_modules/next/dist/build/webpack/loaders/next-middleware-loader.js?absolutePagePath=D%3A%5CClient%20Project%5CRT%20METAL%5Cproject%5Cmiddleware.ts&page=%2Fmiddleware&rootDir=D%3A%5CClient%20Project%5CRT%20METAL%5Cproject&matchers=&preferredRegion=&middlewareConfig=e30%3D! (file://D:\Client Project\RT METAL\project\.next\server\middleware.js:30:1)
+    at __webpack_require__ (file://D:\Client Project\RT METAL\project\.next\server\edge-runtime-webpack.js:37:33)
+    at __webpack_exec__ (file://D:\Client Project\RT METAL\project\.next\server\middleware.js:1048:48)
+    at <unknown> (file://D:\Client Project\RT METAL\project\.next\server\middleware.js:1049:37)
+    at webpackJsonpCallback (file://D:\Client Project\RT METAL\project\.next\server\edge-runtime-webpack.js:1128:39)
+    at <unknown> (file://D:\Client Project\RT METAL\project\.next\server\middleware.js:10:61)
+    at Script.runInContext (node:vm:149:12)
+    at runInContext (node:vm:301:6)
+    at evaluateInContext (file://D:\Client Project\RT METAL\project\node_modules\next\dist\server\web\sandbox\context.js:357:38)
+    at getRuntimeContext (file://D:\Client Project\RT METAL\project\node_modules\next\dist\server\web\sandbox\sandbox.js:67:9)
+Error: Cannot find module 'D:\Client Project\RT METAL\project\.next\server\pages\_error.js'
+Require stack:
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\require.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\next-server.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\next.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\lib\start-server.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\cli\next-start.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\lib\commands.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\bin\next
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1456:15)
+    at D:\Client Project\RT METAL\project\node_modules\next\dist\server\require-hook.js:54:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)
+    at Module._load (node:internal/modules/cjs/loader:1242:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1556:12)
+    at mod.require (D:\Client Project\RT METAL\project\node_modules\next\dist\server\require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (D:\Client Project\RT METAL\project\node_modules\next\dist\server\require.js:109:84) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\next-server.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\next.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\cli\\next-start.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\lib\\commands.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\bin\\next'
+  ]
+}
+Error: Cannot find module 'D:\Client Project\RT METAL\project\.next\server\app\_not-found.js'
+Require stack:
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\require.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\next-server.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\next.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\lib\start-server.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\cli\next-start.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\lib\commands.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\bin\next
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1456:15)
+    at D:\Client Project\RT METAL\project\node_modules\next\dist\server\require-hook.js:54:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)
+    at Module._load (node:internal/modules/cjs/loader:1242:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1556:12)
+    at mod.require (D:\Client Project\RT METAL\project\node_modules\next\dist\server\require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (D:\Client Project\RT METAL\project\node_modules\next\dist\server\require.js:109:84) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\next-server.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\next.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\cli\\next-start.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\lib\\commands.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\bin\\next'
+  ]
+}
+Error [EvalError]: Code generation from strings disallowed for this context
+    at <unknown> (file://D:\Client Project\RT METAL\project\.next\server\middleware.js:30)
+    at (middleware)/./node_modules/next/dist/build/webpack/loaders/next-middleware-loader.js?absolutePagePath=D%3A%5CClient%20Project%5CRT%20METAL%5Cproject%5Cmiddleware.ts&page=%2Fmiddleware&rootDir=D%3A%5CClient%20Project%5CRT%20METAL%5Cproject&matchers=&preferredRegion=&middlewareConfig=e30%3D! (file://D:\Client Project\RT METAL\project\.next\server\middleware.js:30:1)
+    at __webpack_require__ (file://D:\Client Project\RT METAL\project\.next\server\edge-runtime-webpack.js:37:33)
+    at __webpack_exec__ (file://D:\Client Project\RT METAL\project\.next\server\middleware.js:1048:48)
+    at <unknown> (file://D:\Client Project\RT METAL\project\.next\server\middleware.js:1049:37)
+    at webpackJsonpCallback (file://D:\Client Project\RT METAL\project\.next\server\edge-runtime-webpack.js:1128:39)
+    at <unknown> (file://D:\Client Project\RT METAL\project\.next\server\middleware.js:10:61)
+    at Script.runInContext (node:vm:149:12)
+    at runInContext (node:vm:301:6)
+    at evaluateInContext (file://D:\Client Project\RT METAL\project\node_modules\next\dist\server\web\sandbox\context.js:357:38)
+    at getRuntimeContext (file://D:\Client Project\RT METAL\project\node_modules\next\dist\server\web\sandbox\sandbox.js:67:9)
+Error: Cannot find module 'D:\Client Project\RT METAL\project\.next\server\pages\_error.js'
+Require stack:
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\require.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\next-server.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\next.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\lib\start-server.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\cli\next-start.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\lib\commands.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\bin\next
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1456:15)
+    at D:\Client Project\RT METAL\project\node_modules\next\dist\server\require-hook.js:54:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)
+    at Module._load (node:internal/modules/cjs/loader:1242:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1556:12)
+    at mod.require (D:\Client Project\RT METAL\project\node_modules\next\dist\server\require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (D:\Client Project\RT METAL\project\node_modules\next\dist\server\require.js:109:84) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\next-server.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\next.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\cli\\next-start.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\lib\\commands.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\bin\\next'
+  ]
+}
+Error [EvalError]: Code generation from strings disallowed for this context
+    at <unknown> (file://D:\Client Project\RT METAL\project\.next\server\middleware.js:30)
+    at (middleware)/./node_modules/next/dist/build/webpack/loaders/next-middleware-loader.js?absolutePagePath=D%3A%5CClient%20Project%5CRT%20METAL%5Cproject%5Cmiddleware.ts&page=%2Fmiddleware&rootDir=D%3A%5CClient%20Project%5CRT%20METAL%5Cproject&matchers=&preferredRegion=&middlewareConfig=e30%3D! (file://D:\Client Project\RT METAL\project\.next\server\middleware.js:30:1)
+    at __webpack_require__ (file://D:\Client Project\RT METAL\project\.next\server\edge-runtime-webpack.js:37:33)
+    at __webpack_exec__ (file://D:\Client Project\RT METAL\project\.next\server\middleware.js:1048:48)
+    at <unknown> (file://D:\Client Project\RT METAL\project\.next\server\middleware.js:1049:37)
+    at webpackJsonpCallback (file://D:\Client Project\RT METAL\project\.next\server\edge-runtime-webpack.js:1128:39)
+    at <unknown> (file://D:\Client Project\RT METAL\project\.next\server\middleware.js:10:61)
+    at Script.runInContext (node:vm:149:12)
+    at runInContext (node:vm:301:6)
+    at evaluateInContext (file://D:\Client Project\RT METAL\project\node_modules\next\dist\server\web\sandbox\context.js:357:38)
+    at getRuntimeContext (file://D:\Client Project\RT METAL\project\node_modules\next\dist\server\web\sandbox\sandbox.js:67:9)
+Error: Cannot find module 'D:\Client Project\RT METAL\project\.next\server\pages\_error.js'
+Require stack:
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\require.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\next-server.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\next.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\lib\start-server.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\cli\next-start.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\lib\commands.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\bin\next
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1456:15)
+    at D:\Client Project\RT METAL\project\node_modules\next\dist\server\require-hook.js:54:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)
+    at Module._load (node:internal/modules/cjs/loader:1242:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1556:12)
+    at mod.require (D:\Client Project\RT METAL\project\node_modules\next\dist\server\require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (D:\Client Project\RT METAL\project\node_modules\next\dist\server\require.js:109:84) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\next-server.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\next.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\cli\\next-start.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\lib\\commands.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\bin\\next'
+  ]
+}
+Error [EvalError]: Code generation from strings disallowed for this context
+    at <unknown> (file://D:\Client Project\RT METAL\project\.next\server\middleware.js:30)
+    at (middleware)/./node_modules/next/dist/build/webpack/loaders/next-middleware-loader.js?absolutePagePath=D%3A%5CClient%20Project%5CRT%20METAL%5Cproject%5Cmiddleware.ts&page=%2Fmiddleware&rootDir=D%3A%5CClient%20Project%5CRT%20METAL%5Cproject&matchers=&preferredRegion=&middlewareConfig=e30%3D! (file://D:\Client Project\RT METAL\project\.next\server\middleware.js:30:1)
+    at __webpack_require__ (file://D:\Client Project\RT METAL\project\.next\server\edge-runtime-webpack.js:37:33)
+    at __webpack_exec__ (file://D:\Client Project\RT METAL\project\.next\server\middleware.js:1048:48)
+    at <unknown> (file://D:\Client Project\RT METAL\project\.next\server\middleware.js:1049:37)
+    at webpackJsonpCallback (file://D:\Client Project\RT METAL\project\.next\server\edge-runtime-webpack.js:1128:39)
+    at <unknown> (file://D:\Client Project\RT METAL\project\.next\server\middleware.js:10:61)
+    at Script.runInContext (node:vm:149:12)
+    at runInContext (node:vm:301:6)
+    at evaluateInContext (file://D:\Client Project\RT METAL\project\node_modules\next\dist\server\web\sandbox\context.js:357:38)
+    at getRuntimeContext (file://D:\Client Project\RT METAL\project\node_modules\next\dist\server\web\sandbox\sandbox.js:67:9)
+Error: Cannot find module 'D:\Client Project\RT METAL\project\.next\server\pages\_error.js'
+Require stack:
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\require.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\next-server.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\next.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\server\lib\start-server.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\cli\next-start.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\lib\commands.js
+- D:\Client Project\RT METAL\project\node_modules\next\dist\bin\next
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1456:15)
+    at D:\Client Project\RT METAL\project\node_modules\next\dist\server\require-hook.js:54:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)
+    at Module._load (node:internal/modules/cjs/loader:1242:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1556:12)
+    at mod.require (D:\Client Project\RT METAL\project\node_modules\next\dist\server\require-hook.js:64:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (D:\Client Project\RT METAL\project\node_modules\next\dist\server\require.js:109:84) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\next-server.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\next.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\cli\\next-start.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\lib\\commands.js',
+    'D:\\Client Project\\RT METAL\\project\\node_modules\\next\\dist\\bin\\next'
+  ]
+}
