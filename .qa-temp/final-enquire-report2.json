@@ -1,0 +1,866 @@
+[
+  {
+    "page": "cat-home-sculptures",
+    "width": 320,
+    "count": 23,
+    "allFullyVisible": true,
+    "allClickable": true,
+    "anyClipped": false,
+    "samples": [
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 81,
+          "r": 139,
+          "w": 58,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      },
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 229,
+          "r": 287,
+          "w": 58,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      }
+    ]
+  },
+  {
+    "page": "cat-home-sculptures",
+    "width": 375,
+    "count": 23,
+    "allFullyVisible": true,
+    "allClickable": true,
+    "anyClipped": false,
+    "samples": [
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 81,
+          "r": 166.5,
+          "w": 85.5,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      },
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 256.5,
+          "r": 342,
+          "w": 85.5,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      }
+    ]
+  },
+  {
+    "page": "cat-home-sculptures",
+    "width": 480,
+    "count": 23,
+    "allFullyVisible": true,
+    "allClickable": true,
+    "anyClipped": false,
+    "samples": [
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 81,
+          "r": 219,
+          "w": 138,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      },
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 309,
+          "r": 447,
+          "w": 138,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      }
+    ]
+  },
+  {
+    "page": "cat-home-sculptures",
+    "width": 768,
+    "count": 23,
+    "allFullyVisible": true,
+    "allClickable": true,
+    "anyClipped": false,
+    "samples": [
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 85,
+          "r": 355,
+          "w": 270,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      },
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 461,
+          "r": 731,
+          "w": 270,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      }
+    ]
+  },
+  {
+    "page": "cat-home-sculptures",
+    "width": 1024,
+    "count": 23,
+    "allFullyVisible": true,
+    "allClickable": true,
+    "anyClipped": false,
+    "samples": [
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 105,
+          "r": 241,
+          "w": 136,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      },
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 347,
+          "r": 483,
+          "w": 136,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      }
+    ]
+  },
+  {
+    "page": "cat-home-sculptures",
+    "width": 1440,
+    "count": 23,
+    "allFullyVisible": true,
+    "allClickable": true,
+    "anyClipped": false,
+    "samples": [
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 185,
+          "r": 385,
+          "w": 200,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      },
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 491,
+          "r": 691,
+          "w": 200,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      }
+    ]
+  },
+  {
+    "page": "cat-metal-box",
+    "width": 320,
+    "count": 5,
+    "allFullyVisible": true,
+    "allClickable": true,
+    "anyClipped": false,
+    "samples": [
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 81,
+          "r": 139,
+          "w": 58,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      },
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 229,
+          "r": 287,
+          "w": 58,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      }
+    ]
+  },
+  {
+    "page": "cat-metal-box",
+    "width": 375,
+    "count": 5,
+    "allFullyVisible": true,
+    "allClickable": true,
+    "anyClipped": false,
+    "samples": [
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 81,
+          "r": 166.5,
+          "w": 85.5,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      },
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 256.5,
+          "r": 342,
+          "w": 85.5,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      }
+    ]
+  },
+  {
+    "page": "cat-metal-box",
+    "width": 480,
+    "count": 5,
+    "allFullyVisible": true,
+    "allClickable": true,
+    "anyClipped": false,
+    "samples": [
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 81,
+          "r": 219,
+          "w": 138,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      },
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 309,
+          "r": 447,
+          "w": 138,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      }
+    ]
+  },
+  {
+    "page": "cat-metal-box",
+    "width": 768,
+    "count": 5,
+    "allFullyVisible": true,
+    "allClickable": true,
+    "anyClipped": false,
+    "samples": [
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 85,
+          "r": 355,
+          "w": 270,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      },
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 461,
+          "r": 731,
+          "w": 270,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      }
+    ]
+  },
+  {
+    "page": "cat-metal-box",
+    "width": 1024,
+    "count": 5,
+    "allFullyVisible": true,
+    "allClickable": true,
+    "anyClipped": false,
+    "samples": [
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 105,
+          "r": 241,
+          "w": 136,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      },
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 347,
+          "r": 483,
+          "w": 136,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      }
+    ]
+  },
+  {
+    "page": "cat-metal-box",
+    "width": 1440,
+    "count": 5,
+    "allFullyVisible": true,
+    "allClickable": true,
+    "anyClipped": false,
+    "samples": [
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 185,
+          "r": 385,
+          "w": 200,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      },
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 491,
+          "r": 691,
+          "w": 200,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      }
+    ]
+  },
+  {
+    "page": "product-detail",
+    "width": 320,
+    "count": 4,
+    "allFullyVisible": true,
+    "allClickable": true,
+    "anyClipped": false,
+    "samples": [
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 81,
+          "r": 139,
+          "w": 58,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      },
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 229,
+          "r": 287,
+          "w": 58,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      }
+    ]
+  },
+  {
+    "page": "product-detail",
+    "width": 375,
+    "count": 4,
+    "allFullyVisible": true,
+    "allClickable": true,
+    "anyClipped": false,
+    "samples": [
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 81,
+          "r": 166.5,
+          "w": 85.5,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      },
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 256.5,
+          "r": 342,
+          "w": 85.5,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      }
+    ]
+  },
+  {
+    "page": "product-detail",
+    "width": 480,
+    "count": 4,
+    "allFullyVisible": true,
+    "allClickable": true,
+    "anyClipped": false,
+    "samples": [
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 81,
+          "r": 219,
+          "w": 138,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      },
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 309,
+          "r": 447,
+          "w": 138,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      }
+    ]
+  },
+  {
+    "page": "product-detail",
+    "width": 768,
+    "count": 4,
+    "allFullyVisible": true,
+    "allClickable": true,
+    "anyClipped": false,
+    "samples": [
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 85,
+          "r": 355,
+          "w": 270,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      },
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 461,
+          "r": 731,
+          "w": 270,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      }
+    ]
+  },
+  {
+    "page": "product-detail",
+    "width": 1024,
+    "count": 4,
+    "allFullyVisible": true,
+    "allClickable": true,
+    "anyClipped": false,
+    "samples": [
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 105,
+          "r": 241,
+          "w": 136,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      },
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 347,
+          "r": 483,
+          "w": 136,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      }
+    ]
+  },
+  {
+    "page": "product-detail",
+    "width": 1440,
+    "count": 4,
+    "allFullyVisible": true,
+    "allClickable": true,
+    "anyClipped": false,
+    "samples": [
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 185,
+          "r": 385,
+          "w": 200,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      },
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 491,
+          "r": 691,
+          "w": 200,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      }
+    ]
+  },
+  {
+    "page": "home",
+    "width": 320,
+    "count": 28,
+    "allFullyVisible": true,
+    "allClickable": true,
+    "anyClipped": false,
+    "samples": [
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 81,
+          "r": 139,
+          "w": 58,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      },
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 229,
+          "r": 287,
+          "w": 58,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      }
+    ]
+  },
+  {
+    "page": "home",
+    "width": 375,
+    "count": 28,
+    "allFullyVisible": true,
+    "allClickable": true,
+    "anyClipped": false,
+    "samples": [
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 81,
+          "r": 166.5,
+          "w": 85.5,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      },
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 256.5,
+          "r": 342,
+          "w": 85.5,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      }
+    ]
+  },
+  {
+    "page": "home",
+    "width": 480,
+    "count": 28,
+    "allFullyVisible": true,
+    "allClickable": true,
+    "anyClipped": false,
+    "samples": [
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 81,
+          "r": 219,
+          "w": 138,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      },
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 309,
+          "r": 447,
+          "w": 138,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      }
+    ]
+  },
+  {
+    "page": "home",
+    "width": 768,
+    "count": 28,
+    "allFullyVisible": true,
+    "allClickable": true,
+    "anyClipped": false,
+    "samples": [
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 85,
+          "r": 355,
+          "w": 270,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      },
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 461,
+          "r": 731,
+          "w": 270,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      }
+    ]
+  },
+  {
+    "page": "home",
+    "width": 1024,
+    "count": 28,
+    "allFullyVisible": true,
+    "allClickable": true,
+    "anyClipped": false,
+    "samples": [
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 105,
+          "r": 241,
+          "w": 136,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      },
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 347,
+          "r": 483,
+          "w": 136,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      }
+    ]
+  },
+  {
+    "page": "home",
+    "width": 1440,
+    "count": 28,
+    "allFullyVisible": true,
+    "allClickable": true,
+    "anyClipped": false,
+    "samples": [
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 185,
+          "r": 385,
+          "w": 200,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      },
+      {
+        "fullyVisible": true,
+        "clickable": true,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "rect": {
+          "l": 491,
+          "r": 691,
+          "w": 200,
+          "h": 40
+        },
+        "text": "Enquire Now"
+      }
+    ]
+  }
+]

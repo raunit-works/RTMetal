@@ -13,7 +13,7 @@ import { InstagramSection } from '@/components/sections/instagram-section';
 import type { Metadata } from 'next';
 import { CtaBanner } from '@/components/sections/cta-banner';
 import {
-  getPublicCatalogAsync,
+  getHomeCatalogAsync,
   getServicesAsync,
   getTestimonialsAsync,
   getFAQsAsync,
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const [catalog, testimonials, faqs, services] = await Promise.all([
-    getPublicCatalogAsync(),
+    getHomeCatalogAsync(),
     getTestimonialsAsync(),
     getFAQsAsync(),
     getServicesAsync({ allowStaticFallback: false }),

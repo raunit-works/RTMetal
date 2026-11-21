@@ -3,7 +3,7 @@ import {
   getServicesAsync,
   getInstagramPosts,
   getIndustriesServed,
-  getPublicCatalogAsync,
+  getCategoriesAsync,
 } from '@/lib/data-access';
 import { MetalCoatingClient } from '@/components/sections/metal-coating-client';
 import { isCategoryInSection } from '@/lib/category-hierarchy';
@@ -30,15 +30,19 @@ export const metadata: Metadata = {
 
 
 export default async function MetalCoatingPage() {
-  const services = await getServicesAsync({ allowStaticFallback: false });
   const instagramPosts = getInstagramPosts();
   const industriesServed = getIndustriesServed();
-  const { categories } = await getPublicCatalogAsync();
+  // The page only renders category metadata, not products, so the complete
+  // product catalogue (images + variants) is no longer fetched here.
+  const [services, categories, finishes, beforeAfter] = await Promise.all([
+    getServicesAsync({ allowStaticFallback: false }),
+    getCategoriesAsync({ allowStaticFallback: false, products: [] }),
+    getPublishedMetalFinishes(),
+    getPublishedBeforeAfterProjects({ limit: 9 }),
+  ]);
   const metalCategories = categories.filter((category) =>
     isCategoryInSection(category, 'metal_services')
   );
-  const finishes = await getPublishedMetalFinishes();
-  const beforeAfter = await getPublishedBeforeAfterProjects({ limit: 9 });
 
   return (
     <MetalCoatingClient

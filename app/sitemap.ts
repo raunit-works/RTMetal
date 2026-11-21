@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next';
-import { getProductsAsync } from '@/lib/data-access';
+import { getPublishedProductSlugsAsync } from '@/lib/data-access';
 import { getPublishedBeforeAfterSitemapEntries } from '@/lib/supabase/before-after-public';
 import { getSiteUrl } from '@/lib/site-url';
 
@@ -44,11 +44,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   try {
-    // Fetch live catalog products from Supabase
-    const products = await getProductsAsync();
-    // Exclude unpublished products from sitemap
-    const publishedProducts = products.filter((p) => p.isPublished !== false && p.slug);
-
+    // Fetch live catalog product identifiers from Supabase. Only slugs are
+    // needed for the sitemap, so images, variants and full product rows are
+    // never downloaded here.
+    const publishedProducts = await getPublishedProductSlugsAsync();
     publishedProducts.forEach((product) => {
       const productSlug = product.slug || product.id;
       routes.push({

@@ -1,0 +1,1322 @@
+[
+  {
+    "page": "cat-home-sculptures",
+    "width": 320,
+    "buttons": 12,
+    "allFullyVisible": false,
+    "allClickable": false,
+    "anyClipped": false,
+    "samples": [
+      {
+        "i": 0,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 81,
+          "r": 139,
+          "t": 1213.1,
+          "b": 1253.1,
+          "w": 58,
+          "h": 40
+        },
+        "fullyVisible": true,
+        "visibleW": 58,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 20,
+          "r": 152,
+          "w": 132
+        }
+      },
+      {
+        "i": 1,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 229,
+          "r": 287,
+          "t": 1213.1,
+          "b": 1253.1,
+          "w": 58,
+          "h": 40
+        },
+        "fullyVisible": true,
+        "visibleW": 58,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 168,
+          "r": 300,
+          "w": 132
+        }
+      }
+    ],
+    "screenshot": ".qa-temp/final-cat-home-sculptures-320.png"
+  },
+  {
+    "page": "cat-home-sculptures",
+    "width": 375,
+    "buttons": 12,
+    "allFullyVisible": false,
+    "allClickable": false,
+    "anyClipped": false,
+    "samples": [
+      {
+        "i": 0,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 81,
+          "r": 166.5,
+          "t": 1201.5,
+          "b": 1241.5,
+          "w": 85.5,
+          "h": 40
+        },
+        "fullyVisible": true,
+        "visibleW": 85.5,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 20,
+          "r": 179.5,
+          "w": 159.5
+        }
+      },
+      {
+        "i": 1,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 256.5,
+          "r": 342,
+          "t": 1201.5,
+          "b": 1241.5,
+          "w": 85.5,
+          "h": 40
+        },
+        "fullyVisible": true,
+        "visibleW": 85.5,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 195.5,
+          "r": 355,
+          "w": 159.5
+        }
+      }
+    ],
+    "screenshot": ".qa-temp/final-cat-home-sculptures-375.png"
+  },
+  {
+    "page": "cat-home-sculptures",
+    "width": 480,
+    "buttons": 12,
+    "allFullyVisible": false,
+    "allClickable": false,
+    "anyClipped": false,
+    "samples": [
+      {
+        "i": 0,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 81,
+          "r": 219,
+          "t": 1160.9,
+          "b": 1200.9,
+          "w": 138,
+          "h": 40
+        },
+        "fullyVisible": true,
+        "visibleW": 138,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 20,
+          "r": 232,
+          "w": 212
+        }
+      },
+      {
+        "i": 1,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 309,
+          "r": 447,
+          "t": 1160.9,
+          "b": 1200.9,
+          "w": 138,
+          "h": 40
+        },
+        "fullyVisible": true,
+        "visibleW": 138,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 248,
+          "r": 460,
+          "w": 212
+        }
+      }
+    ],
+    "screenshot": ".qa-temp/final-cat-home-sculptures-480.png"
+  },
+  {
+    "page": "cat-home-sculptures",
+    "width": 768,
+    "buttons": 12,
+    "allFullyVisible": false,
+    "allClickable": false,
+    "anyClipped": false,
+    "samples": [
+      {
+        "i": 0,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 85,
+          "r": 355,
+          "t": 1395,
+          "b": 1435,
+          "w": 270,
+          "h": 40
+        },
+        "fullyVisible": true,
+        "visibleW": 270,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 20,
+          "r": 372,
+          "w": 352
+        }
+      },
+      {
+        "i": 1,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 461,
+          "r": 731,
+          "t": 1395,
+          "b": 1435,
+          "w": 270,
+          "h": 40
+        },
+        "fullyVisible": true,
+        "visibleW": 270,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 396,
+          "r": 748,
+          "w": 352
+        }
+      }
+    ],
+    "screenshot": ".qa-temp/final-cat-home-sculptures-768.png"
+  },
+  {
+    "page": "cat-home-sculptures",
+    "width": 1024,
+    "buttons": 12,
+    "allFullyVisible": true,
+    "allClickable": false,
+    "anyClipped": false,
+    "samples": [
+      {
+        "i": 0,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 105,
+          "r": 241,
+          "t": 1216.8,
+          "b": 1256.8,
+          "w": 136,
+          "h": 40
+        },
+        "fullyVisible": true,
+        "visibleW": 136,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 40,
+          "r": 258,
+          "w": 218
+        }
+      },
+      {
+        "i": 1,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 347,
+          "r": 483,
+          "t": 1216.8,
+          "b": 1256.8,
+          "w": 136,
+          "h": 40
+        },
+        "fullyVisible": true,
+        "visibleW": 136,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 282,
+          "r": 500,
+          "w": 218
+        }
+      }
+    ],
+    "screenshot": ".qa-temp/final-cat-home-sculptures-1024.png"
+  },
+  {
+    "page": "cat-home-sculptures",
+    "width": 1440,
+    "buttons": 12,
+    "allFullyVisible": true,
+    "allClickable": false,
+    "anyClipped": false,
+    "samples": [
+      {
+        "i": 0,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 185,
+          "r": 385,
+          "t": 1277.5,
+          "b": 1317.5,
+          "w": 200,
+          "h": 40
+        },
+        "fullyVisible": true,
+        "visibleW": 200,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 120,
+          "r": 402,
+          "w": 282
+        }
+      },
+      {
+        "i": 1,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 491,
+          "r": 691,
+          "t": 1277.5,
+          "b": 1317.5,
+          "w": 200,
+          "h": 40
+        },
+        "fullyVisible": true,
+        "visibleW": 200,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 426,
+          "r": 708,
+          "w": 282
+        }
+      }
+    ],
+    "screenshot": ".qa-temp/final-cat-home-sculptures-1440.png"
+  },
+  {
+    "page": "cat-metal-box",
+    "width": 320,
+    "buttons": 5,
+    "allFullyVisible": true,
+    "allClickable": false,
+    "anyClipped": false,
+    "samples": [
+      {
+        "i": 0,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 81,
+          "r": 139,
+          "t": 1420.1,
+          "b": 1460.1,
+          "w": 58,
+          "h": 40
+        },
+        "fullyVisible": true,
+        "visibleW": 58,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 20,
+          "r": 152,
+          "w": 132
+        }
+      },
+      {
+        "i": 1,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 229,
+          "r": 287,
+          "t": 1420.1,
+          "b": 1460.1,
+          "w": 58,
+          "h": 40
+        },
+        "fullyVisible": true,
+        "visibleW": 58,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 168,
+          "r": 300,
+          "w": 132
+        }
+      }
+    ],
+    "screenshot": ".qa-temp/final-cat-metal-box-320.png"
+  },
+  {
+    "page": "cat-metal-box",
+    "width": 375,
+    "buttons": 5,
+    "allFullyVisible": true,
+    "allClickable": true,
+    "anyClipped": false,
+    "samples": [
+      {
+        "i": 0,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 81,
+          "r": 166.5,
+          "t": 1288.5,
+          "b": 1328.5,
+          "w": 85.5,
+          "h": 40
+        },
+        "fullyVisible": true,
+        "visibleW": 85.5,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": true,
+        "cardRect": {
+          "l": 20,
+          "r": 179.5,
+          "w": 159.5
+        }
+      },
+      {
+        "i": 1,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 256.5,
+          "r": 342,
+          "t": 1288.5,
+          "b": 1328.5,
+          "w": 85.5,
+          "h": 40
+        },
+        "fullyVisible": true,
+        "visibleW": 85.5,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": true,
+        "cardRect": {
+          "l": 195.5,
+          "r": 355,
+          "w": 159.5
+        }
+      }
+    ],
+    "screenshot": ".qa-temp/final-cat-metal-box-375.png"
+  },
+  {
+    "page": "cat-metal-box",
+    "width": 480,
+    "buttons": 5,
+    "allFullyVisible": true,
+    "allClickable": false,
+    "anyClipped": false,
+    "samples": [
+      {
+        "i": 0,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 81,
+          "r": 219,
+          "t": 1233.9,
+          "b": 1273.9,
+          "w": 138,
+          "h": 40
+        },
+        "fullyVisible": true,
+        "visibleW": 138,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 20,
+          "r": 232,
+          "w": 212
+        }
+      },
+      {
+        "i": 1,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 309,
+          "r": 447,
+          "t": 1233.9,
+          "b": 1273.9,
+          "w": 138,
+          "h": 40
+        },
+        "fullyVisible": true,
+        "visibleW": 138,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 248,
+          "r": 460,
+          "w": 212
+        }
+      }
+    ],
+    "screenshot": ".qa-temp/final-cat-metal-box-480.png"
+  },
+  {
+    "page": "cat-metal-box",
+    "width": 768,
+    "buttons": 5,
+    "allFullyVisible": true,
+    "allClickable": true,
+    "anyClipped": false,
+    "samples": [
+      {
+        "i": 0,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 85,
+          "r": 355,
+          "t": 1502,
+          "b": 1542,
+          "w": 270,
+          "h": 40
+        },
+        "fullyVisible": true,
+        "visibleW": 270,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": true,
+        "cardRect": {
+          "l": 20,
+          "r": 372,
+          "w": 352
+        }
+      },
+      {
+        "i": 1,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 461,
+          "r": 731,
+          "t": 1502,
+          "b": 1542,
+          "w": 270,
+          "h": 40
+        },
+        "fullyVisible": true,
+        "visibleW": 270,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": true,
+        "cardRect": {
+          "l": 396,
+          "r": 748,
+          "w": 352
+        }
+      }
+    ],
+    "screenshot": ".qa-temp/final-cat-metal-box-768.png"
+  },
+  {
+    "page": "cat-metal-box",
+    "width": 1024,
+    "buttons": 5,
+    "allFullyVisible": true,
+    "allClickable": false,
+    "anyClipped": false,
+    "samples": [
+      {
+        "i": 0,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 105,
+          "r": 241,
+          "t": 1304.5,
+          "b": 1344.5,
+          "w": 136,
+          "h": 40
+        },
+        "fullyVisible": true,
+        "visibleW": 136,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 40,
+          "r": 258,
+          "w": 218
+        }
+      },
+      {
+        "i": 1,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 347,
+          "r": 483,
+          "t": 1304.5,
+          "b": 1344.5,
+          "w": 136,
+          "h": 40
+        },
+        "fullyVisible": true,
+        "visibleW": 136,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 282,
+          "r": 500,
+          "w": 218
+        }
+      }
+    ],
+    "screenshot": ".qa-temp/final-cat-metal-box-1024.png"
+  },
+  {
+    "page": "cat-metal-box",
+    "width": 1440,
+    "buttons": 5,
+    "allFullyVisible": true,
+    "allClickable": false,
+    "anyClipped": false,
+    "samples": [
+      {
+        "i": 0,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 185,
+          "r": 385,
+          "t": 1384.5,
+          "b": 1424.5,
+          "w": 200,
+          "h": 40
+        },
+        "fullyVisible": true,
+        "visibleW": 200,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 120,
+          "r": 402,
+          "w": 282
+        }
+      },
+      {
+        "i": 1,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 491,
+          "r": 691,
+          "t": 1384.5,
+          "b": 1424.5,
+          "w": 200,
+          "h": 40
+        },
+        "fullyVisible": true,
+        "visibleW": 200,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 426,
+          "r": 708,
+          "w": 282
+        }
+      }
+    ],
+    "screenshot": ".qa-temp/final-cat-metal-box-1440.png"
+  },
+  {
+    "page": "product-detail",
+    "width": 320,
+    "buttons": 4,
+    "allFullyVisible": false,
+    "allClickable": false,
+    "anyClipped": false,
+    "samples": [
+      {
+        "i": 0,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 81,
+          "r": 139,
+          "t": 4114.3,
+          "b": 4154.3,
+          "w": 58,
+          "h": 40
+        },
+        "fullyVisible": false,
+        "visibleW": 58,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 20,
+          "r": 152,
+          "w": 132
+        }
+      },
+      {
+        "i": 1,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 229,
+          "r": 287,
+          "t": 4114.3,
+          "b": 4154.3,
+          "w": 58,
+          "h": 40
+        },
+        "fullyVisible": false,
+        "visibleW": 58,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 168,
+          "r": 300,
+          "w": 132
+        }
+      }
+    ],
+    "screenshot": ".qa-temp/final-product-detail-320.png"
+  },
+  {
+    "page": "product-detail",
+    "width": 375,
+    "buttons": 4,
+    "allFullyVisible": false,
+    "allClickable": false,
+    "anyClipped": false,
+    "samples": [
+      {
+        "i": 0,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 81,
+          "r": 166.5,
+          "t": 3872.5,
+          "b": 3912.5,
+          "w": 85.5,
+          "h": 40
+        },
+        "fullyVisible": false,
+        "visibleW": 85.5,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 20,
+          "r": 179.5,
+          "w": 159.5
+        }
+      },
+      {
+        "i": 1,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 256.5,
+          "r": 342,
+          "t": 3872.5,
+          "b": 3912.5,
+          "w": 85.5,
+          "h": 40
+        },
+        "fullyVisible": false,
+        "visibleW": 85.5,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 195.5,
+          "r": 355,
+          "w": 159.5
+        }
+      }
+    ],
+    "screenshot": ".qa-temp/final-product-detail-375.png"
+  },
+  {
+    "page": "product-detail",
+    "width": 480,
+    "buttons": 4,
+    "allFullyVisible": false,
+    "allClickable": false,
+    "anyClipped": false,
+    "samples": [
+      {
+        "i": 0,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 81,
+          "r": 219,
+          "t": 3685.9,
+          "b": 3725.9,
+          "w": 138,
+          "h": 40
+        },
+        "fullyVisible": false,
+        "visibleW": 138,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 20,
+          "r": 232,
+          "w": 212
+        }
+      },
+      {
+        "i": 1,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 309,
+          "r": 447,
+          "t": 3685.9,
+          "b": 3725.9,
+          "w": 138,
+          "h": 40
+        },
+        "fullyVisible": false,
+        "visibleW": 138,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 248,
+          "r": 460,
+          "w": 212
+        }
+      }
+    ],
+    "screenshot": ".qa-temp/final-product-detail-480.png"
+  },
+  {
+    "page": "product-detail",
+    "width": 768,
+    "buttons": 4,
+    "allFullyVisible": false,
+    "allClickable": false,
+    "anyClipped": false,
+    "samples": [
+      {
+        "i": 0,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 85,
+          "r": 355,
+          "t": 3881.3,
+          "b": 3921.3,
+          "w": 270,
+          "h": 40
+        },
+        "fullyVisible": false,
+        "visibleW": 270,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 20,
+          "r": 372,
+          "w": 352
+        }
+      },
+      {
+        "i": 1,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 461,
+          "r": 731,
+          "t": 3881.3,
+          "b": 3921.3,
+          "w": 270,
+          "h": 40
+        },
+        "fullyVisible": false,
+        "visibleW": 270,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 396,
+          "r": 748,
+          "w": 352
+        }
+      }
+    ],
+    "screenshot": ".qa-temp/final-product-detail-768.png"
+  },
+  {
+    "page": "product-detail",
+    "width": 1024,
+    "buttons": 4,
+    "allFullyVisible": false,
+    "allClickable": false,
+    "anyClipped": false,
+    "samples": [
+      {
+        "i": 0,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 105,
+          "r": 241,
+          "t": 3205.7,
+          "b": 3245.7,
+          "w": 136,
+          "h": 40
+        },
+        "fullyVisible": false,
+        "visibleW": 136,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 40,
+          "r": 258,
+          "w": 218
+        }
+      },
+      {
+        "i": 1,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 347,
+          "r": 483,
+          "t": 3205.7,
+          "b": 3245.7,
+          "w": 136,
+          "h": 40
+        },
+        "fullyVisible": false,
+        "visibleW": 136,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 282,
+          "r": 500,
+          "w": 218
+        }
+      }
+    ],
+    "screenshot": ".qa-temp/final-product-detail-1024.png"
+  },
+  {
+    "page": "product-detail",
+    "width": 1440,
+    "buttons": 4,
+    "allFullyVisible": false,
+    "allClickable": false,
+    "anyClipped": false,
+    "samples": [
+      {
+        "i": 0,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 185,
+          "r": 385,
+          "t": 3169.5,
+          "b": 3209.5,
+          "w": 200,
+          "h": 40
+        },
+        "fullyVisible": false,
+        "visibleW": 200,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 120,
+          "r": 402,
+          "w": 282
+        }
+      },
+      {
+        "i": 1,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 491,
+          "r": 691,
+          "t": 3169.5,
+          "b": 3209.5,
+          "w": 200,
+          "h": 40
+        },
+        "fullyVisible": false,
+        "visibleW": 200,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 426,
+          "r": 708,
+          "w": 282
+        }
+      }
+    ],
+    "screenshot": ".qa-temp/final-product-detail-1440.png"
+  },
+  {
+    "page": "home",
+    "width": 320,
+    "buttons": 12,
+    "allFullyVisible": false,
+    "allClickable": false,
+    "anyClipped": true,
+    "samples": [
+      {
+        "i": 0,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 81,
+          "r": 139,
+          "t": 5609.6,
+          "b": 5649.6,
+          "w": 58,
+          "h": 40
+        },
+        "fullyVisible": false,
+        "visibleW": 58,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 20,
+          "r": 152,
+          "w": 132
+        }
+      },
+      {
+        "i": 1,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 229,
+          "r": 287,
+          "t": 5609.6,
+          "b": 5649.6,
+          "w": 58,
+          "h": 40
+        },
+        "fullyVisible": false,
+        "visibleW": 58,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 168,
+          "r": 300,
+          "w": 132
+        }
+      }
+    ],
+    "screenshot": ".qa-temp/final-home-320.png"
+  },
+  {
+    "page": "home",
+    "width": 375,
+    "buttons": 12,
+    "allFullyVisible": false,
+    "allClickable": false,
+    "anyClipped": true,
+    "samples": [
+      {
+        "i": 0,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 81,
+          "r": 166.5,
+          "t": 5498.6,
+          "b": 5538.6,
+          "w": 85.5,
+          "h": 40
+        },
+        "fullyVisible": false,
+        "visibleW": 85.5,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 20,
+          "r": 179.5,
+          "w": 159.5
+        }
+      },
+      {
+        "i": 1,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 256.5,
+          "r": 342,
+          "t": 5498.6,
+          "b": 5538.6,
+          "w": 85.5,
+          "h": 40
+        },
+        "fullyVisible": false,
+        "visibleW": 85.5,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 195.5,
+          "r": 355,
+          "w": 159.5
+        }
+      }
+    ],
+    "screenshot": ".qa-temp/final-home-375.png"
+  },
+  {
+    "page": "home",
+    "width": 480,
+    "buttons": 12,
+    "allFullyVisible": false,
+    "allClickable": false,
+    "anyClipped": true,
+    "samples": [
+      {
+        "i": 0,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 81,
+          "r": 219,
+          "t": 5575.2,
+          "b": 5615.2,
+          "w": 138,
+          "h": 40
+        },
+        "fullyVisible": false,
+        "visibleW": 138,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 20,
+          "r": 232,
+          "w": 212
+        }
+      },
+      {
+        "i": 1,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 309,
+          "r": 447,
+          "t": 5575.2,
+          "b": 5615.2,
+          "w": 138,
+          "h": 40
+        },
+        "fullyVisible": false,
+        "visibleW": 138,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 248,
+          "r": 460,
+          "w": 212
+        }
+      }
+    ],
+    "screenshot": ".qa-temp/final-home-480.png"
+  },
+  {
+    "page": "home",
+    "width": 768,
+    "buttons": 12,
+    "allFullyVisible": false,
+    "allClickable": false,
+    "anyClipped": true,
+    "samples": [
+      {
+        "i": 0,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 85,
+          "r": 355,
+          "t": 6075,
+          "b": 6115,
+          "w": 270,
+          "h": 40
+        },
+        "fullyVisible": false,
+        "visibleW": 270,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 20,
+          "r": 372,
+          "w": 352
+        }
+      },
+      {
+        "i": 1,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 461,
+          "r": 731,
+          "t": 6075,
+          "b": 6115,
+          "w": 270,
+          "h": 40
+        },
+        "fullyVisible": false,
+        "visibleW": 270,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 396,
+          "r": 748,
+          "w": 352
+        }
+      }
+    ],
+    "screenshot": ".qa-temp/final-home-768.png"
+  },
+  {
+    "page": "home",
+    "width": 1024,
+    "buttons": 12,
+    "allFullyVisible": false,
+    "allClickable": false,
+    "anyClipped": true,
+    "samples": [
+      {
+        "i": 0,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 105,
+          "r": 241,
+          "t": 4004.3,
+          "b": 4044.3,
+          "w": 136,
+          "h": 40
+        },
+        "fullyVisible": false,
+        "visibleW": 136,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 40,
+          "r": 258,
+          "w": 218
+        }
+      },
+      {
+        "i": 1,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 347,
+          "r": 483,
+          "t": 4004.3,
+          "b": 4044.3,
+          "w": 136,
+          "h": 40
+        },
+        "fullyVisible": false,
+        "visibleW": 136,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 282,
+          "r": 500,
+          "w": 218
+        }
+      }
+    ],
+    "screenshot": ".qa-temp/final-home-1024.png"
+  },
+  {
+    "page": "home",
+    "width": 1440,
+    "buttons": 12,
+    "allFullyVisible": false,
+    "allClickable": false,
+    "anyClipped": true,
+    "samples": [
+      {
+        "i": 0,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 185,
+          "r": 385,
+          "t": 4206.8,
+          "b": 4246.8,
+          "w": 200,
+          "h": 40
+        },
+        "fullyVisible": false,
+        "visibleW": 200,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 120,
+          "r": 402,
+          "w": 282
+        }
+      },
+      {
+        "i": 1,
+        "text": "Enquire Now",
+        "rect": {
+          "l": 491,
+          "r": 691,
+          "t": 4206.8,
+          "b": 4246.8,
+          "w": 200,
+          "h": 40
+        },
+        "fullyVisible": false,
+        "visibleW": 200,
+        "clippedRight": 0,
+        "clippedLeft": 0,
+        "clickable": false,
+        "cardRect": {
+          "l": 426,
+          "r": 708,
+          "w": 282
+        }
+      }
+    ],
+    "screenshot": ".qa-temp/final-home-1440.png"
+  }
+]

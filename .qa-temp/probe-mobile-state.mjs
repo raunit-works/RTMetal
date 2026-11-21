@@ -1,0 +1,20 @@
+﻿import { chromium } from '@playwright/test';
+const BASE='http://127.0.0.1:3017';
+(async()=>{
+  const browser=await chromium.launch({headless:true});
+  const page=await browser.newPage({viewport:{width:375,height:844}});
+  await page.goto(BASE+'/',{waitUntil:'domcontentloaded',timeout:60000});
+  await page.waitForTimeout(1500);
+  const menuBtn=page.getByRole('button',{name:/open menu/i}).first();
+  const before={visible:await menuBtn.isVisible(), ariaExpanded:await menuBtn.getAttribute('aria-expanded'), bodyOverflow:await page.evaluate(()=>document.body.style.overflow)};
+  await menuBtn.click();
+  await page.waitForTimeout(700);
+  const closeBtn=page.getByRole('button',{name:/close menu/i}).first();
+  const drawer=page.locator('div.fixed.inset-y-0.right-0').filter({has:page.getByRole('button',{name:/close menu/i})}).first();
+  const after={closeVisible:await closeBtn.isVisible().catch(()=>false), drawerVisible:await drawer.isVisible().catch(()=>false), drawerBox:await drawer.boundingBox().catch(()=>null), bodyOverflow:await page.evaluate(()=>document.body.style.overflow), ariaExpandedOpen:await menuBtn.getAttribute('aria-expanded').catch(()=>null)};
+  await closeBtn.click();
+  await page.waitForTimeout(700);
+  const closed={drawerCount:await drawer.count().catch(()=>0), drawerVisible:await drawer.isVisible().catch(()=>false), bodyOverflow:await page.evaluate(()=>document.body.style.overflow)};
+  console.log(JSON.stringify({before,after,closed}, null, 2));
+  await browser.close();
+})();

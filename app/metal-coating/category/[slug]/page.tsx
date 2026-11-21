@@ -24,5 +24,5 @@ export default async function CategoryPage({ params }: { params: { slug: string 
     redirect(`/home-decor/category/${category.slug}`);
   }
 
-  return <CategoryCatalogPage slug={params.slug} section="metal_services" />;
+  return <CategoryCatalogPage slug={params.slug} section="metal_services" categories={categories} />;
 }

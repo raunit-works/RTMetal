@@ -36,7 +36,7 @@ export default function WishlistPage() {
 
       const [wishlistData, categoryData] = await Promise.all([
         getWishlistProducts(),
-        getCategoriesAsync({ allowStaticFallback: false }),
+        getCategoriesAsync({ allowStaticFallback: false, products: [] }),
       ]);
       setItems(wishlistData);
       setCategories(categoryData);

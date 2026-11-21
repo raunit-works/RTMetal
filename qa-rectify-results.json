@@ -1,0 +1,3820 @@
+{
+  "base": "http://127.0.0.1:3017",
+  "startedAt": "2026-11-21T05:00:26.118Z",
+  "discovered": {
+    "home": [
+      "/",
+      "/home-decor",
+      "/metal-coating",
+      "/before-after",
+      "/about",
+      "/#contact",
+      "/login",
+      "/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "/?product=e01e4bdc-89a8-46f7-beef-8ab4a3be6779&productName=Ashok+Stambh+%E2%80%93+Premium+Decorative+Showpiece&variant=240e9e7d-3b7a-41a2-84c6-cd24d48a31f9&finish=Gold&sku=ASHOK-STG-GLD#contact",
+      "/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+      "/?product=69e90ff0-cb67-490c-aefc-4816ac3bfc1c&productName=Chhatrapati+Shivaji+Maharaj+Style+Devotional+Figurine#contact",
+      "/home-decor/seated-lord-shiva-decorative-idol",
+      "/?product=8ee91520-22f4-4bab-88d8-8985a14eb4fc&productName=Seated+Lord+Shiva+Decorative+Idol#contact",
+      "/home-decor/premium-leopard-sculpture-showpiece",
+      "/?product=d8ec98cd-031e-4600-bab6-c0aa820a9efe&productName=Premium+Leopard+Sculpture+%E2%80%93+Decorative+Showpiece&variant=415771bf-6a5c-4201-a15a-3bc80dfb3e62&finish=Gold+Finish#contact",
+      "/metal-coating#quote",
+      "/metal-coating/pvd-coating",
+      "/metal-coating/electroplating",
+      "/metal-coating/pu-coating",
+      "/metal-coating/powder-coating",
+      "/metal-coating/decorative-metal-finishing",
+      "/metal-coating/metal-restoration",
+      "/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Western%20Sector%20Market%20Exterior%20Metal%20Box%20Signage%0ACategory%3A%20Metal%20Box%20Letters%0AProduct%20Link%3A%20%2Fmetal-coating%2Fproduct%2Fwestern-sector-market-exterior-metal-box-signage%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=85a18452-2a65-48a7-aeaf-3a2d93674c5a&productName=Western+Sector+Market+Exterior+Metal+Box+Signage#quote",
+      "/metal-coating/product/modern-sliding-metal-glass-partition",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Modern%20Sliding%20Metal%20%26%20Glass%20Partition%0ACategory%3A%20Metal%20Partitions%20Room%20Dividers%0AProduct%20Link%3A%20%2Fmetal-coating%2Fproduct%2Fmodern-sliding-metal-glass-partition%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=87f82176-3a1c-4b02-a3a8-9b5d56c366c7&productName=Modern+Sliding+Metal+%26+Glass+Partition#quote",
+      "/metal-coating/product/white-bearded-gnome-miniature-figurine",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20White-Bearded%20Gnome%20Miniature%20Figurine%0ACategory%3A%20Metal%20Plaques%20Panels%20Signage%0AProduct%20Link%3A%20%2Fmetal-coating%2Fproduct%2Fwhite-bearded-gnome-miniature-figurine%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=c11c3756-67d3-4900-879e-ad2964cb4b8d&productName=White-Bearded+Gnome+Miniature+Figurine#quote",
+      "/metal-coating/product/metal-p0031-lotus-inspired-metal-sculpture",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Lotus-Inspired%20Metal%20Sculpture%0ACategory%3A%20Art%20Work%0AProduct%20Link%3A%20%2Fmetal-coating%2Fproduct%2Fmetal-p0031-lotus-inspired-metal-sculpture%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=4332381d-9c0c-4950-b28d-d5f70cd3530b&productName=Lotus-Inspired+Metal+Sculpture#quote",
+      "/metal-coating/product/metal-p0089-manoj-bansal-arch-name-plate",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Manoj%20Bansal%20Arch-Integrated%20Name%20Plate%0ACategory%3A%20Name%20Plates%20Signage%0AProduct%20Link%3A%20%2Fmetal-coating%2Fproduct%2Fmetal-p0089-manoj-bansal-arch-name-plate%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=1c014521-0777-4fa2-bf93-008de83ca8b0&productName=Manoj+Bansal+Arch-Integrated+Name+Plate#quote",
+      "/metal-coating/product/intricate-patterned-metal-jali-door-grill",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Intricate%20Patterned%20Metal%20Jali%20Door%20Grill%0ACategory%3A%20Designer%20Door%20Grills%0AProduct%20Link%3A%20%2Fmetal-coating%2Fproduct%2Fintricate-patterned-metal-jali-door-grill%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=269b5bc3-68da-480c-9946-b68bbac648a2&productName=Intricate+Patterned+Metal+Jali+Door+Grill#quote",
+      "/metal-coating/product/talentia-3d-metal-letter-signage",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Talentia%203D%20Metal%20Letter%20Signage%0ACategory%3A%20Metal%20Box%20Letters%0AProduct%20Link%3A%20%2Fmetal-coating%2Fproduct%2Ftalentia-3d-metal-letter-signage%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=274178dc-817a-4f63-86c4-d8ada537aba8&productName=Talentia+3D+Metal+Letter+Signage#quote",
+      "/metal-coating/product/gold-open-shelf-metal-room-divider",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Gold%20Open-Shelf%20Architectural%20Divider%0ACategory%3A%20Metal%20Partitions%20Room%20Dividers%0AProduct%20Link%3A%20%2Fmetal-coating%2Fproduct%2Fgold-open-shelf-metal-room-divider%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=fd0343c5-fe2d-40e2-bce8-e5361ba3afe2&productName=Gold+Open-Shelf+Architectural+Divider#quote",
+      "/metal-coating/product/metal-p0150-ins-alliance-llp-information-plaque",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20INS%20Alliance%20LLP%20Corporate%20Information%20Plaque%0ACategory%3A%20Metal%20Plaques%20Panels%20Signage%0AProduct%20Link%3A%20%2Fmetal-coating%2Fproduct%2Fmetal-p0150-ins-alliance-llp-information-plaque%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=e4390502-7714-44f0-ba57-5baf76012ed8&productName=INS+Alliance+LLP+Corporate+Information+Plaque#quote",
+      "/metal-coating/product/metal-p0030-contemporary-symbolic-wall-panel",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Contemporary%20Symbolic%20Wall%20Panel%0ACategory%3A%20Art%20Work%0AProduct%20Link%3A%20%2Fmetal-coating%2Fproduct%2Fmetal-p0030-contemporary-symbolic-wall-panel%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=76e61b85-f072-443f-a23a-67593dabef02&productName=Contemporary+Symbolic+Wall+Panel#quote",
+      "/metal-coating/product/metal-p0087-pooja-kartik-shah-name-plate",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Pooja%20%26%20Kartik%20Shah%20Personalised%20Name%20Plate%0ACategory%3A%20Name%20Plates%20Signage%0AProduct%20Link%3A%20%2Fmetal-coating%2Fproduct%2Fmetal-p0087-pooja-kartik-shah-name-plate%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=b887bc56-7699-44aa-aad7-ca63273aecf8&productName=Pooja+%26+Kartik+Shah+Personalised+Name+Plate#quote",
+      "/metal-coating/product/arched-vertical-bar-decorative-door-grill",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Arched%20Vertical-Bar%20Decorative%20Door%20Grill%0ACategory%3A%20Designer%20Door%20Grills%0AProduct%20Link%3A%20%2Fmetal-coating%2Fproduct%2Farched-vertical-bar-decorative-door-grill%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=41784d81-1869-4142-914b-4ff3ef97440a&productName=Arched+Vertical-Bar+Decorative+Door+Grill#quote",
+      "/metal-coating/product/custom-vertical-welcome-photo-display-sign",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Custom%20Vertical%20Welcome%20%26%20Photo%20Display%20Sign%0ACategory%3A%20Metal%20Box%20Letters%0AProduct%20Link%3A%20%2Fmetal-coating%2Fproduct%2Fcustom-vertical-welcome-photo-display-sign%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=b7ac188f-77d6-4e50-9d08-00dcb9ba0b22&productName=Custom+Vertical+Welcome+%26+Photo+Display+Sign#quote",
+      "/metal-coating/product/wood-metal-geometric-partition",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Wood%20%26%20Metal%20Geometric%20Partition%0ACategory%3A%20Metal%20Partitions%20Room%20Dividers%0AProduct%20Link%3A%20%2Fmetal-coating%2Fproduct%2Fwood-metal-geometric-partition%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=acd02606-3f62-426c-ab44-d99f2235f69a&productName=Wood+%26+Metal+Geometric+Partition#quote",
+      "/metal-coating/product/metal-p0149-bilingual-corporate-name-plate",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Bilingual%20Corporate%20Name%20Plate%0ACategory%3A%20Metal%20Plaques%20Panels%20Signage%0AProduct%20Link%3A%20%2Fmetal-coating%2Fproduct%2Fmetal-p0149-bilingual-corporate-name-plate%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=709e1176-eeb5-498e-9426-51b7eb0ce574&productName=Bilingual+Corporate+Name+Plate#quote",
+      "/metal-coating/product/metal-p0029-religious-metal-wall-artwork",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Religious%20Metal%20Wall%20Artwork%0ACategory%3A%20Art%20Work%0AProduct%20Link%3A%20%2Fmetal-coating%2Fproduct%2Fmetal-p0029-religious-metal-wall-artwork%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=41190df5-5109-47d3-8460-40d95c8851df&productName=Religious+Metal+Wall+Artwork#quote",
+      "/metal-coating/product/Oval Gold Personalised Name Plate",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Oval%20Gold%20Personalised%20Name%20Plate%0ACategory%3A%20Name%20Plates%20Signage%0AProduct%20Link%3A%20%2Fmetal-coating%2Fproduct%2FOval%20Gold%20Personalised%20Name%20Plate%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=af0ce323-e356-4321-a618-f9554a45db66&productName=Oval+Gold+Personalised+Name+Plate#quote",
+      "/metal-coating/product/full-height-vertical-metal-grill-screen",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Full-Height%20Vertical%20Metal%20Grill%20Screen%0ACategory%3A%20Designer%20Door%20Grills%0AProduct%20Link%3A%20%2Fmetal-coating%2Fproduct%2Ffull-height-vertical-metal-grill-screen%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=6305087a-f4a2-4d6d-a90b-bc0a31a804a7&productName=Full-Height+Vertical+Metal+Grill+Screen#quote",
+      "/metal-coating/product/emma-group-integrated-marble-feature-signage",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20EMMA%20GROUP%20%E2%80%93%20Integrated%20Marble%20Feature%20Signage%0ACategory%3A%20Metal%20Box%20Letters%0AProduct%20Link%3A%20%2Fmetal-coating%2Fproduct%2Femma-group-integrated-marble-feature-signage%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=c1c832d2-779f-4914-adbb-a75647215a5e&productName=EMMA+GROUP+%E2%80%93+Integrated+Marble+Feature+Signage#quote",
+      "/metal-coating/product/vertical-oval-ring-motif-partition",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Vertical%20Oval%20%26%20Ring%20Motif%20Partition%0ACategory%3A%20Metal%20Partitions%20Room%20Dividers%0AProduct%20Link%3A%20%2Fmetal-coating%2Fproduct%2Fvertical-oval-ring-motif-partition%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=cd771974-05da-4e5c-9402-2b73b0b6d9ef&productName=Vertical+Oval+%26+Ring+Motif+Partition#quote",
+      "/metal-coating/product/metal-p0147-building-directory-board",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Multi-Column%20Building%20Directory%20Board%0ACategory%3A%20Metal%20Plaques%20Panels%20Signage%0AProduct%20Link%3A%20%2Fmetal-coating%2Fproduct%2Fmetal-p0147-building-directory-board%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=646ca346-6057-4c2d-ac55-7f62cedb9f05&productName=Multi-Column+Building+Directory+Board#quote",
+      "/metal-coating/product/metal-p0028-decorative-metal-ceiling",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Decorative%20Metal%20Ceiling%20Installation%0ACategory%3A%20Art%20Work%0AProduct%20Link%3A%20%2Fmetal-coating%2Fproduct%2Fmetal-p0028-decorative-metal-ceiling%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=782793e1-3892-462c-b793-587798f8750f&productName=Decorative+Metal+Ceiling+Installation#quote",
+      "/metal-coating/product/metal-p0085-teal-circular-name-plate",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Teal%20Circular%20Personalised%20Name%20Plate%0ACategory%3A%20Name%20Plates%20Signage%0AProduct%20Link%3A%20%2Fmetal-coating%2Fproduct%2Fmetal-p0085-teal-circular-name-plate%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=2d7c3bf7-93d6-4f05-add2-c31d71b5813d&productName=Teal+Circular+Personalised+Name+Plate#quote",
+      "/metal-coating/product/golden-arched-decorative-door-grill",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Golden%20Arched%20Door%20Grill%0ACategory%3A%20Designer%20Door%20Grills%0AProduct%20Link%3A%20%2Fmetal-coating%2Fproduct%2Fgolden-arched-decorative-door-grill%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=a079f547-7642-4a21-ae20-5d751c654624&productName=Golden+Arched+Door+Grill#quote",
+      "https://www.instagram.com/rtmetalcoating/",
+      "/home-decor?category=home-decor",
+      "/home-decor?category=decorative-accessories",
+      "/home-decor?category=gift-articles",
+      "/home-decor?category=lifestyle-products",
+      "/home-decor?category=household-products",
+      "/home-decor?category=daily-utility",
+      "/metal-coating#ms-coating",
+      "/metal-coating#brass-coating",
+      "/metal-coating#decorative-metal-finishing",
+      "/metal-coating#premium-surface-finishing",
+      "/metal-coating#custom-metal-coating",
+      "/metal-coating#architectural-metal-finishes",
+      "/#process",
+      "/#testimonials",
+      "https://maps.app.goo.gl/wtmGuotpv7b35y8W6"
+    ],
+    "homeDecor": [],
+    "metalCoating": [],
+    "categoryLinks": [],
+    "homeProductLinks": [
+      "/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine"
+    ],
+    "metalProductLinks": [
+      "/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "/metal-coating/product/modern-sliding-metal-glass-partition"
+    ],
+    "routesToTest": [
+      "/",
+      "/home-decor",
+      "/metal-coating",
+      "/wishlist",
+      "/about",
+      "/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+      "/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "/metal-coating/product/modern-sliding-metal-glass-partition"
+    ]
+  },
+  "routes": {
+    "/": {
+      "nav": {
+        "ok": true,
+        "status": 200,
+        "url": "http://127.0.0.1:3017/"
+      },
+      "counts": {
+        "productCards": 4,
+        "metalCards": 24,
+        "routeLoader": true,
+        "h1": "Metal Finishesfor a BetterTomorrow."
+      },
+      "overflow": 0,
+      "cardCount": 20,
+      "title": "RTMETALCOATING — Premium Metal Coating & RT HOME DECOR",
+      "bodyText": "Loading page\nHome\nHome Decor\nMetal Services\nGallery\nAbout\nContact\nWhatsAppSign In\n\nRT Metals / Metal Finishing & Decorative Solutions\n\nMetal"
+    },
+    "/home-decor": {
+      "nav": {
+        "ok": true,
+        "status": 500,
+        "url": "http://127.0.0.1:3017/home-decor"
+      },
+      "counts": {
+        "productCards": 0,
+        "metalCards": 0,
+        "routeLoader": false,
+        "h1": ""
+      },
+      "overflow": 0,
+      "cardCount": 0,
+      "title": "",
+      "bodyText": "Internal Server Error"
+    },
+    "/metal-coating": {
+      "nav": {
+        "ok": true,
+        "status": 500,
+        "url": "http://127.0.0.1:3017/metal-coating"
+      },
+      "counts": {
+        "productCards": 0,
+        "metalCards": 0,
+        "routeLoader": false,
+        "h1": ""
+      },
+      "overflow": 0,
+      "cardCount": 0,
+      "title": "",
+      "bodyText": "Internal Server Error"
+    },
+    "/wishlist": {
+      "nav": {
+        "ok": true,
+        "status": 500,
+        "url": "http://127.0.0.1:3017/wishlist"
+      },
+      "counts": {
+        "productCards": 0,
+        "metalCards": 0,
+        "routeLoader": false,
+        "h1": ""
+      },
+      "overflow": 0,
+      "cardCount": 0,
+      "title": "",
+      "bodyText": "Internal Server Error"
+    },
+    "/about": {
+      "nav": {
+        "ok": true,
+        "status": 500,
+        "url": "http://127.0.0.1:3017/about"
+      },
+      "counts": {
+        "productCards": 0,
+        "metalCards": 0,
+        "routeLoader": false,
+        "h1": ""
+      },
+      "overflow": 0,
+      "cardCount": 0,
+      "title": "",
+      "bodyText": "Internal Server Error"
+    },
+    "/home-decor/ashok-stambh-premium-decorative-showpiece": {
+      "nav": {
+        "ok": true,
+        "status": 500,
+        "url": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece"
+      },
+      "counts": {
+        "productCards": 0,
+        "metalCards": 0,
+        "routeLoader": false,
+        "h1": ""
+      },
+      "overflow": 0,
+      "cardCount": 0,
+      "title": "",
+      "bodyText": "Internal Server Error"
+    },
+    "/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine": {
+      "nav": {
+        "ok": true,
+        "status": 500,
+        "url": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine"
+      },
+      "counts": {
+        "productCards": 0,
+        "metalCards": 0,
+        "routeLoader": false,
+        "h1": ""
+      },
+      "overflow": 0,
+      "cardCount": 0,
+      "title": "",
+      "bodyText": "Internal Server Error"
+    },
+    "/metal-coating/product/western-sector-market-exterior-metal-box-signage": {
+      "nav": {
+        "ok": true,
+        "status": 500,
+        "url": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage"
+      },
+      "counts": {
+        "productCards": 0,
+        "metalCards": 0,
+        "routeLoader": false,
+        "h1": ""
+      },
+      "overflow": 0,
+      "cardCount": 0,
+      "title": "",
+      "bodyText": "Internal Server Error"
+    },
+    "/metal-coating/product/modern-sliding-metal-glass-partition": {
+      "nav": {
+        "ok": true,
+        "status": 500,
+        "url": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition"
+      },
+      "counts": {
+        "productCards": 0,
+        "metalCards": 0,
+        "routeLoader": false,
+        "h1": ""
+      },
+      "overflow": 0,
+      "cardCount": 0,
+      "title": "",
+      "bodyText": "Internal Server Error"
+    }
+  },
+  "responsive": [
+    {
+      "route": "/",
+      "width": 1920,
+      "navStatus": 200,
+      "navUrl": "http://127.0.0.1:3017/",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 1920,
+      "clientWidth": 1920,
+      "croppedOrOverlap": [],
+      "sampleCard": {
+        "id": "e01e4bdc-89a8-46f7-beef-8ab4a3be6779",
+        "tid": "product-card",
+        "name": {
+          "x": 8,
+          "y": 2796,
+          "w": 1904,
+          "h": 22,
+          "text": "Ashok Stambh – Premium Decorative Showpiece",
+          "display": "block"
+        },
+        "category": {
+          "x": 8,
+          "y": 2837,
+          "w": 1904,
+          "h": 18,
+          "text": "Sculptures Figurines",
+          "display": "block"
+        },
+        "finish": {
+          "x": 8,
+          "y": 2871,
+          "w": 1904,
+          "h": 18,
+          "text": "Gold",
+          "display": "block"
+        },
+        "actions": {
+          "x": 8,
+          "y": 2956,
+          "w": 1904,
+          "h": 33,
+          "text": "Enquire Now",
+          "display": "block"
+        },
+        "overlap": false,
+        "hasVariants": "true"
+      },
+      "cardCount": 20
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "navStatus": 200,
+      "navUrl": "http://127.0.0.1:3017/",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "croppedOrOverlap": [],
+      "sampleCard": {
+        "id": "e01e4bdc-89a8-46f7-beef-8ab4a3be6779",
+        "tid": "product-card",
+        "name": {
+          "x": 8,
+          "y": 2796,
+          "w": 1424,
+          "h": 22,
+          "text": "Ashok Stambh – Premium Decorative Showpiece",
+          "display": "block"
+        },
+        "category": {
+          "x": 8,
+          "y": 2837,
+          "w": 1424,
+          "h": 18,
+          "text": "Sculptures Figurines",
+          "display": "block"
+        },
+        "finish": {
+          "x": 8,
+          "y": 2871,
+          "w": 1424,
+          "h": 18,
+          "text": "Gold",
+          "display": "block"
+        },
+        "actions": {
+          "x": 8,
+          "y": 2956,
+          "w": 1424,
+          "h": 33,
+          "text": "Enquire Now",
+          "display": "block"
+        },
+        "overlap": false,
+        "hasVariants": "true"
+      },
+      "cardCount": 20
+    },
+    {
+      "route": "/",
+      "width": 1024,
+      "navStatus": 200,
+      "navUrl": "http://127.0.0.1:3017/",
+      "navError": null,
+      "overflow": 270,
+      "scrollWidth": 1294,
+      "clientWidth": 1024,
+      "croppedOrOverlap": [],
+      "sampleCard": {
+        "id": "e01e4bdc-89a8-46f7-beef-8ab4a3be6779",
+        "tid": "product-card",
+        "name": {
+          "x": 8,
+          "y": 2814,
+          "w": 1008,
+          "h": 22,
+          "text": "Ashok Stambh – Premium Decorative Showpiece",
+          "display": "block"
+        },
+        "category": {
+          "x": 8,
+          "y": 2855,
+          "w": 1008,
+          "h": 18,
+          "text": "Sculptures Figurines",
+          "display": "block"
+        },
+        "finish": {
+          "x": 8,
+          "y": 2889,
+          "w": 1008,
+          "h": 18,
+          "text": "Gold",
+          "display": "block"
+        },
+        "actions": {
+          "x": 8,
+          "y": 2974,
+          "w": 1008,
+          "h": 33,
+          "text": "Enquire Now",
+          "display": "block"
+        },
+        "overlap": false,
+        "hasVariants": "true"
+      },
+      "cardCount": 20
+    },
+    {
+      "route": "/",
+      "width": 768,
+      "navStatus": 200,
+      "navUrl": "http://127.0.0.1:3017/",
+      "navError": null,
+      "overflow": 526,
+      "scrollWidth": 1294,
+      "clientWidth": 768,
+      "croppedOrOverlap": [],
+      "sampleCard": {
+        "id": "e01e4bdc-89a8-46f7-beef-8ab4a3be6779",
+        "tid": "product-card",
+        "name": {
+          "x": 8,
+          "y": 2886,
+          "w": 752,
+          "h": 22,
+          "text": "Ashok Stambh – Premium Decorative Showpiece",
+          "display": "block"
+        },
+        "category": {
+          "x": 8,
+          "y": 2927,
+          "w": 752,
+          "h": 18,
+          "text": "Sculptures Figurines",
+          "display": "block"
+        },
+        "finish": {
+          "x": 8,
+          "y": 2961,
+          "w": 752,
+          "h": 18,
+          "text": "Gold",
+          "display": "block"
+        },
+        "actions": {
+          "x": 8,
+          "y": 3046,
+          "w": 752,
+          "h": 33,
+          "text": "Enquire Now",
+          "display": "block"
+        },
+        "overlap": false,
+        "hasVariants": "true"
+      },
+      "cardCount": 20
+    },
+    {
+      "route": "/",
+      "width": 480,
+      "navStatus": 200,
+      "navUrl": "http://127.0.0.1:3017/",
+      "navError": null,
+      "overflow": 814,
+      "scrollWidth": 1294,
+      "clientWidth": 480,
+      "croppedOrOverlap": [],
+      "sampleCard": {
+        "id": "e01e4bdc-89a8-46f7-beef-8ab4a3be6779",
+        "tid": "product-card",
+        "name": {
+          "x": 8,
+          "y": 2994,
+          "w": 464,
+          "h": 22,
+          "text": "Ashok Stambh – Premium Decorative Showpiece",
+          "display": "block"
+        },
+        "category": {
+          "x": 8,
+          "y": 3035,
+          "w": 464,
+          "h": 18,
+          "text": "Sculptures Figurines",
+          "display": "block"
+        },
+        "finish": {
+          "x": 8,
+          "y": 3069,
+          "w": 464,
+          "h": 18,
+          "text": "Gold",
+          "display": "block"
+        },
+        "actions": {
+          "x": 8,
+          "y": 3154,
+          "w": 464,
+          "h": 33,
+          "text": "Enquire Now",
+          "display": "block"
+        },
+        "overlap": false,
+        "hasVariants": "true"
+      },
+      "cardCount": 20
+    },
+    {
+      "route": "/",
+      "width": 375,
+      "navStatus": 200,
+      "navUrl": "http://127.0.0.1:3017/",
+      "navError": null,
+      "overflow": 919,
+      "scrollWidth": 1294,
+      "clientWidth": 375,
+      "croppedOrOverlap": [],
+      "sampleCard": {
+        "id": "e01e4bdc-89a8-46f7-beef-8ab4a3be6779",
+        "tid": "product-card",
+        "name": {
+          "x": 8,
+          "y": 3166,
+          "w": 359,
+          "h": 44,
+          "text": "Ashok Stambh – Premium Decorative Showpiece",
+          "display": "block"
+        },
+        "category": {
+          "x": 8,
+          "y": 3229,
+          "w": 359,
+          "h": 18,
+          "text": "Sculptures Figurines",
+          "display": "block"
+        },
+        "finish": {
+          "x": 8,
+          "y": 3263,
+          "w": 359,
+          "h": 18,
+          "text": "Gold",
+          "display": "block"
+        },
+        "actions": {
+          "x": 8,
+          "y": 3348,
+          "w": 359,
+          "h": 33,
+          "text": "Enquire Now",
+          "display": "block"
+        },
+        "overlap": false,
+        "hasVariants": "true"
+      },
+      "cardCount": 20
+    },
+    {
+      "route": "/",
+      "width": 320,
+      "navStatus": 200,
+      "navUrl": "http://127.0.0.1:3017/",
+      "navError": null,
+      "overflow": 974,
+      "scrollWidth": 1294,
+      "clientWidth": 320,
+      "croppedOrOverlap": [],
+      "sampleCard": {
+        "id": "e01e4bdc-89a8-46f7-beef-8ab4a3be6779",
+        "tid": "product-card",
+        "name": {
+          "x": 8,
+          "y": 3265,
+          "w": 304,
+          "h": 44,
+          "text": "Ashok Stambh – Premium Decorative Showpiece",
+          "display": "block"
+        },
+        "category": {
+          "x": 8,
+          "y": 3328,
+          "w": 304,
+          "h": 18,
+          "text": "Sculptures Figurines",
+          "display": "block"
+        },
+        "finish": {
+          "x": 8,
+          "y": 3362,
+          "w": 304,
+          "h": 18,
+          "text": "Gold",
+          "display": "block"
+        },
+        "actions": {
+          "x": 8,
+          "y": 3447,
+          "w": 304,
+          "h": 33,
+          "text": "Enquire Now",
+          "display": "block"
+        },
+        "overlap": false,
+        "hasVariants": "true"
+      },
+      "cardCount": 20
+    },
+    {
+      "route": "/home-decor",
+      "width": 1920,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/home-decor",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 1920,
+      "clientWidth": 1920,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/home-decor",
+      "width": 1440,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/home-decor",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/home-decor",
+      "width": 1024,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/home-decor",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/home-decor",
+      "width": 768,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/home-decor",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/home-decor",
+      "width": 480,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/home-decor",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 480,
+      "clientWidth": 480,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/home-decor",
+      "width": 375,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/home-decor",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/home-decor",
+      "width": 320,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/home-decor",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/metal-coating",
+      "width": 1920,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/metal-coating",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 1920,
+      "clientWidth": 1920,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/metal-coating",
+      "width": 1440,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/metal-coating",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/metal-coating",
+      "width": 1024,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/metal-coating",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/metal-coating",
+      "width": 768,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/metal-coating",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/metal-coating",
+      "width": 480,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/metal-coating",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 480,
+      "clientWidth": 480,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/metal-coating",
+      "width": 375,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/metal-coating",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/metal-coating",
+      "width": 320,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/metal-coating",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/wishlist",
+      "width": 1920,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/wishlist",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 1920,
+      "clientWidth": 1920,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/wishlist",
+      "width": 1440,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/wishlist",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/wishlist",
+      "width": 1024,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/wishlist",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/wishlist",
+      "width": 768,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/wishlist",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/wishlist",
+      "width": 480,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/wishlist",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 480,
+      "clientWidth": 480,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/wishlist",
+      "width": 375,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/wishlist",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/wishlist",
+      "width": 320,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/wishlist",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/about",
+      "width": 1920,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/about",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 1920,
+      "clientWidth": 1920,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/about",
+      "width": 1440,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/about",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/about",
+      "width": 1024,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/about",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/about",
+      "width": 768,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/about",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/about",
+      "width": 480,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/about",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 480,
+      "clientWidth": 480,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/about",
+      "width": 375,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/about",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/about",
+      "width": 320,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/about",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "width": 1920,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 1920,
+      "clientWidth": 1920,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "width": 1440,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "width": 1024,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "width": 768,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "width": 480,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 480,
+      "clientWidth": 480,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "width": 375,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "width": 320,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+      "width": 1920,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 1920,
+      "clientWidth": 1920,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+      "width": 1440,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+      "width": 1024,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+      "width": 768,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+      "width": 480,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 480,
+      "clientWidth": 480,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+      "width": 375,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+      "width": 320,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "width": 1920,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 1920,
+      "clientWidth": 1920,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "width": 1440,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "width": 1024,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "width": 768,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "width": 480,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 480,
+      "clientWidth": 480,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "width": 375,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "width": 320,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/metal-coating/product/modern-sliding-metal-glass-partition",
+      "width": 1920,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 1920,
+      "clientWidth": 1920,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/metal-coating/product/modern-sliding-metal-glass-partition",
+      "width": 1440,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/metal-coating/product/modern-sliding-metal-glass-partition",
+      "width": 1024,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/metal-coating/product/modern-sliding-metal-glass-partition",
+      "width": 768,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/metal-coating/product/modern-sliding-metal-glass-partition",
+      "width": 480,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 480,
+      "clientWidth": 480,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/metal-coating/product/modern-sliding-metal-glass-partition",
+      "width": 375,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    },
+    {
+      "route": "/metal-coating/product/modern-sliding-metal-glass-partition",
+      "width": 320,
+      "navStatus": 500,
+      "navUrl": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition",
+      "navError": null,
+      "overflow": 0,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "croppedOrOverlap": [],
+      "sampleCard": null,
+      "cardCount": 0
+    }
+  ],
+  "interactions": {
+    "homeDecorCardCount": 0,
+    "metalPageCards": 0,
+    "homeHasDecorLink": 1,
+    "homeToDecorError": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('a[href=\"/home-decor\"]').first()\u001b[22m\n\u001b[2m    - locator resolved to <a href=\"/home-decor\" aria-haspopup=\"true\" aria-expanded=\"false\" class=\"rt-nav-link group flex items-center gap-1 whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold\">…</a>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <img sizes=\"144px\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" alt=\"RTMETALCOATING\" class=\"object-contain\" src=\"/_next/image?url=%2Fbrand%2Frt-logo.png&w=3840&q=75\" srcset=\"/_next/image?url=%2Fbrand%2Frt-logo.png&w=16&q=75 16w, /_next/image?url=%2Fbrand%2Frt-logo.png&w=32&q=75 32w, /_next/image?url=%2Fbrand%2Frt-logo.png&w=48&q=75 48w, /_next/image?url=%2Fbrand%2Frt-logo.png&w=64&q=75 64w, /_next/image?url=%2Fbrand%2Frt-logo.png&w=96&q=75 96w, /_next/image?url=%2Fbrand%2Frt-logo.png&w=128&q=75…/> from <footer class=\"relative overflow-hidden bg-ink text-white/80\">…</footer> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <img sizes=\"144px\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" alt=\"RTMETALCOATING\" class=\"object-contain\" src=\"/_next/image?url=%2Fbrand%2Frt-logo.png&w=3840&q=75\" srcset=\"/_next/image?url=%2Fbrand%2Frt-logo.png&w=16&q=75 16w, /_next/image?url=%2Fbrand%2Frt-logo.png&w=32&q=75 32w, /_next/image?url=%2Fbrand%2Frt-logo.png&w=48&q=75 48w, /_next/image?url=%2Fbrand%2Frt-logo.png&w=64&q=75 64w, /_next/image?url=%2Fbrand%2Frt-logo.png&w=96&q=75 96w, /_next/image?url=%2Fbrand%2Frt-logo.png&w=128&q=75…/> from <footer class=\"relative overflow-hidden bg-ink text-white/80\">…</footer> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    56 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <img sizes=\"144px\" loading=\"lazy\" decoding=\"async\" data-nimg=\"fill\" alt=\"RTMETALCOATING\" class=\"object-contain\" src=\"/_next/image?url=%2Fbrand%2Frt-logo.png&w=3840&q=75\" srcset=\"/_next/image?url=%2Fbrand%2Frt-logo.png&w=16&q=75 16w, /_next/image?url=%2Fbrand%2Frt-logo.png&w=32&q=75 32w, /_next/image?url=%2Fbrand%2Frt-logo.png&w=48&q=75 48w, /_next/image?url=%2Fbrand%2Frt-logo.png&w=64&q=75 64w, /_next/image?url=%2Fbrand%2Frt-logo.png&w=96&q=75 96w, /_next/image?url=%2Fbrand%2Frt-logo.png&w=128&q=75…/> from <footer class=\"relative overflow-hidden bg-ink text-white/80\">…</footer> subtree intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n",
+    "homeToDecorUrl": "http://127.0.0.1:3017/",
+    "loaderEventsNav": [],
+    "pushStateLoadingImmediate": null,
+    "pushStateLoadingAfter": null,
+    "pushStateEvents": [],
+    "pushStateUrl": "http://127.0.0.1:3017/home-decor?qa=prog",
+    "replaceStateLoadingImmediate": null,
+    "replaceStateLoadingAfter": null,
+    "replaceStateEvents": []
+  },
+  "consoleErrors": [
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/css/f97d47916deade12.css",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/webpack-3c3e68353a591850.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/fd9d1056-e242caba8dccd6cc.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/7864-f1826884c978d2f1.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/main-app-df9d5cd8ad842a70.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/home-decor",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/home-decor"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/metal-coating",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/metal-coating"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/css/f97d47916deade12.css",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/webpack-3c3e68353a591850.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/fd9d1056-e242caba8dccd6cc.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/7864-f1826884c978d2f1.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/main-app-df9d5cd8ad842a70.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/home-decor",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/home-decor"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/metal-coating",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/metal-coating"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/wishlist",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/wishlist"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/about",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/about"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/css/f97d47916deade12.css",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/webpack-3c3e68353a591850.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/fd9d1056-e242caba8dccd6cc.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/7864-f1826884c978d2f1.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/main-app-df9d5cd8ad842a70.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/css/f97d47916deade12.css",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/webpack-3c3e68353a591850.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/fd9d1056-e242caba8dccd6cc.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/7864-f1826884c978d2f1.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/main-app-df9d5cd8ad842a70.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/css/f97d47916deade12.css",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/webpack-3c3e68353a591850.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/fd9d1056-e242caba8dccd6cc.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/7864-f1826884c978d2f1.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/main-app-df9d5cd8ad842a70.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/css/f97d47916deade12.css",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/webpack-3c3e68353a591850.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/fd9d1056-e242caba8dccd6cc.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/7864-f1826884c978d2f1.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/main-app-df9d5cd8ad842a70.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/css/f97d47916deade12.css",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/webpack-3c3e68353a591850.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/fd9d1056-e242caba8dccd6cc.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/7864-f1826884c978d2f1.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/main-app-df9d5cd8ad842a70.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/css/f97d47916deade12.css",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/webpack-3c3e68353a591850.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/fd9d1056-e242caba8dccd6cc.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/7864-f1826884c978d2f1.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/main-app-df9d5cd8ad842a70.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/css/f97d47916deade12.css",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/webpack-3c3e68353a591850.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/fd9d1056-e242caba8dccd6cc.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/7864-f1826884c978d2f1.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/main-app-df9d5cd8ad842a70.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/home-decor",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/home-decor"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/home-decor",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/home-decor"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/home-decor",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/home-decor"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/home-decor",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/home-decor"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/home-decor",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/home-decor"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/home-decor",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/home-decor"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/home-decor",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/home-decor"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/metal-coating",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/metal-coating"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/metal-coating",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/metal-coating"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/metal-coating",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/metal-coating"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/metal-coating",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/metal-coating"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/metal-coating",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/metal-coating"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/metal-coating",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/metal-coating"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/metal-coating",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/metal-coating"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/wishlist",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/wishlist"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/wishlist",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/wishlist"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/wishlist",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/wishlist"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/wishlist",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/wishlist"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/wishlist",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/wishlist"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/wishlist",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/wishlist"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/wishlist",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/wishlist"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/about",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/about"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/about",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/about"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/about",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/about"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/about",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/about"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/about",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/about"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/about",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/about"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/about",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/about"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/home-decor",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/home-decor"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/metal-coating",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/metal-coating"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/css/f97d47916deade12.css",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/webpack-3c3e68353a591850.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/fd9d1056-e242caba8dccd6cc.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/7864-f1826884c978d2f1.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/_next/static/chunks/main-app-df9d5cd8ad842a70.js",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/"
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+      "location": {
+        "url": "http://127.0.0.1:3017/about",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "url": "http://127.0.0.1:3017/about"
+    }
+  ],
+  "pageErrors": [],
+  "requestFailures": [
+    {
+      "url": "http://127.0.0.1:3017/_next/static/css/f97d47916deade12.css",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/webpack-3c3e68353a591850.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/fd9d1056-e242caba8dccd6cc.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/7864-f1826884c978d2f1.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/main-app-df9d5cd8ad842a70.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/css/f97d47916deade12.css",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/webpack-3c3e68353a591850.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/fd9d1056-e242caba8dccd6cc.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/7864-f1826884c978d2f1.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/main-app-df9d5cd8ad842a70.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/css/f97d47916deade12.css",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/webpack-3c3e68353a591850.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/fd9d1056-e242caba8dccd6cc.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/7864-f1826884c978d2f1.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/main-app-df9d5cd8ad842a70.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/css/f97d47916deade12.css",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/webpack-3c3e68353a591850.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/fd9d1056-e242caba8dccd6cc.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/7864-f1826884c978d2f1.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/main-app-df9d5cd8ad842a70.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/css/f97d47916deade12.css",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/webpack-3c3e68353a591850.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/fd9d1056-e242caba8dccd6cc.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/7864-f1826884c978d2f1.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/main-app-df9d5cd8ad842a70.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/css/f97d47916deade12.css",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/webpack-3c3e68353a591850.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/fd9d1056-e242caba8dccd6cc.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/7864-f1826884c978d2f1.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/main-app-df9d5cd8ad842a70.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/css/f97d47916deade12.css",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/webpack-3c3e68353a591850.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/fd9d1056-e242caba8dccd6cc.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/7864-f1826884c978d2f1.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/main-app-df9d5cd8ad842a70.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/css/f97d47916deade12.css",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/webpack-3c3e68353a591850.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/fd9d1056-e242caba8dccd6cc.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/7864-f1826884c978d2f1.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/main-app-df9d5cd8ad842a70.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/css/f97d47916deade12.css",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/webpack-3c3e68353a591850.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/fd9d1056-e242caba8dccd6cc.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/7864-f1826884c978d2f1.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/main-app-df9d5cd8ad842a70.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/css/f97d47916deade12.css",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/webpack-3c3e68353a591850.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/fd9d1056-e242caba8dccd6cc.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/7864-f1826884c978d2f1.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/main-app-df9d5cd8ad842a70.js",
+      "method": "GET",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      },
+      "page": "http://127.0.0.1:3017/"
+    }
+  ],
+  "badResponses": [
+    {
+      "url": "http://127.0.0.1:3017/_next/static/css/f97d47916deade12.css",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/webpack-3c3e68353a591850.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/fd9d1056-e242caba8dccd6cc.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/7864-f1826884c978d2f1.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/main-app-df9d5cd8ad842a70.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/home-decor",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/metal-coating",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/home-decor"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/css/f97d47916deade12.css",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/webpack-3c3e68353a591850.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/fd9d1056-e242caba8dccd6cc.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/7864-f1826884c978d2f1.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/main-app-df9d5cd8ad842a70.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/home-decor",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/metal-coating",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/home-decor"
+    },
+    {
+      "url": "http://127.0.0.1:3017/wishlist",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/metal-coating"
+    },
+    {
+      "url": "http://127.0.0.1:3017/about",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/wishlist"
+    },
+    {
+      "url": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/about"
+    },
+    {
+      "url": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece"
+    },
+    {
+      "url": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine"
+    },
+    {
+      "url": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/css/f97d47916deade12.css",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/webpack-3c3e68353a591850.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/fd9d1056-e242caba8dccd6cc.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/7864-f1826884c978d2f1.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/main-app-df9d5cd8ad842a70.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/css/f97d47916deade12.css",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/webpack-3c3e68353a591850.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/fd9d1056-e242caba8dccd6cc.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/7864-f1826884c978d2f1.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/main-app-df9d5cd8ad842a70.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/css/f97d47916deade12.css",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/webpack-3c3e68353a591850.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/fd9d1056-e242caba8dccd6cc.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/7864-f1826884c978d2f1.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/main-app-df9d5cd8ad842a70.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/css/f97d47916deade12.css",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/webpack-3c3e68353a591850.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/fd9d1056-e242caba8dccd6cc.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/7864-f1826884c978d2f1.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/main-app-df9d5cd8ad842a70.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/css/f97d47916deade12.css",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/webpack-3c3e68353a591850.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/fd9d1056-e242caba8dccd6cc.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/7864-f1826884c978d2f1.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/main-app-df9d5cd8ad842a70.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/css/f97d47916deade12.css",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/webpack-3c3e68353a591850.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/fd9d1056-e242caba8dccd6cc.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/7864-f1826884c978d2f1.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/main-app-df9d5cd8ad842a70.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/css/f97d47916deade12.css",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/webpack-3c3e68353a591850.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/fd9d1056-e242caba8dccd6cc.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/7864-f1826884c978d2f1.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/main-app-df9d5cd8ad842a70.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/home-decor",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/home-decor",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/home-decor"
+    },
+    {
+      "url": "http://127.0.0.1:3017/home-decor",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/home-decor"
+    },
+    {
+      "url": "http://127.0.0.1:3017/home-decor",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/home-decor"
+    },
+    {
+      "url": "http://127.0.0.1:3017/home-decor",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/home-decor"
+    },
+    {
+      "url": "http://127.0.0.1:3017/home-decor",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/home-decor"
+    },
+    {
+      "url": "http://127.0.0.1:3017/home-decor",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/home-decor"
+    },
+    {
+      "url": "http://127.0.0.1:3017/metal-coating",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/home-decor"
+    },
+    {
+      "url": "http://127.0.0.1:3017/metal-coating",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/metal-coating"
+    },
+    {
+      "url": "http://127.0.0.1:3017/metal-coating",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/metal-coating"
+    },
+    {
+      "url": "http://127.0.0.1:3017/metal-coating",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/metal-coating"
+    },
+    {
+      "url": "http://127.0.0.1:3017/metal-coating",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/metal-coating"
+    },
+    {
+      "url": "http://127.0.0.1:3017/metal-coating",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/metal-coating"
+    },
+    {
+      "url": "http://127.0.0.1:3017/metal-coating",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/metal-coating"
+    },
+    {
+      "url": "http://127.0.0.1:3017/wishlist",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/metal-coating"
+    },
+    {
+      "url": "http://127.0.0.1:3017/wishlist",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/wishlist"
+    },
+    {
+      "url": "http://127.0.0.1:3017/wishlist",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/wishlist"
+    },
+    {
+      "url": "http://127.0.0.1:3017/wishlist",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/wishlist"
+    },
+    {
+      "url": "http://127.0.0.1:3017/wishlist",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/wishlist"
+    },
+    {
+      "url": "http://127.0.0.1:3017/wishlist",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/wishlist"
+    },
+    {
+      "url": "http://127.0.0.1:3017/wishlist",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/wishlist"
+    },
+    {
+      "url": "http://127.0.0.1:3017/about",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/wishlist"
+    },
+    {
+      "url": "http://127.0.0.1:3017/about",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/about"
+    },
+    {
+      "url": "http://127.0.0.1:3017/about",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/about"
+    },
+    {
+      "url": "http://127.0.0.1:3017/about",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/about"
+    },
+    {
+      "url": "http://127.0.0.1:3017/about",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/about"
+    },
+    {
+      "url": "http://127.0.0.1:3017/about",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/about"
+    },
+    {
+      "url": "http://127.0.0.1:3017/about",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/about"
+    },
+    {
+      "url": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/about"
+    },
+    {
+      "url": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece"
+    },
+    {
+      "url": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece"
+    },
+    {
+      "url": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece"
+    },
+    {
+      "url": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece"
+    },
+    {
+      "url": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece"
+    },
+    {
+      "url": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece"
+    },
+    {
+      "url": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/home-decor/ashok-stambh-premium-decorative-showpiece"
+    },
+    {
+      "url": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine"
+    },
+    {
+      "url": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine"
+    },
+    {
+      "url": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine"
+    },
+    {
+      "url": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine"
+    },
+    {
+      "url": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine"
+    },
+    {
+      "url": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine"
+    },
+    {
+      "url": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine"
+    },
+    {
+      "url": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage"
+    },
+    {
+      "url": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage"
+    },
+    {
+      "url": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage"
+    },
+    {
+      "url": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage"
+    },
+    {
+      "url": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage"
+    },
+    {
+      "url": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage"
+    },
+    {
+      "url": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/metal-coating/product/western-sector-market-exterior-metal-box-signage"
+    },
+    {
+      "url": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition"
+    },
+    {
+      "url": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition"
+    },
+    {
+      "url": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition"
+    },
+    {
+      "url": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition"
+    },
+    {
+      "url": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition"
+    },
+    {
+      "url": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition"
+    },
+    {
+      "url": "http://127.0.0.1:3017/home-decor",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/metal-coating/product/modern-sliding-metal-glass-partition"
+    },
+    {
+      "url": "http://127.0.0.1:3017/metal-coating",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/home-decor"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/css/f97d47916deade12.css",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/webpack-3c3e68353a591850.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/fd9d1056-e242caba8dccd6cc.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/7864-f1826884c978d2f1.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/_next/static/chunks/main-app-df9d5cd8ad842a70.js",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    },
+    {
+      "url": "http://127.0.0.1:3017/about",
+      "status": 500,
+      "method": "GET",
+      "page": "http://127.0.0.1:3017/"
+    }
+  ]
+}

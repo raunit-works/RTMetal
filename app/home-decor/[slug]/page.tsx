@@ -20,7 +20,12 @@ import {
   VariantQuoteButton,
   VariantWhatsAppButton,
 } from '@/components/products/product-variant-enquiry';
-import { getPublicProductBySlugAsync, getPublicCatalogAsync, getCategoriesAsync } from '@/lib/data-access';
+import {
+  getPublicProductBySlugAsync,
+  getPublicProductWithCategoriesAsync,
+  getRelatedProductsForCategoryAsync,
+  getProductsForSectionAsync,
+} from '@/lib/data-access';
 import { isCategoryInSection } from '@/lib/category-hierarchy';
 import { getSiteUrlForPath } from '@/lib/site-url';
 import { MainSection } from '@/lib/types';
@@ -67,34 +72,34 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
 }
 
 export default async function ProductDetailPage({ params }: ProductDetailPageProps) {
-  const product = await getPublicProductBySlugAsync(params.slug);
+  const { product, categories } = await getPublicProductWithCategoriesAsync(params.slug);
 
   if (!product) {
     notFound();
   }
 
   // Redirect Metal products to the Metal product route
-  const categories = await getCategoriesAsync({ allowStaticFallback: false, products: [] });
   const category = categories.find((item) => item.slug === product.category);
 
   if (category && isCategoryInSection(category, 'metal_services')) {
     redirect(`/metal-coating/product/${product.slug || product.id}`);
   }
 
-  const { categories: publicCategories, products: publicProducts } = await getPublicCatalogAsync();
-  const relatedProducts = publicProducts
-    .filter((p) => p.id !== product.id && p.category === product.category)
-    .slice(0, 4);
-
-  const homeDecorProducts = publicProducts.filter((p) => {
-    const productCategory = publicCategories.find((item) => item.slug === p.category);
-    return productCategory ? isCategoryInSection(productCategory, 'home_decor') : false;
-  });
+  // Targeted related-product queries instead of loading the entire catalogue.
+  const relatedProducts = await getRelatedProductsForCategoryAsync(
+    categories,
+    product.category,
+    product.id,
+    4
+  );
 
   const fallbackRelated =
     relatedProducts.length > 0
       ? relatedProducts
-      : homeDecorProducts.filter((p) => p.id !== product.id).slice(0, 4);
+      : await getProductsForSectionAsync(categories, 'home_decor', undefined, {
+          excludeId: product.id,
+          limit: 4,
+        });
 
   const hasExtendedSpecs =
     product.sku ||
