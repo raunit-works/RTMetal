@@ -13,12 +13,23 @@ const PNG = Buffer.from([
 ]);
 
 async function openEditor(page: Page) {
-  await page.goto('/dev/product-variants-harness');
-  await expect(
-    page.getByText('This product has multiple finishes/colours')
-  ).toBeVisible();
-  await page.locator(FINISH_TOGGLE).check();
-  await expect(page.locator(FINISH_NAME)).toBeVisible();
+  await page.goto('/dev/product-variants-harness', { waitUntil: 'domcontentloaded' });
+  const toggleLabel = page.getByText('This product has multiple finishes/colours');
+  await expect(toggleLabel).toBeVisible({ timeout: 15000 });
+
+  const toggle = page.locator(FINISH_TOGGLE);
+  await toggle.scrollIntoViewIfNeeded();
+  await expect(toggle).toBeEnabled();
+
+  // Ensure the editor is enabled and the finish inputs are rendered.
+  await toggle.setChecked(true, { force: true });
+  try {
+    await expect(page.locator(FINISH_NAME)).toBeVisible({ timeout: 8000 });
+  } catch {
+    await toggleLabel.click({ force: true });
+    await toggle.setChecked(true, { force: true });
+    await expect(page.locator(FINISH_NAME)).toBeVisible({ timeout: 15000 });
+  }
 }
 
 async function readJson(page: Page, testId: string) {

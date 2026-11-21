@@ -1,0 +1,1847 @@
+{
+  "base": "http://127.0.0.1:3000",
+  "startedAt": "2026-11-21T07:04:33.138Z",
+  "discovered": {
+    "/": [
+      "/",
+      "/home-decor",
+      "/metal-coating",
+      "/before-after",
+      "/about",
+      "/#contact",
+      "/login",
+      "/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "/?product=e01e4bdc-89a8-46f7-beef-8ab4a3be6779&productName=Ashok+Stambh+%E2%80%93+Premium+Decorative+Showpiece&variant=240e9e7d-3b7a-41a2-84c6-cd24d48a31f9&finish=Gold&sku=ASHOK-STG-GLD#contact",
+      "/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+      "/?product=69e90ff0-cb67-490c-aefc-4816ac3bfc1c&productName=Chhatrapati+Shivaji+Maharaj+Style+Devotional+Figurine#contact",
+      "/home-decor/seated-lord-shiva-decorative-idol",
+      "/?product=8ee91520-22f4-4bab-88d8-8985a14eb4fc&productName=Seated+Lord+Shiva+Decorative+Idol#contact",
+      "/home-decor/premium-leopard-sculpture-showpiece",
+      "/?product=d8ec98cd-031e-4600-bab6-c0aa820a9efe&productName=Premium+Leopard+Sculpture+%E2%80%93+Decorative+Showpiece&variant=415771bf-6a5c-4201-a15a-3bc80dfb3e62&finish=Gold+Finish#contact",
+      "/metal-coating#quote",
+      "/metal-coating/pvd-coating",
+      "/metal-coating/electroplating",
+      "/metal-coating/pu-coating",
+      "/metal-coating/powder-coating",
+      "/metal-coating/decorative-metal-finishing",
+      "/metal-coating/metal-restoration",
+      "/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Western%20Sector%20Market%20Exterior%20Metal%20Box%20Signage%0ACategory%3A%20Metal%20Box%20Letters%0AProduct%20Link%3A%20http%3A%2F%2F127.0.0.1%3A3000%2Fmetal-coating%2Fproduct%2Fwestern-sector-market-exterior-metal-box-signage%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=85a18452-2a65-48a7-aeaf-3a2d93674c5a&productName=Western+Sector+Market+Exterior+Metal+Box+Signage#quote",
+      "/metal-coating/product/modern-sliding-metal-glass-partition",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Modern%20Sliding%20Metal%20%26%20Glass%20Partition%0ACategory%3A%20Metal%20Partitions%20Room%20Dividers%0AProduct%20Link%3A%20http%3A%2F%2F127.0.0.1%3A3000%2Fmetal-coating%2Fproduct%2Fmodern-sliding-metal-glass-partition%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=87f82176-3a1c-4b02-a3a8-9b5d56c366c7&productName=Modern+Sliding+Metal+%26+Glass+Partition#quote",
+      "/metal-coating/product/white-bearded-gnome-miniature-figurine",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20White-Bearded%20Gnome%20Miniature%20Figurine%0ACategory%3A%20Metal%20Plaques%20Panels%20Signage%0AProduct%20Link%3A%20http%3A%2F%2F127.0.0.1%3A3000%2Fmetal-coating%2Fproduct%2Fwhite-bearded-gnome-miniature-figurine%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=c11c3756-67d3-4900-879e-ad2964cb4b8d&productName=White-Bearded+Gnome+Miniature+Figurine#quote",
+      "/metal-coating/product/metal-p0031-lotus-inspired-metal-sculpture",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Lotus-Inspired%20Metal%20Sculpture%0ACategory%3A%20Art%20Work%0AProduct%20Link%3A%20http%3A%2F%2F127.0.0.1%3A3000%2Fmetal-coating%2Fproduct%2Fmetal-p0031-lotus-inspired-metal-sculpture%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=4332381d-9c0c-4950-b28d-d5f70cd3530b&productName=Lotus-Inspired+Metal+Sculpture#quote",
+      "/metal-coating/product/metal-p0089-manoj-bansal-arch-name-plate",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Manoj%20Bansal%20Arch-Integrated%20Name%20Plate%0ACategory%3A%20Name%20Plates%20Signage%0AProduct%20Link%3A%20http%3A%2F%2F127.0.0.1%3A3000%2Fmetal-coating%2Fproduct%2Fmetal-p0089-manoj-bansal-arch-name-plate%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=1c014521-0777-4fa2-bf93-008de83ca8b0&productName=Manoj+Bansal+Arch-Integrated+Name+Plate#quote",
+      "/metal-coating/product/intricate-patterned-metal-jali-door-grill",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Intricate%20Patterned%20Metal%20Jali%20Door%20Grill%0ACategory%3A%20Designer%20Door%20Grills%0AProduct%20Link%3A%20http%3A%2F%2F127.0.0.1%3A3000%2Fmetal-coating%2Fproduct%2Fintricate-patterned-metal-jali-door-grill%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=269b5bc3-68da-480c-9946-b68bbac648a2&productName=Intricate+Patterned+Metal+Jali+Door+Grill#quote",
+      "/metal-coating/product/talentia-3d-metal-letter-signage",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Talentia%203D%20Metal%20Letter%20Signage%0ACategory%3A%20Metal%20Box%20Letters%0AProduct%20Link%3A%20http%3A%2F%2F127.0.0.1%3A3000%2Fmetal-coating%2Fproduct%2Ftalentia-3d-metal-letter-signage%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=274178dc-817a-4f63-86c4-d8ada537aba8&productName=Talentia+3D+Metal+Letter+Signage#quote",
+      "/metal-coating/product/gold-open-shelf-metal-room-divider",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Gold%20Open-Shelf%20Architectural%20Divider%0ACategory%3A%20Metal%20Partitions%20Room%20Dividers%0AProduct%20Link%3A%20http%3A%2F%2F127.0.0.1%3A3000%2Fmetal-coating%2Fproduct%2Fgold-open-shelf-metal-room-divider%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=fd0343c5-fe2d-40e2-bce8-e5361ba3afe2&productName=Gold+Open-Shelf+Architectural+Divider#quote",
+      "/metal-coating/product/metal-p0150-ins-alliance-llp-information-plaque",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20INS%20Alliance%20LLP%20Corporate%20Information%20Plaque%0ACategory%3A%20Metal%20Plaques%20Panels%20Signage%0AProduct%20Link%3A%20http%3A%2F%2F127.0.0.1%3A3000%2Fmetal-coating%2Fproduct%2Fmetal-p0150-ins-alliance-llp-information-plaque%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=e4390502-7714-44f0-ba57-5baf76012ed8&productName=INS+Alliance+LLP+Corporate+Information+Plaque#quote",
+      "/metal-coating/product/metal-p0030-contemporary-symbolic-wall-panel",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Contemporary%20Symbolic%20Wall%20Panel%0ACategory%3A%20Art%20Work%0AProduct%20Link%3A%20http%3A%2F%2F127.0.0.1%3A3000%2Fmetal-coating%2Fproduct%2Fmetal-p0030-contemporary-symbolic-wall-panel%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=76e61b85-f072-443f-a23a-67593dabef02&productName=Contemporary+Symbolic+Wall+Panel#quote",
+      "/metal-coating/product/metal-p0087-pooja-kartik-shah-name-plate",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Pooja%20%26%20Kartik%20Shah%20Personalised%20Name%20Plate%0ACategory%3A%20Name%20Plates%20Signage%0AProduct%20Link%3A%20http%3A%2F%2F127.0.0.1%3A3000%2Fmetal-coating%2Fproduct%2Fmetal-p0087-pooja-kartik-shah-name-plate%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=b887bc56-7699-44aa-aad7-ca63273aecf8&productName=Pooja+%26+Kartik+Shah+Personalised+Name+Plate#quote",
+      "/metal-coating/product/arched-vertical-bar-decorative-door-grill",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Arched%20Vertical-Bar%20Decorative%20Door%20Grill%0ACategory%3A%20Designer%20Door%20Grills%0AProduct%20Link%3A%20http%3A%2F%2F127.0.0.1%3A3000%2Fmetal-coating%2Fproduct%2Farched-vertical-bar-decorative-door-grill%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=41784d81-1869-4142-914b-4ff3ef97440a&productName=Arched+Vertical-Bar+Decorative+Door+Grill#quote",
+      "/metal-coating/product/custom-vertical-welcome-photo-display-sign",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Custom%20Vertical%20Welcome%20%26%20Photo%20Display%20Sign%0ACategory%3A%20Metal%20Box%20Letters%0AProduct%20Link%3A%20http%3A%2F%2F127.0.0.1%3A3000%2Fmetal-coating%2Fproduct%2Fcustom-vertical-welcome-photo-display-sign%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=b7ac188f-77d6-4e50-9d08-00dcb9ba0b22&productName=Custom+Vertical+Welcome+%26+Photo+Display+Sign#quote",
+      "/metal-coating/product/wood-metal-geometric-partition",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Wood%20%26%20Metal%20Geometric%20Partition%0ACategory%3A%20Metal%20Partitions%20Room%20Dividers%0AProduct%20Link%3A%20http%3A%2F%2F127.0.0.1%3A3000%2Fmetal-coating%2Fproduct%2Fwood-metal-geometric-partition%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=acd02606-3f62-426c-ab44-d99f2235f69a&productName=Wood+%26+Metal+Geometric+Partition#quote",
+      "/metal-coating/product/metal-p0149-bilingual-corporate-name-plate",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Bilingual%20Corporate%20Name%20Plate%0ACategory%3A%20Metal%20Plaques%20Panels%20Signage%0AProduct%20Link%3A%20http%3A%2F%2F127.0.0.1%3A3000%2Fmetal-coating%2Fproduct%2Fmetal-p0149-bilingual-corporate-name-plate%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=709e1176-eeb5-498e-9426-51b7eb0ce574&productName=Bilingual+Corporate+Name+Plate#quote",
+      "/metal-coating/product/metal-p0029-religious-metal-wall-artwork",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Religious%20Metal%20Wall%20Artwork%0ACategory%3A%20Art%20Work%0AProduct%20Link%3A%20http%3A%2F%2F127.0.0.1%3A3000%2Fmetal-coating%2Fproduct%2Fmetal-p0029-religious-metal-wall-artwork%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=41190df5-5109-47d3-8460-40d95c8851df&productName=Religious+Metal+Wall+Artwork#quote",
+      "/metal-coating/product/Oval Gold Personalised Name Plate",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Oval%20Gold%20Personalised%20Name%20Plate%0ACategory%3A%20Name%20Plates%20Signage%0AProduct%20Link%3A%20http%3A%2F%2F127.0.0.1%3A3000%2Fmetal-coating%2Fproduct%2FOval%20Gold%20Personalised%20Name%20Plate%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=af0ce323-e356-4321-a618-f9554a45db66&productName=Oval+Gold+Personalised+Name+Plate#quote",
+      "/metal-coating/product/full-height-vertical-metal-grill-screen",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Full-Height%20Vertical%20Metal%20Grill%20Screen%0ACategory%3A%20Designer%20Door%20Grills%0AProduct%20Link%3A%20http%3A%2F%2F127.0.0.1%3A3000%2Fmetal-coating%2Fproduct%2Ffull-height-vertical-metal-grill-screen%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=6305087a-f4a2-4d6d-a90b-bc0a31a804a7&productName=Full-Height+Vertical+Metal+Grill+Screen#quote",
+      "/metal-coating/product/emma-group-integrated-marble-feature-signage",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20EMMA%20GROUP%20%E2%80%93%20Integrated%20Marble%20Feature%20Signage%0ACategory%3A%20Metal%20Box%20Letters%0AProduct%20Link%3A%20http%3A%2F%2F127.0.0.1%3A3000%2Fmetal-coating%2Fproduct%2Femma-group-integrated-marble-feature-signage%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=c1c832d2-779f-4914-adbb-a75647215a5e&productName=EMMA+GROUP+%E2%80%93+Integrated+Marble+Feature+Signage#quote",
+      "/metal-coating/product/vertical-oval-ring-motif-partition",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Vertical%20Oval%20%26%20Ring%20Motif%20Partition%0ACategory%3A%20Metal%20Partitions%20Room%20Dividers%0AProduct%20Link%3A%20http%3A%2F%2F127.0.0.1%3A3000%2Fmetal-coating%2Fproduct%2Fvertical-oval-ring-motif-partition%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=cd771974-05da-4e5c-9402-2b73b0b6d9ef&productName=Vertical+Oval+%26+Ring+Motif+Partition#quote",
+      "/metal-coating/product/metal-p0147-building-directory-board",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Multi-Column%20Building%20Directory%20Board%0ACategory%3A%20Metal%20Plaques%20Panels%20Signage%0AProduct%20Link%3A%20http%3A%2F%2F127.0.0.1%3A3000%2Fmetal-coating%2Fproduct%2Fmetal-p0147-building-directory-board%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=646ca346-6057-4c2d-ac55-7f62cedb9f05&productName=Multi-Column+Building+Directory+Board#quote",
+      "/metal-coating/product/metal-p0028-decorative-metal-ceiling",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Decorative%20Metal%20Ceiling%20Installation%0ACategory%3A%20Art%20Work%0AProduct%20Link%3A%20http%3A%2F%2F127.0.0.1%3A3000%2Fmetal-coating%2Fproduct%2Fmetal-p0028-decorative-metal-ceiling%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=782793e1-3892-462c-b793-587798f8750f&productName=Decorative+Metal+Ceiling+Installation#quote",
+      "/metal-coating/product/metal-p0085-teal-circular-name-plate",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Teal%20Circular%20Personalised%20Name%20Plate%0ACategory%3A%20Name%20Plates%20Signage%0AProduct%20Link%3A%20http%3A%2F%2F127.0.0.1%3A3000%2Fmetal-coating%2Fproduct%2Fmetal-p0085-teal-circular-name-plate%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=2d7c3bf7-93d6-4f05-add2-c31d71b5813d&productName=Teal+Circular+Personalised+Name+Plate#quote",
+      "/metal-coating/product/golden-arched-decorative-door-grill",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Metal%20product%3A%0A%0AProduct%3A%20Golden%20Arched%20Door%20Grill%0ACategory%3A%20Designer%20Door%20Grills%0AProduct%20Link%3A%20http%3A%2F%2F127.0.0.1%3A3000%2Fmetal-coating%2Fproduct%2Fgolden-arched-decorative-door-grill%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "/metal-coating?product=a079f547-7642-4a21-ae20-5d751c654624&productName=Golden+Arched+Door+Grill#quote",
+      "https://www.instagram.com/rtmetalcoating/",
+      "/home-decor?category=home-decor",
+      "/home-decor?category=decorative-accessories",
+      "/home-decor?category=gift-articles",
+      "/home-decor?category=lifestyle-products",
+      "/home-decor?category=household-products",
+      "/home-decor?category=daily-utility",
+      "/metal-coating#ms-coating",
+      "/metal-coating#brass-coating",
+      "/metal-coating#decorative-metal-finishing",
+      "/metal-coating#premium-surface-finishing",
+      "/metal-coating#custom-metal-coating",
+      "/metal-coating#architectural-metal-finishes",
+      "/#process",
+      "/#testimonials",
+      "https://maps.app.goo.gl/wtmGuotpv7b35y8W6"
+    ],
+    "/home-decor": [
+      "/",
+      "/home-decor",
+      "/metal-coating",
+      "/before-after",
+      "/about",
+      "/#contact",
+      "/login",
+      "/home-decor/category/sculptures-figurines",
+      "/home-decor/category/lighting-wall-decor",
+      "/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "/?product=e01e4bdc-89a8-46f7-beef-8ab4a3be6779&productName=Ashok+Stambh+%E2%80%93+Premium+Decorative+Showpiece&variant=240e9e7d-3b7a-41a2-84c6-cd24d48a31f9&finish=Gold&sku=ASHOK-STG-GLD#contact",
+      "/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+      "/?product=69e90ff0-cb67-490c-aefc-4816ac3bfc1c&productName=Chhatrapati+Shivaji+Maharaj+Style+Devotional+Figurine#contact",
+      "/home-decor/seated-lord-shiva-decorative-idol",
+      "/?product=8ee91520-22f4-4bab-88d8-8985a14eb4fc&productName=Seated+Lord+Shiva+Decorative+Idol#contact",
+      "/home-decor/premium-leopard-sculpture-showpiece",
+      "/?product=d8ec98cd-031e-4600-bab6-c0aa820a9efe&productName=Premium+Leopard+Sculpture+%E2%80%93+Decorative+Showpiece&variant=415771bf-6a5c-4201-a15a-3bc80dfb3e62&finish=Gold+Finish#contact",
+      "/home-decor/blue-crystal-sphere-decorative-lamp",
+      "/?product=f4c43552-1222-4d4b-b3b9-520c2d0af6f1&productName=Blue+Crystal+Sphere+Decorative+Lamp#contact",
+      "/home-decor/illuminated-crystal-pyramid-table-lamp",
+      "/?product=a09b1277-729b-45dc-8a30-9bc0c43e6d95&productName=Illuminated+Crystal+Pyramid+Table+Lamp#contact",
+      "/home-decor/illuminated-buddha-spiritual-wall-panel",
+      "/?product=b36b81e0-cc63-4871-90a6-b19a18a9274b&productName=Illuminated+Buddha+Spiritual+Wall+Panel#contact",
+      "/home-decor/traditional-indian-royal-portrait-artwork",
+      "/?product=a008cfb5-3250-4a05-a14b-2b5710860678&productName=Traditional+Indian+Royal+Portrait+Artwork#contact",
+      "/home-decor/decorative-bonsai-tree-with-red-berries",
+      "/?product=11604c5b-f7dc-4747-9f2f-65207b6076ec&productName=Decorative+Bonsai+Tree+with+Red+Berries#contact",
+      "/home-decor/purple-floral-gift-ornament",
+      "/?product=6cf642b8-495b-4c8c-a3a5-d27d2479fe2d&productName=Purple+Floral+Gift+Ornament#contact",
+      "/home-decor/miniature-succulent-floral-d-cor",
+      "/?product=3031fdad-1036-4c9e-98a9-c50e0e3a9feb&productName=Miniature+Succulent+Floral+D%C3%A9cor#contact",
+      "/home-decor/miniature-green-floral-arrangement",
+      "/?product=81d70e2a-e45f-40cb-b9ce-b6afc082cbe2&productName=Miniature+Green+Floral+Arrangement#contact",
+      "/home-decor/traditional-elephant-decorative-figurine",
+      "/?product=5e741a2d-5200-4fac-b99d-d424a3aff432&productName=Traditional+Elephant+Decorative+Figurine#contact",
+      "/home-decor/black-white-decorative-cow-figurine",
+      "/?product=05c0a2db-280f-4ba5-baaf-4d180e30ca68&productName=Black+%26+White+Decorative+Cow+Figurine#contact",
+      "/home-decor/blonde-character-doll-figurine",
+      "/?product=8db8adde-c08e-40ee-88b5-56d7b33e3b8c&productName=Blonde+Character+Doll+Figurine#contact",
+      "/home-decor/decorative-deer-pair-showpiece",
+      "/?product=96841ce0-d12b-4493-99b6-8e3cf1f38d53&productName=Decorative+Deer+Pair+Showpiece#contact",
+      "/home-decor/white-bird-figurines-with-greenery",
+      "/?product=dc21208c-2b0e-4981-88b1-901ebdcfac90&productName=White+Bird+Figurines+with+Greenery#contact",
+      "/home-decor/red-heart-character-decorative-figure",
+      "/?product=cc15fdb0-c937-4e04-bd5d-d5d16fd58455&productName=Red+Heart+Character+Decorative+Figure#contact",
+      "/home-decor/white-bearded-gnome-miniature-figurine-",
+      "/?product=3b5cc1d2-8b1d-48df-81aa-c3636bd02688&productName=White-Bearded+Gnome+Figurine#contact",
+      "/home-decor/colourful-standing-devotional-idol",
+      "/?product=119477bf-a9cb-4811-898e-2704b220e683&productName=Colourful+Standing+Devotional+Idol#contact",
+      "/home-decor/seated-meditative-shiva-figurine",
+      "/?product=3be00c16-feee-4524-b7fe-37d3709962a5&productName=Seated+Meditative+Shiva+Figurine#contact",
+      "/home-decor/decorative-ganesha-idol-with-floral-accents",
+      "/?product=b56b1120-3d72-4830-8af5-84f3ccdf867c&productName=Decorative+Ganesha+Idol+with+Floral+Accents#contact",
+      "/home-decor/goddess-saraswati-with-veena",
+      "/?product=1ab80852-9a68-42b4-8059-91a4839b0547&productName=Goddess+Saraswati+with+Veena#contact",
+      "/home-decor/antique-red-standing-devotional-idol",
+      "/?product=11e08c4b-86b6-4bb6-a283-6048f3431918&productName=Antique+Red+Standing+Devotional+Idol#contact",
+      "/home-decor/traditional-dark-finish-figurine",
+      "/?product=d9a7d757-ef15-46b1-b7c9-f8cd591477df&productName=Traditional+Dark-Finish+Figurine#contact",
+      "/home-decor/standing-hanuman-decorative-idol",
+      "/?product=f3f1622f-9361-42fa-b748-363cc1d8b50b&productName=Standing+Hanuman+Decorative+Idol#contact",
+      "/home-decor/shiva-lingam-with-naga-canopy",
+      "/?product=a78c8ae7-bfe0-4955-be74-4d0d9b5f63df&productName=Shiva+Lingam+with+Naga+Canopy#contact",
+      "/home-decor/white-seated-devotional-figurine",
+      "/?product=91813a87-8731-4f14-9c79-2c2b20fe246b&productName=White+Seated+Devotional+Figurine#contact",
+      "/home-decor/seated-hanuman-decorative-idol",
+      "/?product=b218e6af-7e26-4839-ae5c-9622813d4d4b&productName=Seated+Hanuman+Decorative+Idol#contact",
+      "/home-decor/vintage-ornate-frame-wall-clock",
+      "/?product=d501876a-2cc9-4071-bd99-e8f0300a94e9&productName=Vintage+Ornate+Frame+Wall+Clock#contact",
+      "/home-decor/minimalist-grey-dial-wall-clock",
+      "/?product=06024753-d567-4d66-8e6c-c8ec31bcc2eb&productName=Minimalist+Grey+Dial+Wall+Clock#contact",
+      "/home-decor/classic-roman-numeral-wall-clock",
+      "/?product=1f2fffbe-60b9-4a69-9afb-65d304081a6e&productName=Classic+Roman+Numeral+Wall+Clock#contact",
+      "/home-decor/crystal-detail-round-decorative-clock",
+      "/?product=4d7c17f9-13df-4285-8906-0996eb643ab3&productName=Crystal-Detail+Round+Decorative+Clock#contact",
+      "/home-decor/green-round-decorative-wall-clock",
+      "/?product=ade5c9ea-863f-499d-b65b-d8f07ea4359d&productName=Green+Round+Decorative+Wall+Clock#contact",
+      "/home-decor/sculptural-branch-frame-decorative-clock",
+      "/?product=27de1660-744d-4796-9d45-0ab3a72a7973&productName=Sculptural+Branch-Frame+Decorative+Clock#contact",
+      "/home-decor/vintage-black-dial-decorative-clock",
+      "/?product=d496c7e2-aaa5-4ae1-b53e-dd2742147d63&productName=Vintage+Black+Dial+Decorative+Clock#contact",
+      "/home-decor/decorative-hourglass-timer-wa0033",
+      "/?product=424d20f3-ff6b-4d5a-926b-98ccac2ab1e4&productName=Decorative+Hourglass+Timer#contact",
+      "/home-decor/decorative-bird-pair-on-base-wa0032",
+      "/?product=9bc01f08-9d19-415d-94fe-7482c4f41f77&productName=Decorative+Bird+Pair+on+Base#contact",
+      "/home-decor/decorative-cow-figurine-pair-wa0031",
+      "/?product=f1f9d192-abd4-4d2a-8c9c-3925b974c2e4&productName=Decorative+Cow+Figurine+Pair#contact",
+      "/home-decor/red-black-devotional-figurine-wa0030",
+      "/?product=51e573e3-ecab-4bc7-a72f-aeb8b8a63658&productName=Red+and+Black+Devotional+Figurine#contact",
+      "/home-decor/round-analog-decorative-clock-wa0029",
+      "/?product=eb3c3cf4-294d-440c-b861-55aef8fd94be&productName=Round+Analog+Decorative+Clock#contact",
+      "/home-decor/ganesha-desk-figurine-wa0028",
+      "/?product=0ddfcc51-9c3b-44f8-a476-5a34f935c13a&productName=Ganesha+Desk+Figurine#contact",
+      "/home-decor/multicolour-ganesha-figurine-wa0027",
+      "/?product=bd016e28-5dd2-4ead-950b-585947b05fa1&productName=Multicolour+Ganesha+Figurine#contact",
+      "/home-decor/silver-tone-decorative-figurine-group-wa0026",
+      "/?product=5cc5a5ea-fc84-402e-a809-e895529e0ba8&productName=Silver-Tone+Decorative+Figurine+Group#contact",
+      "/home-decor/round-decorative-wall-clock-wa0025",
+      "/?product=76334ecf-2524-4086-acbd-fe22eeea3ee4&productName=Round+Decorative+Wall+Clock#contact",
+      "/home-decor/blue-child-krishna-figurine-wa0023",
+      "/?product=14746020-729f-4dfe-9332-d472b324ce4e&productName=Blue+Child+Krishna+Figurine#contact",
+      "/home-decor/antique-finish-ganesha-figurine-wa0022",
+      "/?product=fa81b3db-93d1-4b42-8b4b-bf0bfd9d1d35&productName=Antique-Finish+Ganesha+Figurine#contact",
+      "/home-decor/seated-meditation-woman-figurine-wa0021",
+      "/?product=3c568f34-1c7e-496e-8078-4792ee2cf9a4&productName=Seated+Meditation+Woman+Figurine#contact",
+      "/home-decor/black-seated-dog-figurine-wa0020",
+      "/?product=f33fe58c-1d52-47de-837f-21724e8142c4&productName=Black+Seated+Dog+Figurine#contact",
+      "/home-decor/bull-figurine-display-base-wa0019",
+      "/?product=54672415-19a9-48d3-8d10-138f073c09b1&productName=Bull+Figurine+on+Display+Base#contact",
+      "/home-decor/black-gold-standing-devotional-figurine-wa0018",
+      "/?product=5f7ba32d-69be-417d-8089-16e2181f2614&productName=Black+and+Gold+Standing+Devotional+Figurine#contact",
+      "/home-decor/decorative-mug-pair-wa0017",
+      "/?product=737404fd-8ded-48f7-9f35-697daf113323&productName=Decorative+Mug+Pair#contact",
+      "/home-decor/indian-flag-tabletop-set-wa0016",
+      "/?product=4876c6a3-7ef8-4e16-93df-0ce485ddc5ac&productName=Indian+Flag+Tabletop+Set#contact",
+      "/home-decor/seated-dog-figurine-cream-tan-wa0015",
+      "/?product=21f685ea-7800-4293-8b50-4b46f01e5215&productName=Seated+Dog+Figurine+%E2%80%93+Cream+and+Tan#contact",
+      "/home-decor/ganesha-writing-desk-figurine-wa0014",
+      "/?product=e722f9d7-ea9b-4d66-a72c-dddd1d53c186&productName=Ganesha+Writing+Desk+Figurine#contact",
+      "/home-decor/bird-figurines-decorative-base-wa0013",
+      "/?product=f67c4cd5-fc1b-4787-a841-a40d52e05512&productName=Bird+Figurines+on+Decorative+Base#contact",
+      "/home-decor/white-decorative-bird-pair-wa0012",
+      "/?product=cbf2b411-831a-4589-a952-c673c689cf6b&productName=White+Decorative+Bird+Pair#contact",
+      "/home-decor/decorative-cow-figurine-pair-wa0011",
+      "/?product=f3601b92-e77c-490b-86ca-5a15b66e5663&productName=Decorative+Cow+Figurine+Pair#contact",
+      "/home-decor/gold-tone-decorative-planter-wa0009",
+      "/?product=b4d1be77-6c29-4c70-b9e1-ee7cbbdd932b&productName=Gold-Tone+Decorative+Planter#contact",
+      "/home-decor/red-decorative-figurine-wa0008",
+      "/?product=59ede4e4-a1eb-46e1-8eae-350236fb5677&productName=Red+Decorative+Figurine#contact",
+      "/home-decor/miniature-sailing-ship-table-decor-wa0007",
+      "/?product=1f44cca2-427f-46fd-a27e-4e15d87844ad&productName=Miniature+Sailing+Ship+Table+D%C3%A9cor#contact",
+      "/home-decor/seated-dog-figurine-grey-white-wa0006",
+      "/?product=c601b461-5c02-4630-9ec3-ab3d41e5c12a&productName=Seated+Dog+Figurine+%E2%80%93+Grey+and+White#contact",
+      "/home-decor/seated-dog-figurine-tan-wa0005",
+      "/?product=c9f45472-a723-440a-b714-5094857d2685&productName=Seated+Dog+Figurine+%E2%80%93+Tan#contact",
+      "/home-decor/silver-tone-standing-figurine-wa0004",
+      "/?product=68238768-0923-4a31-81ba-e5ffc87e1421&productName=Silver-Tone+Standing+Figurine#contact",
+      "/home-decor/silver-tone-miniature-decorative-figurine-wa0002",
+      "/?product=f8e5f865-c268-429c-ba23-38e3e6ad7df6&productName=Silver-Tone+Miniature+Decorative+Figurine#contact",
+      "/home-decor/multicolour-hanging-lantern-set-wa0001",
+      "/?product=8e8afdad-7293-4b44-b6c1-2d652ff15359&productName=Multicolour+Hanging+Lantern+Set#contact",
+      "/home-decor/illuminated-butterfly-wall-accent-wa0000",
+      "/?product=a26c6178-d92d-4816-b10b-fefba2cac284&productName=Illuminated+Butterfly+Wall+Accent#contact",
+      "https://www.instagram.com/rtmetalcoating/",
+      "/home-decor?category=home-decor",
+      "/home-decor?category=decorative-accessories",
+      "/home-decor?category=gift-articles",
+      "/home-decor?category=lifestyle-products",
+      "/home-decor?category=household-products",
+      "/home-decor?category=daily-utility",
+      "/metal-coating#ms-coating",
+      "/metal-coating#brass-coating",
+      "/metal-coating#decorative-metal-finishing",
+      "/metal-coating#premium-surface-finishing",
+      "/metal-coating#custom-metal-coating",
+      "/metal-coating#architectural-metal-finishes",
+      "/#process",
+      "/#testimonials",
+      "https://maps.app.goo.gl/wtmGuotpv7b35y8W6"
+    ],
+    "/metal-coating": [
+      "/",
+      "/home-decor",
+      "/metal-coating",
+      "/before-after",
+      "/about",
+      "/#contact",
+      "https://wa.me/917666067782?text=Hello%20RTMETALCOATING%2C%20I'd%20like%20to%20enquire%20about%20metal%20services%20and%20request%20a%20quotation.",
+      "/login",
+      "#services",
+      "#quote",
+      "/metal-coating/pvd-coating",
+      "/metal-coating/electroplating",
+      "/metal-coating/pu-coating",
+      "/metal-coating/powder-coating",
+      "/metal-coating/decorative-metal-finishing",
+      "/metal-coating/metal-restoration",
+      "#finish-board",
+      "/metal-coating/category/metal-box-letters",
+      "/metal-coating/category/metal-partitions-room-dividers",
+      "/metal-coating/category/metal-plaques-panels-signage",
+      "/metal-coating/category/art-work",
+      "/metal-coating/category/name-plates-signage",
+      "/metal-coating/category/designer-door-grills",
+      "/before-after/brass-hanging-diya-chain-restoration",
+      "/before-after/ganesh-murti-restoration-polishing",
+      "/before-after/copper-pooja-utensil-set-restoration",
+      "/before-after/brass-five-wick-temple-lamp-restoration",
+      "/before-after/shri-swami-samarth-statue-restoration",
+      "/before-after/copper-water-jug-glass-set-restoration",
+      "https://www.instagram.com/rtmetalcoating/",
+      "https://wa.me/917666067782?text=Hello%2C%20I%20am%20interested%20in%20your%20Metal%20Coating%20%26%20Finishing%20services.%0A%0AService%20category%3A%20Metal%20Coating%20%26%20Finishing%0AService%20Link%3A%20http%3A%2F%2F127.0.0.1%3A3000%2Fmetal-coating%0A%0APlease%20share%20the%20service%20details%2C%20quotation%20and%20further%20information.",
+      "/home-decor?category=home-decor",
+      "/home-decor?category=decorative-accessories",
+      "/home-decor?category=gift-articles",
+      "/home-decor?category=lifestyle-products",
+      "/home-decor?category=household-products",
+      "/home-decor?category=daily-utility",
+      "/metal-coating#ms-coating",
+      "/metal-coating#brass-coating",
+      "/metal-coating#decorative-metal-finishing",
+      "/metal-coating#premium-surface-finishing",
+      "/metal-coating#custom-metal-coating",
+      "/metal-coating#architectural-metal-finishes",
+      "/#process",
+      "/#testimonials",
+      "https://maps.app.goo.gl/wtmGuotpv7b35y8W6"
+    ],
+    "productLinks": [
+      "/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine"
+    ],
+    "metalProductLinks": [
+      "/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "/metal-coating/product/modern-sliding-metal-glass-partition"
+    ],
+    "routes": [
+      "/",
+      "/home-decor",
+      "/metal-coating",
+      "/about",
+      "/wishlist",
+      "/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+      "/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "/metal-coating/product/modern-sliding-metal-glass-partition"
+    ]
+  },
+  "routes": {
+    "/": {
+      "nav": {
+        "ok": true,
+        "status": 200,
+        "url": "http://127.0.0.1:3000/"
+      },
+      "overflow": 0,
+      "cardCount": 28,
+      "h1": "Metal Finishesfor a BetterTomorrow.",
+      "loader": true,
+      "cards": [
+        {
+          "tid": "product-card",
+          "name": "Ashok Stambh – Premium Decorative Showpiece",
+          "category": "Sculptures Figurines",
+          "finish": "Gold",
+          "hasVariants": "true",
+          "swatches": 3,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Chhatrapati Shivaji Maharaj Style Devotional Figurine",
+          "category": "Lighting Wall Decor",
+          "finish": "White, orange/red and dark accents",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Seated Lord Shiva Decorative Idol",
+          "category": "Sculptures Figurines",
+          "finish": "Blue, yellow, orange and gold accents.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Premium Leopard Sculpture – Decorative Showpiece",
+          "category": "Sculptures Figurines",
+          "finish": "Gold Finish",
+          "hasVariants": "true",
+          "swatches": 4,
+          "overlap": false
+        },
+        {
+          "tid": "metal-product-card",
+          "name": "Western Sector Market Exterior Metal Box Signage",
+          "category": "Metal Box Letters",
+          "finish": "Metallic Gold / Yellow-Gold Appearance on Red Background",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "metal-product-card",
+          "name": "Modern Sliding Metal & Glass Partition",
+          "category": "Metal Partitions Room Dividers",
+          "finish": "Black / Dark bronze metal framing with transparent glass appearance",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "metal-product-card",
+          "name": "White-Bearded Gnome Miniature Figurine",
+          "category": "Metal Plaques Panels Signage",
+          "finish": "White, cream, red and pastel accents.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "metal-product-card",
+          "name": "Lotus-Inspired Metal Sculpture",
+          "category": "Art Work",
+          "finish": "Gold / Antique Gold",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "metal-product-card",
+          "name": "Manoj Bansal Arch-Integrated Name Plate",
+          "category": "Name Plates Signage",
+          "finish": "Dark Bronze / Champagne Gold Appearance",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "metal-product-card",
+          "name": "Intricate Patterned Metal Jali Door Grill",
+          "category": "Designer Door Grills",
+          "finish": "Dark bronze / Antique metallic appearance",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "metal-product-card",
+          "name": "Talentia 3D Metal Letter Signage",
+          "category": "Metal Box Letters",
+          "finish": "Champagne Gold / Brushed Gold Appearance",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "metal-product-card",
+          "name": "Gold Open-Shelf Architectural Divider",
+          "category": "Metal Partitions Room Dividers",
+          "finish": "Champagne gold / Light brushed metallic appearance",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "metal-product-card",
+          "name": "INS Alliance LLP Corporate Information Plaque",
+          "category": "Metal Plaques Panels Signage",
+          "finish": "Champagne Gold / Brushed Gold Appearance",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "metal-product-card",
+          "name": "Contemporary Symbolic Wall Panel",
+          "category": "Art Work",
+          "finish": "Copper / Antique Gold",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "metal-product-card",
+          "name": "Pooja & Kartik Shah Personalised Name Plate",
+          "category": "Name Plates Signage",
+          "finish": "Champagne Gold / Antique Gold Appearance",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "metal-product-card",
+          "name": "Arched Vertical-Bar Decorative Door Grill",
+          "category": "Designer Door Grills",
+          "finish": "Dark bronze / Antique metallic finish",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "metal-product-card",
+          "name": "Custom Vertical Welcome & Photo Display Sign",
+          "category": "Metal Box Letters",
+          "finish": "Champagne Gold / Gold Metallic Appearance",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "metal-product-card",
+          "name": "Wood & Metal Geometric Partition",
+          "category": "Metal Partitions Room Dividers",
+          "finish": "Walnut brown / Dark wood appearance with metallic detailing",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "metal-product-card",
+          "name": "Bilingual Corporate Name Plate",
+          "category": "Metal Plaques Panels Signage",
+          "finish": "Antique Gold / Champagne Gold Appearance",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "metal-product-card",
+          "name": "Religious Metal Wall Artwork",
+          "category": "Art Work",
+          "finish": "Matte Black / Antique Bronze",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "metal-product-card",
+          "name": "Oval Gold Personalised Name Plate",
+          "category": "Name Plates Signage",
+          "finish": "Champagne Gold / Dark Bronze Appearance",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "metal-product-card",
+          "name": "Full-Height Vertical Metal Grill Screen",
+          "category": "Designer Door Grills",
+          "finish": "Bronze / Golden metallic appearance",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "metal-product-card",
+          "name": "EMMA GROUP – Integrated Marble Feature Signage",
+          "category": "Metal Box Letters",
+          "finish": "Antique Gold / Champagne Gold Appearance",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "metal-product-card",
+          "name": "Vertical Oval & Ring Motif Partition",
+          "category": "Metal Partitions Room Dividers",
+          "finish": "Brushed gold / Champagne metallic appearance",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "metal-product-card",
+          "name": "Multi-Column Building Directory Board",
+          "category": "Metal Plaques Panels Signage",
+          "finish": "Silver / Brushed Metallic Appearance",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "metal-product-card",
+          "name": "Decorative Metal Ceiling Installation",
+          "category": "Art Work",
+          "finish": "Black / Dark Bronze",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "metal-product-card",
+          "name": "Teal Circular Personalised Name Plate",
+          "category": "Name Plates Signage",
+          "finish": "Teal Green / Antique Gold Appearance",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "metal-product-card",
+          "name": "Golden Arched Door Grill",
+          "category": "Designer Door Grills",
+          "finish": "Antique gold / Champagne metallic.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        }
+      ]
+    },
+    "/home-decor": {
+      "nav": {
+        "ok": true,
+        "status": 200,
+        "url": "http://127.0.0.1:3000/home-decor"
+      },
+      "overflow": 0,
+      "cardCount": 30,
+      "h1": "Home Decor & Decorative Metalwork",
+      "loader": true,
+      "cards": [
+        {
+          "tid": "product-card",
+          "name": "Ashok Stambh – Premium Decorative Showpiece",
+          "category": "Sculptures Figurines",
+          "finish": "Gold",
+          "hasVariants": "true",
+          "swatches": 3,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Chhatrapati Shivaji Maharaj Style Devotional Figurine",
+          "category": "Lighting Wall Decor",
+          "finish": "White, orange/red and dark accents",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Seated Lord Shiva Decorative Idol",
+          "category": "Sculptures Figurines",
+          "finish": "Blue, yellow, orange and gold accents.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Premium Leopard Sculpture – Decorative Showpiece",
+          "category": "Sculptures Figurines",
+          "finish": "Gold Finish",
+          "hasVariants": "true",
+          "swatches": 4,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Blue Crystal Sphere Decorative Lamp",
+          "category": "Lighting Wall Decor",
+          "finish": "Blue illumination, transparent sphere and brown-black base.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Illuminated Crystal Pyramid Table Lamp",
+          "category": "Lighting Wall Decor",
+          "finish": "Amber gold, transparent crystal appearance and black base.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Illuminated Buddha Spiritual Wall Panel",
+          "category": "Sculptures Figurines",
+          "finish": "Black, antique gold and warm illuminated tones.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Traditional Indian Royal Portrait Artwork",
+          "category": "Sculptures Figurines",
+          "finish": "Multicolour, cream, green, red and dark brown frame.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Decorative Bonsai Tree with Red Berries",
+          "category": "Sculptures Figurines",
+          "finish": "Green, red, brown and white.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Purple Floral Gift Ornament",
+          "category": "Sculptures Figurines",
+          "finish": "Purple, lavender and transparent accents.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Miniature Succulent Floral Décor",
+          "category": "Sculptures Figurines",
+          "finish": "Green, pink, cream and brown tones.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Miniature Green Floral Arrangement",
+          "category": "Sculptures Figurines",
+          "finish": "Green, pink, cream and brown accents.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Traditional Elephant Decorative Figurine",
+          "category": "Sculptures Figurines",
+          "finish": "Blue, brown, gold and orange accents.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Black & White Decorative Cow Figurine",
+          "category": "Sculptures Figurines",
+          "finish": "White, black, green and pink accents.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Blonde Character Doll Figurine",
+          "category": "Sculptures Figurines",
+          "finish": "Blonde, yellow, blue and skin-tone accents.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Decorative Deer Pair Showpiece",
+          "category": "Sculptures Figurines",
+          "finish": "Blue, gold, brown and green accents.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "White Bird Figurines with Greenery",
+          "category": "Sculptures Figurines",
+          "finish": "White, green and gold accents.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Red Heart Character Decorative Figure",
+          "category": "Sculptures Figurines",
+          "finish": "Red, maroon, white and yellow accents.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "White-Bearded Gnome Figurine",
+          "category": "Sculptures Figurines",
+          "finish": "White, cream, red and pastel accents.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Colourful Standing Devotional Idol",
+          "category": "Sculptures Figurines",
+          "finish": "Orange, red, yellow, green and gold accents.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Seated Meditative Shiva Figurine",
+          "category": "Sculptures Figurines",
+          "finish": "Beige, brown, black and antique accents.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Decorative Ganesha Idol with Floral Accents",
+          "category": "Sculptures Figurines",
+          "finish": "Gold, green, red and yellow accents.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Goddess Saraswati with Veena",
+          "category": "Sculptures Figurines",
+          "finish": "White, pink, yellow, gold and pastel accents.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Antique Red Standing Devotional Idol",
+          "category": "Sculptures Figurines",
+          "finish": "Antique red, maroon and dark bronze tones.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Traditional Dark-Finish Figurine",
+          "category": "Lighting Wall Decor",
+          "finish": "Black, dark green and antique accents.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Standing Hanuman Decorative Idol",
+          "category": "Sculptures Figurines",
+          "finish": "Orange, yellow, white and gold accents.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Shiva Lingam with Naga Canopy",
+          "category": "Sculptures Figurines",
+          "finish": "Black, red, orange and gold accents.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "White Seated Devotional Figurine",
+          "category": "Lighting Wall Decor",
+          "finish": "White, cream, green and pastel accents.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Seated Hanuman Decorative Idol",
+          "category": "Lighting Wall Decor",
+          "finish": "Orange, red, yellow and gold accents.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Vintage Ornate Frame Wall Clock",
+          "category": "Lighting Wall Decor",
+          "finish": "Dark brown, black, ivory and gold accents.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        }
+      ]
+    },
+    "/metal-coating": {
+      "nav": {
+        "ok": true,
+        "status": 200,
+        "url": "http://127.0.0.1:3000/metal-coating"
+      },
+      "overflow": 0,
+      "cardCount": 0,
+      "h1": "Metal Coating & Finishing",
+      "loader": true,
+      "cards": []
+    },
+    "/about": {
+      "nav": {
+        "ok": true,
+        "status": 200,
+        "url": "http://127.0.0.1:3000/about"
+      },
+      "overflow": 0,
+      "cardCount": 0,
+      "h1": "Crafting Metal Finishes. Elevating Spaces.",
+      "loader": true,
+      "cards": []
+    },
+    "/wishlist": {
+      "nav": {
+        "ok": true,
+        "status": 200,
+        "url": "http://127.0.0.1:3000/login?redirectTo=/wishlist"
+      },
+      "overflow": 0,
+      "cardCount": 0,
+      "h1": "Sign in to your account",
+      "loader": true,
+      "cards": []
+    },
+    "/home-decor/ashok-stambh-premium-decorative-showpiece": {
+      "nav": {
+        "ok": true,
+        "status": 200,
+        "url": "http://127.0.0.1:3000/home-decor/ashok-stambh-premium-decorative-showpiece?variant=240e9e7d-3b7a-41a2-84c6-cd24d48a31f9"
+      },
+      "overflow": 0,
+      "cardCount": 4,
+      "h1": "Ashok Stambh – Premium Decorative Showpiece",
+      "loader": true,
+      "cards": [
+        {
+          "tid": "product-card",
+          "name": "Seated Lord Shiva Decorative Idol",
+          "category": "Sculptures Figurines",
+          "finish": "Blue, yellow, orange and gold accents.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Premium Leopard Sculpture – Decorative Showpiece",
+          "category": "Sculptures Figurines",
+          "finish": "Gold Finish",
+          "hasVariants": "true",
+          "swatches": 4,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Illuminated Buddha Spiritual Wall Panel",
+          "category": "Sculptures Figurines",
+          "finish": "Black, antique gold and warm illuminated tones.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Traditional Indian Royal Portrait Artwork",
+          "category": "Sculptures Figurines",
+          "finish": "Multicolour, cream, green, red and dark brown frame.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        }
+      ]
+    },
+    "/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine": {
+      "nav": {
+        "ok": true,
+        "status": 200,
+        "url": "http://127.0.0.1:3000/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine"
+      },
+      "overflow": 0,
+      "cardCount": 4,
+      "h1": "Chhatrapati Shivaji Maharaj Style Devotional Figurine",
+      "loader": true,
+      "cards": [
+        {
+          "tid": "product-card",
+          "name": "Blue Crystal Sphere Decorative Lamp",
+          "category": "Lighting Wall Decor",
+          "finish": "Blue illumination, transparent sphere and brown-black base.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Illuminated Crystal Pyramid Table Lamp",
+          "category": "Lighting Wall Decor",
+          "finish": "Amber gold, transparent crystal appearance and black base.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Traditional Dark-Finish Figurine",
+          "category": "Lighting Wall Decor",
+          "finish": "Black, dark green and antique accents.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "White Seated Devotional Figurine",
+          "category": "Lighting Wall Decor",
+          "finish": "White, cream, green and pastel accents.",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        }
+      ]
+    },
+    "/metal-coating/product/western-sector-market-exterior-metal-box-signage": {
+      "nav": {
+        "ok": true,
+        "status": 200,
+        "url": "http://127.0.0.1:3000/metal-coating/product/western-sector-market-exterior-metal-box-signage"
+      },
+      "overflow": 0,
+      "cardCount": 4,
+      "h1": "Western Sector Market Exterior Metal Box Signage",
+      "loader": true,
+      "cards": [
+        {
+          "tid": "product-card",
+          "name": "Talentia 3D Metal Letter Signage",
+          "category": "Metal Box Letters",
+          "finish": "Champagne Gold / Brushed Gold Appearance",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Custom Vertical Welcome & Photo Display Sign",
+          "category": "Metal Box Letters",
+          "finish": "Champagne Gold / Gold Metallic Appearance",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "EMMA GROUP – Integrated Marble Feature Signage",
+          "category": "Metal Box Letters",
+          "finish": "Antique Gold / Champagne Gold Appearance",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "EMMA GROUP – Opulent Life 3D Metal Letter Signage",
+          "category": "Metal Box Letters",
+          "finish": "Champagne Gold / Brushed Gold Appearance",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        }
+      ]
+    },
+    "/metal-coating/product/modern-sliding-metal-glass-partition": {
+      "nav": {
+        "ok": true,
+        "status": 200,
+        "url": "http://127.0.0.1:3000/metal-coating/product/modern-sliding-metal-glass-partition"
+      },
+      "overflow": 0,
+      "cardCount": 4,
+      "h1": "Modern Sliding Metal & Glass Partition",
+      "loader": true,
+      "cards": [
+        {
+          "tid": "product-card",
+          "name": "Gold Open-Shelf Architectural Divider",
+          "category": "Metal Partitions Room Dividers",
+          "finish": "Champagne gold / Light brushed metallic appearance",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Wood & Metal Geometric Partition",
+          "category": "Metal Partitions Room Dividers",
+          "finish": "Walnut brown / Dark wood appearance with metallic detailing",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Vertical Oval & Ring Motif Partition",
+          "category": "Metal Partitions Room Dividers",
+          "finish": "Brushed gold / Champagne metallic appearance",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        },
+        {
+          "tid": "product-card",
+          "name": "Contemporary Metal & Glass Room Divider",
+          "category": "Metal Partitions Room Dividers",
+          "finish": "Light bronze / Champagne gold framework with transparent glass appeara",
+          "hasVariants": "false",
+          "swatches": 0,
+          "overlap": false
+        }
+      ]
+    }
+  },
+  "responsive": [
+    {
+      "route": "/",
+      "width": 1920,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 28,
+      "cropped": []
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 28,
+      "cropped": []
+    },
+    {
+      "route": "/",
+      "width": 1024,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 28,
+      "cropped": []
+    },
+    {
+      "route": "/",
+      "width": 768,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 28,
+      "cropped": []
+    },
+    {
+      "route": "/",
+      "width": 480,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 28,
+      "cropped": []
+    },
+    {
+      "route": "/",
+      "width": 375,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 28,
+      "cropped": []
+    },
+    {
+      "route": "/",
+      "width": 320,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 28,
+      "cropped": []
+    },
+    {
+      "route": "/home-decor",
+      "width": 1920,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 30,
+      "cropped": []
+    },
+    {
+      "route": "/home-decor",
+      "width": 1440,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 30,
+      "cropped": []
+    },
+    {
+      "route": "/home-decor",
+      "width": 1024,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 30,
+      "cropped": []
+    },
+    {
+      "route": "/home-decor",
+      "width": 768,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 30,
+      "cropped": []
+    },
+    {
+      "route": "/home-decor",
+      "width": 480,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 30,
+      "cropped": []
+    },
+    {
+      "route": "/home-decor",
+      "width": 375,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 30,
+      "cropped": []
+    },
+    {
+      "route": "/home-decor",
+      "width": 320,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 30,
+      "cropped": []
+    },
+    {
+      "route": "/metal-coating",
+      "width": 1920,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 0,
+      "cropped": []
+    },
+    {
+      "route": "/metal-coating",
+      "width": 1440,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 0,
+      "cropped": []
+    },
+    {
+      "route": "/metal-coating",
+      "width": 1024,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 0,
+      "cropped": []
+    },
+    {
+      "route": "/metal-coating",
+      "width": 768,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 0,
+      "cropped": []
+    },
+    {
+      "route": "/metal-coating",
+      "width": 480,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 0,
+      "cropped": []
+    },
+    {
+      "route": "/metal-coating",
+      "width": 375,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 0,
+      "cropped": []
+    },
+    {
+      "route": "/metal-coating",
+      "width": 320,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 0,
+      "cropped": []
+    },
+    {
+      "route": "/about",
+      "width": 1920,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 0,
+      "cropped": []
+    },
+    {
+      "route": "/about",
+      "width": 1440,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 0,
+      "cropped": []
+    },
+    {
+      "route": "/about",
+      "width": 1024,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 0,
+      "cropped": []
+    },
+    {
+      "route": "/about",
+      "width": 768,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 0,
+      "cropped": []
+    },
+    {
+      "route": "/about",
+      "width": 480,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 0,
+      "cropped": []
+    },
+    {
+      "route": "/about",
+      "width": 375,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 0,
+      "cropped": []
+    },
+    {
+      "route": "/about",
+      "width": 320,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 0,
+      "cropped": []
+    },
+    {
+      "route": "/wishlist",
+      "width": 1920,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 0,
+      "cropped": []
+    },
+    {
+      "route": "/wishlist",
+      "width": 1440,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 0,
+      "cropped": []
+    },
+    {
+      "route": "/wishlist",
+      "width": 1024,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 0,
+      "cropped": []
+    },
+    {
+      "route": "/wishlist",
+      "width": 768,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 0,
+      "cropped": []
+    },
+    {
+      "route": "/wishlist",
+      "width": 480,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 0,
+      "cropped": []
+    },
+    {
+      "route": "/wishlist",
+      "width": 375,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 0,
+      "cropped": []
+    },
+    {
+      "route": "/wishlist",
+      "width": 320,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 0,
+      "cropped": []
+    },
+    {
+      "route": "/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "width": 1920,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 4,
+      "cropped": []
+    },
+    {
+      "route": "/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "width": 1440,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 4,
+      "cropped": []
+    },
+    {
+      "route": "/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "width": 1024,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 4,
+      "cropped": []
+    },
+    {
+      "route": "/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "width": 768,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 4,
+      "cropped": []
+    },
+    {
+      "route": "/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "width": 480,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 4,
+      "cropped": []
+    },
+    {
+      "route": "/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "width": 375,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 4,
+      "cropped": []
+    },
+    {
+      "route": "/home-decor/ashok-stambh-premium-decorative-showpiece",
+      "width": 320,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 4,
+      "cropped": []
+    },
+    {
+      "route": "/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+      "width": 1920,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 4,
+      "cropped": []
+    },
+    {
+      "route": "/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+      "width": 1440,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 4,
+      "cropped": []
+    },
+    {
+      "route": "/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+      "width": 1024,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 4,
+      "cropped": []
+    },
+    {
+      "route": "/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+      "width": 768,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 4,
+      "cropped": []
+    },
+    {
+      "route": "/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+      "width": 480,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 4,
+      "cropped": []
+    },
+    {
+      "route": "/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+      "width": 375,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 4,
+      "cropped": []
+    },
+    {
+      "route": "/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine",
+      "width": 320,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 4,
+      "cropped": []
+    },
+    {
+      "route": "/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "width": 1920,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 4,
+      "cropped": []
+    },
+    {
+      "route": "/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "width": 1440,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 4,
+      "cropped": []
+    },
+    {
+      "route": "/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "width": 1024,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 4,
+      "cropped": []
+    },
+    {
+      "route": "/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "width": 768,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 4,
+      "cropped": []
+    },
+    {
+      "route": "/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "width": 480,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 4,
+      "cropped": []
+    },
+    {
+      "route": "/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "width": 375,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 4,
+      "cropped": []
+    },
+    {
+      "route": "/metal-coating/product/western-sector-market-exterior-metal-box-signage",
+      "width": 320,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 4,
+      "cropped": []
+    },
+    {
+      "route": "/metal-coating/product/modern-sliding-metal-glass-partition",
+      "width": 1920,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 4,
+      "cropped": []
+    },
+    {
+      "route": "/metal-coating/product/modern-sliding-metal-glass-partition",
+      "width": 1440,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 4,
+      "cropped": []
+    },
+    {
+      "route": "/metal-coating/product/modern-sliding-metal-glass-partition",
+      "width": 1024,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 4,
+      "cropped": []
+    },
+    {
+      "route": "/metal-coating/product/modern-sliding-metal-glass-partition",
+      "width": 768,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 4,
+      "cropped": []
+    },
+    {
+      "route": "/metal-coating/product/modern-sliding-metal-glass-partition",
+      "width": 480,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 4,
+      "cropped": []
+    },
+    {
+      "route": "/metal-coating/product/modern-sliding-metal-glass-partition",
+      "width": 375,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 4,
+      "cropped": []
+    },
+    {
+      "route": "/metal-coating/product/modern-sliding-metal-glass-partition",
+      "width": 320,
+      "status": 200,
+      "navError": null,
+      "overflow": 0,
+      "cardCount": 4,
+      "cropped": []
+    }
+  ],
+  "interactions": {
+    "homeDecorCards": 67,
+    "quickViewOpened": true,
+    "quickViewEnquire": true,
+    "quickViewWhatsApp": true,
+    "quickViewClosed": true,
+    "variantButtons": 3,
+    "variantBefore": "Gold",
+    "imgBefore": "/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794806565920-vrpjo4v.webp&w=3840&q=70",
+    "variantAfter": "Silver",
+    "imgAfter": "/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794806592114-jw6j928.webp&w=3840&q=70",
+    "wishlistGuestPrompt": true,
+    "whatsappChooserPresent": true,
+    "whatsappChooserOpened": true,
+    "whatsappOptions": 2,
+    "whatsappHrefs": [
+      "https://wa.me/917977314013?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Home%20Decor%20product%3A%0A%0AProduct%3A%20Ashok%20Stambh%20%E2%80%93%20Premium%20Decorative%20Showpiece%0ACategory%3A%20Sculptures%20Figurines%0ASelected%20Finish%3A%20Silver%0ASKU%3A%20ASHOK-STG-SLV%0AProduct%20Link%3A%20http%3A%2F%2F127.0.0.1%3A3000%2Fhome-decor%2Fashok-stambh-premium-decorative-showpiece%0A%0APlease%20share%20the%20details%20and%20pricing.",
+      "https://wa.me/919082867541?text=Hello%2C%20I%20am%20interested%20in%20the%20following%20Home%20Decor%20product%3A%0A%0AProduct%3A%20Ashok%20Stambh%20%E2%80%93%20Premium%20Decorative%20Showpiece%0ACategory%3A%20Sculptures%20Figurines%0ASelected%20Finish%3A%20Silver%0ASKU%3A%20ASHOK-STG-SLV%0AProduct%20Link%3A%20http%3A%2F%2F127.0.0.1%3A3000%2Fhome-decor%2Fashok-stambh-premium-decorative-showpiece%0A%0APlease%20share%20the%20details%20and%20pricing."
+    ],
+    "cardTestId": "product-card",
+    "cardHasVariants": "true",
+    "metalCards": 0,
+    "navLinkCount": 1,
+    "navLinkVisible": true,
+    "navUrl": "http://127.0.0.1:3000/home-decor",
+    "loaderEventsNav": [
+      "init:false",
+      "true",
+      "false"
+    ],
+    "loaderAfterNav": "false",
+    "loaderPresentOnHomeDecor": true,
+    "pushState": {
+      "immediate": "true",
+      "after": "false",
+      "events": [
+        "init:false",
+        "true",
+        "false"
+      ],
+      "url": "http://127.0.0.1:3000/home-decor?qa=prog"
+    },
+    "replaceState": {
+      "immediate": "true",
+      "after": "false",
+      "events": [
+        "init:false",
+        "true",
+        "true",
+        "false",
+        "false"
+      ],
+      "url": "http://127.0.0.1:3000/metal-coating?qa=prog2"
+    }
+  },
+  "consoleErrors": [],
+  "pageErrors": [],
+  "requestFailures": [
+    {
+      "url": "http://127.0.0.1:3000/_next/image?url=%2Fhero-coating-process.jpg&w=1080&q=75",
+      "failure": "net::ERR_ABORTED",
+      "page": "http://127.0.0.1:3000/"
+    },
+    {
+      "url": "http://127.0.0.1:3000/_next/image?url=%2Fhero-coating-process.jpg&w=750&q=75",
+      "failure": "net::ERR_ABORTED",
+      "page": "http://127.0.0.1:3000/"
+    },
+    {
+      "url": "http://127.0.0.1:3000/_next/image?url=%2Fhero-coating-process.jpg&w=1080&q=75",
+      "failure": "net::ERR_ABORTED",
+      "page": "http://127.0.0.1:3000/"
+    },
+    {
+      "url": "http://127.0.0.1:3000/_next/image?url=%2Fafter-metal-polished.jpeg&w=828&q=75",
+      "failure": "net::ERR_ABORTED",
+      "page": "http://127.0.0.1:3000/"
+    },
+    {
+      "url": "http://127.0.0.1:3000/_next/image?url=%2Fbefore-metal-worn.jpeg&w=828&q=75",
+      "failure": "net::ERR_ABORTED",
+      "page": "http://127.0.0.1:3000/"
+    },
+    {
+      "url": "http://127.0.0.1:3000/_next/image?url=%2Fhero-coating-process.jpg&w=828&q=75",
+      "failure": "net::ERR_ABORTED",
+      "page": "http://127.0.0.1:3000/"
+    },
+    {
+      "url": "http://127.0.0.1:3000/_next/image?url=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F6585608%2Fpexels-photo-6585608.jpeg%3Fauto%3Dcompress%26cs%3Dtinysrgb%26w%3D1600&w=1080&q=75",
+      "failure": "net::ERR_ABORTED",
+      "page": "http://127.0.0.1:3000/home-decor"
+    },
+    {
+      "url": "http://127.0.0.1:3000/_next/image?url=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F6585608%2Fpexels-photo-6585608.jpeg%3Fauto%3Dcompress%26cs%3Dtinysrgb%26w%3D1600&w=828&q=75",
+      "failure": "net::ERR_ABORTED",
+      "page": "http://127.0.0.1:3000/home-decor"
+    },
+    {
+      "url": "http://127.0.0.1:3000/_next/image?url=%2Fhero-coating-process.jpg&w=1080&q=75",
+      "failure": "net::ERR_ABORTED",
+      "page": "http://127.0.0.1:3000/metal-coating"
+    },
+    {
+      "url": "http://127.0.0.1:3000/_next/image?url=%2Fhero-coating-process.jpg&w=828&q=75",
+      "failure": "net::ERR_ABORTED",
+      "page": "http://127.0.0.1:3000/metal-coating"
+    },
+    {
+      "url": "http://127.0.0.1:3000/_next/image?url=%2Fhero-brass-interior.jpg&w=828&q=75",
+      "failure": "net::ERR_ABORTED",
+      "page": "http://127.0.0.1:3000/about"
+    },
+    {
+      "url": "http://127.0.0.1:3000/login?redirectTo=%2Fwishlist&_rsc=bkv4v",
+      "failure": "net::ERR_ABORTED",
+      "page": "http://127.0.0.1:3000/wishlist"
+    },
+    {
+      "url": "http://127.0.0.1:3000/login?redirectTo=%2Fwishlist&_rsc=bkv4v",
+      "failure": "net::ERR_ABORTED",
+      "page": "http://127.0.0.1:3000/wishlist"
+    },
+    {
+      "url": "http://127.0.0.1:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794806565920-vrpjo4v.webp&w=828&q=75",
+      "failure": "net::ERR_ABORTED",
+      "page": "http://127.0.0.1:3000/home-decor/ashok-stambh-premium-decorative-showpiece"
+    },
+    {
+      "url": "http://127.0.0.1:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794853046255-xznk1oo.webp&w=1080&q=75",
+      "failure": "net::ERR_ABORTED",
+      "page": "http://127.0.0.1:3000/home-decor/chhatrapati-shivaji-maharaj-style-devotional-figurine"
+    },
+    {
+      "url": "http://127.0.0.1:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1794915278078-5wjh5ao.webp&w=1080&q=75",
+      "failure": "net::ERR_ABORTED",
+      "page": "http://127.0.0.1:3000/metal-coating/product/western-sector-market-exterior-metal-box-signage"
+    },
+    {
+      "url": "http://127.0.0.1:3000/_next/image?url=https%3A%2F%2Frbucefvtkiohmaugvkyz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fcatalog-images%2Fuploads%2F1795202093934-g00c7nz.webp&w=1080&q=75",
+      "failure": "net::ERR_ABORTED",
+      "page": "http://127.0.0.1:3000/metal-coating/product/modern-sliding-metal-glass-partition"
+    },
+    {
+      "url": "http://127.0.0.1:3000/home-decor?_rsc=ch806",
+      "failure": "net::ERR_ABORTED",
+      "page": "http://127.0.0.1:3000/"
+    }
+  ],
+  "badResponses": []
+}

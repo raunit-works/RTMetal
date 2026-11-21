@@ -20,6 +20,7 @@ import type {
   ProcessStep,
   BusinessDivision,
   WhyChooseUsItem,
+  MainSection,
 } from './types';
 import { createSupabaseClient } from './supabase/client';
 import { filterCategoryProducts, getDescendantSlugs, getValidCategories, isCategoryInSection } from './category-hierarchy';
@@ -247,12 +248,132 @@ export async function getProductBySlugAsync(slug: string, options: GetProductsOp
   }
 }
 
+const PRODUCT_SELECT = '*, categories(slug, name), product_images(*)';
+
+/**
+ * Query only the published products belonging to the supplied category ids.
+ * Used by targeted loaders so a page never has to download the whole catalog.
+ */
+async function fetchPublishedProductsByCategoryIds(
+  categoryIds: string[],
+  options: { excludeId?: string; limit?: number } = {}
+): Promise<Product[]> {
+  const uniqueIds = Array.from(new Set(categoryIds.filter(Boolean)));
+  if (uniqueIds.length === 0) return [];
+
+  try {
+    const supabase = createSupabaseClient();
+    let query = supabase
+      .from('products')
+      .select(PRODUCT_SELECT)
+      .eq('is_published', true)
+      .in('category_id', uniqueIds);
+
+    if (options.excludeId) {
+      query = query.neq('id', options.excludeId);
+    }
+
+    query = query
+      .order('is_pinned', { ascending: false })
+      .order('pinned_at', { ascending: false, nullsFirst: false })
+      .order('created_at', { ascending: false })
+      .order('id', { ascending: true });
+
+    if (options.limit && options.limit > 0) {
+      query = query.limit(options.limit);
+    }
+
+    const { data, error } = await query;
+
+    if (error) {
+      console.error('[Supabase Error] fetchPublishedProductsByCategoryIds failed:', error.message);
+      return [];
+    }
+
+    if (!data || data.length === 0) return [];
+
+    const mapped = data.map((row) => mapProductRow(row as unknown as DatabaseProductRow));
+    const variantsByProduct = await getPublicVariantsForProducts(
+      mapped.map((product) => product.id)
+    );
+    return mapped.map((product) => withVariants(product, variantsByProduct.get(product.id)));
+  } catch (err) {
+    console.error('[Supabase Error] fetchPublishedProductsByCategoryIds exception:', err);
+    return [];
+  }
+}
+
+function categoryIdsForSlugs(categories: Category[], slugs: Set<string>): string[] {
+  return categories
+    .filter((category) => Boolean(category.id) && slugs.has(category.slug))
+    .map((category) => category.id as string);
+}
+
+/**
+ * Fetch only the published products that belong to one division, optionally
+ * narrowed to a category and its descendants.
+ */
+export async function getProductsForSectionAsync(
+  categories: Category[],
+  section: MainSection,
+  categorySlug?: string,
+  options: { excludeId?: string; limit?: number } = {}
+): Promise<Product[]> {
+  const sectionCategories = categories.filter((category) =>
+    isCategoryInSection(category, section)
+  );
+  const valid = getValidCategories(sectionCategories);
+  const allowed = categorySlug
+    ? getDescendantSlugs(valid, categorySlug)
+    : new Set(valid.map((category) => category.slug));
+  const ids = categoryIdsForSlugs(valid, allowed);
+  const products = await fetchPublishedProductsByCategoryIds(ids, options);
+  return filterCategoryProducts(products, sectionCategories, categorySlug);
+}
+
+/**
+ * Fetch a small number of related products from the exact category of the
+ * current product. Mirrors the previous "same category" filter without
+ * loading the entire catalog.
+ */
+export async function getRelatedProductsForCategoryAsync(
+  categories: Category[],
+  categorySlug: string,
+  excludeId: string,
+  limit = 4
+): Promise<Product[]> {
+  const category = getValidCategories(categories).find(
+    (item) => item.slug === categorySlug
+  );
+  if (!category?.id) return [];
+
+  const products = await fetchPublishedProductsByCategoryIds([category.id], {
+    excludeId,
+    limit,
+  });
+  return filterCategoryProducts(products, categories, categorySlug).slice(0, limit);
+}
+
 /**
  * Fetch products by category slug from Supabase.
  */
 export async function getProductsByCategoryAsync(categorySlug: string): Promise<Product[]> {
-  const { categories: publicCategories, products: publicProducts } = await getPublicCatalogAsync();
-  return filterCategoryProducts(publicProducts, publicCategories, categorySlug === 'all' ? undefined : categorySlug);
+  const categories = await getCategoriesAsync({
+    allowStaticFallback: false,
+    products: [],
+  });
+
+  if (categorySlug === 'all') {
+    const products = await getProductsAsync({ allowStaticFallback: false });
+    return filterCategoryProducts(products, categories);
+  }
+
+  const valid = getValidCategories(categories);
+  const allowed = getDescendantSlugs(valid, categorySlug);
+  const products = await fetchPublishedProductsByCategoryIds(
+    categoryIdsForSlugs(valid, allowed)
+  );
+  return filterCategoryProducts(products, categories, categorySlug);
 }
 
 /**
@@ -300,6 +421,30 @@ export async function getPublishedProductCategoryRefsAsync(): Promise<ProductCat
   });
 }
 
+/**
+ * Minimal published-product identifiers for sitemap generation. Avoids
+ * downloading full product rows, images and variants just to list URLs.
+ */
+export async function getPublishedProductSlugsAsync(): Promise<
+  Array<{ id: string; slug: string }>
+> {
+  const supabase = createSupabaseClient();
+  const { data, error } = await supabase
+    .from('products')
+    .select('id, slug')
+    .eq('is_published', true)
+    .order('id', { ascending: true });
+
+  if (error) {
+    console.error('[Supabase Error] getPublishedProductSlugsAsync failed:', error.message);
+    return [];
+  }
+
+  return (data ?? [])
+    .filter((row) => Boolean(row.slug))
+    .map((row) => ({ id: String(row.id), slug: String(row.slug) }));
+}
+
 export async function getCategoriesAsync(
   options: GetCategoriesOptions = {}
 ): Promise<Category[]> {
@@ -345,11 +490,43 @@ export async function getPublicCatalogAsync(): Promise<{ categories: Category[];
   return { categories, products: filterCategoryProducts(products, categories) };
 }
 
+/**
+ * Homepage snapshot. Products and categories are independent requests, so they
+ * run in parallel instead of fetching the catalog first to derive counts.
+ * The homepage consumers only read category slug/section, not productCount.
+ */
+export async function getHomeCatalogAsync(): Promise<{ categories: Category[]; products: Product[] }> {
+  const [products, categories] = await Promise.all([
+    getProductsAsync({ allowStaticFallback: false }),
+    getCategoriesAsync({ allowStaticFallback: false, products: [] }),
+  ]);
+  return { categories, products: filterCategoryProducts(products, categories) };
+}
+
 export async function getPublicProductBySlugAsync(slug: string): Promise<Product | undefined> {
-  const product = await getProductBySlugAsync(slug, { allowStaticFallback: false });
-  if (!product) return undefined;
-  const categories = await getCategoriesAsync({ allowStaticFallback: false, products: [] });
-  return filterCategoryProducts([product], categories)[0];
+  const { product } = await getPublicProductWithCategoriesAsync(slug);
+  return product;
+}
+
+/**
+ * Resolve one public product together with the category list used to validate
+ * it. Both reads are independent and are issued in parallel so detail pages do
+ * not query categories twice.
+ */
+export async function getPublicProductWithCategoriesAsync(
+  slug: string
+): Promise<{ product: Product | undefined; categories: Category[] }> {
+  const [product, categories] = await Promise.all([
+    getProductBySlugAsync(slug, { allowStaticFallback: false }),
+    getCategoriesAsync({ allowStaticFallback: false, products: [] }),
+  ]);
+
+  if (!product) return { product: undefined, categories };
+
+  return {
+    product: filterCategoryProducts([product], categories)[0],
+    categories,
+  };
 }
 
 /**
@@ -486,7 +663,12 @@ export async function getRelatedMetalCategoriesForServiceAsync(
     const links = await getServiceCategoryLinksForService(service.id);
     if (links.length === 0) return [];
 
-    const { categories } = await getPublicCatalogAsync();
+    // Only category metadata and lightweight counts are needed here; loading
+    // the complete product catalog would transfer images and variants needlessly.
+    const categories = await getCategoriesAsync({
+      allowStaticFallback: false,
+      lightweightCounts: true,
+    });
     const metalCategories = categories.filter((category) =>
       isCategoryInSection(category, 'metal_services')
     );

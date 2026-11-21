@@ -1,14 +1,17 @@
 import type { Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
 import { ProductDetailView } from '@/components/products/product-detail-view';
-import { getPublicProductBySlugAsync, getPublicCatalogAsync, getCategoriesAsync } from '@/lib/data-access';
+import {
+  getPublicProductWithCategoriesAsync,
+  getRelatedProductsForCategoryAsync,
+} from '@/lib/data-access';
 import { isCategoryInSection } from '@/lib/category-hierarchy';
 import { getSiteUrlForPath } from '@/lib/site-url';
 
 export const revalidate = 0;
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const product = await getPublicProductBySlugAsync(params.slug);
+  const { product, categories } = await getPublicProductWithCategoriesAsync(params.slug);
 
   if (!product) {
     return {
@@ -17,7 +20,6 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     };
   }
 
-  const categories = await getCategoriesAsync({ allowStaticFallback: false, products: [] });
   const category = categories.find((item) => item.slug === product.category);
 
   if (!category || !isCategoryInSection(category, 'metal_services')) {
@@ -51,13 +53,12 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 export default async function MetalProductDetailPage({ params }: { params: { slug: string } }) {
-  const product = await getPublicProductBySlugAsync(params.slug);
+  const { product, categories } = await getPublicProductWithCategoriesAsync(params.slug);
 
   if (!product) {
     notFound();
   }
 
-  const categories = await getCategoriesAsync({ allowStaticFallback: false, products: [] });
   const category = categories.find((item) => item.slug === product.category);
 
   // Never default a missing or out-of-division category to the Metal division.
@@ -72,10 +73,13 @@ export default async function MetalProductDetailPage({ params }: { params: { slu
     notFound();
   }
 
-  const { products: publicProducts } = await getPublicCatalogAsync();
-  const relatedProducts = publicProducts
-    .filter((p) => p.id !== product.id && p.category === product.category)
-    .slice(0, 4);
+  // Only the related products for this category are loaded.
+  const relatedProducts = await getRelatedProductsForCategoryAsync(
+    categories,
+    product.category,
+    product.id,
+    4
+  );
 
   return (
     <ProductDetailView

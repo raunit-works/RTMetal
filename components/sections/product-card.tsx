@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import Image from 'next/image';
@@ -13,6 +13,7 @@ import { getDefaultVariant, getVariantPrimaryImage, sortProductVariants } from '
 import {
   buildProductEnquiryHref,
   buildRichProductEnquiryMessage,
+  formatCategoryLabel,
 } from '@/lib/product-variants/enquiry';
 import {
   getCompactFinishLabel,
@@ -26,6 +27,7 @@ import { useWishlist } from '@/components/providers/wishlist-provider';
 interface ProductCardProps {
   product: Product;
   division?: 'home_decor' | 'metal_services';
+  dataTestId?: string;
 }
 
 function FinishSwatchPreview({
@@ -59,7 +61,7 @@ function FinishSwatchPreview({
   );
 }
 
-export function ProductCard({ product, division = 'home_decor' }: ProductCardProps) {
+export function ProductCard({ product, division = 'home_decor', dataTestId = 'product-card' }: ProductCardProps) {
   const [quickView, setQuickView] = useState(false);
   const [isPending, setIsPending] = useState(false);
   const [origin, setOrigin] = useState('');
@@ -131,6 +133,13 @@ export function ProductCard({ product, division = 'home_decor' }: ProductCardPro
     [division, product.id, product.name, selectedVariant]
   );
   const productImageFallback = normalizeImageSrc(product.image) || '/images/placeholder.png';
+  const displayCategory = formatCategoryLabel(product.category || '') || (division === 'metal_services' ? 'Metal Services' : 'Home Decor');
+  const displayFinish =
+    selectedVariant?.finishName?.trim() ||
+    product.colorFinish?.trim() ||
+    product.material?.trim() ||
+    '';
+  const hasVariants = activeVariants.length > 0;
 
   const handleWishlistToggle = async (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -148,20 +157,22 @@ export function ProductCard({ product, division = 'home_decor' }: ProductCardPro
   return (
     <>
       <div
-        className="group relative flex h-full flex-col"
-        data-testid="product-card"
+        className="group relative flex h-full flex-col rounded-2xl border border-border/60 bg-background"
+        data-testid={dataTestId}
         data-product-id={product.id}
+        data-has-variants={hasVariants ? 'true' : 'false'}
       >
-        <div className="relative aspect-[4/5] shrink-0 overflow-hidden rounded-2xl bg-muted">
+        {/* 1. Product Image */}
+        <div className="relative aspect-[4/5] w-full shrink-0 overflow-hidden rounded-t-2xl bg-muted">
           <Image
             src={normalizeImageSrc(
               getVariantPrimaryImage(selectedVariant) || product.cardImage || product.image
             ) || productImageFallback}
             alt={product.name}
             fill
-            sizes="(max-width: 1024px) 50vw, 25vw"
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
             quality={70}
-            className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           />
           {product.badge && (
             <span
@@ -180,7 +191,9 @@ export function ProductCard({ product, division = 'home_decor' }: ProductCardPro
             onClick={handleWishlistToggle}
             disabled={isPending}
             aria-label={isSaved ? 'Remove from wishlist' : 'Add to wishlist'}
-            className="absolute right-3 top-3 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white/80 text-ink backdrop-blur-md transition-all hover:bg-white disabled:opacity-50 sm:h-9 sm:w-9"
+            aria-pressed={isSaved}
+            data-testid="wishlist-toggle"
+            className="absolute right-3 top-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-ink shadow-sm backdrop-blur-md transition-all hover:bg-white disabled:opacity-50"
           >
             {isPending ? (
               <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
@@ -198,14 +211,14 @@ export function ProductCard({ product, division = 'home_decor' }: ProductCardPro
             <Button
               asChild
               size="sm"
-              className="h-11 flex-1 rounded-full bg-ink/90 text-white backdrop-blur-md hover:bg-ink sm:h-9"
+              className="h-10 flex-1 rounded-full bg-ink/90 text-white backdrop-blur-md hover:bg-ink"
             >
               <Link href={productDetailLink}>View Details</Link>
             </Button>
             <Button
               size="sm"
               variant="outline"
-              className="h-11 w-11 shrink-0 rounded-full bg-white/80 px-0 text-ink backdrop-blur-md hover:bg-white sm:h-9 sm:w-9"
+              className="h-10 w-10 shrink-0 rounded-full bg-white/90 px-0 text-ink backdrop-blur-md hover:bg-white"
               onClick={() => setQuickView(true)}
               aria-label="Quick view"
             >
@@ -214,27 +227,54 @@ export function ProductCard({ product, division = 'home_decor' }: ProductCardPro
           </div>
         </div>
 
-        <div className="mt-3 flex flex-1 flex-col gap-3 sm:mt-4 sm:flex-row sm:flex-wrap sm:items-start sm:justify-between sm:gap-2">
-          <div className="order-1 min-w-0 sm:flex-1 sm:basis-0">
-            <Link href={productDetailLink} className="block">
-              <h3 className="line-clamp-2 min-h-[2.8em] text-[13px] font-semibold leading-[1.4] transition-colors hover:text-gold-deep sm:line-clamp-none sm:min-h-0 sm:text-sm sm:leading-snug">
+        {/* Info + Actions */}
+        <div className="flex flex-1 flex-col p-3 sm:p-4" data-testid="product-card-content">
+          <div className="flex flex-1 flex-col gap-2">
+            {/* 2. Product Name */}
+            <Link href={productDetailLink} className="block min-w-0">
+              <h3
+                data-testid="product-card-name"
+                className="break-words [overflow-wrap:anywhere] text-[13px] font-semibold leading-[1.4] text-foreground transition-colors hover:text-gold-deep sm:text-sm sm:leading-snug [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] overflow-hidden"
+              >
                 {product.name}
               </h3>
             </Link>
-            <div className="mt-1 hidden items-center gap-1 sm:flex">
-              <Star className="h-3 w-3 fill-gold text-gold" />
-            </div>
-          </div>
-          {activeVariants.length >= 2 && (
-            <div className="order-2 w-full min-w-0 sm:order-3 sm:basis-full">
-                <div className="flex min-w-0 items-center justify-between gap-2">
-                  <span className="shrink-0 text-[10px] font-semibold uppercase tracking-[0.16em] text-gold-deep">
-                    Finish
+
+            {/* 3. Product Category */}
+            <p
+              data-testid="product-card-category"
+              className="break-words [overflow-wrap:anywhere] text-[10px] font-semibold uppercase tracking-[0.16em] text-gold-deep [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] overflow-hidden"
+            >
+              {displayCategory}
+            </p>
+
+            {/* 4. Product Finish */}
+            <p
+              data-testid="product-card-finish"
+              className={cn(
+                'min-h-[1.25rem] break-words [overflow-wrap:anywhere] text-xs leading-5 [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] overflow-hidden',
+                displayFinish ? 'text-muted-foreground' : 'text-transparent'
+              )}
+              aria-label={displayFinish ? `Finish: ${displayFinish}` : undefined}
+            >
+              {displayFinish || 'Finish'}
+            </p>
+
+            {/* 5. Product Variants (only when available) */}
+            {hasVariants && (
+              <div
+                className="mt-0.5 w-full min-w-0"
+                data-testid="product-card-variants"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="flex min-w-0 items-start justify-between gap-2">
+                  <span className="shrink-0 text-[10px] font-semibold uppercase tracking-[0.14em] text-foreground/70">
+                    Variants
                   </span>
                   <span
                     data-testid="selected-finish-name"
                     aria-live="polite"
-                    className="min-w-0 truncate text-right text-[10px] font-medium text-muted-foreground"
+                    className="min-w-0 break-words [overflow-wrap:anywhere] text-right text-[10px] font-medium text-muted-foreground [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] overflow-hidden"
                   >
                     {selectedVariant?.finishName}
                   </span>
@@ -244,7 +284,7 @@ export function ProductCard({ product, division = 'home_decor' }: ProductCardPro
                   role="group"
                   aria-label={`Select a finish for ${product.name}`}
                   data-testid="finish-swatches"
-                  className="mt-1.5 flex w-full touch-pan-x flex-row flex-nowrap items-start gap-2.5 overflow-x-auto overflow-y-hidden overscroll-x-contain py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                  className="mt-1.5 flex w-full touch-pan-x flex-row flex-nowrap items-start gap-2 overflow-x-auto overflow-y-hidden overscroll-x-contain py-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
                 >
                   {activeVariants.map((variant, index) => {
                     const value = finishValuesByVariantId.get(variant.id);
@@ -271,13 +311,13 @@ export function ProductCard({ product, division = 'home_decor' }: ProductCardPro
                         data-variant-available={isAvailable}
                         onClick={() => setChosenVariantId(variant.id)}
                         className={cn(
-                          'group/finish flex w-12 shrink-0 flex-col items-center gap-1 rounded-md py-0.5 text-center transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+                          'group/finish flex w-11 shrink-0 flex-col items-center gap-1 rounded-md py-0.5 text-center transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background',
                           isAvailable ? 'opacity-100' : 'opacity-50'
                         )}
                       >
                         <span
                           className={cn(
-                            'relative flex h-[25px] w-[25px] items-center justify-center rounded-full border transition-transform duration-200',
+                            'relative flex h-[24px] w-[24px] items-center justify-center rounded-full border transition-transform duration-200',
                             isSelected
                               ? 'border-gold-deep ring-2 ring-gold/45 ring-offset-1 ring-offset-background'
                               : 'border-border/80 group-hover/finish:scale-105 group-focus-visible/finish:scale-105'
@@ -316,25 +356,29 @@ export function ProductCard({ product, division = 'home_decor' }: ProductCardPro
                 </div>
               </div>
             )}
-          <div className="order-3 mt-auto w-full sm:order-2 sm:mt-0 sm:w-auto sm:shrink-0 sm:text-right">
-            <div className="flex items-center justify-end gap-2">
+          </div>
+
+          {/* 6. WhatsApp + 7. Enquire Now (always last, bottom-aligned) */}
+          <div className="mt-auto pt-3" data-testid="product-card-actions">
+            <div className="flex items-center gap-2">
               <WhatsAppEnquiryButton
                 mode={division}
                 message={enquiryWhatsAppMessage}
                 variant="outline"
                 size="icon"
-                className="h-10 w-10 rounded-full border-[#25D366]/40 text-[#25D366]"
+                className="h-10 w-10 shrink-0 rounded-full border-[#25D366]/40 text-[#25D366] hover:bg-[#25D366]/5"
                 ariaLabel="Enquire on WhatsApp"
                 title="Enquire on WhatsApp"
                 showIcon
               />
               <Button
                 asChild
-                className="h-auto min-h-[44px] w-full rounded-full px-4 text-sm sm:h-10 sm:min-h-0 sm:w-auto"
+                data-testid="product-card-enquire"
+                className="h-10 min-h-[40px] min-w-0 flex-1 rounded-full bg-ink px-3 text-xs font-semibold text-white shadow-sm transition-colors hover:bg-ink/90 sm:px-4 sm:text-sm"
               >
-                <Link href={productEnquiryHref}>
-                  Enquire Now
-                  <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                <Link href={productEnquiryHref} className="min-w-0">
+                  <span className="truncate">Enquire Now</span>
+                  <ArrowRight className="ml-1.5 h-4 w-4 shrink-0 sm:ml-2" aria-hidden="true" />
                 </Link>
               </Button>
             </div>
@@ -351,9 +395,9 @@ export function ProductCard({ product, division = 'home_decor' }: ProductCardPro
   );
 }
 
-/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+/* Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
    Polished centered Quick-View Modal
-â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
 const GALLERY_CACHE_TTL_MS = 5 * 60 * 1000;
 const galleryCache = new Map<string, { images: ProductImage[]; ts: number }>();
 
@@ -479,7 +523,7 @@ function QuickViewModal({
     setGalleryLoading(false);
   }, [product.id]);
 
-  /* â”€â”€ Prevent background scroll while modal is open â”€â”€ */
+  /* Ã¢â€â‚¬Ã¢â€â‚¬ Prevent background scroll while modal is open Ã¢â€â‚¬Ã¢â€â‚¬ */
   useEffect(() => {
     const prev = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
@@ -488,7 +532,7 @@ function QuickViewModal({
     };
   }, []);
 
-  /* â”€â”€ Close on Escape key â”€â”€ */
+  /* Ã¢â€â‚¬Ã¢â€â‚¬ Close on Escape key Ã¢â€â‚¬Ã¢â€â‚¬ */
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -499,7 +543,7 @@ function QuickViewModal({
 
   return (
     <>
-      {/* â”€â”€ Dark overlay / backdrop â”€â”€ */}
+      {/* Ã¢â€â‚¬Ã¢â€â‚¬ Dark overlay / backdrop Ã¢â€â‚¬Ã¢â€â‚¬ */}
       <motion.div
         key="qv-backdrop"
         initial={{ opacity: 0 }}
@@ -511,7 +555,7 @@ function QuickViewModal({
         aria-hidden="true"
       />
 
-      {/* â”€â”€ Centering wrapper (flex so the modal is always in the viewport centre) â”€â”€ */}
+      {/* Ã¢â€â‚¬Ã¢â€â‚¬ Centering wrapper (flex so the modal is always in the viewport centre) Ã¢â€â‚¬Ã¢â€â‚¬ */}
       <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8">
         <motion.div
           key="qv-modal"
@@ -526,7 +570,7 @@ function QuickViewModal({
           onClick={(e) => e.stopPropagation()}
           className="relative w-full max-w-3xl max-h-[90dvh] overflow-y-auto rounded-3xl bg-background shadow-[0_40px_100px_-10px_rgba(0,0,0,0.4)] ring-1 ring-border/30"
         >
-          {/* â”€â”€ Close button â”€â”€ */}
+          {/* Ã¢â€â‚¬Ã¢â€â‚¬ Close button Ã¢â€â‚¬Ã¢â€â‚¬ */}
           <button
             onClick={onClose}
             className="absolute right-4 top-4 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-background/90 shadow-lg ring-1 ring-border/50 backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-muted"
@@ -536,7 +580,7 @@ function QuickViewModal({
           </button>
 
           <div className="grid sm:grid-cols-[1fr_1.1fr]">
-            {/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Left â€” Large Product Image â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+            {/* Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ Left Ã¢â‚¬â€ Large Product Image Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */}
             <div className="relative min-h-[260px] sm:min-h-[500px]">
               <Image
                 src={normalizeImageSrc(selectedImage?.imageUrl ?? (product.cardImage || product.image)) || '/images/placeholder.png'}
@@ -563,7 +607,7 @@ function QuickViewModal({
               )}
             </div>
 
-            {/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Right â€” Product Details â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+            {/* Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ Right Ã¢â‚¬â€ Product Details Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */}
             <div className="flex flex-col justify-between gap-8 p-7 sm:p-9">
               <div className="space-y-0">
                 {/* Category eyebrow */}
@@ -604,7 +648,7 @@ function QuickViewModal({
                   {product.shortDescription || product.description}
                 </p>
 
-                {/* Attribute pills â€” only rendered when data is available */}
+                {/* Attribute pills Ã¢â‚¬â€ only rendered when data is available */}
                 {(product.material || product.colorFinish || product.dimensions) && (
                   <div className="mt-5 flex flex-wrap gap-2">
                     {product.material && (
@@ -627,7 +671,7 @@ function QuickViewModal({
               </div>
 
               {galleryLoading && (
-                <p className="text-xs text-muted-foreground">Loading more images…</p>
+                <p className="text-xs text-muted-foreground">Loading more imagesâ€¦</p>
               )}
 
               {galleryError && (
@@ -687,7 +731,7 @@ function QuickViewModal({
                 </div>
               )}
 
-              {/* â”€â”€ Action buttons â”€â”€ */}
+              {/* Ã¢â€â‚¬Ã¢â€â‚¬ Action buttons Ã¢â€â‚¬Ã¢â€â‚¬ */}
               <div className="flex flex-col gap-3">
                 <Button
                   asChild

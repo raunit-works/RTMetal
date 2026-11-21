@@ -4,6 +4,7 @@ import localFont from 'next/font/local';
 import { Navbar } from '@/components/layout/navbar';
 import { Footer } from '@/components/layout/footer';
 import { ScrollProgress } from '@/components/layout/scroll-progress';
+import { RouteLoadingIndicator } from '@/components/layout/route-loading-indicator';
 import { WishlistProvider } from '@/components/providers/wishlist-provider';
 import { getSiteUrl } from '@/lib/site-url';
 
@@ -92,6 +93,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-background font-sans text-foreground antialiased">
         <WishlistProvider>
           <ScrollProgress />
+          <RouteLoadingIndicator />
           <Navbar />
           <main>{children}</main>
           <Footer />
