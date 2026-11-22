@@ -92,7 +92,6 @@ const footerLinks = {
     { label: 'About', href: '/about' },
     { label: 'Before & After', href: '/before-after' },
     { label: 'Our Process', href: '/#process' },
-    { label: 'Testimonials', href: '/#testimonials' },
     { label: 'Contact', href: '/#contact' },
   ],
 };
@@ -233,6 +232,8 @@ export function Footer() {
             </div>
 
             {/* Social links */}
+
+            {/* Social links */}
             <div className="mt-6 flex items-center gap-3">
               <a
                 href={INSTAGRAM_URL}
@@ -255,26 +256,17 @@ export function Footer() {
                 title="Chat on WhatsApp"
               />
 
-              {isEmailVerified() ? (
-                <a
-                  href={`mailto:${EMAIL}`}
-                  aria-label="Email"
-                  className={socialClass}
-                >
-                  <Mail className="h-5 w-5" />
-                </a>
-              ) : (
-                <button
-                  type="button"
-                  disabled
-                  aria-label="Email contact pending"
-                  title="Business email pending client approval"
-                  className={disabledSocialClass}
-                >
-                  <Mail className="h-5 w-5" />
-                </button>
-              )}
+              {/* Email icon */}
+              <a
+                href="mailto:rtmetalservice@gmail.com"
+                aria-label="Email rtmetalservice@gmail.com"
+                title="rtmetalservice@gmail.com"
+                className={socialClass}
+              >
+                <Mail className="h-5 w-5" />
+              </a>
             </div>
+
           </div>
 
           {/* RIGHT — NAVIGATION, CONTACT AND LOCATION */}
