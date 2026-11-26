@@ -9,6 +9,7 @@ import { Reveal, StaggerGroup, StaggerItem } from '@/components/motion/reveal';
 import { SectionHeading } from '@/components/sections/section-heading';
 import { CtaBanner } from '@/components/sections/cta-banner';
 import { ProductVariantProvider } from '@/components/products/product-variant-provider';
+import { ProductReviewsSection } from '@/components/reviews/product-reviews-section';
 import { VariantImageGallery } from '@/components/products/variant-image-gallery';
 import { ProductVariantSelector } from '@/components/products/product-variant-selector';
 import {
@@ -27,6 +28,7 @@ import {
   getProductsForSectionAsync,
 } from '@/lib/data-access';
 import { isCategoryInSection } from '@/lib/category-hierarchy';
+import { getProductRatingDisplay } from '@/lib/catalog/product-rating';
 import { getSiteUrlForPath } from '@/lib/site-url';
 import { MainSection } from '@/lib/types';
 
@@ -110,6 +112,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
     product.weight ||
     product.stockStatus ||
     product.careInstructions;
+  const ratingDisplay = getProductRatingDisplay(product);
 
   return (
     <>
@@ -169,22 +172,28 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
                   {product.name}
                 </h1>
 
-                <div className="mt-4 flex items-center gap-3">
-                  <div className="flex items-center gap-1">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`h-4 w-4 ${i < Math.round(product.rating)
-                            ? 'fill-gold text-gold'
-                            : 'text-muted'
-                          }`}
-                      />
-                    ))}
+                {ratingDisplay.kind === 'rating' ? (
+                  <div data-testid="product-rating" className="mt-4 flex items-center gap-3">
+                    <div className="flex items-center gap-1">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <Star
+                          key={i}
+                          className={`h-4 w-4 ${i < Math.round(ratingDisplay.rating)
+                              ? 'fill-gold text-gold'
+                              : 'text-muted'
+                            }`}
+                        />
+                      ))}
+                    </div>
+                    <span className="text-sm font-medium text-muted-foreground">
+                      {ratingDisplay.rating} / 5.0 Rating
+                    </span>
                   </div>
-                  <span className="text-sm font-medium text-muted-foreground">
-                    {product.rating} / 5.0 Rating
-                  </span>
-                </div>
+                ) : ratingDisplay.kind === 'empty' ? (
+                  <p data-testid="product-rating-empty" className="mt-4 text-sm font-medium text-muted-foreground">
+                    No reviews yet
+                  </p>
+                ) : null}
 
                 <ProductVariantSelector />
 
@@ -306,6 +315,11 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
               </Reveal>
             </div>
           </div>
+          <ProductReviewsSection
+            productId={product.id}
+            productName={product.name}
+            className="mt-14 sm:mt-12 md:mt-12 lg:mt-16"
+          />
           </ProductVariantProvider>
         </div>
       </section>

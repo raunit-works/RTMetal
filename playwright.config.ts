@@ -20,6 +20,7 @@ export default defineConfig({
     'qa-service-categories.spec.ts',
     'tests/admin-product-edit.spec.ts',
     'tests/enquiry-validation.spec.ts',
+    'tests/review-validation.spec.ts',
     'tests/product-detail-formatting.spec.ts',
     'tests/product-detail-page.spec.ts',
     'tests/admin-product-pin.spec.ts',
