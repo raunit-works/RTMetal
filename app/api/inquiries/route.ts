@@ -83,7 +83,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const supabase = createSupabaseServerClient();
+    const supabase = await createSupabaseServerClient();
 
     // 3. User Authentication binding
     let userId: string | null = null;

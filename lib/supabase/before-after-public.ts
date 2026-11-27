@@ -33,7 +33,7 @@ const EMPTY_FACETS: BeforeAfterFacets = {
 
 export async function getPublishedBeforeAfterFacets(): Promise<BeforeAfterFacets> {
   try {
-    const supabase = createSupabaseServerClient();
+    const supabase = await createSupabaseServerClient();
     const projectsResult = await supabase
       .from('before_after_projects')
       .select('id, comparison_type, material')
@@ -115,7 +115,7 @@ export async function getPublishedBeforeAfterFacets(): Promise<BeforeAfterFacets
 }
 
 async function resolvePublishedServiceId(serviceSlug: string): Promise<string | null> {
-  const supabase = createSupabaseServerClient();
+  const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase
     .from('services')
     .select('id')
@@ -135,7 +135,7 @@ export async function getPublishedBeforeAfterProjects(options: {
   const limit = Math.min(48, Math.max(1, options.limit ?? 8));
 
   try {
-    const supabase = createSupabaseServerClient();
+    const supabase = await createSupabaseServerClient();
     let projectIdsForService: string[] | null = null;
 
     if (options.serviceSlug) {
@@ -232,7 +232,7 @@ export async function getPublishedBeforeAfterProjectBySlug(
   slug: string
 ): Promise<BeforeAfterProject | null> {
   try {
-    const supabase = createSupabaseServerClient();
+    const supabase = await createSupabaseServerClient();
     const { data, error } = await supabase
       .from('before_after_projects')
       .select(BEFORE_AFTER_PROJECT_SELECT)

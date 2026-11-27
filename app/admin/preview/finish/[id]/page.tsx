@@ -37,19 +37,20 @@ function statusClass(status: MetalFinishStatus) {
 export default async function MetalFinishPreviewPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = await params;
   const { isAdmin } = await verifyAdminAccess();
 
   if (!isAdmin) {
     redirect(
       `/login?redirectTo=${encodeURIComponent(
-        `/admin/preview/finish/${params.id}`
+        `/admin/preview/finish/${id}`
       )}`
     );
   }
 
-  const finish = await getMetalFinishPreviewById(params.id);
+  const finish = await getMetalFinishPreviewById(id);
 
   if (!finish) {
     notFound();

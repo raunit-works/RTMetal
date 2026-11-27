@@ -75,7 +75,7 @@ export interface ReviewRouteDependencies {
 
 async function resolveAuthenticatedUserId(): Promise<string | null> {
   try {
-    const supabase = createSupabaseServerClient();
+    const supabase = await createSupabaseServerClient();
     const { data, error } = await supabase.auth.getUser();
     return !error && data.user ? data.user.id : null;
   } catch {
@@ -160,10 +160,13 @@ async function serializeExistingReviewImages(
 
 function submissionRateLimitHeaders(rateLimitResult: RateLimitResult) {
   return {
+    'Cache-Control': 'no-store',
     'X-RateLimit-Remaining': String(rateLimitResult.remaining),
     'X-RateLimit-Reset': String(Math.ceil(rateLimitResult.resetTime / 1000)),
   };
 }
+
+const signedResponseHeaders = { 'Cache-Control': 'no-store' };
 
 async function buildSubmissionSuccessResponse(
   deps: ReviewRouteDependencies,
@@ -276,8 +279,8 @@ export async function handleReviewFetch(
           },
         },
       },
-      { status: 200 }
-    );
+    { status: 200, headers: signedResponseHeaders }
+  );
   } catch (error) {
     if (error instanceof ReviewRouteError) {
       return NextResponse.json(
@@ -537,7 +540,7 @@ export async function handleReviewSubmission(
               },
             },
           },
-          { status: 200, headers: rateLimitHeaders }
+          { status: 200, headers: { ...rateLimitHeaders, ...signedResponseHeaders } }
         );
       }
 

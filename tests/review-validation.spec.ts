@@ -620,6 +620,7 @@ test.describe('review GET API', () => {
     const body = await response.json() as any;
     const serialized = JSON.stringify(body);
     expect(response.status).toBe(200);
+    expect(response.headers.get('cache-control')).toBe('no-store');
     expect(serialized).not.toContain(privatePath);
     expect(serialized).not.toContain('storagePath');
     expect(body.data.reviews[0].userId).toBeUndefined();
@@ -848,6 +849,7 @@ test.describe('review POST API orchestration', () => {
     const body = await response.json() as any;
 
     expect(response.status).toBe(200);
+    expect(response.headers.get('cache-control')).toBe('no-store');
     expect(body.duplicate).toBe(true);
     expect(body.data.review.id).toBe(existingId);
     expect(body.data.review.userId).toBeUndefined();

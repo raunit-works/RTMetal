@@ -12,18 +12,19 @@ export const metadata = {
   },
 };
 
-export default function ReviewsHarnessPage({
+export default async function ReviewsHarnessPage({
   searchParams,
 }: {
-  searchParams: { source?: string };
+  searchParams: Promise<{ source?: string }>;
 }) {
+  const params = await searchParams;
   if (process.env.NODE_ENV !== 'development') {
     notFound();
   }
 
   return (
     <ReviewsHarness
-      source={searchParams.source}
+      source={params.source}
       allowRouteSource={process.env.REVIEW_TEST_ROUTE_SOURCE === '1'}
     />
   );

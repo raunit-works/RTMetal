@@ -35,13 +35,12 @@ import { MainSection } from '@/lib/types';
 export const revalidate = 0;
 
 interface ProductDetailPageProps {
-  params: {
-    slug: string;
-  };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata({ params }: ProductDetailPageProps): Promise<Metadata> {
-  const product = await getPublicProductBySlugAsync(params.slug);
+  const { slug } = await params;
+  const product = await getPublicProductBySlugAsync(slug);
 
   if (!product) {
     return {
@@ -74,7 +73,8 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
 }
 
 export default async function ProductDetailPage({ params }: ProductDetailPageProps) {
-  const { product, categories } = await getPublicProductWithCategoriesAsync(params.slug);
+  const { slug } = await params;
+  const { product, categories } = await getPublicProductWithCategoriesAsync(slug);
 
   if (!product) {
     notFound();
@@ -362,7 +362,5 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
 }
 
 interface ProductDetailPageProps {
-  params: {
-    slug: string;
-  };
+  params: Promise<{ slug: string }>;
 }

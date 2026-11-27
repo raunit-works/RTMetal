@@ -21,7 +21,7 @@ export async function getMetalFinishPreviewById(
   if (!UUID_PATTERN.test(id)) return null;
 
   try {
-    const { data, error } = await createSupabaseServerClient()
+    const { data, error } = await (await createSupabaseServerClient())
       .from('metal_finishes')
       .select(METAL_FINISH_ADMIN_SELECT)
       .eq('id', id)
