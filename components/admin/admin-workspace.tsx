@@ -71,8 +71,33 @@ import {
 } from '@/lib/supabase/inquiries';
 import { getBeforeAfterCountAdmin } from '@/lib/supabase/before-after-admin';
 import { getMetalFinishCountAdmin } from '@/lib/supabase/metal-finishes-admin';
+import {
+  deleteAdminNotificationAdmin,
+  deleteAdminReviewAdmin,
+  getAdminNotifications,
+  getAdminReviewDetail,
+  getAdminReviewsDashboard,
+  markAdminNotificationReadAdmin,
+  markAllAdminNotificationsReadAdmin,
+  setAdminReviewStatusAdmin,
+} from '@/lib/review/admin';
+import {
+  ADMIN_REVIEW_PAGE_SIZE,
+  DEFAULT_ADMIN_REVIEW_QUERY,
+  adminReviewUnavailableMessage,
+  getAdminReviewFailureMessage,
+  isCurrentAdminReviewRequest,
+  type AdminNotificationsResult,
+  type AdminReviewDetail,
+  type AdminReviewQuery,
+  type AdminReviewsDashboardData,
+} from '@/lib/review/admin-view';
 import { BeforeAfterManagement } from '@/components/admin/before-after/before-after-management';
 import { MetalFinishesManagement } from '@/components/admin/finishes/metal-finishes-management';
+import {
+  AdminReviewsPanel,
+  type AdminReviewsPanelActions,
+} from '@/components/admin/reviews/admin-reviews-panel';
 import {
   AdminFilterSelect,
   AdminListToolbar,
@@ -89,7 +114,12 @@ import {
   matchesAdminSearch,
 } from '@/lib/admin/list-utils';
 import { useDebouncedValue } from '@/hooks/use-debounced-value';
-import type { InquiryStatus, MainSection, ProductImage } from '@/lib/types';
+import type {
+  InquiryStatus,
+  MainSection,
+  ProductImage,
+  ProductReviewStatus,
+} from '@/lib/types';
 import { getCategoryHierarchySupportAdmin } from '@/lib/supabase/admin-catalog';
 import { mapCategoryRow, mapProductImageRow, type DatabaseProductImageRow } from '@/lib/supabase/data-mapper';
 import {
@@ -166,6 +196,7 @@ export function AdminWorkspace() {
     | 'faqs'
     | 'settings'
     | 'inquiries'
+    | 'reviews'
   >('categories');
 
   const [loading, setLoading] = React.useState(false);
@@ -390,6 +421,25 @@ export function AdminWorkspace() {
   const [inquiryPage, setInquiryPage] = React.useState(1);
   const [editingNotesId, setEditingNotesId] = React.useState<string | null>(null);
   const [currentNotesText, setCurrentNotesText] = React.useState<string>('');
+
+  const [reviewQuery, setReviewQuery] = React.useState<AdminReviewQuery>({
+    ...DEFAULT_ADMIN_REVIEW_QUERY,
+    pageSize: ADMIN_REVIEW_PAGE_SIZE,
+  });
+  const reviewRequestRef = React.useRef(0);
+  const debouncedReviewSearch = useDebouncedValue(reviewQuery.search, 300);
+  const [reviewData, setReviewData] = React.useState<AdminReviewsDashboardData | null>(null);
+  const [reviewsAvailable, setReviewsAvailable] = React.useState(true);
+  const [reviewsLoading, setReviewsLoading] = React.useState(false);
+  const [reviewDetail, setReviewDetail] = React.useState<AdminReviewDetail | null>(null);
+  const [reviewDetailId, setReviewDetailId] = React.useState<string | null>(null);
+  const [reviewDetailLoading, setReviewDetailLoading] = React.useState(false);
+  const reviewDetailRequestRef = React.useRef(0);
+  const [adminNotifications, setAdminNotifications] = React.useState<AdminNotificationsResult>({
+    notifications: [],
+    unreadCount: 0,
+  });
+  const [notificationsAvailable, setNotificationsAvailable] = React.useState(true);
 
   const mappedCategories = React.useMemo(() => categories.map((row) => mapCategoryRow(row)), [categories]);
   const validCategories = getValidCategories(mappedCategories, false);
@@ -865,6 +915,154 @@ export function AdminWorkspace() {
       setLoading(false);
     }
   }, []);
+
+  const fetchReviewDashboard = React.useCallback(async () => {
+    return getAdminReviewsDashboard({
+      search: debouncedReviewSearch,
+      status: reviewQuery.status,
+      rating: reviewQuery.rating,
+      division: reviewQuery.division,
+      sort: reviewQuery.sort,
+      page: reviewQuery.page,
+      pageSize: reviewQuery.pageSize,
+    });
+  }, [
+    debouncedReviewSearch,
+    reviewQuery.division,
+    reviewQuery.page,
+    reviewQuery.pageSize,
+    reviewQuery.rating,
+    reviewQuery.sort,
+    reviewQuery.status,
+  ]);
+
+  const refreshReviewDashboard = React.useCallback(async (): Promise<AdminReviewsDashboardData | null> => {
+    const requestId = reviewRequestRef.current + 1;
+    reviewRequestRef.current = requestId;
+    setReviewsLoading(true);
+    try {
+      const data = await fetchReviewDashboard();
+      if (!isCurrentAdminReviewRequest(requestId, reviewRequestRef.current)) return null;
+      setReviewData(data);
+      setReviewsAvailable(true);
+      return data;
+    } catch (error) {
+      if (!isCurrentAdminReviewRequest(requestId, reviewRequestRef.current)) return null;
+      setReviewData(null);
+      setReviewsAvailable(false);
+      setMessage({ type: 'error', text: adminReviewUnavailableMessage(error) });
+      return null;
+    } finally {
+      if (isCurrentAdminReviewRequest(requestId, reviewRequestRef.current)) setReviewsLoading(false);
+    }
+  }, [fetchReviewDashboard]);
+
+  const refreshAdminNotifications = React.useCallback(async () => {
+    try {
+      const data = await getAdminNotifications(20);
+      setAdminNotifications(data);
+      setNotificationsAvailable(true);
+    } catch (error) {
+      setAdminNotifications({ notifications: [], unreadCount: 0 });
+      setNotificationsAvailable(false);
+      setMessage({ type: 'error', text: adminReviewUnavailableMessage(error) });
+    }
+  }, []);
+
+  const openReviewDetail = React.useCallback(async (id: string) => {
+    setActiveTab('reviews');
+    const requestId = reviewDetailRequestRef.current + 1;
+    reviewDetailRequestRef.current = requestId;
+    setReviewDetailId(id);
+    setReviewDetail(null);
+    setReviewDetailLoading(true);
+    try {
+      const detail = await getAdminReviewDetail(id);
+      if (isCurrentAdminReviewRequest(requestId, reviewDetailRequestRef.current)) setReviewDetail(detail);
+    } catch (error) {
+      if (!isCurrentAdminReviewRequest(requestId, reviewDetailRequestRef.current)) return;
+      setReviewDetail(null);
+      setMessage({ type: 'error', text: getAdminReviewFailureMessage(error) });
+    } finally {
+      if (isCurrentAdminReviewRequest(requestId, reviewDetailRequestRef.current)) setReviewDetailLoading(false);
+    }
+  }, []);
+
+  const closeReviewDetail = React.useCallback(() => {
+    reviewDetailRequestRef.current += 1;
+    setReviewDetailId(null);
+    setReviewDetail(null);
+    setReviewDetailLoading(false);
+  }, []);
+
+  const runAdminReviewAction = React.useCallback(
+    async (
+      task: () => Promise<void>,
+      successText: string,
+      adjustPageAfterDelete = false
+    ) => {
+      try {
+        await task();
+        setMessage({ type: 'success', text: successText });
+        const data = await refreshReviewDashboard();
+        await refreshAdminNotifications();
+        if (adjustPageAfterDelete && data && data.list.page.page < reviewQuery.page) {
+          setReviewQuery((current) => ({ ...current, page: data.list.page.page }));
+        }
+      } catch (error) {
+        setMessage({ type: 'error', text: getAdminReviewFailureMessage(error) });
+        throw error;
+      }
+    },
+    [refreshAdminNotifications, refreshReviewDashboard, reviewQuery.page]
+  );
+
+  const adminReviewActions = React.useMemo<AdminReviewsPanelActions>(
+    () => ({
+      onQueryChange: setReviewQuery,
+      async onSetStatus(id, status) {
+        await runAdminReviewAction(
+          () => setAdminReviewStatusAdmin(id, status),
+          status === 'published' ? 'Review restored.' : 'Review archived.'
+        );
+      },
+      async onDeleteReview(id) {
+        await runAdminReviewAction(
+          () => deleteAdminReviewAdmin(id),
+          'Review and stored photos were permanently deleted.',
+          true
+        );
+      },
+      onOpenReview(id) {
+        void openReviewDetail(id);
+      },
+      onCloseReview: closeReviewDetail,
+      async onMarkNotificationRead(id) {
+        await runAdminReviewAction(
+          () => markAdminNotificationReadAdmin(id),
+          'Notification marked as read.'
+        );
+      },
+      async onMarkAllNotificationsRead() {
+        await runAdminReviewAction(
+          () => markAllAdminNotificationsReadAdmin(),
+          'All review notifications marked as read.'
+        );
+      },
+      async onDeleteNotification(id) {
+        await runAdminReviewAction(() => deleteAdminNotificationAdmin(id), 'Notification deleted.');
+      },
+    }),
+    [closeReviewDetail, openReviewDetail, runAdminReviewAction]
+  );
+
+  React.useEffect(() => {
+    void refreshReviewDashboard();
+  }, [refreshReviewDashboard]);
+
+  React.useEffect(() => {
+    void refreshAdminNotifications();
+  }, [refreshAdminNotifications]);
 
   React.useEffect(() => {
     loadAllData();
@@ -1866,6 +2064,12 @@ export function AdminWorkspace() {
       <div className="flex flex-wrap gap-2 border-b border-border pb-4 overflow-x-auto">
         {[
           { id: 'inquiries', label: 'Inquiries / Leads', icon: Inbox, count: inquiries.length },
+          {
+            id: 'reviews',
+            label: 'Reviews',
+            icon: Star,
+            count: reviewsAvailable ? reviewData?.list.page.totalCount ?? 0 : '—',
+          },
           { id: 'categories', label: 'Categories', icon: FolderTree, count: categories.length },
           { id: 'products', label: 'Products', icon: Package, count: products.length },
           { id: 'services', label: 'Services', icon: Wrench, count: services.length },
@@ -1891,14 +2095,26 @@ export function AdminWorkspace() {
             <span className="ml-1.5 rounded-full bg-background/40 px-2 py-0.5 text-[10px]">
               {tab.count}
             </span>
+            {tab.id === 'reviews' && notificationsAvailable && adminNotifications.unreadCount > 0 && (
+              <span
+                data-testid="reviews-unread-badge"
+                className="rounded-full bg-destructive px-1.5 py-0.5 text-[9px] font-bold text-white"
+              >
+                {adminNotifications.unreadCount}
+              </span>
+            )}
           </button>
         ))}
 
         <Button
           variant="outline"
           size="sm"
-          onClick={loadAllData}
-          disabled={loading}
+          onClick={() => {
+            void loadAllData();
+            void refreshReviewDashboard();
+            void refreshAdminNotifications();
+          }}
+          disabled={loading || reviewsLoading}
           className="ml-auto rounded-xl"
         >
           <RefreshCw className={`h-3.5 w-3.5 mr-1 ${loading ? 'animate-spin' : ''}`} />
@@ -3944,6 +4160,21 @@ export function AdminWorkspace() {
             />
           </div>
         </div>
+      )}
+
+      {activeTab === 'reviews' && (
+        <AdminReviewsPanel
+          data={reviewData}
+          notifications={adminNotifications}
+          query={reviewQuery}
+          detail={reviewDetail}
+          detailLoading={reviewDetailLoading}
+          detailReviewId={reviewDetailId}
+          available={reviewsAvailable}
+          notificationsAvailable={notificationsAvailable}
+          loading={reviewsLoading}
+          actions={adminReviewActions}
+        />
       )}
 
       {/* INQUIRIES / LEADS TAB */}

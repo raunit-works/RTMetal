@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, Eye, Star, X, ArrowRight, Loader2, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { getProductRatingDisplay } from '@/lib/catalog/product-rating';
 import type { Product, ProductImage, ProductOptionValue } from '@/lib/types';
 import { getProductGalleryImages, sortGalleryImages } from '@/lib/supabase/product-gallery';
 import { getDefaultVariant, getVariantPrimaryImage, sortProductVariants } from '@/lib/supabase/product-variants';
@@ -412,6 +413,7 @@ function QuickViewModal({
 }) {
   const productSlug = product.slug || product.id;
   const productDetailLink = division === 'metal_services' ? `/metal-coating/product/${productSlug}` : `/home-decor/${productSlug}`;
+  const ratingDisplay = getProductRatingDisplay(product);
   const [origin, setOrigin] = useState('');
   useEffect(() => {
     setOrigin(window.location.origin);
@@ -620,25 +622,30 @@ function QuickViewModal({
                   {product.name}
                 </h2>
 
-                {/* Star rating */}
-                <div className="mt-3 flex items-center gap-2">
-                  <div className="flex items-center gap-0.5">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star
-                        key={i}
-                        className={cn(
-                          'h-[13px] w-[13px]',
-                          i < Math.round(product.rating)
-                            ? 'fill-gold text-gold'
-                            : 'fill-muted-foreground/20 text-muted-foreground/40'
-                        )}
-                      />
-                    ))}
+                {ratingDisplay.kind === 'rating' ? (
+                  <div data-testid="product-rating" className="mt-3 flex items-center gap-2">
+                    <div className="flex items-center gap-0.5">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <Star
+                          key={i}
+                          className={cn(
+                            'h-[13px] w-[13px]',
+                            i < Math.round(ratingDisplay.rating)
+                              ? 'fill-gold text-gold'
+                              : 'fill-muted-foreground/20 text-muted-foreground/40'
+                          )}
+                        />
+                      ))}
+                    </div>
+                    <span className="text-xs font-medium text-muted-foreground">
+                      {ratingDisplay.rating} / 5
+                    </span>
                   </div>
-                  <span className="text-xs font-medium text-muted-foreground">
-                    {product.rating} / 5
-                  </span>
-                </div>
+                ) : ratingDisplay.kind === 'empty' ? (
+                  <p data-testid="product-rating-empty" className="mt-3 text-xs font-medium text-muted-foreground">
+                    No reviews yet
+                  </p>
+                ) : null}
 
                 {/* Divider */}
                 <div className="my-5 h-px bg-border/60" />

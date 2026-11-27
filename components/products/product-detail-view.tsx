@@ -9,6 +9,7 @@ import { Reveal, StaggerGroup, StaggerItem } from '@/components/motion/reveal';
 import { SectionHeading } from '@/components/sections/section-heading';
 import { CtaBanner } from '@/components/sections/cta-banner';
 import { ProductVariantProvider } from '@/components/products/product-variant-provider';
+import { ProductReviewsSection } from '@/components/reviews/product-reviews-section';
 import { VariantImageGallery } from '@/components/products/variant-image-gallery';
 import { ProductVariantSelector } from '@/components/products/product-variant-selector';
 import {
@@ -230,6 +231,11 @@ export function ProductDetailView({ product, division, categoryName, relatedProd
               </Reveal>
             </div>
           </div>
+          <ProductReviewsSection
+            productId={product.id}
+            productName={product.name}
+            className="mt-14 sm:mt-12 md:mt-12 lg:mt-16"
+          />
         </div>
       </section>
 

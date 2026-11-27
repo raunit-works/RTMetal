@@ -1,3 +1,4 @@
+import { getGenuineProductRating } from '@/lib/catalog/product-rating';
 import type { Product } from '@/lib/types';
 
 export type CollectionSort = 'featured' | 'rating' | 'name';
@@ -45,8 +46,15 @@ export function sortCollectionProducts(
     if (pinned !== 0) return pinned;
 
     if (!a.isPinned && !b.isPinned) {
-      if (sortBy === 'rating' && a.rating !== b.rating) {
-        return b.rating - a.rating;
+      if (sortBy === 'rating') {
+        const aRating = getGenuineProductRating(a);
+        const bRating = getGenuineProductRating(b);
+
+        if (aRating !== null && bRating !== null && aRating !== bRating) {
+          return bRating - aRating;
+        }
+        if (aRating !== null && bRating === null) return -1;
+        if (aRating === null && bRating !== null) return 1;
       }
       if (sortBy === 'name') {
         const byName = a.name.localeCompare(b.name, undefined, {

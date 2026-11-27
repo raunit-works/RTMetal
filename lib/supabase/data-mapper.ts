@@ -82,6 +82,7 @@ export interface DatabaseProductRow {
   original_price: number | string | null;
   image: string;
   rating: number | string | null;
+  review_count?: number | string | null;
   badge: string | null;
   description: string;
   is_published: boolean;
@@ -210,7 +211,10 @@ export function mapProductRow(
     price: row.price != null ? Number(row.price) : null,
     originalPrice: row.original_price != null ? Number(row.original_price) : undefined,
     image: row.image,
-    rating: row.rating != null ? Number(row.rating) : 5.0,
+    rating: row.rating != null && Number.isFinite(Number(row.rating)) ? Number(row.rating) : null,
+    reviewCount: row.review_count != null && Number.isFinite(Number(row.review_count))
+      ? Number(row.review_count)
+      : undefined,
     badge: badgeValue,
     description: row.description,
     sku: row.sku || undefined,

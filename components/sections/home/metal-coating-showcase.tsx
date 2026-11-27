@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { ArrowRight, Wrench } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Reveal } from '@/components/motion/reveal';
@@ -87,10 +88,10 @@ export function MetalCoatingShowcase({
                     'flex-1 sm:flex-initial min-w-[140px]'
                   )}
                 >
-                  <a href="/metal-coating">
+                  <Link href="/metal-coating">
                     Explore Our Services
                     <ArrowRight className="ml-2 h-4 w-4 flex-shrink-0" />
-                  </a>
+                  </Link>
                 </Button>
 
                 {/* Button 2 — Secondary: transparent with warm-white text + gold/warm-grey border, always visible */}
@@ -102,10 +103,10 @@ export function MetalCoatingShowcase({
                     'flex-1 sm:flex-initial min-w-[140px]'
                   )}
                 >
-                  <a href="/metal-coating#quote">
+                  <Link href="/metal-coating#quote">
                     Enquire About a Project
                     <ArrowRight className="ml-2 h-4 w-4 flex-shrink-0" />
-                  </a>
+                  </Link>
                 </Button>
               </div>
             </Reveal>

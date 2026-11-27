@@ -10,8 +10,13 @@ import { getSiteUrlForPath } from '@/lib/site-url';
 
 export const revalidate = 0;
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const { product, categories } = await getPublicProductWithCategoriesAsync(params.slug);
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const { product, categories } = await getPublicProductWithCategoriesAsync(slug);
 
   if (!product) {
     return {
@@ -52,8 +57,13 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default async function MetalProductDetailPage({ params }: { params: { slug: string } }) {
-  const { product, categories } = await getPublicProductWithCategoriesAsync(params.slug);
+export default async function MetalProductDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const { product, categories } = await getPublicProductWithCategoriesAsync(slug);
 
   if (!product) {
     notFound();

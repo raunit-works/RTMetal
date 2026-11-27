@@ -83,7 +83,8 @@ export interface Product {
   price: number | null;
   originalPrice?: number;
   image: string;
-  rating: number;
+  rating: number | null;
+  reviewCount?: number | null;
   badge?: 'New' | 'Bestseller' | 'Limited';
   description: string;
   sku?: string;
@@ -319,5 +320,51 @@ export interface WishlistItem {
   productId: string;
   createdAt: string;
   product?: Product;
+}
+
+export type ProductReviewStatus = 'published' | 'archived';
+
+export interface ProductReviewImage {
+  id: string;
+  reviewId: string;
+  storagePath: string;
+  sortOrder: number;
+  createdAt: string;
+}
+
+export interface ProductReview {
+  id: string;
+  productId: string;
+  userId?: string | null;
+  customerName?: string | null;
+  rating: number;
+  content: string;
+  status: ProductReviewStatus;
+  productNameSnapshot?: string | null;
+  productSlugSnapshot?: string | null;
+  createdAt: string;
+  updatedAt: string;
+  images?: ProductReviewImage[];
+}
+
+export interface ProductReviewSummary {
+  averageRating: number | null;
+  reviewCount: number;
+}
+
+export interface CreateProductReviewInput {
+  productId: string;
+  rating: number;
+  content: string;
+  customerName?: string;
+  userId?: string;
+  photos?: File[];
+  submissionKey: string;
+  website?: string;
+}
+
+export interface ProductReviewValidationError {
+  field: string;
+  message: string;
 }
 

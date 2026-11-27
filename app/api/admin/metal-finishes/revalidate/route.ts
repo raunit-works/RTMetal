@@ -16,7 +16,7 @@ export async function POST() {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
   }
 
-  revalidateTag(METAL_FINISHES_PUBLIC_CACHE_TAG);
+  revalidateTag(METAL_FINISHES_PUBLIC_CACHE_TAG, 'max');
   revalidatePath('/metal-coating');
 
   return NextResponse.json({ revalidated: true });

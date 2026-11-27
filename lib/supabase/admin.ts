@@ -2,7 +2,7 @@ import { createSupabaseServerClient } from './server';
 
 export async function verifyAdminAccess(): Promise<{ isAdmin: boolean; userId: string | null; email: string | null }> {
   try {
-    const supabase = createSupabaseServerClient();
+    const supabase = await createSupabaseServerClient();
     const { data: { user }, error: userError } = await supabase.auth.getUser();
 
     if (userError || !user) {

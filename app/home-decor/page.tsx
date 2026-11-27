@@ -20,11 +20,12 @@ export const metadata: Metadata = {
 };
 
 
-export default function HomeDecorPage({ searchParams }: {
-  searchParams: { category?: string | string[]; section?: string | string[] };
+export default async function HomeDecorPage({ searchParams }: {
+  searchParams: Promise<{ category?: string | string[]; section?: string | string[] }>;
 }) {
+  const params = await searchParams;
   // Preserve existing header/bookmark query URLs, including ?category=all.
-  const category = Array.isArray(searchParams.category) ? searchParams.category[0] : searchParams.category;
-  const section = Array.isArray(searchParams.section) ? searchParams.section[0] : searchParams.section;
+  const category = Array.isArray(params.category) ? params.category[0] : params.category;
+  const section = Array.isArray(params.section) ? params.section[0] : params.section;
   return <CategoryCatalogPage slug={category === 'all' ? undefined : category} section={section} />;
 }
